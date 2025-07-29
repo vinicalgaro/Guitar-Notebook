@@ -4,5 +4,19 @@
   "menu": "Menu",
   "settings": "Settings",
   "about": "About",
-  "songs": "Songs"
+  "songs": "Songs",
+  "modoEscuro": "Dark Theme",
+  "version": "Version {versionNumber}",
+  "@version": {
+    "description": "Text to show the current app version.",
+    "placeholders": {
+      "versionNumber": {
+        "type": "String",
+        "example": "1.0.0"
+      }
+    }
+  },
+  "aboutAppText": "This app was developed to help musicians organize their practice, track their progress, and master their favorite songs.",
+  "dev": "Developer",
+  "appLema": "Practice today, get better always!"
 }

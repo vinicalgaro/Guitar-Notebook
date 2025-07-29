@@ -4,5 +4,23 @@
   "menu": "Menu",
   "settings": "Configurações",
   "about": "Sobre",
-  "songs": "Músicas"
+  "songs": "Músicas",
+  "modoEscuro": "Modo Escuro",
+  "linkedin": "LinkedIn",
+  "mobileDeveloper": "Mobile Developer",
+  "vinciusCalgaro": "Vinícius Calgaro",
+  "github": "GitHub",
+  "version": "Versão {versionNumber}",
+  "@version": {
+    "description": "Texto para mostrar a versão atual do aplicativo.",
+    "placeholders": {
+      "versionNumber": {
+        "type": "String",
+        "example": "1.0.0"
+      }
+    }
+  },
+  "aboutAppText": "Este aplicativo foi desenvolvido para ajudar músicos a organizar seus estudos, registrar o progresso e dominar suas músicas favoritas.",
+  "dev": "Desenvolvedor",
+  "appLema": "Pratique hoje, evolua sempre!"
 }

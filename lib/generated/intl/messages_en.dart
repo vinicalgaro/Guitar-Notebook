@@ -20,12 +20,21 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(versionNumber) => "Version ${versionNumber}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "aboutAppText": MessageLookupByLibrary.simpleMessage(
+            "This app was developed to help musicians organize their practice, track their progress, and master their favorite songs."),
+        "appLema": MessageLookupByLibrary.simpleMessage(
+            "Practice today, get better always!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
+        "dev": MessageLookupByLibrary.simpleMessage("Developer"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
+        "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-        "songs": MessageLookupByLibrary.simpleMessage("Songs")
+        "songs": MessageLookupByLibrary.simpleMessage("Songs"),
+        "version": m0
       };
 }

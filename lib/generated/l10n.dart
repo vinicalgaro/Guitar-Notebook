@@ -99,6 +99,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Dark Theme`
+  String get modoEscuro {
+    return Intl.message(
+      'Dark Theme',
+      name: 'modoEscuro',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Version {versionNumber}`
+  String version(String versionNumber) {
+    return Intl.message(
+      'Version $versionNumber',
+      name: 'version',
+      desc: 'Text to show the current app version.',
+      args: [versionNumber],
+    );
+  }
+
+  /// `This app was developed to help musicians organize their practice, track their progress, and master their favorite songs.`
+  String get aboutAppText {
+    return Intl.message(
+      'This app was developed to help musicians organize their practice, track their progress, and master their favorite songs.',
+      name: 'aboutAppText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Developer`
+  String get dev {
+    return Intl.message(
+      'Developer',
+      name: 'dev',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Practice today, get better always!`
+  String get appLema {
+    return Intl.message(
+      'Practice today, get better always!',
+      name: 'appLema',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
