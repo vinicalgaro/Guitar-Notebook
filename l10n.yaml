@@ -1,0 +1,3 @@
+arb-dir: lib/l10n # Pasta onde ficarão seus arquivos de tradução
+template-arb-file: intl_pt.arb # O arquivo "modelo" com os textos em português
+output-localization-file: app_localizations.dart # Nome do arquivo de saída gerado
