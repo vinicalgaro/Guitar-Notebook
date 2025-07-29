@@ -22,7 +22,7 @@ class AppTheme {
   static const Color _textSecondary = Color(0xFF575757);
   static const Color _textSecondaryDark = Color(0xFFA4A4A4);
 
-  static TextTheme get textTheme => GoogleFonts.robotoTextTheme();
+  static TextTheme get textTheme => GoogleFonts.redHatDisplayTextTheme();
 
   // --- TEMA CLARO (LIGHT THEME) ---
   static final ThemeData lightTheme = ThemeData(
