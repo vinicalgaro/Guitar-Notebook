@@ -1,3 +1,2 @@
 # guitar_learner
-
-A new Flutter project.
+Aplicativo para auxiliar na prática de violão.
