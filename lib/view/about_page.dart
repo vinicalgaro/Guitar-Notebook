@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -21,10 +22,8 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.about),
-      ),
+    return DefaultPageScaffold(
+      title: AppLocalizations.of(context)!.about,
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [

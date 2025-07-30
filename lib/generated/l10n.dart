@@ -90,11 +90,21 @@ class S {
     );
   }
 
-  /// `Songs`
-  String get songs {
+  /// `New Song`
+  String get newSong {
     return Intl.message(
-      'Songs',
-      name: 'songs',
+      'New Song',
+      name: 'newSong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Song`
+  String get editSong {
+    return Intl.message(
+      'Edit Song',
+      name: 'editSong',
       desc: '',
       args: [],
     );
@@ -145,6 +155,56 @@ class S {
     return Intl.message(
       'Practice today, get better always!',
       name: 'appLema',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Song Data`
+  String get step1Title {
+    return Intl.message(
+      'Song Data',
+      name: 'step1Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To start, fill in the main details to identify the song. The title is essential so you can find it later.`
+  String get step1Desc {
+    return Intl.message(
+      'To start, fill in the main details to identify the song. The title is essential so you can find it later.',
+      name: 'step1Desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Song Parts`
+  String get step2Title {
+    return Intl.message(
+      'Song Parts',
+      name: 'step2Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In this step, you'll define the song's structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need.`
+  String get step2Desc {
+    return Intl.message(
+      'In this step, you\'ll define the song\'s structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need.',
+      name: 'step2Desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step`
+  String get step {
+    return Intl.message(
+      'Step',
+      name: 'step',
       desc: '',
       args: [],
     );

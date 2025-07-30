@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/view/about_page.dart';
+import 'package:guitar_learner/view/cadastro_musica.dart';
 import 'package:guitar_learner/view/home_page.dart';
 import 'package:provider/provider.dart';
 
@@ -51,6 +52,10 @@ class MainApp extends StatelessWidget {
         switch (settings.name) {
           case AppRoutes.about:
             return _getRoute(const AboutPage());
+          case AppRoutes.editSong:
+            return _getRoute(const CadastroMusica(musica: null));
+          case AppRoutes.addSong:
+            return _getRoute(const CadastroMusica());
           default:
             return _getRoute(const HomePage());
         }

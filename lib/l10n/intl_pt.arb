@@ -4,7 +4,8 @@
   "menu": "Menu",
   "settings": "Configurações",
   "about": "Sobre",
-  "songs": "Músicas",
+  "newSong": "Nova Música",
+  "editSong": "Editar Música",
   "modoEscuro": "Modo Escuro",
   "linkedin": "LinkedIn",
   "mobileDeveloper": "Mobile Developer",
@@ -22,5 +23,10 @@
   },
   "aboutAppText": "Este aplicativo foi desenvolvido para ajudar músicos a organizar seus estudos, registrar o progresso e dominar suas músicas favoritas.",
   "dev": "Desenvolvedor",
-  "appLema": "Pratique hoje, evolua sempre!"
+  "appLema": "Pratique hoje, evolua sempre!",
+  "step1Title": "Dados da Música",
+  "step1Desc": "Para começar, preencha as informações principais para identificar a música. O título é essencial para que você possa encontrá-la depois.",
+  "step2Title": "Partes da Música",
+  "step2Desc": "Nesta etapa, você define a estrutura da música. Crie as diferentes seções e preencha o ritmo e a progressão de acordes correspondentes. Você pode adicionar quantas partes precisar.",
+  "step": "Passo"
 }

@@ -4,7 +4,8 @@
   "menu": "Menu",
   "settings": "Settings",
   "about": "About",
-  "songs": "Songs",
+  "newSong": "New Song",
+  "editSong": "Edit Song",
   "modoEscuro": "Dark Theme",
   "version": "Version {versionNumber}",
   "@version": {
@@ -18,5 +19,10 @@
   },
   "aboutAppText": "This app was developed to help musicians organize their practice, track their progress, and master their favorite songs.",
   "dev": "Developer",
-  "appLema": "Practice today, get better always!"
+  "appLema": "Practice today, get better always!",
+  "step1Title": "Song Data",
+  "step1Desc": "To start, fill in the main details to identify the song. The title is essential so you can find it later.",
+  "step2Title": "Song Parts",
+  "step2Desc": "In this step, you'll define the song's structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need.",
+  "step": "Step"
 }

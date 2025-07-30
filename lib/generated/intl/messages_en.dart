@@ -31,10 +31,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Practice today, get better always!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
         "dev": MessageLookupByLibrary.simpleMessage("Developer"),
+        "editSong": MessageLookupByLibrary.simpleMessage("Edit Song"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
+        "newSong": MessageLookupByLibrary.simpleMessage("New Song"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-        "songs": MessageLookupByLibrary.simpleMessage("Songs"),
+        "step": MessageLookupByLibrary.simpleMessage("Step"),
+        "step1Desc": MessageLookupByLibrary.simpleMessage(
+            "To start, fill in the main details to identify the song. The title is essential so you can find it later."),
+        "step1Title": MessageLookupByLibrary.simpleMessage("Song Data"),
+        "step2Desc": MessageLookupByLibrary.simpleMessage(
+            "In this step, you\'ll define the song\'s structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need."),
+        "step2Title": MessageLookupByLibrary.simpleMessage("Song Parts"),
         "version": m0
       };
 }

@@ -4,7 +4,6 @@ import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
-import '../theme/app_colors_extension.dart';
 import '../viewmodel/theme_viewmodel.dart';
 
 class HomeDrawer extends StatelessWidget {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:guitar_learner/extensions/navigation_extension.dart';
+import 'package:guitar_learner/routes/app_routes.dart';
 import 'package:guitar_learner/view/home_drawer.dart';
 import 'package:guitar_learner/view/lista_musicas.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -6,7 +8,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  addMusic() {}
+  addMusic(BuildContext context) {
+    context.goTo(AppRoutes.addSong);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class HomePage extends StatelessWidget {
       drawer: const HomeDrawer(),
       body: const ListaMusicas(),
       floatingActionButton: FloatingActionButton(
-        onPressed: addMusic,
+        onPressed: () => addMusic(context),
         child: const Icon(Icons.add),
       ),
     );
