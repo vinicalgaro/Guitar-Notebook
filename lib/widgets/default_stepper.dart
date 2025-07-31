@@ -38,6 +38,7 @@ class DefaultStepper extends StatelessWidget {
                 child: Lottie.asset(getAnimationFromAssets("Loading.json")));
           default:
             return CircleAvatar(
+              backgroundColor: Theme.of(context).disabledColor,
               child: Text('${stepIndex + 1}',
                   style: const TextStyle(color: Colors.white)),
             );
