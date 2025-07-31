@@ -1,28 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../model/settings_repository.dart';
 
-class ThemeViewModel with ChangeNotifier {
-  final SettingsRepository _repository;
+class ThemeViewModel extends ChangeNotifier with WidgetsBindingObserver {
+  final SettingsRepository _settingsRepository;
 
-  ThemeMode _themeMode;
+  late ThemeMode _themeMode;
 
-  ThemeMode get themeMode => _themeMode;
-
-  ThemeViewModel(this._repository) : _themeMode = ThemeMode.system {
+  ThemeViewModel(this._settingsRepository) {
+    WidgetsBinding.instance.addObserver(this);
     _loadTheme();
   }
 
+  bool get isDarkMode {
+    if (_themeMode == ThemeMode.system) {
+      // Se a preferência é 'system', consulte o estado real do dispositivo
+      return SchedulerBinding.instance.platformDispatcher.platformBrightness ==
+          Brightness.dark;
+    } else {
+      return _themeMode == ThemeMode.dark;
+    }
+  }
+
+  ThemeMode get themeMode => _themeMode;
+
   void _loadTheme() async {
-    _themeMode = await _repository.getThemePreference();
+    _themeMode = await _settingsRepository.getThemePreference();
     notifyListeners();
   }
 
   void setThemeMode(ThemeMode mode) async {
-    if (mode == _themeMode) return;
     _themeMode = mode;
-
-    await _repository.saveThemePreference(mode);
+    await _settingsRepository.saveThemePreference(mode);
     notifyListeners();
+  }
+
+  @override
+  void didChangePlatformBrightness() {
+    // Se a preferência do usuário é seguir o sistema,
+    // precisamos notificar a UI para que ela se reconstrua com o novo estado.
+    if (_themeMode == ThemeMode.system) {
+      notifyListeners();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 }

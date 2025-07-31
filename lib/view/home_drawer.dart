@@ -39,19 +39,19 @@ class HomeDrawer extends StatelessWidget {
   Widget _buildThemeSwitch(
           BuildContext context, ThemeViewModel themeViewModel) =>
       Consumer<ThemeViewModel>(
-        builder: (context, value, child) => SwitchListTile(
-          secondary: Icon(
-            themeViewModel.themeMode == ThemeMode.dark
-                ? Icons.dark_mode_outlined
-                : Icons.light_mode_outlined,
-          ),
-          value: themeViewModel.themeMode == ThemeMode.dark,
-          onChanged: (isDark) {
-            final viewModel = context.read<ThemeViewModel>();
-            viewModel.setThemeMode(isDark ? ThemeMode.dark : ThemeMode.light);
-          },
-          title: Text(AppLocalizations.of(context)!.modoEscuro),
-        ),
+        builder: (context, viewModel, child) {
+          return SwitchListTile(
+            secondary: Icon(
+              viewModel.isDarkMode
+                  ? Icons.dark_mode_outlined
+                  : Icons.light_mode_outlined,
+            ),
+            value: viewModel.isDarkMode,
+            onChanged: (isDark) => viewModel
+                .setThemeMode(isDark ? ThemeMode.dark : ThemeMode.light),
+            title: Text(AppLocalizations.of(context)!.modoEscuro),
+          );
+        },
       );
 
   Widget _buildPageButton(
