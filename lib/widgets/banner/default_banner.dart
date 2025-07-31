@@ -17,6 +17,8 @@ class DefaultBanner extends StatelessWidget {
   final Function? saberMaisOnClick;
   final TextStyle? tituloStyle, descricaoStyle;
 
+  final double maxToastWidth = 600.0;
+
   const DefaultBanner(
       {this.titulo,
       required this.descricao,
@@ -76,9 +78,8 @@ class DefaultBanner extends StatelessWidget {
       constraints: useMaxSize
           ? null
           : BoxConstraints(
-              maxWidth:
-                  PlatformDispatcher.instance.views.first.physicalSize.width *
-                      0.75), //Largura máxima do toast (75% da tela)
+              maxWidth: MediaQuery.of(context).size.width * 0.9,
+              maxHeight: MediaQuery.of(context).size.width * 0.5),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(18),
         child: Card(
@@ -89,47 +90,36 @@ class DefaultBanner extends StatelessWidget {
                 horizontal: 8, vertical: verticalRowPadding),
             child: Row(
               mainAxisSize: useMaxSize ? MainAxisSize.max : MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: useAnimatedIcon
-                          ? TweenIcon(
-                              icon: icon,
-                              iconColor: iconColor ?? mainColor,
-                            )
-                          : Icon(icon, color: iconColor ?? mainColor),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: useAnimatedIcon
+                      ? TweenIcon(
+                          icon: icon,
+                          iconColor: iconColor ?? mainColor,
+                        )
+                      : Icon(icon, color: iconColor ?? mainColor),
+                ),
+                Flexible(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxToastWidth),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (titulo != null) Text(titulo!, style: _tituloStyle),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Text(descricao, style: _descricaoStyle),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (titulo != null)
-                            Text(titulo!, style: _tituloStyle),
-                          Container(
-                              padding: const EdgeInsets.only(top: 4),
-                              constraints: BoxConstraints(
-                                  maxWidth: PlatformDispatcher.instance.views
-                                          .first.physicalSize.width *
-                                      (hasOnClick ? 0.5 : 0.65)),
-                              child: Text(descricao, style: _descricaoStyle))
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 if (hasOnClick)
-                  Row(
-                    children: [
-                      TextButton(
-                          onPressed: () => saberMaisOnClick!.call(),
-                          child: const Text("Saber Mais")),
-                    ],
-                  )
+                  TextButton(
+                      onPressed: () => saberMaisOnClick!.call(),
+                      child: const Text("Saber Mais"))
               ],
             ),
           ),
