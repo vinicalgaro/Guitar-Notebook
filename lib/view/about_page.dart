@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,44 +28,51 @@ class AboutPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          const Center(
-            child: Icon(
-              Icons.music_note,
-              size: 80,
-              color: AppTheme.brightRed,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Center(
-            child: Text(
-              AppLocalizations.of(context)!.appTitle,
-              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-          ),
-          FutureBuilder<PackageInfo>(
-            future: PackageInfo.fromPlatform(),
-            builder: (context, snapshot) {
-              final versionString = snapshot.data?.version ?? '...';
-              final translatedText =
-                  AppLocalizations.of(context)!.version(versionString);
-
-              return Center(
-                child: Text(
-                  translatedText,
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Theme.of(context)
-                          .extension<AppColorsExtension>()!
-                          .textSecondary),
+          DefaultCardContainer(
+            child: Column(
+              children: [
+                const Center(
+                  child: Icon(
+                    Icons.music_note,
+                    size: 80,
+                    color: AppTheme.paletaBrightRed,
+                  ),
                 ),
-              );
-            },
-          ),
-          const SizedBox(height: 24),
-          Text(
-            AppLocalizations.of(context)!.aboutAppText,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16),
+                const SizedBox(height: 16),
+                Center(
+                  child: Text(
+                    AppLocalizations.of(context)!.appTitle,
+                    style: const TextStyle(
+                        fontSize: 28, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                FutureBuilder<PackageInfo>(
+                  future: PackageInfo.fromPlatform(),
+                  builder: (context, snapshot) {
+                    final versionString = snapshot.data?.version ?? '...';
+                    final translatedText =
+                        AppLocalizations.of(context)!.version(versionString);
+
+                    return Center(
+                      child: Text(
+                        translatedText,
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context)
+                                .extension<AppColorsExtension>()!
+                                .textSecondary),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  AppLocalizations.of(context)!.aboutAppText,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
           ),
           const Divider(height: 48),
           Text(

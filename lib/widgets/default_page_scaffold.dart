@@ -33,21 +33,7 @@ class DefaultPageScaffold extends StatelessWidget {
         ),
         leadingWidth: 100,
       ),
-      body: Container(
-        margin: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.175),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: body,
-      ),
+      body: body,
       floatingActionButton: floatingActionButton,
     );
   }

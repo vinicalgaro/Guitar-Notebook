@@ -209,6 +209,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Required field`
+  String get fieldRequired {
+    return Intl.message(
+      'Required field',
+      name: 'fieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Optional`
+  String get optional {
+    return Intl.message(
+      'Optional',
+      name: 'optional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Song Name`
+  String get songName {
+    return Intl.message(
+      'Song Name',
+      name: 'songName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Youtube Link`
+  String get linkYoutube {
+    return Intl.message(
+      'Youtube Link',
+      name: 'linkYoutube',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Part Name`
+  String get partName {
+    return Intl.message(
+      'Part Name',
+      name: 'partName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get salvar {
+    return Intl.message(
+      'Save',
+      name: 'salvar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get voltar {
+    return Intl.message(
+      'Back',
+      name: 'voltar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continuar {
+    return Intl.message(
+      'Continue',
+      name: 'continuar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

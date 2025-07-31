@@ -24,5 +24,13 @@
   "step1Desc": "To start, fill in the main details to identify the song. The title is essential so you can find it later.",
   "step2Title": "Song Parts",
   "step2Desc": "In this step, you'll define the song's structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need.",
-  "step": "Step"
+  "step": "Step",
+  "fieldRequired": "Required field",
+  "optional": "Optional",
+  "songName": "Song Name",
+  "linkYoutube": "Youtube Link",
+  "partName": "Part Name",
+  "salvar": "Save",
+  "voltar": "Back",
+  "continuar": "Continue"
 }

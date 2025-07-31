@@ -7,16 +7,19 @@ class AppTheme {
   AppTheme._();
 
   // --- CORES DA PALETA ---
-  static const Color darkBlue = Color(0xFF003366);
-  static const Color darkRed = Color(0xFF8B2222);
-  static const Color cream = Color(0xFFFDF5E6);
-  static const Color lightBlue = Color(0xFF6C92B4);
-  static const Color brightRed = Color(0xFFC70039);
+  static const Color paletaDarkBlue = Color(0xFF003366);
+  static const Color paletaDarkRed = Color(0xFF8B2222);
+  static const Color paletaCream = Color(0xFFFDF5E6);
+  static const Color paletaLightBlue = Color(0xFF6C92B4);
+  static const Color paletaBrightRed = Color(0xFFC70039);
+
+  // --- OUTRAS CORES DENTRO DA PALETA, MAS NÃO PRINCIPAIS ---
+  static const Color paletaGreen = Color(0xFF5E9C76);
 
   // --- CORES DE TEXTO ---
   // Cores principais de texto
   static const Color _lightTextColor = Color(0xFF001A33);
-  static const Color _darkTextColor = cream;
+  static const Color _darkTextColor = paletaCream;
 
   /// Cor secundária, mais suave. Ótima para subtítulos e descrições.
   static const Color _textSecondary = Color(0xFF575757);
@@ -31,17 +34,17 @@ class AppTheme {
 
     // Esquema de cores principal
     colorScheme: const ColorScheme.light(
-      primary: darkBlue,
+      primary: paletaDarkBlue,
       onPrimary: Colors.white,
-      secondary: lightBlue,
+      secondary: paletaLightBlue,
       onSecondary: Colors.white,
-      tertiary: darkRed,
+      tertiary: paletaDarkRed,
       onTertiary: Colors.white,
-      background: cream,
+      background: paletaCream,
       onBackground: _lightTextColor,
-      surface: cream,
+      surface: Color(0xFFF5EFE0),
       onSurface: _lightTextColor,
-      error: brightRed,
+      error: paletaBrightRed,
       onError: Colors.white,
     ),
 
@@ -53,19 +56,19 @@ class AppTheme {
 
     // Tema da AppBar
     appBarTheme: const AppBarTheme(
-      backgroundColor: darkBlue,
+      backgroundColor: paletaDarkBlue,
       foregroundColor: Colors.white, // Cor do título e ícones
       elevation: 4.0,
       centerTitle: true,
     ),
 
     // Tema do Scaffold
-    scaffoldBackgroundColor: cream,
+    scaffoldBackgroundColor: paletaCream,
 
     // Tema dos Botões
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: darkBlue,
+        backgroundColor: paletaDarkBlue,
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(
@@ -76,7 +79,7 @@ class AppTheme {
 
     // Tema do Floating Action Button (FAB)
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: darkRed, // Usando o vermelho escuro para destaque
+      backgroundColor: paletaDarkRed, // Usando o vermelho escuro para destaque
       foregroundColor: Colors.white,
     ),
 
@@ -95,13 +98,13 @@ class AppTheme {
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: darkBlue, width: 2.0),
+        borderSide: BorderSide(color: paletaDarkBlue, width: 2.0),
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
-      labelStyle: TextStyle(color: darkBlue),
+      labelStyle: TextStyle(color: paletaDarkBlue),
     ),
 
-    extensions: [
+    extensions: const [
       AppColorsExtension(
         textSecondary: _textSecondary,
       ),
@@ -115,19 +118,19 @@ class AppTheme {
 
     // Esquema de cores para o modo escuro
     colorScheme: const ColorScheme.dark(
-      primary: lightBlue,
+      primary: paletaLightBlue,
       // O azul claro se destaca mais no fundo escuro
       onPrimary: _darkTextColor,
-      secondary: darkBlue,
+      secondary: paletaDarkBlue,
       onSecondary: _darkTextColor,
-      tertiary: darkRed,
+      tertiary: paletaDarkRed,
       onTertiary: _darkTextColor,
       background: Color(0xFF121212),
       // Um preto padrão do Material Design
       onBackground: _darkTextColor,
       surface: Color(0xFF1E1E1E),
       onSurface: _darkTextColor,
-      error: brightRed,
+      error: paletaBrightRed,
       onError: Colors.white,
     ),
 
@@ -151,7 +154,7 @@ class AppTheme {
     // Tema dos Botões para o modo escuro
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: lightBlue,
+        backgroundColor: paletaLightBlue,
         foregroundColor: _darkTextColor,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(
@@ -162,7 +165,7 @@ class AppTheme {
 
     // Tema do Floating Action Button (FAB)
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: darkRed,
+      backgroundColor: paletaDarkRed,
       foregroundColor: Colors.white,
     ),
 
@@ -178,13 +181,13 @@ class AppTheme {
     switchTheme: SwitchThemeData(
       overlayColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.hovered)) {
-          return darkBlue.withOpacity(0.5);
+          return paletaDarkBlue.withOpacity(0.5);
         }
         return null;
       }),
     ),
 
-    extensions: [
+    extensions: const [
       AppColorsExtension(
         textSecondary: _textSecondaryDark,
       ),

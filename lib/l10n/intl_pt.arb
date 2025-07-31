@@ -28,5 +28,13 @@
   "step1Desc": "Para começar, preencha as informações principais para identificar a música. O título é essencial para que você possa encontrá-la depois.",
   "step2Title": "Partes da Música",
   "step2Desc": "Nesta etapa, você define a estrutura da música. Crie as diferentes seções e preencha o ritmo e a progressão de acordes correspondentes. Você pode adicionar quantas partes precisar.",
-  "step": "Passo"
+  "step": "Passo",
+  "fieldRequired": "Campo obrigatório",
+  "optional": "Opcional",
+  "songName": "Nome da Música",
+  "linkYoutube": "Link do Youtube",
+  "partName": "Nome da Parte",
+  "salvar": "Salvar",
+  "voltar": "Voltar",
+  "continuar": "Continuar"
 }

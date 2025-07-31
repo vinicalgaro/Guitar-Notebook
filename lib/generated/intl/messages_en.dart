@@ -30,12 +30,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "appLema": MessageLookupByLibrary.simpleMessage(
             "Practice today, get better always!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
+        "continuar": MessageLookupByLibrary.simpleMessage("Continue"),
         "dev": MessageLookupByLibrary.simpleMessage("Developer"),
         "editSong": MessageLookupByLibrary.simpleMessage("Edit Song"),
+        "fieldRequired": MessageLookupByLibrary.simpleMessage("Required field"),
+        "linkYoutube": MessageLookupByLibrary.simpleMessage("Youtube Link"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
         "newSong": MessageLookupByLibrary.simpleMessage("New Song"),
+        "optional": MessageLookupByLibrary.simpleMessage("Optional"),
+        "partName": MessageLookupByLibrary.simpleMessage("Part Name"),
+        "salvar": MessageLookupByLibrary.simpleMessage("Save"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "songName": MessageLookupByLibrary.simpleMessage("Song Name"),
         "step": MessageLookupByLibrary.simpleMessage("Step"),
         "step1Desc": MessageLookupByLibrary.simpleMessage(
             "To start, fill in the main details to identify the song. The title is essential so you can find it later."),
@@ -43,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "step2Desc": MessageLookupByLibrary.simpleMessage(
             "In this step, you\'ll define the song\'s structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need."),
         "step2Title": MessageLookupByLibrary.simpleMessage("Song Parts"),
-        "version": m0
+        "version": m0,
+        "voltar": MessageLookupByLibrary.simpleMessage("Back")
       };
 }

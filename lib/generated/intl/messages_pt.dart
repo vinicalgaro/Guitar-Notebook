@@ -30,12 +30,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "appLema": MessageLookupByLibrary.simpleMessage(
             "Pratique hoje, evolua sempre!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
+        "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),
         "dev": MessageLookupByLibrary.simpleMessage("Desenvolvedor"),
         "editSong": MessageLookupByLibrary.simpleMessage("Editar Música"),
+        "fieldRequired":
+            MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
+        "linkYoutube": MessageLookupByLibrary.simpleMessage("Link do Youtube"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Modo Escuro"),
         "newSong": MessageLookupByLibrary.simpleMessage("Nova Música"),
+        "optional": MessageLookupByLibrary.simpleMessage("Opcional"),
+        "partName": MessageLookupByLibrary.simpleMessage("Nome da Parte"),
+        "salvar": MessageLookupByLibrary.simpleMessage("Salvar"),
         "settings": MessageLookupByLibrary.simpleMessage("Configurações"),
+        "songName": MessageLookupByLibrary.simpleMessage("Nome da Música"),
         "step": MessageLookupByLibrary.simpleMessage("Passo"),
         "step1Desc": MessageLookupByLibrary.simpleMessage(
             "Para começar, preencha as informações principais para identificar a música. O título é essencial para que você possa encontrá-la depois."),
@@ -43,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "step2Desc": MessageLookupByLibrary.simpleMessage(
             "Nesta etapa, você define a estrutura da música. Crie as diferentes seções e preencha o ritmo e a progressão de acordes correspondentes. Você pode adicionar quantas partes precisar."),
         "step2Title": MessageLookupByLibrary.simpleMessage("Partes da Música"),
-        "version": m0
+        "version": m0,
+        "voltar": MessageLookupByLibrary.simpleMessage("Voltar")
       };
 }
