@@ -137,12 +137,10 @@ class _CadastroMusicaState extends State<CadastroMusica> {
 
   bool _validateCanGoToTappedForm(int step) {
     switch (step) {
-      case 0:
-        return _formKeyStep2.currentState!.validate();
       case 1:
         return _formKeyStep1.currentState!.validate();
       default:
-        return false;
+        return true;
     }
   }
 

@@ -33,7 +33,9 @@ class DefaultStepper extends StatelessWidget {
           case StepState.complete:
             return const Icon(Icons.check_circle, color: AppTheme.paletaGreen);
           case StepState.editing:
-            return Lottie.asset(getAnimationFromAssets("Loading.json"));
+            return Transform.scale(
+                scale: 1.7,
+                child: Lottie.asset(getAnimationFromAssets("Loading.json")));
           default:
             return CircleAvatar(
               child: Text('${stepIndex + 1}',
