@@ -10,6 +10,8 @@ extension NavigationContext on BuildContext {
   }
 
   void goBack() {
-    Navigator.pop(this);
+    if (Navigator.canPop(this)) {
+      Navigator.pop(this);
+    }
   }
 }

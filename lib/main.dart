@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/view/about_page.dart';
@@ -48,6 +49,8 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeViewModel.themeMode,
+      builder: BotToastInit(),
+      navigatorObservers: [BotToastNavigatorObserver()],
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case AppRoutes.about:

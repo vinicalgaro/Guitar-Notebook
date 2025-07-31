@@ -32,5 +32,13 @@
   "partName": "Part Name",
   "salvar": "Save",
   "voltar": "Back",
-  "continuar": "Continue"
+  "continuar": "Continue",
+  "hintSongName": "e.g., Californication",
+  "hintSongUrl": "e.g., https://youtu.be/YlUKcNNmywk",
+  "hintSongPart": "e.g., Intro",
+  "helpYoutube": "Paste the link to the original song or a video lesson for reference.",
+  "sucessoToast": "All set",
+  "sucessoMsg": "Your changes have been saved successfully!",
+  "erroCadastrarMsg": "Failed to save your changes.",
+  "help": "Help"
 }

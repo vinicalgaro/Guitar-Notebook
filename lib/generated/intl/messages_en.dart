@@ -33,7 +33,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "continuar": MessageLookupByLibrary.simpleMessage("Continue"),
         "dev": MessageLookupByLibrary.simpleMessage("Developer"),
         "editSong": MessageLookupByLibrary.simpleMessage("Edit Song"),
+        "erroCadastrarMsg": MessageLookupByLibrary.simpleMessage(
+            "Failed to save your changes."),
         "fieldRequired": MessageLookupByLibrary.simpleMessage("Required field"),
+        "help": MessageLookupByLibrary.simpleMessage("Help"),
+        "helpYoutube": MessageLookupByLibrary.simpleMessage(
+            "Paste the link to the original song or a video lesson for reference."),
+        "hintSongName":
+            MessageLookupByLibrary.simpleMessage("e.g., Californication"),
+        "hintSongPart": MessageLookupByLibrary.simpleMessage("e.g., Intro"),
+        "hintSongUrl": MessageLookupByLibrary.simpleMessage(
+            "e.g., https://youtu.be/YlUKcNNmywk"),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Youtube Link"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
@@ -50,6 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "step2Desc": MessageLookupByLibrary.simpleMessage(
             "In this step, you\'ll define the song\'s structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need."),
         "step2Title": MessageLookupByLibrary.simpleMessage("Song Parts"),
+        "sucessoMsg": MessageLookupByLibrary.simpleMessage(
+            "Your changes have been saved successfully!"),
+        "sucessoToast": MessageLookupByLibrary.simpleMessage("All set"),
         "version": m0,
         "voltar": MessageLookupByLibrary.simpleMessage("Back")
       };

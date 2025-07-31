@@ -6,7 +6,7 @@ import 'app_colors_extension.dart';
 class AppTheme {
   AppTheme._();
 
-  // --- CORES DA PALETA ---
+  // --- CORES PRINCIPAIS DA PALETA ---
   static const Color paletaDarkBlue = Color(0xFF003366);
   static const Color paletaDarkRed = Color(0xFF8B2222);
   static const Color paletaCream = Color(0xFFFDF5E6);
@@ -15,6 +15,7 @@ class AppTheme {
 
   // --- OUTRAS CORES DENTRO DA PALETA, MAS NÃO PRINCIPAIS ---
   static const Color paletaGreen = Color(0xFF5E9C76);
+  static const Color paletaAmbar = Color(0xFFE89511);
 
   // --- CORES DE TEXTO ---
   // Cores principais de texto

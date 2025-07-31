@@ -36,5 +36,14 @@
   "partName": "Nome da Parte",
   "salvar": "Salvar",
   "voltar": "Voltar",
-  "continuar": "Continuar"
+  "continuar": "Continuar",
+  "hintSongName": "Ex.: Californication",
+  "hintSongUrl": "Ex.: https://youtu.be/YlUKcNNmywk",
+  "hintSongPart": "Ex.: Intro",
+  "helpYoutube": "Cole o link da música original ou de uma videoaula para referência.",
+  "sucessoToast": "Pronto",
+  "sucessoCadastrarMsg": "Suas alterações foram salvas com sucesso!",
+  "errorToast": ":(",
+  "erroCadastrarMsg": "Falha ao salvar suas alterações.",
+  "help": "Ajuda"
 }

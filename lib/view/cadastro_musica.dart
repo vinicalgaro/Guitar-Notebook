@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guitar_learner/extensions/navigation_extension.dart';
+import 'package:guitar_learner/helpers/helper_toast.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:guitar_learner/widgets/default_stepper.dart';
@@ -156,11 +158,14 @@ class _CadastroMusicaState extends State<CadastroMusica> {
           children: [
             DefaultTextFormField(
                 label: AppLocalizations.of(context)!.songName,
+                hintText: AppLocalizations.of(context)!.hintSongName,
                 controller: _nomeMusicaController,
                 required: true),
             const SizedBox(height: 8.0),
             DefaultTextFormField(
                 label: AppLocalizations.of(context)!.linkYoutube,
+                hintText: AppLocalizations.of(context)!.hintSongUrl,
+                helpText: AppLocalizations.of(context)!.helpYoutube,
                 controller: _linkYoutubeController),
           ],
         ),
@@ -176,6 +181,7 @@ class _CadastroMusicaState extends State<CadastroMusica> {
           children: [
             DefaultTextFormField(
                 label: AppLocalizations.of(context)!.partName,
+                hintText: AppLocalizations.of(context)!.hintSongPart,
                 required: true,
                 controller: _partNameController),
             const SizedBox(height: 8.0),
@@ -190,8 +196,12 @@ class _CadastroMusicaState extends State<CadastroMusica> {
     final isStep2Valid = _formKeyStep2.currentState!.validate();
 
     if (isStep1Valid && isStep2Valid) {
-      print('música salva');
-      Navigator.pop(context);
+      displaySuccessToast(AppLocalizations.of(context)!.sucessoToast,
+          AppLocalizations.of(context)!.sucessoCadastrarMsg);
+      context.goBack();
+    } else {
+      displayErrorToast(AppLocalizations.of(context)!.errorToast,
+          AppLocalizations.of(context)!.erroCadastrarMsg);
     }
   }
 }

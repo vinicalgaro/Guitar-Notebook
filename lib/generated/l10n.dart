@@ -289,6 +289,86 @@ class S {
       args: [],
     );
   }
+
+  /// `e.g., Californication`
+  String get hintSongName {
+    return Intl.message(
+      'e.g., Californication',
+      name: 'hintSongName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g., https://youtu.be/YlUKcNNmywk`
+  String get hintSongUrl {
+    return Intl.message(
+      'e.g., https://youtu.be/YlUKcNNmywk',
+      name: 'hintSongUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g., Intro`
+  String get hintSongPart {
+    return Intl.message(
+      'e.g., Intro',
+      name: 'hintSongPart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paste the link to the original song or a video lesson for reference.`
+  String get helpYoutube {
+    return Intl.message(
+      'Paste the link to the original song or a video lesson for reference.',
+      name: 'helpYoutube',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All set`
+  String get sucessoToast {
+    return Intl.message(
+      'All set',
+      name: 'sucessoToast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your changes have been saved successfully!`
+  String get sucessoMsg {
+    return Intl.message(
+      'Your changes have been saved successfully!',
+      name: 'sucessoMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save your changes.`
+  String get erroCadastrarMsg {
+    return Intl.message(
+      'Failed to save your changes.',
+      name: 'erroCadastrarMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help`
+  String get help {
+    return Intl.message(
+      'Help',
+      name: 'help',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -33,8 +33,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),
         "dev": MessageLookupByLibrary.simpleMessage("Desenvolvedor"),
         "editSong": MessageLookupByLibrary.simpleMessage("Editar Música"),
+        "erroCadastrarMsg": MessageLookupByLibrary.simpleMessage(
+            "Falha ao salvar suas alterações."),
         "fieldRequired":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
+        "help": MessageLookupByLibrary.simpleMessage("Ajuda"),
+        "helpYoutube": MessageLookupByLibrary.simpleMessage(
+            "Cole o link da música original ou de uma videoaula para referência."),
+        "hintSongName":
+            MessageLookupByLibrary.simpleMessage("Ex.: Californication"),
+        "hintSongPart": MessageLookupByLibrary.simpleMessage("Ex.: Intro"),
+        "hintSongUrl": MessageLookupByLibrary.simpleMessage(
+            "Ex.: https://youtu.be/YlUKcNNmywk"),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Link do Youtube"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Modo Escuro"),
@@ -51,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "step2Desc": MessageLookupByLibrary.simpleMessage(
             "Nesta etapa, você define a estrutura da música. Crie as diferentes seções e preencha o ritmo e a progressão de acordes correspondentes. Você pode adicionar quantas partes precisar."),
         "step2Title": MessageLookupByLibrary.simpleMessage("Partes da Música"),
+        "sucessoToast": MessageLookupByLibrary.simpleMessage("Pronto"),
         "version": m0,
         "voltar": MessageLookupByLibrary.simpleMessage("Voltar")
       };
