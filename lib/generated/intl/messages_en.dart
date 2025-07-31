@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newSong": MessageLookupByLibrary.simpleMessage("New Song"),
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
         "partName": MessageLookupByLibrary.simpleMessage("Part Name"),
+        "saberMais": MessageLookupByLibrary.simpleMessage("Learn More"),
         "salvar": MessageLookupByLibrary.simpleMessage("Save"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "songName": MessageLookupByLibrary.simpleMessage("Song Name"),

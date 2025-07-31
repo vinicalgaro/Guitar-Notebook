@@ -40,5 +40,6 @@
   "sucessoToast": "All set",
   "sucessoMsg": "Your changes have been saved successfully!",
   "erroCadastrarMsg": "Failed to save your changes.",
-  "help": "Help"
+  "help": "Help",
+  "saberMais": "Learn More"
 }

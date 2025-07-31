@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'bunner_theme.dart';
 import 'tween_icon.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Widget de banner (usado nos toasts, por exemplo)
 class DefaultBanner extends StatelessWidget {
@@ -16,8 +17,6 @@ class DefaultBanner extends StatelessWidget {
   final IconData icon;
   final Function? saberMaisOnClick;
   final TextStyle? tituloStyle, descricaoStyle;
-
-  final double maxToastWidth = 600.0;
 
   const DefaultBanner(
       {this.titulo,
@@ -101,25 +100,22 @@ class DefaultBanner extends StatelessWidget {
                       : Icon(icon, color: iconColor ?? mainColor),
                 ),
                 Flexible(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: maxToastWidth),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (titulo != null) Text(titulo!, style: _tituloStyle),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
-                          child: Text(descricao, style: _descricaoStyle),
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (titulo != null) Text(titulo!, style: _tituloStyle),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(descricao, style: _descricaoStyle),
+                      ),
+                    ],
                   ),
                 ),
                 if (hasOnClick)
                   TextButton(
                       onPressed: () => saberMaisOnClick!.call(),
-                      child: const Text("Saber Mais"))
+                      child: Text(AppLocalizations.of(context)!.saberMais))
               ],
             ),
           ),

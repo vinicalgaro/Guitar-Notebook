@@ -45,5 +45,6 @@
   "sucessoCadastrarMsg": "Suas alterações foram salvas com sucesso!",
   "errorToast": ":(",
   "erroCadastrarMsg": "Falha ao salvar suas alterações.",
-  "help": "Ajuda"
+  "help": "Ajuda",
+  "saberMais": "Saber Mais"
 }

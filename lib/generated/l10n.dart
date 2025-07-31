@@ -369,6 +369,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Learn More`
+  String get saberMais {
+    return Intl.message(
+      'Learn More',
+      name: 'saberMais',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
