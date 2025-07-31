@@ -6,9 +6,9 @@ import '../model/settings_repository.dart';
 class ThemeViewModel extends ChangeNotifier with WidgetsBindingObserver {
   final SettingsRepository _settingsRepository;
 
-  late ThemeMode _themeMode;
+  ThemeMode _themeMode;
 
-  ThemeViewModel(this._settingsRepository) {
+  ThemeViewModel(this._settingsRepository) : _themeMode = ThemeMode.system {
     WidgetsBinding.instance.addObserver(this);
     _loadTheme();
   }
