@@ -4,10 +4,10 @@ import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
-import '../viewmodel/theme_viewmodel.dart';
+import '../../viewmodel/theme_viewmodel.dart';
 
-class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+class HomeDrawerWidget extends StatelessWidget {
+  const HomeDrawerWidget({super.key});
 
   Widget _buildHeader(BuildContext context) => DrawerHeader(
         decoration: BoxDecoration(

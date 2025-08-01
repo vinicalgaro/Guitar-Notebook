@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/default_textbutton.dart';
+
 ///Exibe um diálogo de ação positiva e negativa no contexto atual (podendo também adicionar uma terceira ação).
 Future<T?> displayActionDialog<T>(
   BuildContext context,
@@ -27,7 +29,7 @@ Future<T?> displayActionDialog<T>(
       ),
       actions: [
         if (!onlyOneButton)
-          TextButton(
+          DefaultTextButton(
             onPressed: () {
               negativeOnPressed?.call();
               Navigator.of(context, rootNavigator: true).pop(false);
@@ -36,13 +38,13 @@ Future<T?> displayActionDialog<T>(
                 MaterialLocalizations.of(context).cancelButtonLabel),
           ),
         if (thirdOnPressed != null)
-          TextButton(
+          DefaultTextButton(
               onPressed: () {
                 thirdOnPressed.call();
                 Navigator.of(context, rootNavigator: true).pop();
               },
               child: Text(thirdLabel ?? "")),
-        TextButton(
+        DefaultTextButton(
           onPressed: () {
             positiveOnPressed?.call();
             Navigator.of(context, rootNavigator: true).pop(true);

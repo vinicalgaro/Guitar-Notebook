@@ -4,6 +4,7 @@ import 'package:guitar_learner/helpers/get_from_assets.dart';
 import 'package:lottie/lottie.dart';
 
 import '../theme/app_theme.dart';
+import 'default_textbutton.dart';
 
 class DefaultStepper extends StatelessWidget {
   final List<Step> steps;
@@ -58,7 +59,7 @@ class DefaultStepper extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               if (currentStep > 0)
-                TextButton(
+                DefaultTextButton(
                   onPressed: details.onStepCancel,
                   child: Text(AppLocalizations.of(context)!.voltar),
                 ),

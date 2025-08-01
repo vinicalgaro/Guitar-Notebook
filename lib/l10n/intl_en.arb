@@ -41,5 +41,7 @@
   "sucessoMsg": "Your changes have been saved successfully!",
   "erroCadastrarMsg": "Failed to save your changes.",
   "help": "Help",
-  "saberMais": "Learn More"
+  "saberMais": "Learn More",
+  "addParte": "Add Part",
+  "part": "Part"
 }

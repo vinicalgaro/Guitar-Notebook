@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "aboutAppText": MessageLookupByLibrary.simpleMessage(
             "This app was developed to help musicians organize their practice, track their progress, and master their favorite songs."),
+        "addParte": MessageLookupByLibrary.simpleMessage("Add Part"),
         "appLema": MessageLookupByLibrary.simpleMessage(
             "Practice today, get better always!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
@@ -49,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
         "newSong": MessageLookupByLibrary.simpleMessage("New Song"),
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
+        "part": MessageLookupByLibrary.simpleMessage("Part"),
         "partName": MessageLookupByLibrary.simpleMessage("Part Name"),
         "saberMais": MessageLookupByLibrary.simpleMessage("Learn More"),
         "salvar": MessageLookupByLibrary.simpleMessage("Save"),

@@ -31,7 +31,6 @@ class DefaultTextFormField extends StatelessWidget {
         TextFormField(
           controller: controller,
           decoration: InputDecoration(
-            border: const OutlineInputBorder(),
             hintText: hintText,
             suffixIcon: helpText == null
                 ? null

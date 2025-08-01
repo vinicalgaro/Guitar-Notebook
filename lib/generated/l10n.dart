@@ -379,6 +379,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Add Part`
+  String get addParte {
+    return Intl.message(
+      'Add Part',
+      name: 'addParte',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Part`
+  String get part {
+    return Intl.message(
+      'Part',
+      name: 'part',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

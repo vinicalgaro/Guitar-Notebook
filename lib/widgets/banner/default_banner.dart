@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../default_textbutton.dart';
 import 'bunner_theme.dart';
 import 'tween_icon.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Widget de banner (usado nos toasts, por exemplo)
 class DefaultBanner extends StatelessWidget {
@@ -113,7 +112,7 @@ class DefaultBanner extends StatelessWidget {
                   ),
                 ),
                 if (hasOnClick)
-                  TextButton(
+                  DefaultTextButton(
                       onPressed: () => saberMaisOnClick!.call(),
                       child: Text(AppLocalizations.of(context)!.saberMais))
               ],

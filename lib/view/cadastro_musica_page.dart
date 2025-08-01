@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/helpers/helper_toast.dart';
+import 'package:guitar_learner/view/widgets/parte_item_widget.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:guitar_learner/widgets/default_stepper.dart';
@@ -9,16 +10,16 @@ import 'package:guitar_learner/widgets/default_textformfield.dart';
 
 import '../helpers/step_builder.dart';
 
-class CadastroMusica extends StatefulWidget {
+class CadastroMusicaPage extends StatefulWidget {
   final Object? musica;
 
-  const CadastroMusica({super.key, this.musica});
+  const CadastroMusicaPage({super.key, this.musica});
 
   @override
-  State<CadastroMusica> createState() => _CadastroMusicaState();
+  State<CadastroMusicaPage> createState() => _CadastroMusicaPageState();
 }
 
-class _CadastroMusicaState extends State<CadastroMusica> {
+class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
   int _currentStep = 0;
 
   final _formKeyStep1 = GlobalKey<FormState>();
@@ -175,15 +176,9 @@ class _CadastroMusicaState extends State<CadastroMusica> {
       title: AppLocalizations.of(context)!.step2Title,
       content: Form(
         key: _formKeyStep2,
-        child: Column(
-          children: [
-            DefaultTextFormField(
-                label: AppLocalizations.of(context)!.partName,
-                hintText: AppLocalizations.of(context)!.hintSongPart,
-                required: true,
-                controller: _partNameController),
-            const SizedBox(height: 8.0),
-          ],
+        child: ParteItemWidget(
+          partNameController: _partNameController,
+          index: 1,
         ),
       ),
       stepIndex: 1,
@@ -194,6 +189,7 @@ class _CadastroMusicaState extends State<CadastroMusica> {
     final isStep2Valid = _formKeyStep2.currentState!.validate();
 
     if (isStep1Valid && isStep2Valid) {
+      //ToDo: Implementar salvar
       displaySuccessToast(AppLocalizations.of(context)!.sucessoToast,
           AppLocalizations.of(context)!.sucessoCadastrarMsg);
       context.goBack();

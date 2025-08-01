@@ -2,7 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/view/about_page.dart';
-import 'package:guitar_learner/view/cadastro_musica.dart';
+import 'package:guitar_learner/view/cadastro_musica_page.dart';
 import 'package:guitar_learner/view/home_page.dart';
 import 'package:provider/provider.dart';
 
@@ -56,9 +56,9 @@ class MainApp extends StatelessWidget {
           case AppRoutes.about:
             return _getRoute(const AboutPage());
           case AppRoutes.editSong:
-            return _getRoute(const CadastroMusica(musica: null));
+            return _getRoute(const CadastroMusicaPage(musica: null));
           case AppRoutes.addSong:
-            return _getRoute(const CadastroMusica());
+            return _getRoute(const CadastroMusicaPage());
           default:
             return _getRoute(const HomePage());
         }
