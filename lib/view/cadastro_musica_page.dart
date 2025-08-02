@@ -46,49 +46,6 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     super.dispose();
   }
 
-  /// Orquestra a lógica de UI e de negócio ao continuar para o próximo passo ou salvar.
-  void _onStepContinue(BuildContext context) async {
-    final viewModel = context.read<CadastroMusicaViewModel>();
-    final localizations = AppLocalizations.of(context)!;
-
-    if (viewModel.isLastStep) {
-      if (_formKeyStep2.currentState!.validate()) {
-        final sucesso = await viewModel.salvarMusica();
-        if (mounted) {
-          if (sucesso) {
-            displaySuccessToast(
-                localizations.sucessoToast, localizations.sucessoCadastrarMsg);
-            Navigator.of(context).pop();
-          } else {
-            displayErrorToast(
-                localizations.errorToast, localizations.erroCadastrarMsg);
-          }
-        }
-      }
-    } else {
-      if (_formKeyStep1.currentState!.validate()) {
-        viewModel.onStepContinue();
-      }
-    }
-  }
-
-  void _onStepTapped(int tappedStep, BuildContext context) {
-    final viewModel = context.read<CadastroMusicaViewModel>();
-
-    if (tappedStep < viewModel.currentStep) {
-      viewModel.onStepTapped(tappedStep);
-      return;
-    }
-
-    if (viewModel.currentStep == 0) {
-      if (_formKeyStep1.currentState!.validate()) {
-        viewModel.onStepTapped(tappedStep);
-      }
-    } else {
-      viewModel.onStepTapped(tappedStep);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<CadastroMusicaViewModel>();
@@ -139,6 +96,48 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
         ),
       ),
     );
+  }
+
+  void _onStepContinue(BuildContext context) async {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+    final localizations = AppLocalizations.of(context)!;
+
+    if (viewModel.isLastStep) {
+      if (_formKeyStep2.currentState!.validate()) {
+        final sucesso = await viewModel.salvarMusica();
+        if (mounted) {
+          if (sucesso) {
+            displaySuccessToast(
+                localizations.sucessoToast, localizations.sucessoCadastrarMsg);
+            Navigator.of(context).pop();
+          } else {
+            displayErrorToast(
+                localizations.errorToast, localizations.erroCadastrarMsg);
+          }
+        }
+      }
+    } else {
+      if (_formKeyStep1.currentState!.validate()) {
+        viewModel.onStepContinue();
+      }
+    }
+  }
+
+  void _onStepTapped(int tappedStep, BuildContext context) {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+
+    if (tappedStep < viewModel.currentStep) {
+      viewModel.onStepTapped(tappedStep);
+      return;
+    }
+
+    if (viewModel.currentStep == 0) {
+      if (_formKeyStep1.currentState!.validate()) {
+        viewModel.onStepTapped(tappedStep);
+      }
+    } else {
+      viewModel.onStepTapped(tappedStep);
+    }
   }
 
   Step _buildStepDadosMusica(BuildContext context) {
