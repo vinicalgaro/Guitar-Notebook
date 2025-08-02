@@ -24,6 +24,7 @@ class CadastroMusicaPage extends StatefulWidget {
 class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
   final _formKeyStep1 = GlobalKey<FormState>();
   final _formKeyStep2 = GlobalKey<FormState>();
+  final _parteListKey = GlobalKey<AnimatedListState>();
 
   late final TextEditingController _nomeMusicaController;
   late final TextEditingController _linkYoutubeController;
@@ -140,6 +141,36 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     }
   }
 
+  void _adicionarNovaParte() {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+    viewModel.adicionarNovaParte();
+    _parteListKey.currentState
+        ?.insertItem(viewModel.partNameControllers.length - 1);
+  }
+
+  void _removerParte(int index) {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+    final removedController = viewModel.partNameControllers[index];
+    final removedItemWidget = ParteItemWidget(
+      partNameController: removedController,
+      index: index + 1,
+      onDelete: () {},
+    );
+
+    viewModel.removerParte(index);
+
+    _parteListKey.currentState?.removeItem(
+      index,
+      (context, animation) => FadeTransition(
+        opacity: animation,
+        child: SizeTransition(
+          sizeFactor: animation,
+          child: removedItemWidget,
+        ),
+      ),
+    );
+  }
+
   Step _buildStepDadosMusica(BuildContext context) {
     final viewModel = context.read<CadastroMusicaViewModel>();
     final localizations = AppLocalizations.of(context)!;
@@ -193,21 +224,31 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
         key: _formKeyStep2,
         child: Column(
           children: [
-            ListView.builder(
+            AnimatedList(
+              key: _parteListKey,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: viewModel.partNameControllers.length,
-              itemBuilder: (context, index) {
-                return ParteItemWidget(
-                  partNameController: viewModel.partNameControllers[index],
-                  index: index + 1,
-                  onDelete: () => viewModel.removerParte(index),
+              initialItemCount: viewModel.partNameControllers.length,
+              itemBuilder: (context, index, animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(0, -0.1),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: ParteItemWidget(
+                      partNameController: viewModel.partNameControllers[index],
+                      index: index + 1,
+                      onDelete: () => _removerParte(index),
+                    ),
+                  ),
                 );
               },
             ),
             const SizedBox(height: 16),
             DefaultTextButton(
-              onPressed: () => viewModel.adicionarNovaParte(),
+              onPressed: _adicionarNovaParte,
               expandText: true,
               showBorder: true,
               child: Text(
