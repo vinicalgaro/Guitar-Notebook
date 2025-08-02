@@ -8,9 +8,13 @@ import '../../widgets/default_textformfield.dart';
 class ParteItemWidget extends StatelessWidget {
   final TextEditingController partNameController;
   final int index;
+  final VoidCallback onDelete;
 
   const ParteItemWidget(
-      {super.key, required this.partNameController, required this.index});
+      {super.key,
+      required this.partNameController,
+      required this.index,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,8 @@ class ParteItemWidget extends StatelessWidget {
               children: [
                 Text("${AppLocalizations.of(context)!.part} $index"),
                 if (index != 1)
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+                  IconButton(
+                      onPressed: onDelete, icon: const Icon(Icons.delete))
               ],
             ),
             DefaultTextFormField(

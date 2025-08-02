@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'model/settings_repository.dart';
 import 'routes/app_routes.dart';
 import 'theme/app_theme.dart';
+import 'viewmodel/cadastro_musica_viewmodel.dart';
 import 'viewmodel/theme_viewmodel.dart';
 
 void main() async {
@@ -56,9 +57,17 @@ class MainApp extends StatelessWidget {
           case AppRoutes.about:
             return _getRoute(const AboutPage());
           case AppRoutes.editSong:
-            return _getRoute(const CadastroMusicaPage(musica: null));
+            return _getRoute(ChangeNotifierProvider(
+              create: (_) => CadastroMusicaViewModel(musica: null),
+              child: const CadastroMusicaPage(),
+            ));
           case AppRoutes.addSong:
-            return _getRoute(const CadastroMusicaPage());
+            return _getRoute(
+              ChangeNotifierProvider(
+                create: (_) => CadastroMusicaViewModel(),
+                child: const CadastroMusicaPage(),
+              ),
+            );
           default:
             return _getRoute(const HomePage());
         }
