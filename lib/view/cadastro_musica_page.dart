@@ -27,8 +27,8 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
   final _formKeyStep2 = GlobalKey<FormState>();
 
   late final TextEditingController _nomeMusicaController;
-  late final TextEditingController _linkYoutubeController;
   late final TextEditingController _partNameController;
+  late final TextEditingController _linkYoutubeController;
 
   bool get isEditing => widget.musica != null;
 
