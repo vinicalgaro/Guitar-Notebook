@@ -419,6 +419,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Instrument`
+  String get instrumento {
+    return Intl.message(
+      'Instrument',
+      name: 'instrumento',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -45,5 +45,6 @@
   "addParte": "Add New Part",
   "part": "Part",
   "ritmo": "Rhythm",
-  "sequencia": "Sequence"
+  "sequencia": "Sequence",
+  "instrumento": "Instrument"
 }

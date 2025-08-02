@@ -50,5 +50,6 @@
   "addParte": "Adicionar Nova Parte",
   "part": "Parte",
   "ritmo": "Ritmo",
-  "sequencia": "Sequência"
+  "sequencia": "Sequência",
+  "instrumento": "Instrumento"
 }

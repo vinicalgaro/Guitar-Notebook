@@ -4,15 +4,17 @@ import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/helpers/helper_toast.dart';
 import 'package:guitar_learner/view/widgets/parte_item_widget.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
+import 'package:guitar_learner/widgets/default_dropdownbutton.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:guitar_learner/widgets/default_stepper.dart';
 import 'package:guitar_learner/widgets/default_textformfield.dart';
 
 import '../helpers/step_builder.dart';
+import '../model/musica/models.dart';
 import '../widgets/default_textbutton.dart';
 
 class CadastroMusicaPage extends StatefulWidget {
-  final Object? musica;
+  final Musica? musica;
 
   const CadastroMusicaPage({super.key, this.musica});
 
@@ -32,12 +34,25 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
 
   bool get isEditing => widget.musica != null;
 
+  late Musica _musicaRascunho;
+
   @override
   void initState() {
     super.initState();
+
     _nomeMusicaController = TextEditingController();
     _linkYoutubeController = TextEditingController();
     _partNameController = TextEditingController();
+
+    if (isEditing) {
+      _musicaRascunho = widget.musica!;
+    } else {
+      _musicaRascunho =
+          const Musica(nome: '', instrumento: Instrumento.guitarra, partes: []);
+    }
+
+    _nomeMusicaController.text = _musicaRascunho.nome;
+    _linkYoutubeController.text = _musicaRascunho.linkYoutube ?? '';
   }
 
   @override
@@ -167,6 +182,18 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                 hintText: AppLocalizations.of(context)!.hintSongUrl,
                 helpText: AppLocalizations.of(context)!.helpYoutube,
                 controller: _linkYoutubeController),
+            const SizedBox(height: 8.0),
+            DefaultDropdownButton<Instrumento>(
+              label: AppLocalizations.of(context)!.instrumento,
+              items: Instrumento.values,
+              value: _musicaRascunho.instrumento,
+              onChanged: (selected) {
+                if (selected == null) return;
+                _musicaRascunho =
+                    _musicaRascunho.copyWith(instrumento: selected);
+              },
+              itemBuilder: (item) => Text(item.name),
+            ),
           ],
         ),
       ),
@@ -179,6 +206,10 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
         key: _formKeyStep2,
         child: Column(
           children: [
+            ParteItemWidget(
+              partNameController: _partNameController,
+              index: 1,
+            ),
             DefaultTextButton(
               onPressed: () {},
               expandText: true,
@@ -187,10 +218,6 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                 AppLocalizations.of(context)!.addParte,
                 style: const TextStyle(fontWeight: FontWeight.w500),
               ),
-            ),
-            ParteItemWidget(
-              partNameController: _partNameController,
-              index: 1,
             ),
           ],
         ),

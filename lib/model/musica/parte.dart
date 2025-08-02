@@ -1,10 +1,13 @@
-import 'ritmo.dart';
-import 'sequencia.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:guitar_learner/model/musica/models.dart';
 
-class Parte {
-  String nome;
-  Ritmo ritmo;
-  Sequencia sequencia;
+part 'parte.freezed.dart';
 
-  Parte(this.nome, this.ritmo, this.sequencia);
+@freezed
+class Parte with _$Parte {
+  const factory Parte({
+    required String nome,
+    required Ritmo ritmo,
+    required Sequencia sequencia,
+  }) = _Parte;
 }

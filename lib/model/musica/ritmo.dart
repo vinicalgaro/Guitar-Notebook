@@ -8,16 +8,12 @@ class Ritmo {
 }
 
 enum Batida {
-  baixo,
-  cima;
+  baixo('↓'),
+  cima('↑');
 
-  @override
-  toString() {
-    switch (this) {
-      case Batida.baixo:
-        return '↓';
-      case Batida.cima:
-        return '↑';
-    }
-  }
+  final String _simbolo;
+
+  const Batida(this._simbolo);
+
+  String get simbolo => _simbolo;
 }

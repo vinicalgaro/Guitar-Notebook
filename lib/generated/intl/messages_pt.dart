@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintSongPart": MessageLookupByLibrary.simpleMessage("Ex.: Intro"),
         "hintSongUrl": MessageLookupByLibrary.simpleMessage(
             "Ex.: https://youtu.be/YlUKcNNmywk"),
+        "instrumento": MessageLookupByLibrary.simpleMessage("Instrumento"),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Link do Youtube"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Modo Escuro"),
