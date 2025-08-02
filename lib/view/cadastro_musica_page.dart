@@ -1,74 +1,110 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:guitar_learner/extensions/navigation_extension.dart';
-import 'package:guitar_learner/helpers/helper_toast.dart';
 import 'package:guitar_learner/view/widgets/parte_item_widget.dart';
+import 'package:guitar_learner/viewmodel/cadastro_musica_viewmodel.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_dropdownbutton.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:guitar_learner/widgets/default_stepper.dart';
 import 'package:guitar_learner/widgets/default_textformfield.dart';
+import 'package:provider/provider.dart';
 
+import '../helpers/helper_toast.dart';
 import '../helpers/step_builder.dart';
 import '../model/musica/models.dart';
 import '../widgets/default_textbutton.dart';
 
 class CadastroMusicaPage extends StatefulWidget {
-  final Musica? musica;
-
-  const CadastroMusicaPage({super.key, this.musica});
+  const CadastroMusicaPage({super.key});
 
   @override
   State<CadastroMusicaPage> createState() => _CadastroMusicaPageState();
 }
 
 class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
-  int _currentStep = 0;
-
   final _formKeyStep1 = GlobalKey<FormState>();
   final _formKeyStep2 = GlobalKey<FormState>();
 
   late final TextEditingController _nomeMusicaController;
-  late final TextEditingController _partNameController;
   late final TextEditingController _linkYoutubeController;
-
-  bool get isEditing => widget.musica != null;
-
-  late Musica _musicaRascunho;
 
   @override
   void initState() {
     super.initState();
+    final viewModel = context.read<CadastroMusicaViewModel>();
 
-    _nomeMusicaController = TextEditingController();
-    _linkYoutubeController = TextEditingController();
-    _partNameController = TextEditingController();
+    _nomeMusicaController =
+        TextEditingController(text: viewModel.musicaRascunho.nome);
+    _linkYoutubeController =
+        TextEditingController(text: viewModel.musicaRascunho.linkYoutube ?? '');
 
-    if (isEditing) {
-      _musicaRascunho = widget.musica!;
-    } else {
-      _musicaRascunho =
-          const Musica(nome: '', instrumento: Instrumento.guitarra, partes: []);
-    }
-
-    _nomeMusicaController.text = _musicaRascunho.nome;
-    _linkYoutubeController.text = _musicaRascunho.linkYoutube ?? '';
+    _nomeMusicaController.addListener(() {
+      viewModel.atualizarNomeMusica(_nomeMusicaController.text);
+    });
+    _linkYoutubeController.addListener(() {
+      viewModel.atualizarLinkYoutube(_linkYoutubeController.text);
+    });
   }
 
   @override
   void dispose() {
     _nomeMusicaController.dispose();
     _linkYoutubeController.dispose();
-    _partNameController.dispose();
     super.dispose();
+  }
+
+  /// Orquestra a lógica de UI e de negócio ao continuar para o próximo passo ou salvar.
+  void _onStepContinue(BuildContext context) async {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+    final localizations = AppLocalizations.of(context)!;
+
+    if (viewModel.isLastStep) {
+      if (_formKeyStep2.currentState!.validate()) {
+        final sucesso = await viewModel.salvarMusica();
+        if (mounted) {
+          if (sucesso) {
+            displaySuccessToast(
+                localizations.sucessoToast, localizations.sucessoCadastrarMsg);
+            Navigator.of(context).pop();
+          } else {
+            displayErrorToast(
+                localizations.errorToast, localizations.erroCadastrarMsg);
+          }
+        }
+      }
+    } else {
+      if (_formKeyStep1.currentState!.validate()) {
+        viewModel.onStepContinue();
+      }
+    }
+  }
+
+  void _onStepTapped(int tappedStep, BuildContext context) {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+
+    if (tappedStep < viewModel.currentStep) {
+      viewModel.onStepTapped(tappedStep);
+      return;
+    }
+
+    if (viewModel.currentStep == 0) {
+      if (_formKeyStep1.currentState!.validate()) {
+        viewModel.onStepTapped(tappedStep);
+      }
+    } else {
+      viewModel.onStepTapped(tappedStep);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<CadastroMusicaViewModel>();
+    final localizations = AppLocalizations.of(context)!;
+
     return DefaultPageScaffold(
-      title: isEditing
-          ? AppLocalizations.of(context)!.editSong
-          : AppLocalizations.of(context)!.newSong,
+      title: viewModel.musicaRascunho.nome.isEmpty
+          ? localizations.newSong
+          : localizations.editSong,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -78,13 +114,17 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
               child: DefaultCardContainer(
                 child: Column(
                   children: [
-                    Text(_getCurrentStepText(),
+                    Text(
+                        _getCurrentStepText(
+                            viewModel.currentStep, localizations),
                         style: const TextStyle(fontStyle: FontStyle.italic)),
-                    Text(_getCurrentStepTitle(),
+                    Text(
+                        _getCurrentStepTitle(
+                            viewModel.currentStep, localizations),
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 26)),
                     Text(
-                      _getCurrentStepDesc(),
+                      _getCurrentStepDesc(viewModel.currentStep, localizations),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 16),
@@ -94,103 +134,53 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
               ),
             ),
             DefaultStepper(
-                steps: [
-                  _buildStepDadosMusica(),
-                  _buildStepPartesMusica(),
-                ],
-                currentStep: _currentStep,
-                onStepTapped: _onStepTapped,
-                onStepContinue: _onStepContinue,
-                onStepCancel: _onStepCancel),
+              steps: [
+                _buildStepDadosMusica(context),
+                _buildStepPartesMusica(context),
+              ],
+              currentStep: viewModel.currentStep,
+              onStepTapped: (step) => _onStepTapped(step, context),
+              onStepContinue: () => _onStepContinue(context),
+              onStepCancel: () => viewModel.onStepCancel(),
+            ),
           ],
         ),
       ),
     );
   }
 
-  void _onStepTapped(int step) {
-    if (step < _currentStep || _validateCanGoToTappedForm(step)) {
-      setState(() => _currentStep = step);
-    }
-  }
+  Step _buildStepDadosMusica(BuildContext context) {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+    final localizations = AppLocalizations.of(context)!;
 
-  void _onStepContinue() {
-    if (_currentStep == 0) {
-      if (_formKeyStep1.currentState!.validate()) {
-        setState(() => _currentStep += 1);
-      }
-    } else {
-      _salvarMusica();
-    }
-  }
-
-  void _onStepCancel() {
-    if (_currentStep > 0) {
-      setState(() => _currentStep -= 1);
-    }
-  }
-
-  String _getCurrentStepTitle() {
-    switch (_currentStep) {
-      case 0:
-        return AppLocalizations.of(context)!.step1Title;
-      case 1:
-        return AppLocalizations.of(context)!.step2Title;
-      default:
-        return "";
-    }
-  }
-
-  String _getCurrentStepDesc() {
-    switch (_currentStep) {
-      case 0:
-        return AppLocalizations.of(context)!.step1Desc;
-      case 1:
-        return AppLocalizations.of(context)!.step2Desc;
-      default:
-        return "";
-    }
-  }
-
-  bool _validateCanGoToTappedForm(int step) {
-    switch (step) {
-      case 1:
-        return _formKeyStep1.currentState!.validate();
-      default:
-        return true;
-    }
-  }
-
-  String _getCurrentStepText() {
-    return "${AppLocalizations.of(context)!.step} ${_currentStep + 1}";
-  }
-
-  Step _buildStepDadosMusica() => buildStep(
-      title: AppLocalizations.of(context)!.step1Title,
+    return buildStep(
+      title: localizations.step1Title,
       content: Form(
         key: _formKeyStep1,
         child: Column(
           children: [
             DefaultTextFormField(
-                label: AppLocalizations.of(context)!.songName,
-                hintText: AppLocalizations.of(context)!.hintSongName,
-                controller: _nomeMusicaController,
-                required: true),
+              label: localizations.songName,
+              hintText: localizations.hintSongName,
+              controller: _nomeMusicaController,
+              required: true,
+            ),
             const SizedBox(height: 8.0),
             DefaultTextFormField(
-                label: AppLocalizations.of(context)!.linkYoutube,
-                hintText: AppLocalizations.of(context)!.hintSongUrl,
-                helpText: AppLocalizations.of(context)!.helpYoutube,
-                controller: _linkYoutubeController),
+              label: localizations.linkYoutube,
+              hintText: localizations.hintSongUrl,
+              helpText: localizations.helpYoutube,
+              controller: _linkYoutubeController,
+            ),
             const SizedBox(height: 8.0),
             DefaultDropdownButton<Instrumento>(
-              label: AppLocalizations.of(context)!.instrumento,
+              label: localizations.instrumento,
               items: Instrumento.values,
-              value: _musicaRascunho.instrumento,
+              value: viewModel.musicaRascunho.instrumento,
               onChanged: (selected) {
-                if (selected == null) return;
-                _musicaRascunho =
-                    _musicaRascunho.copyWith(instrumento: selected);
+                if (selected != null) {
+                  viewModel.atualizarInstrumento(selected);
+                }
               },
               itemBuilder: (item) => Text(item.name),
             ),
@@ -198,24 +188,39 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
         ),
       ),
       stepIndex: 0,
-      currentStep: _currentStep);
+      currentStep: viewModel.currentStep,
+    );
+  }
 
-  Step _buildStepPartesMusica() => buildStep(
-      title: AppLocalizations.of(context)!.step2Title,
+  Step _buildStepPartesMusica(BuildContext context) {
+    final viewModel = context.watch<CadastroMusicaViewModel>();
+    final localizations = AppLocalizations.of(context)!;
+
+    return buildStep(
+      title: localizations.step2Title,
       content: Form(
         key: _formKeyStep2,
         child: Column(
           children: [
-            ParteItemWidget(
-              partNameController: _partNameController,
-              index: 1,
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: viewModel.partNameControllers.length,
+              itemBuilder: (context, index) {
+                return ParteItemWidget(
+                  partNameController: viewModel.partNameControllers[index],
+                  index: index + 1,
+                  onDelete: () => viewModel.removerParte(index),
+                );
+              },
             ),
+            const SizedBox(height: 16),
             DefaultTextButton(
-              onPressed: () {},
+              onPressed: () => viewModel.adicionarNovaParte(),
               expandText: true,
               showBorder: true,
               child: Text(
-                AppLocalizations.of(context)!.addParte,
+                localizations.addParte,
                 style: const TextStyle(fontWeight: FontWeight.w500),
               ),
             ),
@@ -223,20 +228,33 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
         ),
       ),
       stepIndex: 1,
-      currentStep: _currentStep);
+      currentStep: viewModel.currentStep,
+    );
+  }
+}
 
-  void _salvarMusica() {
-    final isStep1Valid = _formKeyStep1.currentState!.validate();
-    final isStep2Valid = _formKeyStep2.currentState!.validate();
+String _getCurrentStepText(int currentStep, AppLocalizations localizations) {
+  return "${localizations.step} ${currentStep + 1}";
+}
 
-    if (isStep1Valid && isStep2Valid) {
-      //ToDo: Implementar salvar
-      displaySuccessToast(AppLocalizations.of(context)!.sucessoToast,
-          AppLocalizations.of(context)!.sucessoCadastrarMsg);
-      context.goBack();
-    } else {
-      displayErrorToast(AppLocalizations.of(context)!.errorToast,
-          AppLocalizations.of(context)!.erroCadastrarMsg);
-    }
+String _getCurrentStepTitle(int currentStep, AppLocalizations localizations) {
+  switch (currentStep) {
+    case 0:
+      return localizations.step1Title;
+    case 1:
+      return localizations.step2Title;
+    default:
+      return "";
+  }
+}
+
+String _getCurrentStepDesc(int currentStep, AppLocalizations localizations) {
+  switch (currentStep) {
+    case 0:
+      return localizations.step1Desc;
+    case 1:
+      return localizations.step2Desc;
+    default:
+      return "";
   }
 }
