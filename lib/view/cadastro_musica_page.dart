@@ -9,6 +9,7 @@ import 'package:guitar_learner/widgets/default_stepper.dart';
 import 'package:guitar_learner/widgets/default_textformfield.dart';
 
 import '../helpers/step_builder.dart';
+import '../widgets/default_textbutton.dart';
 
 class CadastroMusicaPage extends StatefulWidget {
   final Object? musica;
@@ -176,9 +177,22 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
       title: AppLocalizations.of(context)!.step2Title,
       content: Form(
         key: _formKeyStep2,
-        child: ParteItemWidget(
-          partNameController: _partNameController,
-          index: 1,
+        child: Column(
+          children: [
+            DefaultTextButton(
+              onPressed: () {},
+              expandText: true,
+              showBorder: true,
+              child: Text(
+                AppLocalizations.of(context)!.addParte,
+                style: const TextStyle(fontWeight: FontWeight.w500),
+              ),
+            ),
+            ParteItemWidget(
+              partNameController: _partNameController,
+              index: 1,
+            ),
+          ],
         ),
       ),
       stepIndex: 1,

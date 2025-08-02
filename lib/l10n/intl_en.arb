@@ -42,6 +42,8 @@
   "erroCadastrarMsg": "Failed to save your changes.",
   "help": "Help",
   "saberMais": "Learn More",
-  "addParte": "Add Part",
-  "part": "Part"
+  "addParte": "Add New Part",
+  "part": "Part",
+  "ritmo": "Rhythm",
+  "sequencia": "Sequence"
 }

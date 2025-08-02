@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guitar_learner/widgets/default_card_container.dart';
 
 import '../../widgets/default_textbutton.dart';
 import '../../widgets/default_textformfield.dart';
@@ -13,31 +14,52 @@ class ParteItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return DefaultCardContainer(
+      shadow: false,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
           children: [
-            Text("${AppLocalizations.of(context)!.part} $index"),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("${AppLocalizations.of(context)!.part} $index"),
+                if (index != 1)
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+              ],
+            ),
+            DefaultTextFormField(
+                label: AppLocalizations.of(context)!.partName,
+                hintText: AppLocalizations.of(context)!.hintSongPart,
+                required: true,
+                controller: partNameController),
+            const SizedBox(height: 12.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(AppLocalizations.of(context)!.ritmo,
+                          style: const TextStyle(fontWeight: FontWeight.bold))
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(AppLocalizations.of(context)!.sequencia,
+                          style: const TextStyle(fontWeight: FontWeight.bold))
+                    ],
+                  ),
+                )
+              ],
+            ),
           ],
         ),
-        DefaultTextFormField(
-            label: AppLocalizations.of(context)!.partName,
-            hintText: AppLocalizations.of(context)!.hintSongPart,
-            required: true,
-            controller: partNameController),
-        const SizedBox(height: 8.0),
-        DefaultTextButton(
-          onPressed: () {},
-          expandText: true,
-          showBorder: true,
-          child: Text(
-            AppLocalizations.of(context)!.addParte,
-            style: const TextStyle(fontWeight: FontWeight.w500),
-          ),
-        )
-      ],
+      ),
     );
   }
 }

@@ -47,6 +47,8 @@
   "erroCadastrarMsg": "Falha ao salvar suas alterações.",
   "help": "Ajuda",
   "saberMais": "Saber Mais",
-  "addParte": "Adicionar Parte",
-  "part": "Parte"
+  "addParte": "Adicionar Nova Parte",
+  "part": "Parte",
+  "ritmo": "Ritmo",
+  "sequencia": "Sequência"
 }

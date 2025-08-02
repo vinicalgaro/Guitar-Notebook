@@ -380,10 +380,10 @@ class S {
     );
   }
 
-  /// `Add Part`
+  /// `Add New Part`
   String get addParte {
     return Intl.message(
-      'Add Part',
+      'Add New Part',
       name: 'addParte',
       desc: '',
       args: [],
@@ -395,6 +395,26 @@ class S {
     return Intl.message(
       'Part',
       name: 'part',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rhythm`
+  String get ritmo {
+    return Intl.message(
+      'Rhythm',
+      name: 'ritmo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sequence`
+  String get sequencia {
+    return Intl.message(
+      'Sequence',
+      name: 'sequencia',
       desc: '',
       args: [],
     );
