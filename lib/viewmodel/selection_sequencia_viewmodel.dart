@@ -3,23 +3,32 @@ import 'package:flutter/cupertino.dart';
 import '../model/musica/models.dart';
 
 class SelectionSequenciaViewModel extends ChangeNotifier {
-  // Listas separadas por tipo
-  List<Acorde> acordesDisponiveis = [];
+  final int _maxCompassos = 8;
 
-  // Lista para construir a sequência
+  bool _isLoading = true;
+
+  List<Acorde> acordesDisponiveis = [];
   List<Compasso> sequenciaAtual = [];
 
   SelectionSequenciaViewModel(Instrumento instrumento) {
     _buscarAcordesDisponiveis(instrumento);
   }
 
+  bool get isLoading => _isLoading;
+
   void _buscarAcordesDisponiveis(Instrumento instrumento) async {
     await Future.delayed(const Duration(
         seconds: 1)); // Simulação da busca de dados //ToDo: remover
     acordesDisponiveis = await _getAcordesDisponiveis(instrumento);
+    _isLoading = false;
 
     notifyListeners();
   }
+
+  bool get podeAdicionarSequencia =>
+      sequenciaAtual.fold<int>(
+          0, (somaAnterior, compasso) => somaAnterior + compasso.vezes) <
+      _maxCompassos;
 
   List<Acorde> getAcordesByTipo(TipoAcorde tipo) =>
       acordesDisponiveis.where((acorde) => acorde.tipo == tipo).toList();

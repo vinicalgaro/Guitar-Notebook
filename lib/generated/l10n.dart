@@ -479,6 +479,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Sequence limit reached.`
+  String get limiteDeSequenciasAtingido {
+    return Intl.message(
+      'Sequence limit reached.',
+      name: 'limiteDeSequenciasAtingido',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

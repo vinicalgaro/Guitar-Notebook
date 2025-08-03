@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "instrumento": MessageLookupByLibrary.simpleMessage("Instrument"),
         "limiteDeBatidasAtingido":
             MessageLookupByLibrary.simpleMessage("Beat limit reached."),
+        "limiteDeSequenciasAtingido":
+            MessageLookupByLibrary.simpleMessage("Sequence limit reached."),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Youtube Link"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),

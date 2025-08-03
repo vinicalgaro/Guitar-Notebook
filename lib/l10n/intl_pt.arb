@@ -56,5 +56,6 @@
   "atencao": "Atenção!",
   "limiteDeBatidasAtingido": "Limite de batidas atingido.",
   "nenhumaSequenciaAdicionada": "Nenhuma sequência adicionada.",
-  "selecionar": "Selecionar"
+  "selecionar": "Selecionar",
+  "limiteDeSequenciasAtingido": "Limite de sequência atingido."
 }

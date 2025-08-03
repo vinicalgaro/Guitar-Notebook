@@ -51,5 +51,6 @@
   "atencao": "Atention!",
   "limiteDeBatidasAtingido": "Beat limit reached.",
   "nenhumaSequenciaAdicionada": "No sequence has been added yet",
-  "selecionar": "Select"
+  "selecionar": "Select",
+  "limiteDeSequenciasAtingido": "Sequence limit reached."
 }

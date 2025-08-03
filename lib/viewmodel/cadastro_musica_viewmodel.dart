@@ -3,9 +3,8 @@ import 'package:flutter/cupertino.dart';
 import '../model/musica/models.dart';
 
 class CadastroMusicaViewModel extends ChangeNotifier {
-  final int maxPartes = 4;
-  final int maxRitmos = 8;
-  final int maxSequencias = 8;
+  final int _maxPartes = 4;
+  final int _maxRitmos = 8;
 
   late Musica _musicaRascunho;
   late bool _isEditing;
@@ -38,14 +37,10 @@ class CadastroMusicaViewModel extends ChangeNotifier {
 
   bool get isEditing => _isEditing;
 
-  bool get podeAdicionarParte => _musicaRascunho.partes.length < maxPartes;
+  bool get podeAdicionarParte => _musicaRascunho.partes.length < _maxPartes;
 
   bool podeAdicionarRitmo(int partIndex) =>
-      _musicaRascunho.partes[partIndex].ritmo.batidas.length < maxRitmos;
-
-  bool podeAdicionarSequencia(int partIndex) =>
-      _musicaRascunho.partes[partIndex].sequencia.compassos.length <
-      maxSequencias;
+      _musicaRascunho.partes[partIndex].ritmo.batidas.length < _maxRitmos;
 
   void _adicionarController({String texto = ''}) {
     final controller = TextEditingController(text: texto);
