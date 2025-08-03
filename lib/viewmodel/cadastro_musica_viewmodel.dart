@@ -159,8 +159,10 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void adicionarCompasso(int partIndex, Compasso compasso) {
-    _musicaRascunho.partes[partIndex].sequencia.compassos.add(compasso);
+  void adicionarListaCompassos(int partIndex, List<Compasso> compassos) {
+    _musicaRascunho.partes[partIndex].sequencia.compassos
+      ..clear()
+      ..addAll(compassos);
     notifyListeners();
   }
 

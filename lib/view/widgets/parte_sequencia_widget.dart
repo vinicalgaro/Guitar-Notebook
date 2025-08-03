@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guitar_learner/view/widgets/selection_sequencia_widget.dart';
 import 'package:guitar_learner/widgets/default_divider.dart';
 import 'package:guitar_learner/widgets/default_textbutton.dart';
 import 'package:provider/provider.dart';
@@ -39,9 +40,7 @@ class ParteSequenciaWidget extends StatelessWidget {
                 style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 10.0),
             DefaultTextButton(
-              onPressed: () {
-                //ToDo: implementar subtela de seleção de sequencia
-              },
+              onPressed: () => _callSelectionBottomSheet(context, field),
               expandText: true,
               showBorder: true,
               child: Text(localizations.selecionar),
@@ -93,15 +92,25 @@ class ParteSequenciaWidget extends StatelessWidget {
             _reorganizarCompassos(viewModel, oldIndex.data, index, field));
   }
 
-  void _adicionarBatida(CadastroMusicaViewModel viewModel, Compasso compasso,
-      FormFieldState<List<Compasso>> field, AppLocalizations localizations) {
-    if (viewModel.podeAdicionarSequencia(partIndex)) {
-      viewModel.adicionarCompasso(partIndex, compasso);
-      _notifyChangeToForm(viewModel, field);
-    } else {
-      displayInfoToast(
-          localizations.atencao, localizations.limiteDeBatidasAtingido);
-    }
+  _callSelectionBottomSheet(
+      BuildContext context, FormFieldState<List<Compasso>> field) {
+    final viewModel = context.read<CadastroMusicaViewModel>();
+
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => SelectionSequenciaWidget(
+        initialListaCompassos:
+            viewModel.musicaRascunho.partes[partIndex].sequencia.compassos,
+        onSelectionCallback: (compassos) =>
+            _adicionarListaCompassos(viewModel, compassos, field),
+      ),
+    );
+  }
+
+  _adicionarListaCompassos(CadastroMusicaViewModel viewModel,
+      List<Compasso> compassos, FormFieldState<List<Compasso>> field) {
+    viewModel.adicionarListaCompassos(partIndex, compassos);
+    _notifyChangeToForm(viewModel, field);
   }
 
   _clearCompassos(
