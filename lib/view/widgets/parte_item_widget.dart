@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guitar_learner/view/widgets/parte_ritmo_widget.dart';
+import 'package:guitar_learner/view/widgets/parte_sequencia_widget.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 
 import '../../widgets/default_textbutton.dart';
@@ -39,26 +41,14 @@ class ParteItemWidget extends StatelessWidget {
                 required: true,
                 controller: partNameController),
             const SizedBox(height: 12.0),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(AppLocalizations.of(context)!.ritmo,
-                          style: const TextStyle(fontWeight: FontWeight.bold))
-                    ],
-                  ),
+                  child: ParteRitmoWidget(),
                 ),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(AppLocalizations.of(context)!.sequencia,
-                          style: const TextStyle(fontWeight: FontWeight.bold))
-                    ],
-                  ),
+                  child: ParteSequenciaWidget(),
                 )
               ],
             ),
