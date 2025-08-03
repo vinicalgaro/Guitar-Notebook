@@ -12,14 +12,20 @@ class ParteItemWidget extends StatelessWidget {
   final int index;
   final VoidCallback onDelete;
 
-  const ParteItemWidget(
+  ParteItemWidget(
       {super.key,
       required this.partNameController,
       required this.index,
-      required this.onDelete});
+      required this.onDelete}) {
+    interfaceIndex = index + 1;
+  }
+
+  late final int interfaceIndex;
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return DefaultCardContainer(
       shadow: false,
       child: Padding(
@@ -29,26 +35,27 @@ class ParteItemWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("${AppLocalizations.of(context)!.part} $index"),
-                if (index != 1)
+                Text("${localizations.part} $interfaceIndex"),
+                if (index > 0)
                   IconButton(
                       onPressed: onDelete, icon: const Icon(Icons.delete))
               ],
             ),
             DefaultTextFormField(
-                label: AppLocalizations.of(context)!.partName,
-                hintText: AppLocalizations.of(context)!.hintSongPart,
+                label: localizations.partName,
+                hintText: localizations.hintSongPart,
                 required: true,
                 controller: partNameController),
             const SizedBox(height: 12.0),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: ParteRitmoWidget(),
+                  child: ParteRitmoWidget(partIndex: index),
                 ),
                 Expanded(
-                  child: ParteSequenciaWidget(),
+                  child: ParteSequenciaWidget(partIndex: index),
                 )
               ],
             ),

@@ -429,6 +429,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No beat has been added yet.`
+  String get nenhumaBatidaAdicionada {
+    return Intl.message(
+      'No beat has been added yet.',
+      name: 'nenhumaBatidaAdicionada',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

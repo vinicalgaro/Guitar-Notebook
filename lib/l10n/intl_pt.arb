@@ -51,5 +51,6 @@
   "part": "Parte",
   "ritmo": "Ritmo",
   "sequencia": "Sequência",
-  "instrumento": "Instrumento"
+  "instrumento": "Instrumento",
+  "nenhumaBatidaAdicionada": "Nenhuma batida adicionada."
 }

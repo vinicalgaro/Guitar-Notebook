@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Youtube Link"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
+        "nenhumaBatidaAdicionada":
+            MessageLookupByLibrary.simpleMessage("No beat has been added yet."),
         "newSong": MessageLookupByLibrary.simpleMessage("New Song"),
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
         "part": MessageLookupByLibrary.simpleMessage("Part"),

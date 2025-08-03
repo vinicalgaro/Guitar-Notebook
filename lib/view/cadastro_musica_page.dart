@@ -151,9 +151,9 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
   void _removerParte(int index) {
     final viewModel = context.read<CadastroMusicaViewModel>();
     final removedController = viewModel.partNameControllers[index];
-    final removedItemWidget = ParteItemWidget(
+    final removedItemWidgetFantasma = ParteItemWidget(
       partNameController: removedController,
-      index: index + 1,
+      index: index,
       onDelete: () {},
     );
 
@@ -165,7 +165,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
         opacity: animation,
         child: SizeTransition(
           sizeFactor: animation,
-          child: removedItemWidget,
+          child: removedItemWidgetFantasma,
         ),
       ),
     );
@@ -239,7 +239,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                     ).animate(animation),
                     child: ParteItemWidget(
                       partNameController: viewModel.partNameControllers[index],
-                      index: index + 1,
+                      index: index,
                       onDelete: () => _removerParte(index),
                     ),
                   ),

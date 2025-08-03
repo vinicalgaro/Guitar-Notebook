@@ -34,6 +34,8 @@ class CadastroMusicaViewModel extends ChangeNotifier {
 
   bool get isEditing => _isEditing;
 
+  bool get podeRemoverParte => _musicaRascunho.partes.length > 1;
+
   void _adicionarController({String texto = ''}) {
     final controller = TextEditingController(text: texto);
     partNameControllers.add(controller);
@@ -53,6 +55,7 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   }
 
   void removerParte(int index) {
+    partNameControllers[index].dispose();
     partNameControllers.removeAt(index);
 
     final novasPartes = List<Parte>.from(_musicaRascunho.partes);
@@ -106,6 +109,26 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     } else {
       return false;
     }
+  }
+
+  void adicionarBatida(int partIndex, Batida batida) {
+    _musicaRascunho.partes[partIndex].ritmo.batidas.add(batida);
+    notifyListeners();
+  }
+
+  void removerBatida(int partIndex, int batidaIndex) {
+    _musicaRascunho.partes[partIndex].ritmo.batidas.removeAt(batidaIndex);
+    notifyListeners();
+  }
+
+  void reorganizarBatida(int partIndex, int oldIndex, int newIndex) {
+    final parte = _musicaRascunho.partes[partIndex];
+    final batidas = parte.ritmo.batidas;
+
+    final batida = batidas.removeAt(oldIndex);
+    batidas.insert(newIndex, batida);
+
+    notifyListeners();
   }
 
   @override

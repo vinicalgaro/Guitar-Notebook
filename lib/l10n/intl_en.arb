@@ -46,5 +46,6 @@
   "part": "Part",
   "ritmo": "Rhythm",
   "sequencia": "Sequence",
-  "instrumento": "Instrument"
+  "instrumento": "Instrument",
+  "nenhumaBatidaAdicionada": "No beat has been added yet."
 }
