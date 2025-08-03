@@ -40,7 +40,9 @@ class DefaultTextFormField extends StatelessWidget {
                   ),
           ),
           validator: (value) {
-            if (required && (value == null || value.isEmpty)) {
+            if (required &&
+                (value == null ||
+                    (value.isEmpty || value.toString().trim().isEmpty))) {
               return AppLocalizations.of(context)!.fieldRequired;
             } else if (validator != null &&
                 (value != null && value.isNotEmpty)) {

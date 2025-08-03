@@ -3,6 +3,10 @@ import 'package:flutter/cupertino.dart';
 import '../model/musica/models.dart';
 
 class CadastroMusicaViewModel extends ChangeNotifier {
+  final int maxPartes = 4;
+  final int maxRitmos = 8;
+  final int maxSequencias = 8;
+
   late Musica _musicaRascunho;
   late bool _isEditing;
   int _currentStep = 0;
@@ -34,7 +38,14 @@ class CadastroMusicaViewModel extends ChangeNotifier {
 
   bool get isEditing => _isEditing;
 
-  bool get podeRemoverParte => _musicaRascunho.partes.length > 1;
+  bool get podeAdicionarParte => _musicaRascunho.partes.length < maxPartes;
+
+  bool podeAdicionarRitmo(int partIndex) =>
+      _musicaRascunho.partes[partIndex].ritmo.batidas.length < maxRitmos;
+
+  bool podeAdicionarSequencia(int partIndex) =>
+      _musicaRascunho.partes[partIndex].sequencia.compassos.length <
+      maxSequencias;
 
   void _adicionarController({String texto = ''}) {
     final controller = TextEditingController(text: texto);
@@ -69,12 +80,8 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   }
 
   void onStepContinue() {
-    if (isLastStep) {
-      salvarMusica();
-    } else {
-      _currentStep++;
-      notifyListeners();
-    }
+    _currentStep++;
+    notifyListeners();
   }
 
   void onStepCancel() {
@@ -89,25 +96,17 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> salvarMusica() async {
-    final isPartNamesValid =
-        partNameControllers.every((c) => c.text.trim().isNotEmpty);
-
-    if (isPartNamesValid) {
-      for (int i = 0; i < _musicaRascunho.partes.length; i++) {
-        final parteAntiga = _musicaRascunho.partes[i];
-        final novasPartes = List<Parte>.from(_musicaRascunho.partes);
-        novasPartes[i] = parteAntiga.copyWith(
-          nome: partNameControllers[i].text.trim(),
-        );
-        _musicaRascunho = _musicaRascunho.copyWith(partes: novasPartes);
-      }
-
-      // ToDo: Chamar o Repository para salvar de fato os dados
-      return true;
-    } else {
-      return false;
+  Future<void> salvarMusica() async {
+    for (int i = 0; i < _musicaRascunho.partes.length; i++) {
+      final parteAntiga = _musicaRascunho.partes[i];
+      final novasPartes = List<Parte>.from(_musicaRascunho.partes);
+      novasPartes[i] = parteAntiga.copyWith(
+        nome: partNameControllers[i].text.trim(),
+      );
+      _musicaRascunho = _musicaRascunho.copyWith(partes: novasPartes);
     }
+
+    // ToDo: Chamar o Repository para salvar de fato os dados
   }
 
   void adicionarBatida(int partIndex, Batida batida) {

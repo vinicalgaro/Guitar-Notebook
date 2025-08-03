@@ -105,17 +105,14 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
 
     if (viewModel.isLastStep) {
       if (_formKeyStep2.currentState!.validate()) {
-        final sucesso = await viewModel.salvarMusica();
-        if (mounted) {
-          if (sucesso) {
-            displaySuccessToast(
-                localizations.sucessoToast, localizations.sucessoCadastrarMsg);
-            Navigator.of(context).pop();
-          } else {
-            displayErrorToast(
-                localizations.errorToast, localizations.erroCadastrarMsg);
-          }
-        }
+        await viewModel.salvarMusica();
+
+        displaySuccessToast(
+            localizations.sucessoToast, localizations.sucessoCadastrarMsg);
+        if (context.mounted) Navigator.of(context).pop();
+      } else {
+        displayErrorToast(
+            localizations.errorToast, localizations.erroCadastrarMsg);
       }
     } else {
       if (_formKeyStep1.currentState!.validate()) {
@@ -256,7 +253,8 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
             ),
             const SizedBox(height: 16),
             DefaultTextButton(
-              onPressed: _adicionarNovaParte,
+              onPressed:
+                  viewModel.podeAdicionarParte ? _adicionarNovaParte : null,
               expandText: true,
               showBorder: true,
               child: Text(
