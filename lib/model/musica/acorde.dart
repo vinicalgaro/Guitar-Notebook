@@ -10,8 +10,8 @@ class Acorde with _$Acorde {
   const factory Acorde({
     int? id,
     required String nome,
+    @JsonKey(name: 'full_name') required String fullName,
     required String instrumento,
-    @JsonKey(name: 'imagem_url') required String imagemUrl,
     required String afinacao,
     @JsonKey(name: 'posicoes_json') required Posicoes posicoes,
   }) = _Acorde;

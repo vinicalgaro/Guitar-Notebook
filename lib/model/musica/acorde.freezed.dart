@@ -22,9 +22,9 @@ Acorde _$AcordeFromJson(Map<String, dynamic> json) {
 mixin _$Acorde {
   int? get id => throw _privateConstructorUsedError;
   String get nome => throw _privateConstructorUsedError;
+  @JsonKey(name: 'full_name')
+  String get fullName => throw _privateConstructorUsedError;
   String get instrumento => throw _privateConstructorUsedError;
-  @JsonKey(name: 'imagem_url')
-  String get imagemUrl => throw _privateConstructorUsedError;
   String get afinacao => throw _privateConstructorUsedError;
   @JsonKey(name: 'posicoes_json')
   Posicoes get posicoes => throw _privateConstructorUsedError;
@@ -42,8 +42,8 @@ abstract class $AcordeCopyWith<$Res> {
   $Res call(
       {int? id,
       String nome,
+      @JsonKey(name: 'full_name') String fullName,
       String instrumento,
-      @JsonKey(name: 'imagem_url') String imagemUrl,
       String afinacao,
       @JsonKey(name: 'posicoes_json') Posicoes posicoes});
 
@@ -65,8 +65,8 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
   $Res call({
     Object? id = freezed,
     Object? nome = null,
+    Object? fullName = null,
     Object? instrumento = null,
-    Object? imagemUrl = null,
     Object? afinacao = null,
     Object? posicoes = null,
   }) {
@@ -79,13 +79,13 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
               as String,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
       instrumento: null == instrumento
           ? _value.instrumento
           : instrumento // ignore: cast_nullable_to_non_nullable
-              as String,
-      imagemUrl: null == imagemUrl
-          ? _value.imagemUrl
-          : imagemUrl // ignore: cast_nullable_to_non_nullable
               as String,
       afinacao: null == afinacao
           ? _value.afinacao
@@ -117,8 +117,8 @@ abstract class _$$AcordeImplCopyWith<$Res> implements $AcordeCopyWith<$Res> {
   $Res call(
       {int? id,
       String nome,
+      @JsonKey(name: 'full_name') String fullName,
       String instrumento,
-      @JsonKey(name: 'imagem_url') String imagemUrl,
       String afinacao,
       @JsonKey(name: 'posicoes_json') Posicoes posicoes});
 
@@ -139,8 +139,8 @@ class __$$AcordeImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? nome = null,
+    Object? fullName = null,
     Object? instrumento = null,
-    Object? imagemUrl = null,
     Object? afinacao = null,
     Object? posicoes = null,
   }) {
@@ -153,13 +153,13 @@ class __$$AcordeImplCopyWithImpl<$Res>
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
               as String,
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
       instrumento: null == instrumento
           ? _value.instrumento
           : instrumento // ignore: cast_nullable_to_non_nullable
-              as String,
-      imagemUrl: null == imagemUrl
-          ? _value.imagemUrl
-          : imagemUrl // ignore: cast_nullable_to_non_nullable
               as String,
       afinacao: null == afinacao
           ? _value.afinacao
@@ -179,8 +179,8 @@ class _$AcordeImpl implements _Acorde {
   const _$AcordeImpl(
       {this.id,
       required this.nome,
+      @JsonKey(name: 'full_name') required this.fullName,
       required this.instrumento,
-      @JsonKey(name: 'imagem_url') required this.imagemUrl,
       required this.afinacao,
       @JsonKey(name: 'posicoes_json') required this.posicoes});
 
@@ -192,10 +192,10 @@ class _$AcordeImpl implements _Acorde {
   @override
   final String nome;
   @override
-  final String instrumento;
+  @JsonKey(name: 'full_name')
+  final String fullName;
   @override
-  @JsonKey(name: 'imagem_url')
-  final String imagemUrl;
+  final String instrumento;
   @override
   final String afinacao;
   @override
@@ -204,7 +204,7 @@ class _$AcordeImpl implements _Acorde {
 
   @override
   String toString() {
-    return 'Acorde(id: $id, nome: $nome, instrumento: $instrumento, imagemUrl: $imagemUrl, afinacao: $afinacao, posicoes: $posicoes)';
+    return 'Acorde(id: $id, nome: $nome, fullName: $fullName, instrumento: $instrumento, afinacao: $afinacao, posicoes: $posicoes)';
   }
 
   @override
@@ -214,10 +214,10 @@ class _$AcordeImpl implements _Acorde {
             other is _$AcordeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.nome, nome) || other.nome == nome) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
             (identical(other.instrumento, instrumento) ||
                 other.instrumento == instrumento) &&
-            (identical(other.imagemUrl, imagemUrl) ||
-                other.imagemUrl == imagemUrl) &&
             (identical(other.afinacao, afinacao) ||
                 other.afinacao == afinacao) &&
             (identical(other.posicoes, posicoes) ||
@@ -227,7 +227,7 @@ class _$AcordeImpl implements _Acorde {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, nome, instrumento, imagemUrl, afinacao, posicoes);
+      runtimeType, id, nome, fullName, instrumento, afinacao, posicoes);
 
   @JsonKey(ignore: true)
   @override
@@ -247,8 +247,8 @@ abstract class _Acorde implements Acorde {
   const factory _Acorde(
           {final int? id,
           required final String nome,
+          @JsonKey(name: 'full_name') required final String fullName,
           required final String instrumento,
-          @JsonKey(name: 'imagem_url') required final String imagemUrl,
           required final String afinacao,
           @JsonKey(name: 'posicoes_json') required final Posicoes posicoes}) =
       _$AcordeImpl;
@@ -260,10 +260,10 @@ abstract class _Acorde implements Acorde {
   @override
   String get nome;
   @override
-  String get instrumento;
+  @JsonKey(name: 'full_name')
+  String get fullName;
   @override
-  @JsonKey(name: 'imagem_url')
-  String get imagemUrl;
+  String get instrumento;
   @override
   String get afinacao;
   @override
