@@ -150,25 +150,30 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
 
   void _removerParte(int index) {
     final viewModel = context.read<CadastroMusicaViewModel>();
-    final removedController = viewModel.partNameControllers[index];
-    final removedItemWidgetFantasma = ParteItemWidget(
-      partNameController: removedController,
-      index: index,
-      onDelete: () {},
-    );
+    final Parte parteRemovida = viewModel.musicaRascunho.partes[index];
+    final TextEditingController controllerRemovido =
+        viewModel.partNameControllers[index];
 
-    viewModel.removerParte(index);
-
-    _parteListKey.currentState?.removeItem(
-      index,
-      (context, animation) => FadeTransition(
+    Widget builderAnimacao(BuildContext context, Animation<double> animation) {
+      return FadeTransition(
         opacity: animation,
         child: SizeTransition(
           sizeFactor: animation,
-          child: removedItemWidgetFantasma,
+          child: ParteItemWidget(
+            parte: parteRemovida,
+            partNameController: controllerRemovido,
+            index: index,
+            onDelete: () {},
+          ),
         ),
-      ),
-    );
+      );
+    }
+
+    viewModel.removerParte(index);
+
+    if (_parteListKey.currentState != null) {
+      _parteListKey.currentState!.removeItem(index, builderAnimacao);
+    }
   }
 
   Step _buildStepDadosMusica(BuildContext context) {
@@ -230,6 +235,8 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
               physics: const NeverScrollableScrollPhysics(),
               initialItemCount: viewModel.partNameControllers.length,
               itemBuilder: (context, index, animation) {
+                final parte = viewModel.musicaRascunho.partes[index];
+
                 return FadeTransition(
                   opacity: animation,
                   child: SlideTransition(
@@ -240,6 +247,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                     child: ParteItemWidget(
                       partNameController: viewModel.partNameControllers[index],
                       index: index,
+                      parte: parte,
                       onDelete: () => _removerParte(index),
                     ),
                   ),

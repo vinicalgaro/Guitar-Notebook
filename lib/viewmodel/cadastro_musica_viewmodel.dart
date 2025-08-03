@@ -55,7 +55,6 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   }
 
   void removerParte(int index) {
-    partNameControllers[index].dispose();
     partNameControllers.removeAt(index);
 
     final novasPartes = List<Parte>.from(_musicaRascunho.partes);

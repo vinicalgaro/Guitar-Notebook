@@ -4,19 +4,21 @@ import 'package:guitar_learner/view/widgets/parte_ritmo_widget.dart';
 import 'package:guitar_learner/view/widgets/parte_sequencia_widget.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 
-import '../../widgets/default_textbutton.dart';
+import '../../model/musica/parte.dart';
 import '../../widgets/default_textformfield.dart';
 
 class ParteItemWidget extends StatelessWidget {
   final TextEditingController partNameController;
   final int index;
   final VoidCallback onDelete;
+  final Parte parte;
 
   ParteItemWidget(
       {super.key,
       required this.partNameController,
       required this.index,
-      required this.onDelete}) {
+      required this.onDelete,
+      required this.parte}) {
     interfaceIndex = index + 1;
   }
 
@@ -52,10 +54,10 @@ class ParteItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: ParteRitmoWidget(partIndex: index),
+                  child: ParteRitmoWidget(partIndex: index, parte: parte),
                 ),
                 Expanded(
-                  child: ParteSequenciaWidget(partIndex: index),
+                  child: ParteSequenciaWidget(partIndex: index, parte: parte),
                 )
               ],
             ),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../model/musica/models.dart';
+
 class ParteSequenciaWidget extends StatelessWidget {
   final int partIndex;
+  final Parte parte;
 
-  const ParteSequenciaWidget({Key? key, required this.partIndex})
-      : super(key: key);
+  const ParteSequenciaWidget(
+      {super.key, required this.partIndex, required this.parte});
 
   @override
   Widget build(BuildContext context) {

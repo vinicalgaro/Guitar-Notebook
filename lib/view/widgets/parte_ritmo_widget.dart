@@ -3,18 +3,20 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/widgets/default_divider.dart';
 import 'package:provider/provider.dart';
 
+import '../../model/musica/models.dart';
 import '../../model/musica/ritmo.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
 
 class ParteRitmoWidget extends StatelessWidget {
   final int partIndex;
+  final Parte parte;
 
-  const ParteRitmoWidget({super.key, required this.partIndex});
+  const ParteRitmoWidget(
+      {super.key, required this.partIndex, required this.parte});
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<CadastroMusicaViewModel>();
-    final ritmo = viewModel.musicaRascunho.partes[partIndex].ritmo;
+    final ritmo = parte.ritmo;
     final localizations = AppLocalizations.of(context)!;
 
     return Column(
@@ -49,7 +51,7 @@ class ParteRitmoWidget extends StatelessWidget {
                   runSpacing: 4.0,
                   children: [
                     for (int i = 0; i < ritmo.batidas.length; i++)
-                      _buildDraggableChip(context, viewModel, i),
+                      _buildDraggableChip(context, i, ritmo.batidas[i]),
                   ],
                 )
               : Center(
@@ -64,10 +66,8 @@ class ParteRitmoWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDraggableChip(
-      BuildContext context, CadastroMusicaViewModel viewModel, int index) {
-    final batida =
-        viewModel.musicaRascunho.partes[partIndex].ritmo.batidas[index];
+  Widget _buildDraggableChip(BuildContext context, int index, Batida batida) {
+    final viewModel = context.read<CadastroMusicaViewModel>();
 
     return DragTarget<int>(
       builder: (context, candidateData, rejectedData) {
@@ -99,7 +99,7 @@ class ParteRitmoWidget extends StatelessWidget {
 
     if (isDragging) {
       return Material(
-        color: Colors.transparent, // Transparente para não ter fundo
+        color: Colors.transparent,
         child: chip,
       );
     }
