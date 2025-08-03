@@ -24,6 +24,7 @@ mixin _$Acorde {
   String get nome => throw _privateConstructorUsedError;
   @JsonKey(name: 'full_name')
   String get fullName => throw _privateConstructorUsedError;
+  TipoAcorde get tipo => throw _privateConstructorUsedError;
   String get instrumento => throw _privateConstructorUsedError;
   String get afinacao => throw _privateConstructorUsedError;
   @JsonKey(name: 'posicoes_json')
@@ -43,6 +44,7 @@ abstract class $AcordeCopyWith<$Res> {
       {int? id,
       String nome,
       @JsonKey(name: 'full_name') String fullName,
+      TipoAcorde tipo,
       String instrumento,
       String afinacao,
       @JsonKey(name: 'posicoes_json') Posicoes posicoes});
@@ -66,6 +68,7 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
     Object? id = freezed,
     Object? nome = null,
     Object? fullName = null,
+    Object? tipo = null,
     Object? instrumento = null,
     Object? afinacao = null,
     Object? posicoes = null,
@@ -83,6 +86,10 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
+      tipo: null == tipo
+          ? _value.tipo
+          : tipo // ignore: cast_nullable_to_non_nullable
+              as TipoAcorde,
       instrumento: null == instrumento
           ? _value.instrumento
           : instrumento // ignore: cast_nullable_to_non_nullable
@@ -118,6 +125,7 @@ abstract class _$$AcordeImplCopyWith<$Res> implements $AcordeCopyWith<$Res> {
       {int? id,
       String nome,
       @JsonKey(name: 'full_name') String fullName,
+      TipoAcorde tipo,
       String instrumento,
       String afinacao,
       @JsonKey(name: 'posicoes_json') Posicoes posicoes});
@@ -140,6 +148,7 @@ class __$$AcordeImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? nome = null,
     Object? fullName = null,
+    Object? tipo = null,
     Object? instrumento = null,
     Object? afinacao = null,
     Object? posicoes = null,
@@ -157,6 +166,10 @@ class __$$AcordeImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
+      tipo: null == tipo
+          ? _value.tipo
+          : tipo // ignore: cast_nullable_to_non_nullable
+              as TipoAcorde,
       instrumento: null == instrumento
           ? _value.instrumento
           : instrumento // ignore: cast_nullable_to_non_nullable
@@ -180,6 +193,7 @@ class _$AcordeImpl implements _Acorde {
       {this.id,
       required this.nome,
       @JsonKey(name: 'full_name') required this.fullName,
+      required this.tipo,
       required this.instrumento,
       required this.afinacao,
       @JsonKey(name: 'posicoes_json') required this.posicoes});
@@ -195,6 +209,8 @@ class _$AcordeImpl implements _Acorde {
   @JsonKey(name: 'full_name')
   final String fullName;
   @override
+  final TipoAcorde tipo;
+  @override
   final String instrumento;
   @override
   final String afinacao;
@@ -204,7 +220,7 @@ class _$AcordeImpl implements _Acorde {
 
   @override
   String toString() {
-    return 'Acorde(id: $id, nome: $nome, fullName: $fullName, instrumento: $instrumento, afinacao: $afinacao, posicoes: $posicoes)';
+    return 'Acorde(id: $id, nome: $nome, fullName: $fullName, tipo: $tipo, instrumento: $instrumento, afinacao: $afinacao, posicoes: $posicoes)';
   }
 
   @override
@@ -216,6 +232,7 @@ class _$AcordeImpl implements _Acorde {
             (identical(other.nome, nome) || other.nome == nome) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
+            (identical(other.tipo, tipo) || other.tipo == tipo) &&
             (identical(other.instrumento, instrumento) ||
                 other.instrumento == instrumento) &&
             (identical(other.afinacao, afinacao) ||
@@ -227,7 +244,7 @@ class _$AcordeImpl implements _Acorde {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, nome, fullName, instrumento, afinacao, posicoes);
+      runtimeType, id, nome, fullName, tipo, instrumento, afinacao, posicoes);
 
   @JsonKey(ignore: true)
   @override
@@ -248,6 +265,7 @@ abstract class _Acorde implements Acorde {
           {final int? id,
           required final String nome,
           @JsonKey(name: 'full_name') required final String fullName,
+          required final TipoAcorde tipo,
           required final String instrumento,
           required final String afinacao,
           @JsonKey(name: 'posicoes_json') required final Posicoes posicoes}) =
@@ -262,6 +280,8 @@ abstract class _Acorde implements Acorde {
   @override
   @JsonKey(name: 'full_name')
   String get fullName;
+  @override
+  TipoAcorde get tipo;
   @override
   String get instrumento;
   @override

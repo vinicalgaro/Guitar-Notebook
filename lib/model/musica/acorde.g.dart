@@ -10,6 +10,7 @@ _$AcordeImpl _$$AcordeImplFromJson(Map<String, dynamic> json) => _$AcordeImpl(
       id: (json['id'] as num?)?.toInt(),
       nome: json['nome'] as String,
       fullName: json['full_name'] as String,
+      tipo: $enumDecode(_$TipoAcordeEnumMap, json['tipo']),
       instrumento: json['instrumento'] as String,
       afinacao: json['afinacao'] as String,
       posicoes:
@@ -21,7 +22,14 @@ Map<String, dynamic> _$$AcordeImplToJson(_$AcordeImpl instance) =>
       'id': instance.id,
       'nome': instance.nome,
       'full_name': instance.fullName,
+      'tipo': _$TipoAcordeEnumMap[instance.tipo]!,
       'instrumento': instance.instrumento,
       'afinacao': instance.afinacao,
       'posicoes_json': instance.posicoes,
     };
+
+const _$TipoAcordeEnumMap = {
+  TipoAcorde.maior: 'maior',
+  TipoAcorde.menor: 'menor',
+  TipoAcorde.outro: 'outro',
+};

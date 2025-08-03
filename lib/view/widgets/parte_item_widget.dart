@@ -56,6 +56,7 @@ class ParteItemWidget extends StatelessWidget {
                 Expanded(
                   child: ParteRitmoWidget(partIndex: index, parte: parte),
                 ),
+                const SizedBox(width: 4.0),
                 Expanded(
                   child: ParteSequenciaWidget(partIndex: index, parte: parte),
                 )

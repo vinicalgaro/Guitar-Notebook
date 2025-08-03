@@ -7,5 +7,5 @@ class Compasso {
   Compasso(this.acorde, this.vezes);
 
   @override
-  String toString() => '${vezes}x ${acorde.nome.toUpperCase()}';
+  String toString() => '${vezes}x ${acorde.nome}';
 }

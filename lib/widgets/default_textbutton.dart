@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class DefaultTextButton extends StatelessWidget {
-  final Text child;
+  final Widget child;
   final VoidCallback? onPressed;
   final bool expandText;
   final bool showBorder;
   final bool hasBackgroundColor;
   final bool shrink;
+  final double padding;
 
   const DefaultTextButton({
     super.key,
@@ -16,6 +17,7 @@ class DefaultTextButton extends StatelessWidget {
     this.showBorder = false,
     this.hasBackgroundColor = false,
     this.shrink = false,
+    this.padding = 8.0,
   });
 
   Color? _getBackgroundColor(BuildContext context) =>
@@ -23,7 +25,7 @@ class DefaultTextButton extends StatelessWidget {
 
   ButtonStyle _buildStyle(BuildContext context) {
     return TextButton.styleFrom(
-      padding: shrink ? const EdgeInsets.all(8.0) : null,
+      padding: shrink ? EdgeInsets.all(padding) : null,
       minimumSize: shrink ? Size.zero : null,
       tapTargetSize: shrink ? MaterialTapTargetSize.shrinkWrap : null,
       backgroundColor: hasBackgroundColor ? _getBackgroundColor(context) : null,

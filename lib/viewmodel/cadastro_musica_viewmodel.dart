@@ -22,7 +22,7 @@ class CadastroMusicaViewModel extends ChangeNotifier {
       }
     } else {
       _musicaRascunho = const Musica(
-        nome: 'Californication!',
+        nome: '',
         instrumento: Instrumento.violao,
         partes: [],
       );
@@ -56,32 +56,7 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     final novaParte = Parte(
       nome: '',
       ritmo: Ritmo([]),
-      sequencia: Sequencia([
-        Compasso(
-            Acorde(
-                nome: "G",
-                instrumento: "violao",
-                imagemUrl: "",
-                afinacao: "",
-                posicoes: Posicoes(trasteInicial: 1, dedos: List.empty())),
-            1),
-        Compasso(
-            Acorde(
-                nome: "C",
-                instrumento: "violao",
-                imagemUrl: "",
-                afinacao: "",
-                posicoes: Posicoes(trasteInicial: 1, dedos: List.empty())),
-            2),
-        Compasso(
-            Acorde(
-                nome: "C",
-                instrumento: "violao",
-                imagemUrl: "",
-                afinacao: "",
-                posicoes: Posicoes(trasteInicial: 1, dedos: List.empty())),
-            2),
-      ]),
+      sequencia: Sequencia([]),
     );
     _musicaRascunho = _musicaRascunho.copyWith(
       partes: [..._musicaRascunho.partes, novaParte],
