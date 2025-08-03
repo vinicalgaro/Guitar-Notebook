@@ -54,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
         "nenhumaBatidaAdicionada":
             MessageLookupByLibrary.simpleMessage("No beat has been added yet."),
+        "nenhumaSequenciaAdicionada": MessageLookupByLibrary.simpleMessage(
+            "No sequence has been added yet"),
         "newSong": MessageLookupByLibrary.simpleMessage("New Song"),
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
         "part": MessageLookupByLibrary.simpleMessage("Part"),
@@ -61,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ritmo": MessageLookupByLibrary.simpleMessage("Rhythm"),
         "saberMais": MessageLookupByLibrary.simpleMessage("Learn More"),
         "salvar": MessageLookupByLibrary.simpleMessage("Save"),
+        "selecionar": MessageLookupByLibrary.simpleMessage("Select"),
         "sequencia": MessageLookupByLibrary.simpleMessage("Sequence"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "songName": MessageLookupByLibrary.simpleMessage("Song Name"),

@@ -54,5 +54,7 @@
   "instrumento": "Instrumento",
   "nenhumaBatidaAdicionada": "Nenhuma batida adicionada.",
   "atencao": "Atenção!",
-  "limiteDeBatidasAtingido": "Limite de batidas atingido."
+  "limiteDeBatidasAtingido": "Limite de batidas atingido.",
+  "nenhumaSequenciaAdicionada": "Nenhuma sequência adicionada.",
+  "selecionar": "Selecionar"
 }

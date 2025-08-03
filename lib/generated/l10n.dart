@@ -459,6 +459,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No sequence has been added yet`
+  String get nenhumaSequenciaAdicionada {
+    return Intl.message(
+      'No sequence has been added yet',
+      name: 'nenhumaSequenciaAdicionada',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select`
+  String get selecionar {
+    return Intl.message(
+      'Select',
+      name: 'selecionar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

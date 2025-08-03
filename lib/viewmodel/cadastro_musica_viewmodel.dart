@@ -22,7 +22,7 @@ class CadastroMusicaViewModel extends ChangeNotifier {
       }
     } else {
       _musicaRascunho = const Musica(
-        nome: '',
+        nome: 'Californication!',
         instrumento: Instrumento.violao,
         partes: [],
       );
@@ -56,7 +56,32 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     final novaParte = Parte(
       nome: '',
       ritmo: Ritmo([]),
-      sequencia: Sequencia([]),
+      sequencia: Sequencia([
+        Compasso(
+            Acorde(
+                nome: "G",
+                instrumento: "violao",
+                imagemUrl: "",
+                afinacao: "",
+                posicoes: Posicoes(trasteInicial: 1, dedos: List.empty())),
+            1),
+        Compasso(
+            Acorde(
+                nome: "C",
+                instrumento: "violao",
+                imagemUrl: "",
+                afinacao: "",
+                posicoes: Posicoes(trasteInicial: 1, dedos: List.empty())),
+            2),
+        Compasso(
+            Acorde(
+                nome: "C",
+                instrumento: "violao",
+                imagemUrl: "",
+                afinacao: "",
+                posicoes: Posicoes(trasteInicial: 1, dedos: List.empty())),
+            2),
+      ]),
     );
     _musicaRascunho = _musicaRascunho.copyWith(
       partes: [..._musicaRascunho.partes, novaParte],
@@ -124,9 +149,35 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void reorganizarBatida(int partIndex, int oldIndex, int newIndex) {
+  void reorganizarBatidas(int partIndex, int oldIndex, int newIndex) {
     final parte = _musicaRascunho.partes[partIndex];
     final batidas = parte.ritmo.batidas;
+
+    final batida = batidas.removeAt(oldIndex);
+    batidas.insert(newIndex, batida);
+
+    notifyListeners();
+  }
+
+  void adicionarCompasso(int partIndex, Compasso compasso) {
+    _musicaRascunho.partes[partIndex].sequencia.compassos.add(compasso);
+    notifyListeners();
+  }
+
+  void removerCompasso(int partIndex, int compassoIndex) {
+    _musicaRascunho.partes[partIndex].sequencia.compassos
+        .removeAt(compassoIndex);
+    notifyListeners();
+  }
+
+  void clearCompassos(int partIndex) {
+    _musicaRascunho.partes[partIndex].sequencia.compassos.clear();
+    notifyListeners();
+  }
+
+  void reorganizarCompassos(int partIndex, int oldIndex, int newIndex) {
+    final parte = _musicaRascunho.partes[partIndex];
+    final batidas = parte.sequencia.compassos;
 
     final batida = batidas.removeAt(oldIndex);
     batidas.insert(newIndex, batida);
