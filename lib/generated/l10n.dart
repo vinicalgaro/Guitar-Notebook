@@ -439,6 +439,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Atention!`
+  String get atencao {
+    return Intl.message(
+      'Atention!',
+      name: 'atencao',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beat limit reached.`
+  String get limiteDeBatidasAtingido {
+    return Intl.message(
+      'Beat limit reached.',
+      name: 'limiteDeBatidasAtingido',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appLema": MessageLookupByLibrary.simpleMessage(
             "Pratique hoje, evolua sempre!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
+        "atencao": MessageLookupByLibrary.simpleMessage("Atenção!"),
         "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),
         "dev": MessageLookupByLibrary.simpleMessage("Desenvolvedor"),
         "editSong": MessageLookupByLibrary.simpleMessage("Editar Música"),
@@ -48,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintSongUrl": MessageLookupByLibrary.simpleMessage(
             "Ex.: https://youtu.be/YlUKcNNmywk"),
         "instrumento": MessageLookupByLibrary.simpleMessage("Instrumento"),
+        "limiteDeBatidasAtingido":
+            MessageLookupByLibrary.simpleMessage("Limite de batidas atingido."),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Link do Youtube"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "modoEscuro": MessageLookupByLibrary.simpleMessage("Modo Escuro"),

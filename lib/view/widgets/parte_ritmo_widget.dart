@@ -42,13 +42,13 @@ class ParteRitmoWidget extends StatelessWidget {
               children: [
                 IconButton.outlined(
                   icon: const Icon(Icons.arrow_downward),
-                  onPressed: () =>
-                      _adicionarBatida(viewModel, Batida.baixo, field),
+                  onPressed: () => _adicionarBatida(
+                      viewModel, Batida.baixo, field, localizations),
                 ),
                 IconButton.outlined(
                   icon: const Icon(Icons.arrow_upward),
-                  onPressed: () =>
-                      _adicionarBatida(viewModel, Batida.cima, field),
+                  onPressed: () => _adicionarBatida(
+                      viewModel, Batida.cima, field, localizations),
                 ),
               ],
             ),
@@ -82,18 +82,25 @@ class ParteRitmoWidget extends StatelessWidget {
   }
 
   void _adicionarBatida(CadastroMusicaViewModel viewModel, Batida batida,
-      FormFieldState<List<Batida>> field) {
+      FormFieldState<List<Batida>> field, AppLocalizations localizations) {
     if (viewModel.podeAdicionarRitmo(partIndex)) {
       viewModel.adicionarBatida(partIndex, batida);
       _notifyChange(viewModel, field);
     } else {
-      displayInfoToast("Atenção!", "Limite de batidas atingido.");
+      displayInfoToast(
+          localizations.atencao, localizations.limiteDeBatidasAtingido);
     }
   }
 
   void _removerBatida(CadastroMusicaViewModel viewModel, int index,
       FormFieldState<List<Batida>> field) {
     viewModel.removerBatida(partIndex, index);
+    _notifyChange(viewModel, field);
+  }
+
+  void _clearBatidas(
+      CadastroMusicaViewModel viewModel, FormFieldState<List<Batida>> field) {
+    viewModel.clearBatidas(partIndex);
     _notifyChange(viewModel, field);
   }
 
@@ -112,18 +119,21 @@ class ParteRitmoWidget extends StatelessWidget {
       Batida batida, FormFieldState<List<Batida>> field) {
     return DefaultDraggableWidget(
         index: index,
-        itemBuilder: () => IconButton(
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(
-                  minWidth: kMinInteractiveDimension / 2,
-                  maxHeight: kMinInteractiveDimension / 2),
-              icon: Icon(
-                batida == Batida.baixo
-                    ? Icons.arrow_downward
-                    : Icons.arrow_upward,
+        itemBuilder: () => GestureDetector(
+          onLongPress: () => _clearBatidas(viewModel, field),
+          child: IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(
+                    minWidth: kMinInteractiveDimension / 2,
+                    maxHeight: kMinInteractiveDimension / 2),
+                icon: Icon(
+                  batida == Batida.baixo
+                      ? Icons.arrow_downward
+                      : Icons.arrow_upward,
+                ),
+                onPressed: () => _removerBatida(viewModel, index, field),
               ),
-              onPressed: () => _removerBatida(viewModel, index, field),
-            ),
+        ),
         onAcceptWithDetails: (DragTargetDetails<int> oldIndex) =>
             _reorganizarBatida(viewModel, oldIndex.data, index, field));
   }

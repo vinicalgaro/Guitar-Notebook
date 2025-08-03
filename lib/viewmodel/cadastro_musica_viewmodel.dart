@@ -23,7 +23,7 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     } else {
       _musicaRascunho = const Musica(
         nome: '',
-        instrumento: Instrumento.guitarra,
+        instrumento: Instrumento.violao,
         partes: [],
       );
       adicionarNovaParte();
@@ -116,6 +116,11 @@ class CadastroMusicaViewModel extends ChangeNotifier {
 
   void removerBatida(int partIndex, int batidaIndex) {
     _musicaRascunho.partes[partIndex].ritmo.batidas.removeAt(batidaIndex);
+    notifyListeners();
+  }
+
+  void clearBatidas(int partIndex) {
+    _musicaRascunho.partes[partIndex].ritmo.batidas.clear();
     notifyListeners();
   }
 

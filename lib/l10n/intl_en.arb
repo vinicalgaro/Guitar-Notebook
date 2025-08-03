@@ -47,5 +47,7 @@
   "ritmo": "Rhythm",
   "sequencia": "Sequence",
   "instrumento": "Instrument",
-  "nenhumaBatidaAdicionada": "No beat has been added yet."
+  "nenhumaBatidaAdicionada": "No beat has been added yet.",
+  "atencao": "Atention!",
+  "limiteDeBatidasAtingido": "Beat limit reached."
 }

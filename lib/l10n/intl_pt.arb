@@ -52,5 +52,7 @@
   "ritmo": "Ritmo",
   "sequencia": "Sequência",
   "instrumento": "Instrumento",
-  "nenhumaBatidaAdicionada": "Nenhuma batida adicionada."
+  "nenhumaBatidaAdicionada": "Nenhuma batida adicionada.",
+  "atencao": "Atenção!",
+  "limiteDeBatidasAtingido": "Limite de batidas atingido."
 }
