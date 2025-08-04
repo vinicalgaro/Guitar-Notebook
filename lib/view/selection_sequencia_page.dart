@@ -135,29 +135,33 @@ class _SelectionSequenciaPageState extends State<SelectionSequenciaPage> {
         child: Wrap(
           spacing: 6.0,
           runSpacing: 6.0,
+          children: acordes
+              .map((acorde) => _buildAcordeButton(viewModel, acorde))
+              .toList(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAcordeButton(
+      SelectionSequenciaViewModel viewModel, Acorde acorde) {
+    return DefaultTextButton(
+      shrink: true,
+      hasBackgroundColor: true,
+      showBorder: true,
+      onPressed: () => _adicionarCompasso(viewModel, acorde),
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            for (int i = 0; i < acordes.length; i++)
-              DefaultTextButton(
-                shrink: true,
-                hasBackgroundColor: true,
-                showBorder: true,
-                onPressed: () => _adicionarCompasso(viewModel, acordes[i]),
-                child: Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(acordes[i].nome,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                      Text(
-                        acordes[i].fullName,
-                        style: const TextStyle(
-                            fontStyle: FontStyle.italic, fontSize: 12.0),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+            Text(acorde.nome,
+                style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              acorde.fullName,
+              style:
+                  const TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0),
+            ),
           ],
         ),
       ),
