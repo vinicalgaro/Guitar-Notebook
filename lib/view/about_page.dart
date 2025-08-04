@@ -24,7 +24,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultPageScaffold(
-      title: AppLocalizations.of(context)!.about,
+      title: Text(AppLocalizations.of(context)!.about),
       body: Column(
         children: [
           Padding(

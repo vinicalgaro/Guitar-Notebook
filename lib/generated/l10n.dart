@@ -170,10 +170,10 @@ class S {
     );
   }
 
-  /// `To start, fill in the main details to identify the song. The title is essential so you can find it later.`
+  /// `Fill in the basic details of the song. The title is essential to find it later.`
   String get step1Desc {
     return Intl.message(
-      'To start, fill in the main details to identify the song. The title is essential so you can find it later.',
+      'Fill in the basic details of the song. The title is essential to find it later.',
       name: 'step1Desc',
       desc: '',
       args: [],
@@ -190,10 +190,10 @@ class S {
     );
   }
 
-  /// `In this step, you'll define the song's structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need.`
+  /// ` Define the song structure with sections, rhythm, and chords. Add as many parts as you like.`
   String get step2Desc {
     return Intl.message(
-      'In this step, you\'ll define the song\'s structure. Create the different sections and fill in their corresponding rhythm and chord progression. You can add as many parts as you need.',
+      ' Define the song structure with sections, rhythm, and chords. Add as many parts as you like.',
       name: 'step2Desc',
       desc: '',
       args: [],

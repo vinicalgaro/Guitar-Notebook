@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultPageScaffold(
-      title: (AppLocalizations.of(context)!.appTitle),
+      title: Text(AppLocalizations.of(context)!.appTitle),
       body: const ListaMusicasWidget(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => addMusic(context),

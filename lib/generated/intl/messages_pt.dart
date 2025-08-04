@@ -73,10 +73,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "songName": MessageLookupByLibrary.simpleMessage("Nome da Música"),
         "step": MessageLookupByLibrary.simpleMessage("Passo"),
         "step1Desc": MessageLookupByLibrary.simpleMessage(
-            "Para começar, preencha as informações principais para identificar a música. O título é essencial para que você possa encontrá-la depois."),
+            "Preencha as informações básicas da música. O título é essencial para encontrá-la depois."),
         "step1Title": MessageLookupByLibrary.simpleMessage("Dados da Música"),
         "step2Desc": MessageLookupByLibrary.simpleMessage(
-            "Nesta etapa, você define a estrutura da música. Crie as diferentes seções e preencha o ritmo e a progressão de acordes correspondentes. Você pode adicionar quantas partes precisar."),
+            " Defina a estrutura da música com seções, ritmos e acordes. Adicione quantas partes quiser."),
         "step2Title": MessageLookupByLibrary.simpleMessage("Partes da Música"),
         "sucessoToast": MessageLookupByLibrary.simpleMessage("Pronto"),
         "version": m0,

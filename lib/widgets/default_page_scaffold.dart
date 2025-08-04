@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:guitar_learner/extensions/navigation_extension.dart';
 
 class DefaultPageScaffold extends StatelessWidget {
-  final String title;
+  final Text? title;
   final Widget body;
   final List<Widget>? actions;
   final Widget? floatingActionButton;
@@ -22,7 +22,7 @@ class DefaultPageScaffold extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            title: Text(title),
+            title: title,
             floating: true,
             snap: true,
             pinned: false,
