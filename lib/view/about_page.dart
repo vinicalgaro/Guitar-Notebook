@@ -25,8 +25,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultPageScaffold(
       title: AppLocalizations.of(context)!.about,
-      body: ListView(
-        padding: const EdgeInsets.all(16.0),
+      body: Column(
         children: [
           DefaultCardContainer(
             child: Column(

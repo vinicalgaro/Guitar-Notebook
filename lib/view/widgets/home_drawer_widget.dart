@@ -75,7 +75,7 @@ class HomeDrawerWidget extends StatelessWidget {
           const Divider(),
           _buildPageButton(
               context,
-              Icons.info,
+              Icons.info_outline,
               AppLocalizations.of(context)!.about,
               () => context.goTo(AppRoutes.about)),
         ],

@@ -1,15 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:guitar_learner/view/about_page.dart';
-import 'package:guitar_learner/view/cadastro_musica_page.dart';
-import 'package:guitar_learner/view/home_page.dart';
 import 'package:provider/provider.dart';
 
 import 'model/settings_repository.dart';
-import 'routes/app_routes.dart';
 import 'theme/app_theme.dart';
-import 'viewmodel/cadastro_musica_viewmodel.dart';
+import 'view/main_shell.dart';
 import 'viewmodel/theme_viewmodel.dart';
 
 void main() async {
@@ -37,9 +33,6 @@ void main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  MaterialPageRoute _getRoute(Widget page) =>
-      MaterialPageRoute(builder: (_) => page);
-
   @override
   Widget build(BuildContext context) {
     ThemeViewModel themeViewModel = Provider.of<ThemeViewModel>(context);
@@ -52,27 +45,8 @@ class MainApp extends StatelessWidget {
       themeMode: themeViewModel.themeMode,
       builder: BotToastInit(),
       navigatorObservers: [BotToastNavigatorObserver()],
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case AppRoutes.about:
-            return _getRoute(const AboutPage());
-          case AppRoutes.editSong:
-            return _getRoute(ChangeNotifierProvider(
-              create: (_) => CadastroMusicaViewModel(musica: null),
-              child: const CadastroMusicaPage(),
-            ));
-          case AppRoutes.addSong:
-            return _getRoute(
-              ChangeNotifierProvider(
-                create: (_) => CadastroMusicaViewModel(),
-                child: const CadastroMusicaPage(),
-              ),
-            );
-          default:
-            return _getRoute(const HomePage());
-        }
-      },
-      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+      home: const MainShell(),
     );
   }
 }

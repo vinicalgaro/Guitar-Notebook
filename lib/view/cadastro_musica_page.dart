@@ -55,46 +55,44 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     return DefaultPageScaffold(
       title:
           viewModel.isEditing ? localizations.editSong : localizations.newSong,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: DefaultCardContainer(
-                child: Column(
-                  children: [
-                    Text(
-                        _getCurrentStepText(
-                            viewModel.currentStep, localizations),
-                        style: const TextStyle(fontStyle: FontStyle.italic)),
-                    Text(
-                        _getCurrentStepTitle(
-                            viewModel.currentStep, localizations),
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 26)),
-                    Text(
-                      _getCurrentStepDesc(viewModel.currentStep, localizations),
-                      textAlign: TextAlign.center,
+      body: Column(
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: DefaultCardContainer(
+              child: Column(
+                children: [
+                  Text(
+                      _getCurrentStepText(
+                          viewModel.currentStep, localizations),
+                      style: const TextStyle(fontStyle: FontStyle.italic)),
+                  Text(
+                      _getCurrentStepTitle(
+                          viewModel.currentStep, localizations),
                       style: const TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 16),
-                    ),
-                  ],
-                ),
+                          fontWeight: FontWeight.bold, fontSize: 26)),
+                  Text(
+                    _getCurrentStepDesc(viewModel.currentStep, localizations),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500, fontSize: 16),
+                  ),
+                ],
               ),
             ),
-            DefaultStepper(
-              steps: [
-                _buildStepDadosMusica(context),
-                _buildStepPartesMusica(context),
-              ],
-              currentStep: viewModel.currentStep,
-              onStepTapped: (step) => _onStepTapped(step, context),
-              onStepContinue: () => _onStepContinue(context),
-              onStepCancel: () => viewModel.onStepCancel(),
-            ),
-          ],
-        ),
+          ),
+          DefaultStepper(
+            steps: [
+              _buildStepDadosMusica(context),
+              _buildStepPartesMusica(context),
+            ],
+            currentStep: viewModel.currentStep,
+            onStepTapped: (step) => _onStepTapped(step, context),
+            onStepContinue: () => _onStepContinue(context),
+            onStepCancel: () => viewModel.onStepCancel(),
+          ),
+        ],
       ),
     );
   }

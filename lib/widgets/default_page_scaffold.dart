@@ -18,23 +18,37 @@ class DefaultPageScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(title),
-        actions: actions,
-        leading: TextButton.icon(
-          onPressed: context.goBack,
-          icon: const Icon(Icons.arrow_back_ios_new, size: 18),
-          label: Text(MaterialLocalizations.of(context).backButtonTooltip),
-          style: TextButton.styleFrom(
-            foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
-            padding: EdgeInsets.zero,
-          ),
-        ),
-        leadingWidth: 100,
-      ),
-      body: body,
       floatingActionButton: floatingActionButton,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: Text(title),
+            floating: true,
+            snap: true,
+            pinned: false,
+            automaticallyImplyLeading: false,
+            actions: actions,
+            leading: Navigator.of(context).canPop()
+                ? TextButton.icon(
+                    onPressed: context.goBack,
+                    icon: const Icon(Icons.arrow_back_ios_new, size: 18),
+                    label: Text(
+                        MaterialLocalizations.of(context).backButtonTooltip),
+                    style: TextButton.styleFrom(
+                      foregroundColor:
+                          Theme.of(context).appBarTheme.foregroundColor,
+                      padding: EdgeInsets.zero,
+                    ),
+                  )
+                : null,
+            leadingWidth: 100,
+            elevation: 4,
+          ),
+          SliverToBoxAdapter(
+            child: body,
+          ),
+        ],
+      ),
     );
   }
 }
