@@ -59,9 +59,9 @@ class AppTheme {
   static FloatingActionButtonThemeData _buildFloatingActionButtonTheme(
           Color backgroundColor, Color foregroundColor) =>
       FloatingActionButtonThemeData(
-        backgroundColor: backgroundColor,
-        foregroundColor: foregroundColor,
-      );
+          backgroundColor: backgroundColor,
+          foregroundColor: foregroundColor,
+          shape: const CircleBorder());
 
   static CardTheme _buildCardTheme(Color color) => CardTheme(
         color: color,

@@ -27,53 +27,56 @@ class AboutPage extends StatelessWidget {
       title: AppLocalizations.of(context)!.about,
       body: Column(
         children: [
-          DefaultCardContainer(
-            child: Column(
-              children: [
-                const Center(
-                  child: Icon(
-                    Icons.music_note,
-                    size: 80,
-                    color: AppTheme.paletaBrightRed,
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: DefaultCardContainer(
+              child: Column(
+                children: [
+                  const Center(
+                    child: Icon(
+                      Icons.music_note,
+                      size: 80,
+                      color: AppTheme.paletaBrightRed,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.appTitle,
-                    style: const TextStyle(
-                        fontSize: 28, fontWeight: FontWeight.bold),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.appTitle,
+                      style: const TextStyle(
+                          fontSize: 28, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                FutureBuilder<PackageInfo>(
-                  future: PackageInfo.fromPlatform(),
-                  builder: (context, snapshot) {
-                    final versionString = snapshot.data?.version ?? '...';
-                    final translatedText =
-                        AppLocalizations.of(context)!.version(versionString);
+                  FutureBuilder<PackageInfo>(
+                    future: PackageInfo.fromPlatform(),
+                    builder: (context, snapshot) {
+                      final versionString = snapshot.data?.version ?? '...';
+                      final translatedText =
+                          AppLocalizations.of(context)!.version(versionString);
 
-                    return Center(
-                      child: Text(
-                        translatedText,
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Theme.of(context)
-                                .extension<AppColorsExtension>()!
-                                .textSecondary),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  AppLocalizations.of(context)!.aboutAppText,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ],
+                      return Center(
+                        child: Text(
+                          translatedText,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Theme.of(context)
+                                  .extension<AppColorsExtension>()!
+                                  .textSecondary),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    AppLocalizations.of(context)!.aboutAppText,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
           ),
-          const Divider(height: 48),
+          const Divider(height: 28),
           Text(
             AppLocalizations.of(context)!.dev,
             style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),

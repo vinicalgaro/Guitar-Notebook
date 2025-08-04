@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:guitar_learner/routes/app_routes.dart';
+import 'package:guitar_learner/view/about_page.dart';
+import 'package:guitar_learner/view/home_page.dart';
 import 'package:guitar_learner/view/widgets/tab_navigator_widget.dart';
 
 class MainShell extends StatefulWidget {
@@ -12,24 +13,24 @@ class MainShell extends StatefulWidget {
 
 class _MainShellState extends State<MainShell> {
   final double _iconScaleFactor = 1.2;
-
   int _selectedIndex = 0;
 
+  // Lista de chaves, uma para cada navegador de aba
   final List<GlobalKey<NavigatorState>> _navigatorKeys = [
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
   ];
 
-  final List<String> _initialRoutes = [
-    AppRoutes.home,
-    AppRoutes.about,
+  final List<Widget> _rootPages = [
+    const HomePage(),
+    const AboutPage(),
   ];
 
   void _onItemTapped(int index) {
     if (_selectedIndex == index) {
+      // Limpa a pilha de navegação da aba atual ao tocar nela novamente
       _navigatorKeys[index].currentState?.popUntil((route) => route.isFirst);
     }
-
     setState(() {
       _selectedIndex = index;
     });
@@ -55,10 +56,10 @@ class _MainShellState extends State<MainShell> {
       child: Scaffold(
         body: IndexedStack(
           index: _selectedIndex,
-          children: List.generate(_initialRoutes.length, (index) {
+          children: List.generate(_rootPages.length, (index) {
             return TabNavigatorWidget(
               navigatorKey: _navigatorKeys[index],
-              initialRoute: _initialRoutes[index],
+              rootPage: _rootPages[index],
             );
           }),
         ),

@@ -49,22 +49,6 @@ class MainApp extends StatelessWidget {
       builder: BotToastInit(),
       navigatorObservers: [BotToastNavigatorObserver()],
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: (settings) {
-        Widget? page;
-
-        switch (settings.name) {
-          case AppRoutes.home:
-            page = const HomePage();
-            break;
-          case AppRoutes.about:
-            page = const AboutPage();
-            break;
-        }
-
-        return page == null
-            ? null
-            : MaterialPageRoute(builder: (_) => page!, settings: settings);
-      },
       home: const MainShell(),
     );
   }

@@ -4,28 +4,29 @@ import 'package:provider/provider.dart';
 
 import '../../model/musica/musica.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
-import '../about_page.dart';
 import '../cadastro_musica_page.dart';
-import '../home_page.dart';
 
 class TabNavigatorWidget extends StatelessWidget {
   const TabNavigatorWidget({
     required this.navigatorKey,
-    required this.initialRoute,
+    required this.rootPage,
     super.key,
   });
 
   final GlobalKey<NavigatorState> navigatorKey;
-  final String initialRoute;
+  final Widget rootPage;
 
   @override
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      initialRoute: initialRoute,
+      initialRoute: AppRoutes.home,
       onGenerateRoute: (settings) {
-        Widget page;
+        if (settings.name == AppRoutes.home) {
+          return MaterialPageRoute(builder: (context) => rootPage);
+        }
 
+        Widget? page;
         switch (settings.name) {
           case AppRoutes.addSong:
           case AppRoutes.editSong:
@@ -35,11 +36,13 @@ class TabNavigatorWidget extends StatelessWidget {
               child: const CadastroMusicaPage(),
             );
             break;
-          default:
-            page = const HomePage();
         }
 
-        return MaterialPageRoute(builder: (_) => page, settings: settings);
+        if (page != null) {
+          return MaterialPageRoute(builder: (_) => page!, settings: settings);
+        }
+
+        return null;
       },
     );
   }
