@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/extensions/navigation_extension.dart';
+import 'package:guitar_learner/widgets/default_bottom_sheet_header.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:provider/provider.dart';
 
@@ -31,82 +32,62 @@ class _SelectionSequenciaPageState extends State<SelectionSequenciaPage> {
     final viewModel = context.watch<SelectionSequenciaViewModel>();
     List<TipoAcorde> tiposTabs = viewModel.getTiposDisponiveis();
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(localizations.sequencia,
-                  style: Theme.of(context).textTheme.headlineSmall),
-              Row(
+    return DefaultBottomSheetHeader(label: localizations.sequencia, children: [
+      DefaultCardContainer(
+        child: viewModel.sequenciaAtual.isEmpty
+            ? Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(6.0),
+                child: Text(localizations.nenhumaSequenciaAdicionada,
+                    style: const TextStyle(fontStyle: FontStyle.italic)))
+            : Wrap(
+                spacing: 4.0,
+                runSpacing: 4.0,
+                alignment: WrapAlignment.center,
                 children: [
-                  IconButton(
-                      onPressed: context.goBack, icon: const Icon(Icons.close)),
+                  for (int i = 0; i < viewModel.sequenciaAtual.length; i++)
+                    _buildAcorde(viewModel, viewModel.sequenciaAtual[i], i)
                 ],
-              )
-            ],
-          ),
-          const SizedBox(height: 8),
-          DefaultCardContainer(
-            child: viewModel.sequenciaAtual.isEmpty
-                ? Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(6.0),
-                    child: Text(localizations.nenhumaSequenciaAdicionada,
-                        style: const TextStyle(fontStyle: FontStyle.italic)))
-                : Wrap(
-                    spacing: 4.0,
-                    runSpacing: 4.0,
-                    alignment: WrapAlignment.center,
-                    children: [
-                      for (int i = 0; i < viewModel.sequenciaAtual.length; i++)
-                        _buildAcorde(viewModel, viewModel.sequenciaAtual[i], i)
-                    ],
-                  ),
-          ),
-          const DefaultDivider(height: 15),
-          Expanded(
-            child: viewModel.isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : DefaultTabController(
-                    length: tiposTabs.length,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          tabs: tiposTabs
-                              .map((e) => Tab(
-                                    text: e.nome,
-                                    height: 30,
-                                  ))
-                              .toList(),
-                        ),
-                        Expanded(
-                          child: TabBarView(
-                            children: tiposTabs
-                                .map((e) => _buildAcordeList(
-                                    viewModel.getAcordesByTipo(e)))
-                                .toList(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-          ),
-          const SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: () {
-              final sequenciaFinal = Sequencia(viewModel.sequenciaAtual);
-              widget.onSelectionCallback(sequenciaFinal);
-              context.goBack();
-            },
-            child: Text(localizations.salvar),
-          )
-        ],
+              ),
       ),
-    );
+      const DefaultDivider(height: 15),
+      Expanded(
+        child: viewModel.isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : DefaultTabController(
+                length: tiposTabs.length,
+                child: Column(
+                  children: [
+                    TabBar(
+                      tabs: tiposTabs
+                          .map((e) => Tab(
+                                text: e.nome,
+                                height: 30,
+                              ))
+                          .toList(),
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        children: tiposTabs
+                            .map((e) =>
+                                _buildAcordeList(viewModel.getAcordesByTipo(e)))
+                            .toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+      ),
+      const SizedBox(height: 16.0),
+      ElevatedButton(
+        onPressed: () {
+          final sequenciaFinal = Sequencia(viewModel.sequenciaAtual);
+          widget.onSelectionCallback(sequenciaFinal);
+          context.goBack();
+        },
+        child: Text(localizations.salvar),
+      )
+    ]);
   }
 
   Widget _buildAcorde(
