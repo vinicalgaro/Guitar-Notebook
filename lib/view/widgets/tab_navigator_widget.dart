@@ -18,34 +18,28 @@ class TabNavigatorWidget extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey;
   final String initialRoute;
 
-  MaterialPageRoute _getPage(Widget page) =>
-      MaterialPageRoute(builder: (_) => page);
-
   @override
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
       initialRoute: initialRoute,
       onGenerateRoute: (settings) {
+        Widget page;
+
         switch (settings.name) {
-          case AppRoutes.about:
-            return _getPage(const AboutPage());
+          case AppRoutes.addSong:
           case AppRoutes.editSong:
-            return _getPage(ChangeNotifierProvider(
+            page = ChangeNotifierProvider(
               create: (_) => CadastroMusicaViewModel(
                   musica: settings.arguments as Musica?),
               child: const CadastroMusicaPage(),
-            ));
-          case AppRoutes.addSong:
-            return _getPage(
-              ChangeNotifierProvider(
-                create: (_) => CadastroMusicaViewModel(),
-                child: const CadastroMusicaPage(),
-              ),
             );
+            break;
           default:
-            return _getPage(const HomePage());
+            page = const HomePage();
         }
+
+        return MaterialPageRoute(builder: (_) => page, settings: settings);
       },
     );
   }
