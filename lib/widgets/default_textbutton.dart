@@ -29,8 +29,9 @@ class DefaultTextButton extends StatelessWidget {
       minimumSize: shrink ? Size.zero : null,
       tapTargetSize: shrink ? MaterialTapTargetSize.shrinkWrap : null,
       backgroundColor: hasBackgroundColor ? _getBackgroundColor(context) : null,
-      side:
-          showBorder ? BorderSide(color: Theme.of(context).primaryColor) : null,
+      side: showBorder
+          ? BorderSide(color: Theme.of(context).colorScheme.primary)
+          : null,
       shape: showBorder
           ? RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
