@@ -110,11 +110,11 @@ class S {
     );
   }
 
-  /// `Dark Theme`
-  String get modoEscuro {
+  /// `Theme`
+  String get tema {
     return Intl.message(
-      'Dark Theme',
-      name: 'modoEscuro',
+      'Theme',
+      name: 'tema',
       desc: '',
       args: [],
     );
@@ -485,6 +485,46 @@ class S {
     return Intl.message(
       'Sequence limit reached.',
       name: 'limiteDeSequenciasAtingido',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customize your experience in the app.`
+  String get settingsDesc {
+    return Intl.message(
+      'Customize your experience in the app.',
+      name: 'settingsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Content`
+  String get content {
+    return Intl.message(
+      'Content',
+      name: 'content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferences`
+  String get preferences {
+    return Intl.message(
+      'Preferences',
+      name: 'preferences',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get linguagem {
+    return Intl.message(
+      'Language',
+      name: 'linguagem',
       desc: '',
       args: [],
     );

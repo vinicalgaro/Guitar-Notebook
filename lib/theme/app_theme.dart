@@ -159,7 +159,7 @@ class AppTheme {
     colorScheme: const ColorScheme.dark(
       primary: paletaLightBlue,
       onPrimary: _darkTextColor,
-      secondary: paletaDarkBlue,
+      secondary: paletaLightBlue,
       onSecondary: _darkTextColor,
       tertiary: paletaDarkRed,
       onTertiary: _darkTextColor,

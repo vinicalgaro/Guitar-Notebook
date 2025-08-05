@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guitar_learner/routes/app_routes.dart';
+import 'package:guitar_learner/view/about_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/musica/musica.dart';
@@ -35,6 +36,10 @@ class TabNavigatorWidget extends StatelessWidget {
                   musica: settings.arguments as Musica?),
               child: const CadastroMusicaPage(),
             );
+            break;
+
+          case AppRoutes.about:
+            page = const AboutPage();
             break;
         }
 

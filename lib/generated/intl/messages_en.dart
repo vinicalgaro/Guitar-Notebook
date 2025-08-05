@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Practice today, get better always!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
         "atencao": MessageLookupByLibrary.simpleMessage("Atention!"),
+        "content": MessageLookupByLibrary.simpleMessage("Content"),
         "continuar": MessageLookupByLibrary.simpleMessage("Continue"),
         "dev": MessageLookupByLibrary.simpleMessage("Developer"),
         "editSong": MessageLookupByLibrary.simpleMessage("Edit Song"),
@@ -51,9 +52,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Beat limit reached."),
         "limiteDeSequenciasAtingido":
             MessageLookupByLibrary.simpleMessage("Sequence limit reached."),
+        "linguagem": MessageLookupByLibrary.simpleMessage("Language"),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Youtube Link"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
-        "modoEscuro": MessageLookupByLibrary.simpleMessage("Dark Theme"),
         "nenhumaBatidaAdicionada":
             MessageLookupByLibrary.simpleMessage("No beat has been added yet."),
         "nenhumaSequenciaAdicionada": MessageLookupByLibrary.simpleMessage(
@@ -62,12 +63,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
         "part": MessageLookupByLibrary.simpleMessage("Part"),
         "partName": MessageLookupByLibrary.simpleMessage("Part Name"),
+        "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
         "ritmo": MessageLookupByLibrary.simpleMessage("Rhythm"),
         "saberMais": MessageLookupByLibrary.simpleMessage("Learn More"),
         "salvar": MessageLookupByLibrary.simpleMessage("Save"),
         "selecionar": MessageLookupByLibrary.simpleMessage("Select"),
         "sequencia": MessageLookupByLibrary.simpleMessage("Sequence"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "settingsDesc": MessageLookupByLibrary.simpleMessage(
+            "Customize your experience in the app."),
         "songName": MessageLookupByLibrary.simpleMessage("Song Name"),
         "step": MessageLookupByLibrary.simpleMessage("Step"),
         "step1Desc": MessageLookupByLibrary.simpleMessage(
@@ -79,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sucessoMsg": MessageLookupByLibrary.simpleMessage(
             "Your changes have been saved successfully!"),
         "sucessoToast": MessageLookupByLibrary.simpleMessage("All set"),
+        "tema": MessageLookupByLibrary.simpleMessage("Theme"),
         "version": m0,
         "voltar": MessageLookupByLibrary.simpleMessage("Back")
       };

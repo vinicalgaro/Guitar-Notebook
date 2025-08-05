@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
+
 Decoration buildAppBarGradient(BuildContext context) {
-  final primary = Theme.of(context).colorScheme.primary;
+  const primary = AppTheme.paletaDarkBlue;
   final lightPrimary = Color.lerp(
     primary,
     Colors.white,

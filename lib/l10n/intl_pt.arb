@@ -6,7 +6,7 @@
   "about": "Sobre",
   "newSong": "Nova Música",
   "editSong": "Editar Música",
-  "modoEscuro": "Modo Escuro",
+  "tema": "Tema",
   "linkedin": "LinkedIn",
   "mobileDeveloper": "Mobile Developer",
   "vinciusCalgaro": "Vinícius Calgaro",
@@ -57,5 +57,9 @@
   "limiteDeBatidasAtingido": "Limite de batidas atingido.",
   "nenhumaSequenciaAdicionada": "Nenhuma sequência adicionada.",
   "selecionar": "Selecionar",
-  "limiteDeSequenciasAtingido": "Limite de sequência atingido."
+  "limiteDeSequenciasAtingido": "Limite de sequência atingido.",
+  "settingsDesc": "Personalize a sua experiência no app.",
+  "content": "Conteúdo",
+  "preferences": "Preferências",
+  "linguagem": "Linguagem"
 }

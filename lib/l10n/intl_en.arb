@@ -6,7 +6,7 @@
   "about": "About",
   "newSong": "New Song",
   "editSong": "Edit Song",
-  "modoEscuro": "Dark Theme",
+  "tema": "Theme",
   "version": "Version {versionNumber}",
   "@version": {
     "description": "Text to show the current app version.",
@@ -52,5 +52,9 @@
   "limiteDeBatidasAtingido": "Beat limit reached.",
   "nenhumaSequenciaAdicionada": "No sequence has been added yet",
   "selecionar": "Select",
-  "limiteDeSequenciasAtingido": "Sequence limit reached."
+  "limiteDeSequenciasAtingido": "Sequence limit reached.",
+  "settingsDesc": "Customize your experience in the app.",
+  "content": "Content",
+  "preferences": "Preferences",
+  "linguagem": "Language"
 }

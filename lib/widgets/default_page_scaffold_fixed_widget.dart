@@ -20,6 +20,8 @@ class DefaultPageScaffoldFixedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool canPop = ModalRoute.of(context)?.canPop ?? false;
+
     return Scaffold(
       floatingActionButton: floatingActionButton,
       appBar: PreferredSize(
@@ -32,7 +34,7 @@ class DefaultPageScaffoldFixedWidget extends StatelessWidget {
             title: Text(title),
             automaticallyImplyLeading: false,
             actions: actions,
-            leading: Navigator.of(context).canPop()
+            leading: canPop
                 ? TextButton.icon(
                     onPressed: context.goBack,
                     icon: const Icon(Icons.arrow_back_ios_new, size: 18),

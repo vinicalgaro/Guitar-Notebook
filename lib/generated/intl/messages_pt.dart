@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Pratique hoje, evolua sempre!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
         "atencao": MessageLookupByLibrary.simpleMessage("Atenção!"),
+        "content": MessageLookupByLibrary.simpleMessage("Conteúdo"),
         "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),
         "dev": MessageLookupByLibrary.simpleMessage("Desenvolvedor"),
         "editSong": MessageLookupByLibrary.simpleMessage("Editar Música"),
@@ -53,9 +54,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Limite de batidas atingido."),
         "limiteDeSequenciasAtingido": MessageLookupByLibrary.simpleMessage(
             "Limite de sequência atingido."),
+        "linguagem": MessageLookupByLibrary.simpleMessage("Linguagem"),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Link do Youtube"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
-        "modoEscuro": MessageLookupByLibrary.simpleMessage("Modo Escuro"),
         "nenhumaBatidaAdicionada":
             MessageLookupByLibrary.simpleMessage("Nenhuma batida adicionada."),
         "nenhumaSequenciaAdicionada": MessageLookupByLibrary.simpleMessage(
@@ -64,12 +65,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "optional": MessageLookupByLibrary.simpleMessage("Opcional"),
         "part": MessageLookupByLibrary.simpleMessage("Parte"),
         "partName": MessageLookupByLibrary.simpleMessage("Nome da Parte"),
+        "preferences": MessageLookupByLibrary.simpleMessage("Preferências"),
         "ritmo": MessageLookupByLibrary.simpleMessage("Ritmo"),
         "saberMais": MessageLookupByLibrary.simpleMessage("Saber Mais"),
         "salvar": MessageLookupByLibrary.simpleMessage("Salvar"),
         "selecionar": MessageLookupByLibrary.simpleMessage("Selecionar"),
         "sequencia": MessageLookupByLibrary.simpleMessage("Sequência"),
         "settings": MessageLookupByLibrary.simpleMessage("Configurações"),
+        "settingsDesc": MessageLookupByLibrary.simpleMessage(
+            "Personalize a sua experiência no app."),
         "songName": MessageLookupByLibrary.simpleMessage("Nome da Música"),
         "step": MessageLookupByLibrary.simpleMessage("Passo"),
         "step1Desc": MessageLookupByLibrary.simpleMessage(
@@ -79,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
             " Defina a estrutura da música com seções, ritmos e acordes. Adicione quantas partes quiser."),
         "step2Title": MessageLookupByLibrary.simpleMessage("Partes da Música"),
         "sucessoToast": MessageLookupByLibrary.simpleMessage("Pronto"),
+        "tema": MessageLookupByLibrary.simpleMessage("Tema"),
         "version": m0,
         "voltar": MessageLookupByLibrary.simpleMessage("Voltar")
       };

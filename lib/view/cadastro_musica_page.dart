@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/helpers/helper_size.dart';
 import 'package:guitar_learner/view/widgets/parte_item_widget.dart';
 import 'package:guitar_learner/viewmodel/cadastro_musica_viewmodel.dart';
+import 'package:guitar_learner/widgets/default_animated_card_container.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_dropdownbutton.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold_fixed_widget.dart';
@@ -54,64 +55,29 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     final localizations = AppLocalizations.of(context)!;
 
     return DefaultPageScaffoldFixedWidget(
-      fixedWidget: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (Widget child, Animation<double> animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: ScaleTransition(
-                scale: Tween<double>(begin: 0.95, end: 1.0).animate(animation),
-                child: child,
+      fixedWidget: DefaultAnimatedCardContainer(
+          widgetKey: ValueKey<int>(viewModel.currentStep),
+          widget: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                _getCurrentStepText(viewModel.currentStep, localizations),
+                style: const TextStyle(fontStyle: FontStyle.italic),
               ),
-            );
-          },
-          child: DefaultCardContainer(
-            key: ValueKey<int>(viewModel.currentStep),
-            child: SizedBox(
-              height: percentHeight(context, 0.15, min: 120, max: 200),
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  return SingleChildScrollView(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: constraints.maxHeight,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            _getCurrentStepText(
-                                viewModel.currentStep, localizations),
-                            style: const TextStyle(fontStyle: FontStyle.italic),
-                          ),
-                          Text(
-                            _getCurrentStepTitle(
-                                viewModel.currentStep, localizations),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                            ),
-                          ),
-                          Text(
-                            _getCurrentStepDesc(
-                                viewModel.currentStep, localizations),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+              Text(
+                _getCurrentStepTitle(viewModel.currentStep, localizations),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
               ),
-            ),
-          ),
-        ),
-      ),
+              Text(
+                _getCurrentStepDesc(viewModel.currentStep, localizations),
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.w500),
+              ),
+            ],
+          )),
       title:
           viewModel.isEditing ? localizations.editSong : localizations.newSong,
       body: DefaultStepper(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/view/about_page.dart';
 import 'package:guitar_learner/view/home_page.dart';
+import 'package:guitar_learner/view/settings_page.dart';
 import 'package:guitar_learner/view/widgets/tab_navigator_widget.dart';
 
 class MainShell extends StatefulWidget {
@@ -23,7 +24,7 @@ class _MainShellState extends State<MainShell> {
 
   final List<Widget> _rootPages = [
     const HomePage(),
-    const AboutPage(),
+    const SettingsPage(),
   ];
 
   void _onItemTapped(int index) {

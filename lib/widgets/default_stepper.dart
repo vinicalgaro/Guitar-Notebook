@@ -32,7 +32,7 @@ class DefaultStepper extends StatelessWidget {
       stepIconBuilder: (stepIndex, stepState) {
         switch (stepState) {
           case StepState.complete:
-            return const Icon(Icons.check_circle, color: AppTheme.paletaGreen);
+            return const Icon(Icons.check_circle, color: Colors.green);
           case StepState.editing:
             return Transform.scale(
                 scale: 1.7,
