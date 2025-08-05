@@ -5,6 +5,7 @@ import 'package:guitar_learner/widgets/default_divider.dart';
 import 'package:guitar_learner/widgets/default_textbutton.dart';
 import 'package:provider/provider.dart';
 
+import '../../helpers/helper_bottom_sheet.dart';
 import '../../model/musica/models.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
 import '../../viewmodel/selection_sequencia_viewmodel.dart';
@@ -96,17 +97,16 @@ class ParteSequenciaWidget extends StatelessWidget {
       BuildContext context, FormFieldState<List<Compasso>> field) {
     final viewModel = context.read<CadastroMusicaViewModel>();
 
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => ChangeNotifierProvider(
-        create: (_) =>
-            SelectionSequenciaViewModel(viewModel.musicaRascunho.instrumento),
-        child: SelectionSequenciaPage(
-          onSelectionCallback: (sequencia) =>
-              _adicionarSequencia(viewModel, sequencia, field),
-        ),
-      ),
-    );
+    callBottomSheet(
+        context,
+        ChangeNotifierProvider(
+          create: (_) =>
+              SelectionSequenciaViewModel(viewModel.musicaRascunho.instrumento),
+          child: SelectionSequenciaPage(
+            onSelectionCallback: (sequencia) =>
+                _adicionarSequencia(viewModel, sequencia, field),
+          ),
+        ));
   }
 
   _adicionarSequencia(CadastroMusicaViewModel viewModel, Sequencia sequencia,

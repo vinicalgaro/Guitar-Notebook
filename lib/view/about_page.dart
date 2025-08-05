@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guitar_learner/helpers/get_from_assets.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../theme/app_colors_extension.dart';
-import '../theme/app_theme.dart';
+import '../widgets/default_divider.dart';
 
 class AboutPage extends StatelessWidget {
   final String urlLinkedin = "https://www.linkedin.com/in/viniciuscalgaro/";
@@ -32,11 +33,25 @@ class AboutPage extends StatelessWidget {
             child: DefaultCardContainer(
               child: Column(
                 children: [
-                  const Center(
-                    child: Icon(
-                      Icons.music_note,
-                      size: 80,
-                      color: AppTheme.paletaBrightRed,
+                  Center(
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: Theme.of(context)
+                                .extension<AppColorsExtension>()!
+                                .textSecondary,
+                            width: 2),
+                      ),
+                      child: ClipOval(
+                        child: Image(
+                          image:
+                              AssetImage(getImageFromAssets('icon_guitar.jpg')),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -76,7 +91,7 @@ class AboutPage extends StatelessWidget {
               ),
             ),
           ),
-          const Divider(height: 28),
+          const DefaultDivider(height: 28),
           Text(
             AppLocalizations.of(context)!.dev,
             style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),

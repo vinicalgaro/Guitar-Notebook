@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guitar_learner/extensions/navigation_extension.dart';
+import 'package:guitar_learner/helpers/appbar_gradient.dart';
 
 class DefaultPageScaffoldFixedWidget extends StatelessWidget {
   final String title;
@@ -21,33 +22,36 @@ class DefaultPageScaffoldFixedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: floatingActionButton,
-      appBar: AppBar(
-        title: Text(title),
-        automaticallyImplyLeading: false,
-        actions: actions,
-        leading: Navigator.of(context).canPop()
-            ? TextButton.icon(
-          onPressed: context.goBack,
-          icon: const Icon(Icons.arrow_back_ios_new, size: 18),
-          label:
-          Text(MaterialLocalizations
-              .of(context)
-              .backButtonTooltip),
-          style: TextButton.styleFrom(
-            foregroundColor:
-            Theme
-                .of(context)
-                .appBarTheme
-                .foregroundColor,
-            padding: EdgeInsets.zero,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: buildAppBarGradient(context),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 4,
+            title: Text(title),
+            automaticallyImplyLeading: false,
+            actions: actions,
+            leading: Navigator.of(context).canPop()
+                ? TextButton.icon(
+                    onPressed: context.goBack,
+                    icon: const Icon(Icons.arrow_back_ios_new, size: 18),
+                    label: Text(
+                        MaterialLocalizations.of(context).backButtonTooltip),
+                    style: TextButton.styleFrom(
+                      foregroundColor:
+                          Theme.of(context).appBarTheme.foregroundColor,
+                      padding: EdgeInsets.zero,
+                    ),
+                  )
+                : null,
+            leadingWidth: 100,
           ),
-        )
-            : null,
-        leadingWidth: 100,
+        ),
       ),
       body: Column(
         children: [
-          if (fixedWidget != null) fixedWidget!,
+          fixedWidget,
           Expanded(
             child: SingleChildScrollView(
               child: body,

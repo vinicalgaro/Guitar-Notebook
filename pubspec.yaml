@@ -38,5 +38,6 @@ flutter:
   generate: true
   assets:
     - assets/animations/
+    - assets/images/
 flutter_intl:
   enabled: true

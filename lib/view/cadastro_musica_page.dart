@@ -5,7 +5,6 @@ import 'package:guitar_learner/view/widgets/parte_item_widget.dart';
 import 'package:guitar_learner/viewmodel/cadastro_musica_viewmodel.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_dropdownbutton.dart';
-import 'package:guitar_learner/widgets/default_page_scaffold.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold_fixed_widget.dart';
 import 'package:guitar_learner/widgets/default_stepper.dart';
 import 'package:guitar_learner/widgets/default_textformfield.dart';
@@ -58,7 +57,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
       fixedWidget: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 300),
           transitionBuilder: (Widget child, Animation<double> animation) {
             return FadeTransition(
               opacity: animation,
@@ -92,7 +91,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                                 viewModel.currentStep, localizations),
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 26,
+                              fontSize: 24,
                             ),
                           ),
                           Text(
@@ -100,8 +99,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                                 viewModel.currentStep, localizations),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                              fontWeight: FontWeight.w500
                             ),
                           ),
                         ],

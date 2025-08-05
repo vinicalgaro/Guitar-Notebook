@@ -4,10 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'model/settings_repository.dart';
-import 'routes/app_routes.dart';
 import 'theme/app_theme.dart';
-import 'view/about_page.dart';
-import 'view/home_page.dart';
 import 'view/main_shell.dart';
 import 'viewmodel/theme_viewmodel.dart';
 
