@@ -17,8 +17,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
-    final themeViewModel = context.read<ThemeViewModel>();
-    final localeViewModel = context.read<LocaleViewModel>();
+    final themeViewModel = Provider.of<ThemeViewModel>(context);
+    final localeViewModel = Provider.of<LocaleViewModel>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,32 +26,36 @@ class SettingsPage extends StatelessWidget {
         DefaultHeader(
             title: localizations.settings,
             subtitle: localizations.settingsDesc),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(localizations.content),
-              const SizedBox(height: 8.0),
-              DefaultNextButton(
-                  title: localizations.about,
-                  leadingIcon: const Icon(Icons.info_outline),
-                  route: AppRoutes.about),
-              const SizedBox(height: 8.0),
-              Text(localizations.preferences),
-              const SizedBox(height: 8.0),
-              DefaultNextButton(
-                  title: localizations.tema,
-                  leadingIcon: Icon(themeViewModel.isDarkMode
-                      ? Icons.dark_mode_outlined
-                      : Icons.light_mode_outlined),
-                  modalContent: [_buildThemeSwitch(context)]),
-              DefaultNextButton(
-                  title: localizations.linguagem,
-                  leadingIcon: const Icon(Icons.language_outlined),
-                  trailing: localeViewModel.locale.toDisplayName(),
-                  modalContent: [_buildLanguageOptions(context)]),
-            ],
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(localizations.content),
+                  const SizedBox(height: 8.0),
+                  DefaultNextButton(
+                      title: localizations.about,
+                      leadingIcon: const Icon(Icons.info_outline),
+                      route: AppRoutes.about),
+                  const SizedBox(height: 8.0),
+                  Text(localizations.preferences),
+                  const SizedBox(height: 8.0),
+                  DefaultNextButton(
+                      title: localizations.tema,
+                      leadingIcon: Icon(themeViewModel.isDarkMode
+                          ? Icons.dark_mode_outlined
+                          : Icons.light_mode_outlined),
+                      modalContent: [_buildThemeSwitch(context)]),
+                  DefaultNextButton(
+                      title: localizations.linguagem,
+                      leadingIcon: const Icon(Icons.language_outlined),
+                      trailing: localeViewModel.locale.toDisplayName(),
+                      modalContent: [_buildLanguageOptions(context)]),
+                ],
+              ),
+            ),
           ),
         ),
       ],
