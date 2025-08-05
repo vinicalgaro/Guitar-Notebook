@@ -62,5 +62,10 @@
   "settingsDesc": "Personalize a sua experiência no app.",
   "content": "Conteúdo",
   "preferences": "Preferências",
-  "linguagem": "Linguagem"
+  "linguagem": "Linguagem",
+  "idiomaAlterado": "Idioma alterado!",
+  "temaAlterado": "Tema alterado!",
+  "violao": "Violão",
+  "guitarra": "Guitarra",
+  "ukelele": "Ukelele"
 }

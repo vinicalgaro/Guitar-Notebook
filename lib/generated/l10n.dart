@@ -539,6 +539,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Language changed!`
+  String get idiomaAlterado {
+    return Intl.message(
+      'Language changed!',
+      name: 'idiomaAlterado',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme changed!`
+  String get temaAlterado {
+    return Intl.message(
+      'Theme changed!',
+      name: 'temaAlterado',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Acoustic Guitar`
+  String get violao {
+    return Intl.message(
+      'Acoustic Guitar',
+      name: 'violao',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eletric Guitar`
+  String get guitarra {
+    return Intl.message(
+      'Eletric Guitar',
+      name: 'guitarra',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ukulele`
+  String get ukelele {
+    return Intl.message(
+      'Ukulele',
+      name: 'ukelele',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

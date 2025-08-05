@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Falha ao salvar suas alterações."),
         "fieldRequired":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
+        "guitarra": MessageLookupByLibrary.simpleMessage("Guitarra"),
         "help": MessageLookupByLibrary.simpleMessage("Ajuda"),
         "helpYoutube": MessageLookupByLibrary.simpleMessage(
             "Cole o link da música original ou de uma videoaula para referência."),
@@ -49,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintSongPart": MessageLookupByLibrary.simpleMessage("Ex.: Intro"),
         "hintSongUrl": MessageLookupByLibrary.simpleMessage(
             "Ex.: https://youtu.be/YlUKcNNmywk"),
+        "idiomaAlterado":
+            MessageLookupByLibrary.simpleMessage("Idioma alterado!"),
         "instrumento": MessageLookupByLibrary.simpleMessage("Instrumento"),
         "limiteDeBatidasAtingido":
             MessageLookupByLibrary.simpleMessage("Limite de batidas atingido."),
@@ -84,8 +87,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "step2Title": MessageLookupByLibrary.simpleMessage("Partes da Música"),
         "sucessoToast": MessageLookupByLibrary.simpleMessage("Pronto"),
         "tema": MessageLookupByLibrary.simpleMessage("Tema"),
+        "temaAlterado": MessageLookupByLibrary.simpleMessage("Tema alterado!"),
         "temaEscuro": MessageLookupByLibrary.simpleMessage("Tema Escuro"),
+        "ukelele": MessageLookupByLibrary.simpleMessage("Ukelele"),
         "version": m0,
+        "violao": MessageLookupByLibrary.simpleMessage("Violão"),
         "voltar": MessageLookupByLibrary.simpleMessage("Voltar")
       };
 }

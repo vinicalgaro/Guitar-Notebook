@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'model/settings_repository.dart';
 import 'theme/app_theme.dart';
 import 'view/main_shell.dart';
+import 'viewmodel/locale_viewmodel.dart';
 import 'viewmodel/theme_viewmodel.dart';
 
 void main() async {
@@ -24,6 +25,11 @@ void main() async {
             context.read<SettingsRepository>(),
           ),
         ),
+        ChangeNotifierProvider<LocaleViewModel>(
+          create: (context) => LocaleViewModel(
+            context.read<SettingsRepository>(),
+          ),
+        ),
       ],
       child: const MainApp(),
     ),
@@ -36,6 +42,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeViewModel themeViewModel = Provider.of<ThemeViewModel>(context);
+    LocaleViewModel localeViewModel = Provider.of<LocaleViewModel>(context);
 
     return MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -43,6 +50,7 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeViewModel.themeMode,
+      locale: localeViewModel.locale,
       builder: BotToastInit(),
       navigatorObservers: [BotToastNavigatorObserver()],
       debugShowCheckedModeBanner: false,

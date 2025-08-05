@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "erroCadastrarMsg": MessageLookupByLibrary.simpleMessage(
             "Failed to save your changes."),
         "fieldRequired": MessageLookupByLibrary.simpleMessage("Required field"),
+        "guitarra": MessageLookupByLibrary.simpleMessage("Eletric Guitar"),
         "help": MessageLookupByLibrary.simpleMessage("Help"),
         "helpYoutube": MessageLookupByLibrary.simpleMessage(
             "Paste the link to the original song or a video lesson for reference."),
@@ -47,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "hintSongPart": MessageLookupByLibrary.simpleMessage("e.g., Intro"),
         "hintSongUrl": MessageLookupByLibrary.simpleMessage(
             "e.g., https://youtu.be/YlUKcNNmywk"),
+        "idiomaAlterado":
+            MessageLookupByLibrary.simpleMessage("Language changed!"),
         "instrumento": MessageLookupByLibrary.simpleMessage("Instrument"),
         "limiteDeBatidasAtingido":
             MessageLookupByLibrary.simpleMessage("Beat limit reached."),
@@ -84,8 +87,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your changes have been saved successfully!"),
         "sucessoToast": MessageLookupByLibrary.simpleMessage("All set"),
         "tema": MessageLookupByLibrary.simpleMessage("Theme"),
+        "temaAlterado": MessageLookupByLibrary.simpleMessage("Theme changed!"),
         "temaEscuro": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+        "ukelele": MessageLookupByLibrary.simpleMessage("Ukulele"),
         "version": m0,
+        "violao": MessageLookupByLibrary.simpleMessage("Acoustic Guitar"),
         "voltar": MessageLookupByLibrary.simpleMessage("Back")
       };
 }

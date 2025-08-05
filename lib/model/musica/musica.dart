@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:guitar_learner/model/musica/models.dart';
 
 import 'parte.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'musica.freezed.dart';
 
@@ -15,16 +17,28 @@ class Musica with _$Musica {
 }
 
 enum Instrumento {
-  violao('Violão', 6),
-  guitarra('Guitarra', 6),
-  ukelele('Ukelele', 4);
+  violao(6),
+  guitarra(6),
+  ukelele(4);
 
-  final String _name;
   final int _numCordas;
 
-  const Instrumento(this._name, this._numCordas);
+  const Instrumento(this._numCordas);
 
   int get numCordas => _numCordas;
 
-  String get name => _name;
+  String name(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
+    switch (this) {
+      case Instrumento.violao:
+        return localizations.violao;
+      case Instrumento.guitarra:
+        return localizations.guitarra;
+      case Instrumento.ukelele:
+        return localizations.ukelele;
+      default:
+        return "";
+    }
+  }
 }

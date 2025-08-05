@@ -3,13 +3,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsRepository {
   static const String _themeKey = 'theme_mode';
+  static const String _languageKey = 'language_code';
 
   final SharedPreferences _prefs;
 
   SettingsRepository._(this._prefs);
 
-  // Método estático para criar o repositório de forma assíncrona
-  // Isso garante que o SharedPreferences esteja pronto antes de usá-lo
   static Future<SettingsRepository> init() async {
     final prefs = await SharedPreferences.getInstance();
     return SettingsRepository._(prefs);
@@ -27,5 +26,13 @@ class SettingsRepository {
     } catch (e) {
       return ThemeMode.system;
     }
+  }
+
+  Future<void> saveLanguagePreference(String languageCode) async {
+    await _prefs.setString(_languageKey, languageCode);
+  }
+
+  Future<String> getLanguagePreference() async {
+    return _prefs.getString(_languageKey) ?? 'pt';
   }
 }

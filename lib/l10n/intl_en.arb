@@ -57,5 +57,10 @@
   "content": "Content",
   "preferences": "Preferences",
   "linguagem": "Language",
-  "temaEscuro": "Dark Mode"
+  "temaEscuro": "Dark Mode",
+  "idiomaAlterado": "Language changed!",
+  "temaAlterado": "Theme changed!",
+  "violao": "Acoustic Guitar",
+  "guitarra": "Eletric Guitar",
+  "ukelele": "Ukulele"
 }

@@ -200,7 +200,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                   viewModel.atualizarInstrumento(selected);
                 }
               },
-              itemBuilder: (item) => Text(item.name),
+              itemBuilder: (item) => Text(item.name(context)),
             ),
           ],
         ),
