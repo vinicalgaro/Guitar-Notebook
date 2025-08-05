@@ -71,14 +71,18 @@ class AppTheme {
         ),
       );
 
-  static SwitchThemeData _buildSwitchTheme(Color color) => SwitchThemeData(
-        overlayColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.hovered)) {
-            return color.withOpacity(0.5);
-          }
-          return null;
-        }),
-      );
+  static SwitchThemeData _buildSwitchTheme(Color color) =>
+      SwitchThemeData(overlayColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.hovered)) {
+          return color.withOpacity(0.5);
+        }
+        return null;
+      }), thumbColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return Colors.white;
+        }
+        return null;
+      }));
 
   static InputDecorationTheme _buildInputDecorationTheme(
           Color fillColor, Color borderSideColor, Color labelColor) =>
@@ -143,6 +147,9 @@ class AppTheme {
         paletaDarkBlue,
         paletaDarkBlue),
 
+    // Tema dos Switches
+    switchTheme: _buildSwitchTheme(paletaLightBlue),
+
     extensions: const [
       AppColorsExtension(
         textSecondary: _textSecondary,
@@ -191,7 +198,7 @@ class AppTheme {
     // Tema dos Cards
     cardTheme: _buildCardTheme(const Color(0xFF1E1E1E)),
 
-    // Tema dos Switches (EXCLUSIVO DARK THEME)
+    // Tema dos Switches
     switchTheme: _buildSwitchTheme(paletaDarkBlue),
 
     // Tema dos campos de texto

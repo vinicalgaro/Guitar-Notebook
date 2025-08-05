@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your changes have been saved successfully!"),
         "sucessoToast": MessageLookupByLibrary.simpleMessage("All set"),
         "tema": MessageLookupByLibrary.simpleMessage("Theme"),
+        "temaEscuro": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "version": m0,
         "voltar": MessageLookupByLibrary.simpleMessage("Back")
       };

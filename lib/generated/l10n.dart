@@ -529,6 +529,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Dark Mode`
+  String get temaEscuro {
+    return Intl.message(
+      'Dark Mode',
+      name: 'temaEscuro',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

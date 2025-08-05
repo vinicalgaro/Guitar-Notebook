@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "step2Title": MessageLookupByLibrary.simpleMessage("Partes da Música"),
         "sucessoToast": MessageLookupByLibrary.simpleMessage("Pronto"),
         "tema": MessageLookupByLibrary.simpleMessage("Tema"),
+        "temaEscuro": MessageLookupByLibrary.simpleMessage("Tema Escuro"),
         "version": m0,
         "voltar": MessageLookupByLibrary.simpleMessage("Voltar")
       };

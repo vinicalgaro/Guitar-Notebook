@@ -56,5 +56,6 @@
   "settingsDesc": "Customize your experience in the app.",
   "content": "Content",
   "preferences": "Preferences",
-  "linguagem": "Language"
+  "linguagem": "Language",
+  "temaEscuro": "Dark Mode"
 }
