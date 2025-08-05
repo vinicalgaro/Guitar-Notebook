@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guitar_learner/extensions/locale_extension.dart';
 import 'package:guitar_learner/helpers/helper_toast.dart';
-import 'package:guitar_learner/widgets/default_header.dart';
+import 'package:guitar_learner/widgets/default_header_page.dart';
 import 'package:guitar_learner/widgets/default_next_button.dart';
 import 'package:provider/provider.dart';
 
@@ -20,44 +20,30 @@ class SettingsPage extends StatelessWidget {
     final themeViewModel = Provider.of<ThemeViewModel>(context);
     final localeViewModel = Provider.of<LocaleViewModel>(context);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        DefaultHeader(
-            title: localizations.settings,
-            subtitle: localizations.settingsDesc),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(localizations.content),
-                  const SizedBox(height: 8.0),
-                  DefaultNextButton(
-                      title: localizations.about,
-                      leadingIcon: const Icon(Icons.info_outline),
-                      route: AppRoutes.about),
-                  const SizedBox(height: 8.0),
-                  Text(localizations.preferences),
-                  const SizedBox(height: 8.0),
-                  DefaultNextButton(
-                      title: localizations.tema,
-                      leadingIcon: Icon(themeViewModel.isDarkMode
-                          ? Icons.dark_mode_outlined
-                          : Icons.light_mode_outlined),
-                      modalContent: [_buildThemeSwitch(context)]),
-                  DefaultNextButton(
-                      title: localizations.linguagem,
-                      leadingIcon: const Icon(Icons.language_outlined),
-                      trailing: localeViewModel.locale.toDisplayName(),
-                      modalContent: [_buildLanguageOptions(context)]),
-                ],
-              ),
-            ),
-          ),
-        ),
+    return DefaultHeaderPage(
+      title: localizations.settings,
+      subtitle: localizations.settingsDesc,
+      content: [
+        Text(localizations.content),
+        const SizedBox(height: 8.0),
+        DefaultNextButton(
+            title: localizations.about,
+            leadingIcon: const Icon(Icons.info_outline),
+            route: AppRoutes.about),
+        const SizedBox(height: 8.0),
+        Text(localizations.preferences),
+        const SizedBox(height: 8.0),
+        DefaultNextButton(
+            title: localizations.tema,
+            leadingIcon: Icon(themeViewModel.isDarkMode
+                ? Icons.dark_mode_outlined
+                : Icons.light_mode_outlined),
+            modalContent: [_buildThemeSwitch(context)]),
+        DefaultNextButton(
+            title: localizations.linguagem,
+            leadingIcon: const Icon(Icons.language_outlined),
+            trailing: localeViewModel.locale.toDisplayName(),
+            modalContent: [_buildLanguageOptions(context)]),
       ],
     );
   }
