@@ -709,6 +709,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Major`
+  String get maior {
+    return Intl.message(
+      'Major',
+      name: 'maior',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minor`
+  String get menor {
+    return Intl.message(
+      'Minor',
+      name: 'menor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get outro {
+    return Intl.message(
+      'Other',
+      name: 'outro',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `C`
+  String get nota_C {
+    return Intl.message(
+      'C',
+      name: 'nota_C',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `D`
+  String get nota_D {
+    return Intl.message(
+      'D',
+      name: 'nota_D',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E`
+  String get nota_E {
+    return Intl.message(
+      'E',
+      name: 'nota_E',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `F`
+  String get nota_F {
+    return Intl.message(
+      'F',
+      name: 'nota_F',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `G`
+  String get nota_G {
+    return Intl.message(
+      'G',
+      name: 'nota_G',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A`
+  String get nota_A {
+    return Intl.message(
+      'A',
+      name: 'nota_A',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `B`
+  String get nota_B {
+    return Intl.message(
+      'B',
+      name: 'nota_B',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

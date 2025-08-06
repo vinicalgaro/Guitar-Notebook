@@ -161,13 +161,14 @@ class __$$AcordeImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AcordeImpl implements _Acorde {
+class _$AcordeImpl extends _Acorde {
   const _$AcordeImpl(
       {required this.id,
       required this.nome,
       required this.tipo,
       required this.cordas,
-      @JsonKey(name: 'posicoes_json') required this.posicoes});
+      @JsonKey(name: 'posicoes_json') required this.posicoes})
+      : super._();
 
   factory _$AcordeImpl.fromJson(Map<String, dynamic> json) =>
       _$$AcordeImplFromJson(json);
@@ -221,7 +222,7 @@ class _$AcordeImpl implements _Acorde {
   }
 }
 
-abstract class _Acorde implements Acorde {
+abstract class _Acorde extends Acorde {
   const factory _Acorde(
           {required final int id,
           required final String nome,
@@ -229,6 +230,7 @@ abstract class _Acorde implements Acorde {
           required final int cordas,
           @JsonKey(name: 'posicoes_json') required final Posicoes posicoes}) =
       _$AcordeImpl;
+  const _Acorde._() : super._();
 
   factory _Acorde.fromJson(Map<String, dynamic> json) = _$AcordeImpl.fromJson;
 

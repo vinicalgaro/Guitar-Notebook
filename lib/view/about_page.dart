@@ -31,63 +31,66 @@ class AboutPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: DefaultCardContainer(
-              child: Column(
-                children: [
-                  Center(
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: Theme.of(context)
-                                .extension<AppColorsExtension>()!
-                                .textSecondary,
-                            width: 2),
-                      ),
-                      child: ClipOval(
-                        child: Image(
-                          image:
-                              AssetImage(getImageFromAssets('icon_guitar.jpg')),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.appTitle,
-                      style: const TextStyle(
-                          fontSize: 28, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  FutureBuilder<PackageInfo>(
-                    future: PackageInfo.fromPlatform(),
-                    builder: (context, snapshot) {
-                      final versionString = snapshot.data?.version ?? '...';
-                      final translatedText =
-                          AppLocalizations.of(context)!.version(versionString);
-
-                      return Center(
-                        child: Text(
-                          translatedText,
-                          style: TextStyle(
-                              fontSize: 16,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
                               color: Theme.of(context)
                                   .extension<AppColorsExtension>()!
-                                  .textSecondary),
+                                  .textSecondary,
+                              width: 2),
                         ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    AppLocalizations.of(context)!.aboutAppText,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ],
+                        child: ClipOval(
+                          child: Image(
+                            image:
+                                AssetImage(getImageFromAssets('icon_guitar.jpg')),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.appTitle,
+                        style: const TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    FutureBuilder<PackageInfo>(
+                      future: PackageInfo.fromPlatform(),
+                      builder: (context, snapshot) {
+                        final versionString = snapshot.data?.version ?? '...';
+                        final translatedText =
+                            AppLocalizations.of(context)!.version(versionString);
+
+                        return Center(
+                          child: Text(
+                            translatedText,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Theme.of(context)
+                                    .extension<AppColorsExtension>()!
+                                    .textSecondary),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      AppLocalizations.of(context)!.aboutAppText,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

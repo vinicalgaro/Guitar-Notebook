@@ -61,7 +61,7 @@ class _SelectionSequenciaPageState extends State<SelectionSequenciaPage> {
                     TabBar(
                       tabs: tiposTabs
                           .map((e) => Tab(
-                                text: e.nome,
+                                text: e.nameFormatted(context),
                                 height: 30,
                               ))
                           .toList(),
@@ -114,6 +114,7 @@ class _SelectionSequenciaPageState extends State<SelectionSequenciaPage> {
       height: 100,
       child: SingleChildScrollView(
         child: Wrap(
+          alignment: WrapAlignment.center,
           spacing: 6.0,
           runSpacing: 6.0,
           children: acordes
@@ -138,10 +139,10 @@ class _SelectionSequenciaPageState extends State<SelectionSequenciaPage> {
           children: [
             Text(acorde.nome,
                 style: const TextStyle(fontWeight: FontWeight.bold)),
-            const Text(
-              "ToDo!",
+            Text(
+              acorde.formattedName(context),
               style:
-                  TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0),
+                  const TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0),
             ),
           ],
         ),

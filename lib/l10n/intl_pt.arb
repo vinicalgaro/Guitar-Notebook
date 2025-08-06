@@ -79,5 +79,15 @@
   "praticar": "Praticar",
   "semMusicaPraticada": "Silêncio... ainda não temos acordes tocados por aqui. Que tal começar sua jornada musical?",
   "progresso": "Seu Progresso",
-  "progressoDesc": "Continue de onde parou!"
+  "progressoDesc": "Continue de onde parou!",
+  "maior": "Maior",
+  "menor": "Menor",
+  "outro": "Outro",
+  "nota_C": "Dó",
+  "nota_D": "Ré",
+  "nota_E": "Mi",
+  "nota_F": "Fá",
+  "nota_G": "Sol",
+  "nota_A": "Lá",
+  "nota_B": "Si"
 }

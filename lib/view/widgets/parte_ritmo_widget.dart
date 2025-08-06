@@ -57,6 +57,7 @@ class ParteRitmoWidget extends StatelessWidget {
               width: double.infinity,
               child: batidasAtuais.isNotEmpty
                   ? Wrap(
+                      alignment: WrapAlignment.center,
                       spacing: 8.0,
                       runSpacing: 4.0,
                       children: [

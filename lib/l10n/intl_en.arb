@@ -74,5 +74,15 @@
   "praticar": "Practice",
   "semMusicaPraticada": "Silent... we haven't played any chords yet. Let's start your musical journey?",
   "progresso": "Your Progress",
-  "progressoDesc": "Continue where you left off!"
+  "progressoDesc": "Continue where you left off!",
+  "maior": "Major",
+  "menor": "Minor",
+  "outro": "Other",
+  "nota_C": "C",
+  "nota_D": "D",
+  "nota_E": "E",
+  "nota_F": "F",
+  "nota_G": "G",
+  "nota_A": "A",
+  "nota_B": "B"
 }

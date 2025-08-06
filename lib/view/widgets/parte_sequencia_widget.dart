@@ -53,6 +53,7 @@ class ParteSequenciaWidget extends StatelessWidget {
               width: double.infinity,
               child: sequenciasAtuais.isNotEmpty
                   ? Wrap(
+                      alignment: WrapAlignment.center,
                       spacing: 4.0,
                       runSpacing: 4.0,
                       children: [
