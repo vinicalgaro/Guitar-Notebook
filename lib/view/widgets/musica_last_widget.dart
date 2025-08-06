@@ -51,9 +51,8 @@ class MusicaLastWidget extends StatelessWidget {
           trailing: Transform.scale(
               scale: 1.25,
               child: IconButton.outlined(
-                onPressed: () => context
-                    .read<HomeViewModel>()
-                    .playSong(context, musica!),
+                onPressed: () =>
+                    context.read<HomeViewModel>().playSong(context, musica!),
                 icon: const Icon(Icons.play_arrow),
               )),
         ));
@@ -64,6 +63,7 @@ class MusicaLastWidget extends StatelessWidget {
       title: Text(
         AppLocalizations.of(context)!.semMusicaPraticada,
         style: TextStyle(
+            fontSize: 14,
             fontStyle: FontStyle.italic,
             color: Theme.of(context)
                 .extension<AppColorsExtension>()!

@@ -72,5 +72,7 @@
   "noMusics": "You haven't added any songs yet :(",
   "songDeleted": "Song deleted!",
   "praticar": "Practice",
-  "semMusicaPraticada": "Silent... we haven't played any chords yet. Let's start your musical journey?"
+  "semMusicaPraticada": "Silent... we haven't played any chords yet. Let's start your musical journey?",
+  "progresso": "Your Progress",
+  "progressoDesc": "Continue where you left off!"
 }

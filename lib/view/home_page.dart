@@ -37,10 +37,10 @@ class HomePage extends StatelessWidget {
                 child: DefaultCardContainer(
                     child: Column(
                   children: [
-                    const DefaultHeaderPage(
-                      title: "Seu Progresso",
-                      subtitle: "Continue de onde parou!",
-                      margin: EdgeInsets.only(top: 6.0, left: 8.0),
+                    DefaultHeaderPage(
+                      title: localizations.progresso,
+                      subtitle: localizations.progressoDesc,
+                      margin: const EdgeInsets.only(top: 6.0, left: 8.0),
                     ),
                     Consumer<HomeViewModel>(
                         builder: (context, value, child) =>

@@ -81,6 +81,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "partName": MessageLookupByLibrary.simpleMessage("Nome da Parte"),
         "praticar": MessageLookupByLibrary.simpleMessage("Praticar"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferências"),
+        "progresso": MessageLookupByLibrary.simpleMessage("Seu Progresso"),
+        "progressoDesc":
+            MessageLookupByLibrary.simpleMessage("Continue de onde parou!"),
         "ritmo": MessageLookupByLibrary.simpleMessage("Ritmo"),
         "saberMais": MessageLookupByLibrary.simpleMessage("Saber Mais"),
         "salvar": MessageLookupByLibrary.simpleMessage("Salvar"),

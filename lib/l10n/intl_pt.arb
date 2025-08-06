@@ -77,5 +77,7 @@
   "noMusics": "Você ainda não possui músicas cadastradas :(",
   "songDeleted": "Música deletada!",
   "praticar": "Praticar",
-  "semMusicaPraticada": "Silêncio... ainda não temos acordes tocados por aqui. Que tal começar sua jornada musical?"
+  "semMusicaPraticada": "Silêncio... ainda não temos acordes tocados por aqui. Que tal começar sua jornada musical?",
+  "progresso": "Seu Progresso",
+  "progressoDesc": "Continue de onde parou!"
 }

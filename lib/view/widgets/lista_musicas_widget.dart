@@ -33,7 +33,7 @@ class ListaMusicasWidget extends StatelessWidget {
 
         if (warningText != null) {
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
             child: DefaultCardContainer(
                 margin: EdgeInsets.zero,
                 shadow: false,
@@ -47,7 +47,7 @@ class ListaMusicasWidget extends StatelessWidget {
         final musicas = snapshot.data!;
         return Expanded(
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
             child: ListView.builder(
               itemCount: musicas.length,
               itemBuilder: (context, index) {

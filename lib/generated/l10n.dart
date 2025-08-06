@@ -689,6 +689,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Your Progress`
+  String get progresso {
+    return Intl.message(
+      'Your Progress',
+      name: 'progresso',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue where you left off!`
+  String get progressoDesc {
+    return Intl.message(
+      'Continue where you left off!',
+      name: 'progressoDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
