@@ -10,7 +10,8 @@ part 'musica.freezed.dart';
 @freezed
 class Musica with _$Musica {
   const factory Musica(
-      {required String nome,
+      {int? id,
+      required String nome,
       required Instrumento instrumento,
       String? linkYoutube,
       required List<Parte> partes}) = _Musica;
@@ -27,7 +28,7 @@ enum Instrumento {
 
   int get numCordas => _numCordas;
 
-  String name(BuildContext context) {
+  String nameFormatted(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
 
     switch (this) {

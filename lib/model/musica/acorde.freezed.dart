@@ -20,13 +20,10 @@ Acorde _$AcordeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Acorde {
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get nome => throw _privateConstructorUsedError;
-  @JsonKey(name: 'full_name')
-  String get fullName => throw _privateConstructorUsedError;
   TipoAcorde get tipo => throw _privateConstructorUsedError;
-  String get instrumento => throw _privateConstructorUsedError;
-  String get afinacao => throw _privateConstructorUsedError;
+  int get cordas => throw _privateConstructorUsedError;
   @JsonKey(name: 'posicoes_json')
   Posicoes get posicoes => throw _privateConstructorUsedError;
 
@@ -41,12 +38,10 @@ abstract class $AcordeCopyWith<$Res> {
       _$AcordeCopyWithImpl<$Res, Acorde>;
   @useResult
   $Res call(
-      {int? id,
+      {int id,
       String nome,
-      @JsonKey(name: 'full_name') String fullName,
       TipoAcorde tipo,
-      String instrumento,
-      String afinacao,
+      int cordas,
       @JsonKey(name: 'posicoes_json') Posicoes posicoes});
 
   $PosicoesCopyWith<$Res> get posicoes;
@@ -65,39 +60,29 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? nome = null,
-    Object? fullName = null,
     Object? tipo = null,
-    Object? instrumento = null,
-    Object? afinacao = null,
+    Object? cordas = null,
     Object? posicoes = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       tipo: null == tipo
           ? _value.tipo
           : tipo // ignore: cast_nullable_to_non_nullable
               as TipoAcorde,
-      instrumento: null == instrumento
-          ? _value.instrumento
-          : instrumento // ignore: cast_nullable_to_non_nullable
-              as String,
-      afinacao: null == afinacao
-          ? _value.afinacao
-          : afinacao // ignore: cast_nullable_to_non_nullable
-              as String,
+      cordas: null == cordas
+          ? _value.cordas
+          : cordas // ignore: cast_nullable_to_non_nullable
+              as int,
       posicoes: null == posicoes
           ? _value.posicoes
           : posicoes // ignore: cast_nullable_to_non_nullable
@@ -122,12 +107,10 @@ abstract class _$$AcordeImplCopyWith<$Res> implements $AcordeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? id,
+      {int id,
       String nome,
-      @JsonKey(name: 'full_name') String fullName,
       TipoAcorde tipo,
-      String instrumento,
-      String afinacao,
+      int cordas,
       @JsonKey(name: 'posicoes_json') Posicoes posicoes});
 
   @override
@@ -145,39 +128,29 @@ class __$$AcordeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? nome = null,
-    Object? fullName = null,
     Object? tipo = null,
-    Object? instrumento = null,
-    Object? afinacao = null,
+    Object? cordas = null,
     Object? posicoes = null,
   }) {
     return _then(_$AcordeImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullName: null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       tipo: null == tipo
           ? _value.tipo
           : tipo // ignore: cast_nullable_to_non_nullable
               as TipoAcorde,
-      instrumento: null == instrumento
-          ? _value.instrumento
-          : instrumento // ignore: cast_nullable_to_non_nullable
-              as String,
-      afinacao: null == afinacao
-          ? _value.afinacao
-          : afinacao // ignore: cast_nullable_to_non_nullable
-              as String,
+      cordas: null == cordas
+          ? _value.cordas
+          : cordas // ignore: cast_nullable_to_non_nullable
+              as int,
       posicoes: null == posicoes
           ? _value.posicoes
           : posicoes // ignore: cast_nullable_to_non_nullable
@@ -190,37 +163,30 @@ class __$$AcordeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AcordeImpl implements _Acorde {
   const _$AcordeImpl(
-      {this.id,
+      {required this.id,
       required this.nome,
-      @JsonKey(name: 'full_name') required this.fullName,
       required this.tipo,
-      required this.instrumento,
-      required this.afinacao,
+      required this.cordas,
       @JsonKey(name: 'posicoes_json') required this.posicoes});
 
   factory _$AcordeImpl.fromJson(Map<String, dynamic> json) =>
       _$$AcordeImplFromJson(json);
 
   @override
-  final int? id;
+  final int id;
   @override
   final String nome;
   @override
-  @JsonKey(name: 'full_name')
-  final String fullName;
-  @override
   final TipoAcorde tipo;
   @override
-  final String instrumento;
-  @override
-  final String afinacao;
+  final int cordas;
   @override
   @JsonKey(name: 'posicoes_json')
   final Posicoes posicoes;
 
   @override
   String toString() {
-    return 'Acorde(id: $id, nome: $nome, fullName: $fullName, tipo: $tipo, instrumento: $instrumento, afinacao: $afinacao, posicoes: $posicoes)';
+    return 'Acorde(id: $id, nome: $nome, tipo: $tipo, cordas: $cordas, posicoes: $posicoes)';
   }
 
   @override
@@ -230,21 +196,16 @@ class _$AcordeImpl implements _Acorde {
             other is _$AcordeImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.nome, nome) || other.nome == nome) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
             (identical(other.tipo, tipo) || other.tipo == tipo) &&
-            (identical(other.instrumento, instrumento) ||
-                other.instrumento == instrumento) &&
-            (identical(other.afinacao, afinacao) ||
-                other.afinacao == afinacao) &&
+            (identical(other.cordas, cordas) || other.cordas == cordas) &&
             (identical(other.posicoes, posicoes) ||
                 other.posicoes == posicoes));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, nome, fullName, tipo, instrumento, afinacao, posicoes);
+  int get hashCode =>
+      Object.hash(runtimeType, id, nome, tipo, cordas, posicoes);
 
   @JsonKey(ignore: true)
   @override
@@ -262,30 +223,23 @@ class _$AcordeImpl implements _Acorde {
 
 abstract class _Acorde implements Acorde {
   const factory _Acorde(
-          {final int? id,
+          {required final int id,
           required final String nome,
-          @JsonKey(name: 'full_name') required final String fullName,
           required final TipoAcorde tipo,
-          required final String instrumento,
-          required final String afinacao,
+          required final int cordas,
           @JsonKey(name: 'posicoes_json') required final Posicoes posicoes}) =
       _$AcordeImpl;
 
   factory _Acorde.fromJson(Map<String, dynamic> json) = _$AcordeImpl.fromJson;
 
   @override
-  int? get id;
+  int get id;
   @override
   String get nome;
   @override
-  @JsonKey(name: 'full_name')
-  String get fullName;
-  @override
   TipoAcorde get tipo;
   @override
-  String get instrumento;
-  @override
-  String get afinacao;
+  int get cordas;
   @override
   @JsonKey(name: 'posicoes_json')
   Posicoes get posicoes;

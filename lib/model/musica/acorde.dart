@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'posicoes.dart';
 
 part 'acorde.freezed.dart';
-
 part 'acorde.g.dart';
 
 enum TipoAcorde {
@@ -21,12 +21,10 @@ enum TipoAcorde {
 @freezed
 class Acorde with _$Acorde {
   const factory Acorde({
-    int? id,
+    required int id,
     required String nome,
-    @JsonKey(name: 'full_name') required String fullName,
     required TipoAcorde tipo,
-    required String instrumento,
-    required String afinacao,
+    required int cordas,
     @JsonKey(name: 'posicoes_json') required Posicoes posicoes,
   }) = _Acorde;
 

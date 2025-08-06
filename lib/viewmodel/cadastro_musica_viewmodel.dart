@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 import '../model/musica/models.dart';
+import '../model/repository/musica_repository.dart';
 
 class CadastroMusicaViewModel extends ChangeNotifier {
+  final IMusicaRepository _musicaRepository;
+
   final int _maxPartes = 4;
   final int _maxRitmos = 8;
 
@@ -11,7 +14,10 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   int _currentStep = 0;
   final List<TextEditingController> partNameControllers = [];
 
-  CadastroMusicaViewModel({Musica? musica}) {
+  CadastroMusicaViewModel({
+    Musica? musica,
+    required IMusicaRepository repository,
+  }) : _musicaRepository = repository {
     _isEditing = musica != null;
 
     if (musica != null) {
@@ -91,17 +97,24 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> salvarMusica() async {
-    for (int i = 0; i < _musicaRascunho.partes.length; i++) {
-      final parteAntiga = _musicaRascunho.partes[i];
-      final novasPartes = List<Parte>.from(_musicaRascunho.partes);
-      novasPartes[i] = parteAntiga.copyWith(
-        nome: partNameControllers[i].text.trim(),
-      );
-      _musicaRascunho = _musicaRascunho.copyWith(partes: novasPartes);
-    }
+  Future<void> salvarMusica(
+      {required String nomeMusica, required String linkYoutube}) async {
+    final novasPartes = _musicaRascunho.partes.asMap().entries.map((entry) {
+      int index = entry.key;
+      Parte parteAntiga = entry.value;
 
-    // ToDo: Chamar o Repository para salvar de fato os dados
+      return parteAntiga.copyWith(
+        nome: partNameControllers[index].text.trim(),
+      );
+    }).toList();
+
+    _musicaRascunho = _musicaRascunho.copyWith(
+      nome: nomeMusica.trim(),
+      linkYoutube: linkYoutube.trim(),
+      partes: novasPartes,
+    );
+
+    await _musicaRepository.salvarMusica(_musicaRascunho);
   }
 
   void adicionarBatida(int partIndex, Batida batida) {

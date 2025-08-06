@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:guitar_learner/model/repository/acorde_repository.dart';
 
 import '../model/musica/models.dart';
 
 class SelectionSequenciaViewModel extends ChangeNotifier {
+  final IAcordeRepository _repository;
+
   final int _maxCompassos = 8;
 
   bool _isLoading = true;
@@ -10,15 +13,15 @@ class SelectionSequenciaViewModel extends ChangeNotifier {
   List<Acorde> acordesDisponiveis = [];
   List<Compasso> sequenciaAtual = [];
 
-  SelectionSequenciaViewModel(Instrumento instrumento) {
+  SelectionSequenciaViewModel(
+      {required Instrumento instrumento, required repository})
+      : _repository = repository {
     _buscarAcordesDisponiveis(instrumento);
   }
 
   bool get isLoading => _isLoading;
 
   void _buscarAcordesDisponiveis(Instrumento instrumento) async {
-    await Future.delayed(const Duration(
-        seconds: 1)); // Simulação da busca de dados //ToDo: remover
     acordesDisponiveis = await _getAcordesDisponiveis(instrumento);
     _isLoading = false;
 
@@ -58,44 +61,6 @@ class SelectionSequenciaViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Acorde>> _getAcordesDisponiveis(Instrumento instrumento) async {
-    // ToDo: Implementar a busca real no banco de dados.
-    return [
-      const Acorde(
-          nome: "C",
-          fullName: "Dó Maior",
-          tipo: TipoAcorde.maior,
-          instrumento: 'violao',
-          afinacao: 'EADGBe',
-          posicoes: Posicoes(trasteInicial: 1, dedos: [])),
-      const Acorde(
-          nome: "G",
-          fullName: "Sol Maior",
-          tipo: TipoAcorde.maior,
-          instrumento: 'violao',
-          afinacao: 'EADGBe',
-          posicoes: Posicoes(trasteInicial: 1, dedos: [])),
-      const Acorde(
-          nome: "D",
-          fullName: "Ré Maior",
-          tipo: TipoAcorde.maior,
-          instrumento: 'violao',
-          afinacao: 'EADGBe',
-          posicoes: Posicoes(trasteInicial: 1, dedos: [])),
-      const Acorde(
-          nome: "Am",
-          fullName: "Lá Menor",
-          tipo: TipoAcorde.menor,
-          instrumento: 'violao',
-          afinacao: 'EADGBe',
-          posicoes: Posicoes(trasteInicial: 1, dedos: [])),
-      const Acorde(
-          nome: "Em",
-          fullName: "Mi Menor",
-          tipo: TipoAcorde.menor,
-          instrumento: 'violao',
-          afinacao: 'EADGBe',
-          posicoes: Posicoes(trasteInicial: 1, dedos: [])),
-    ];
-  }
+  Future<List<Acorde>> _getAcordesDisponiveis(Instrumento instrumento) async =>
+      _repository.getAcordesDisponiveis(instrumento.numCordas);
 }

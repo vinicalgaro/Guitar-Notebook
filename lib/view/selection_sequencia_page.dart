@@ -138,10 +138,10 @@ class _SelectionSequenciaPageState extends State<SelectionSequenciaPage> {
           children: [
             Text(acorde.nome,
                 style: const TextStyle(fontWeight: FontWeight.bold)),
-            Text(
-              acorde.fullName,
+            const Text(
+              "ToDo!",
               style:
-                  const TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0),
+                  TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0),
             ),
           ],
         ),

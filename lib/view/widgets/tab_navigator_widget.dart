@@ -4,6 +4,7 @@ import 'package:guitar_learner/view/about_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/musica/musica.dart';
+import '../../model/repository/musica_repository.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
 import '../cadastro_musica_page.dart';
 
@@ -33,7 +34,9 @@ class TabNavigatorWidget extends StatelessWidget {
           case AppRoutes.editSong:
             page = ChangeNotifierProvider(
               create: (_) => CadastroMusicaViewModel(
-                  musica: settings.arguments as Musica?),
+                musica: settings.arguments as Musica?,
+                repository: context.read<IMusicaRepository>(),
+              ),
               child: const CadastroMusicaPage(),
             );
             break;

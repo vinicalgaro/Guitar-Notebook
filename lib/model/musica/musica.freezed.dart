@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Musica {
+  int? get id => throw _privateConstructorUsedError;
   String get nome => throw _privateConstructorUsedError;
   Instrumento get instrumento => throw _privateConstructorUsedError;
   String? get linkYoutube => throw _privateConstructorUsedError;
@@ -31,7 +32,8 @@ abstract class $MusicaCopyWith<$Res> {
       _$MusicaCopyWithImpl<$Res, Musica>;
   @useResult
   $Res call(
-      {String nome,
+      {int? id,
+      String nome,
       Instrumento instrumento,
       String? linkYoutube,
       List<Parte> partes});
@@ -50,12 +52,17 @@ class _$MusicaCopyWithImpl<$Res, $Val extends Musica>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? nome = null,
     Object? instrumento = null,
     Object? linkYoutube = freezed,
     Object? partes = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
@@ -84,7 +91,8 @@ abstract class _$$MusicaImplCopyWith<$Res> implements $MusicaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String nome,
+      {int? id,
+      String nome,
       Instrumento instrumento,
       String? linkYoutube,
       List<Parte> partes});
@@ -101,12 +109,17 @@ class __$$MusicaImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? nome = null,
     Object? instrumento = null,
     Object? linkYoutube = freezed,
     Object? partes = null,
   }) {
     return _then(_$MusicaImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
@@ -131,12 +144,15 @@ class __$$MusicaImplCopyWithImpl<$Res>
 
 class _$MusicaImpl implements _Musica {
   const _$MusicaImpl(
-      {required this.nome,
+      {this.id,
+      required this.nome,
       required this.instrumento,
       this.linkYoutube,
       required final List<Parte> partes})
       : _partes = partes;
 
+  @override
+  final int? id;
   @override
   final String nome;
   @override
@@ -153,7 +169,7 @@ class _$MusicaImpl implements _Musica {
 
   @override
   String toString() {
-    return 'Musica(nome: $nome, instrumento: $instrumento, linkYoutube: $linkYoutube, partes: $partes)';
+    return 'Musica(id: $id, nome: $nome, instrumento: $instrumento, linkYoutube: $linkYoutube, partes: $partes)';
   }
 
   @override
@@ -161,6 +177,7 @@ class _$MusicaImpl implements _Musica {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MusicaImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.nome, nome) || other.nome == nome) &&
             (identical(other.instrumento, instrumento) ||
                 other.instrumento == instrumento) &&
@@ -170,8 +187,8 @@ class _$MusicaImpl implements _Musica {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, nome, instrumento, linkYoutube,
-      const DeepCollectionEquality().hash(_partes));
+  int get hashCode => Object.hash(runtimeType, id, nome, instrumento,
+      linkYoutube, const DeepCollectionEquality().hash(_partes));
 
   @JsonKey(ignore: true)
   @override
@@ -182,11 +199,14 @@ class _$MusicaImpl implements _Musica {
 
 abstract class _Musica implements Musica {
   const factory _Musica(
-      {required final String nome,
+      {final int? id,
+      required final String nome,
       required final Instrumento instrumento,
       final String? linkYoutube,
       required final List<Parte> partes}) = _$MusicaImpl;
 
+  @override
+  int? get id;
   @override
   String get nome;
   @override

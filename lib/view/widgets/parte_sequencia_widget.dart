@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guitar_learner/model/repository/acorde_repository.dart';
 import 'package:guitar_learner/view/selection_sequencia_page.dart';
 import 'package:guitar_learner/widgets/default_divider.dart';
 import 'package:guitar_learner/widgets/default_textbutton.dart';
@@ -100,8 +101,9 @@ class ParteSequenciaWidget extends StatelessWidget {
     callBottomSheet(
         context,
         ChangeNotifierProvider(
-          create: (_) =>
-              SelectionSequenciaViewModel(viewModel.musicaRascunho.instrumento),
+          create: (_) => SelectionSequenciaViewModel(
+              instrumento: viewModel.musicaRascunho.instrumento,
+              repository: context.read<IAcordeRepository>()),
           child: SelectionSequenciaPage(
             onSelectionCallback: (sequencia) =>
                 _adicionarSequencia(viewModel, sequencia, field),

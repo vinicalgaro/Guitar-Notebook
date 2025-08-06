@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:guitar_learner/helpers/helper_size.dart';
 import 'package:guitar_learner/view/widgets/parte_item_widget.dart';
 import 'package:guitar_learner/viewmodel/cadastro_musica_viewmodel.dart';
 import 'package:guitar_learner/widgets/default_animated_card_container.dart';
-import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_dropdownbutton.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold_fixed_widget.dart';
 import 'package:guitar_learner/widgets/default_stepper.dart';
@@ -99,7 +97,9 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
 
     if (viewModel.isLastStep) {
       if (_formKeyStep2.currentState!.validate()) {
-        await viewModel.salvarMusica();
+        await viewModel.salvarMusica(
+            nomeMusica: _nomeMusicaController.text,
+            linkYoutube: _linkYoutubeController.text);
 
         displaySuccessToast(
             localizations.sucessoToast, localizations.sucessoCadastrarMsg);
@@ -200,7 +200,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                   viewModel.atualizarInstrumento(selected);
                 }
               },
-              itemBuilder: (item) => Text(item.name(context)),
+              itemBuilder: (item) => Text(item.nameFormatted(context)),
             ),
           ],
         ),
