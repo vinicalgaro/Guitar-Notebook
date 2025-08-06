@@ -62,5 +62,13 @@
   "temaAlterado": "Theme changed!",
   "violao": "Acoustic Guitar",
   "guitarra": "Eletric Guitar",
-  "ukelele": "Ukulele"
+  "ukelele": "Ukulele",
+  "deletar": "Delete",
+  "editar": "Edit",
+  "deletarWarning": "Are you sure you want to delete this song?",
+  "mySongs": "My Songs",
+  "mySongsDesc": "Practice with your songs!",
+  "errorLoadingMusics": "Failed to load songs :(",
+  "noMusics": "You haven't added any songs yet :(",
+  "songDeleted": "Song deleted!"
 }

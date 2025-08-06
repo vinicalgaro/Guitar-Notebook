@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 class DefaultHeaderPage extends StatelessWidget {
   final String title;
   final String subtitle;
-  final List<Widget> content;
+  final List<Widget>? content;
 
   const DefaultHeaderPage(
-      {super.key,
-      required this.title,
-      required this.subtitle,
-      required this.content});
+      {super.key, required this.title, required this.subtitle, this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +33,18 @@ class DefaultHeaderPage extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [...content],
+        if (content != null)
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [...content!],
+                ),
               ),
             ),
           ),
-        ),
       ],
     );
   }

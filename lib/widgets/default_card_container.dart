@@ -14,6 +14,9 @@ class DefaultCardContainer extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(12.0),
+          border: Border.all(
+              color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+              width: 0.4),
           boxShadow: shadow
               ? [
                   BoxShadow(

@@ -589,6 +589,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete`
+  String get deletar {
+    return Intl.message(
+      'Delete',
+      name: 'deletar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get editar {
+    return Intl.message(
+      'Edit',
+      name: 'editar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this song?`
+  String get deletarWarning {
+    return Intl.message(
+      'Are you sure you want to delete this song?',
+      name: 'deletarWarning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Songs`
+  String get mySongs {
+    return Intl.message(
+      'My Songs',
+      name: 'mySongs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Practice with your songs!`
+  String get mySongsDesc {
+    return Intl.message(
+      'Practice with your songs!',
+      name: 'mySongsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load songs :(`
+  String get errorLoadingMusics {
+    return Intl.message(
+      'Failed to load songs :(',
+      name: 'errorLoadingMusics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't added any songs yet :(`
+  String get noMusics {
+    return Intl.message(
+      'You haven\'t added any songs yet :(',
+      name: 'noMusics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Song deleted!`
+  String get songDeleted {
+    return Intl.message(
+      'Song deleted!',
+      name: 'songDeleted',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

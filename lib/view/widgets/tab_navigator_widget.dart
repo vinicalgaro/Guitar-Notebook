@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../model/musica/musica.dart';
 import '../../model/repository/musica_repository.dart';
+import '../../model/settings_repository.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
 import '../cadastro_musica_page.dart';
 

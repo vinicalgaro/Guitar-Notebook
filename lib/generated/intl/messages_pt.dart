@@ -35,10 +35,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "atencao": MessageLookupByLibrary.simpleMessage("Atenção!"),
         "content": MessageLookupByLibrary.simpleMessage("Conteúdo"),
         "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),
+        "deletar": MessageLookupByLibrary.simpleMessage("Deletar"),
+        "deletarWarning": MessageLookupByLibrary.simpleMessage(
+            "Tem certeza que deseja deletar essa música?"),
         "dev": MessageLookupByLibrary.simpleMessage("Desenvolvedor"),
         "editSong": MessageLookupByLibrary.simpleMessage("Editar Música"),
+        "editar": MessageLookupByLibrary.simpleMessage("Editar"),
         "erroCadastrarMsg": MessageLookupByLibrary.simpleMessage(
             "Falha ao salvar suas alterações."),
+        "errorLoadingMusics": MessageLookupByLibrary.simpleMessage(
+            "Falha ao carregar músicas :("),
         "fieldRequired":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório"),
         "guitarra": MessageLookupByLibrary.simpleMessage("Guitarra"),
@@ -60,11 +66,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "linguagem": MessageLookupByLibrary.simpleMessage("Linguagem"),
         "linkYoutube": MessageLookupByLibrary.simpleMessage("Link do Youtube"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
+        "mySongs": MessageLookupByLibrary.simpleMessage("Minhas Músicas"),
+        "mySongsDesc":
+            MessageLookupByLibrary.simpleMessage("Pratique com suas músicas!"),
         "nenhumaBatidaAdicionada":
             MessageLookupByLibrary.simpleMessage("Nenhuma batida adicionada."),
         "nenhumaSequenciaAdicionada": MessageLookupByLibrary.simpleMessage(
             "Nenhuma sequência adicionada."),
         "newSong": MessageLookupByLibrary.simpleMessage("Nova Música"),
+        "noMusics": MessageLookupByLibrary.simpleMessage(
+            "Você ainda não possui músicas cadastradas :("),
         "optional": MessageLookupByLibrary.simpleMessage("Opcional"),
         "part": MessageLookupByLibrary.simpleMessage("Parte"),
         "partName": MessageLookupByLibrary.simpleMessage("Nome da Parte"),
@@ -77,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Configurações"),
         "settingsDesc": MessageLookupByLibrary.simpleMessage(
             "Personalize a sua experiência no app."),
+        "songDeleted": MessageLookupByLibrary.simpleMessage("Música deletada!"),
         "songName": MessageLookupByLibrary.simpleMessage("Nome da Música"),
         "step": MessageLookupByLibrary.simpleMessage("Passo"),
         "step1Desc": MessageLookupByLibrary.simpleMessage(

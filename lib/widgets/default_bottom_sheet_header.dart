@@ -21,7 +21,14 @@ class DefaultBottomSheetHeader extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(label, style: Theme.of(context).textTheme.headlineSmall),
+              Expanded(
+                child: Text(
+                  label,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+              ),
               Row(
                 children: [
                   IconButton(
@@ -30,7 +37,7 @@ class DefaultBottomSheetHeader extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 8.0),
           ...children,
         ],
       ),

@@ -17,47 +17,59 @@ Future<T?> displayActionDialog<T>(
   bool onlyOneButton = false,
   Widget? widgetContent,
 }) async {
-  return await getDefaultDialog(
-      context: context,
-      title: title,
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(description),
-          if (widgetContent != null) widgetContent,
-        ],
-      ),
-      actions: [
-        if (!onlyOneButton)
-          DefaultTextButton(
-            onPressed: () {
-              negativeOnPressed?.call();
-              Navigator.of(context, rootNavigator: true).pop(false);
-            },
-            child: Text(negativeLabel ??
-                MaterialLocalizations.of(context).cancelButtonLabel),
+  return await showDialog<T>(
+    context: context,
+    barrierDismissible: false,
+    builder: (dialogContext) {
+      return AlertDialog(
+        title: Center(child: Text(title)),
+        content: ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 200),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(description),
+                if (widgetContent != null) widgetContent,
+              ],
+            ),
           ),
-        if (thirdOnPressed != null)
-          DefaultTextButton(
+        ),
+        actionsAlignment: MainAxisAlignment.spaceAround,
+        actions: [
+          if (!onlyOneButton)
+            DefaultTextButton(
+              onPressed: () {
+                negativeOnPressed?.call();
+                Navigator.of(dialogContext, rootNavigator: true).pop(false);
+              },
+              child: Text(negativeLabel ??
+                  MaterialLocalizations.of(context).cancelButtonLabel),
+            ),
+          if (thirdOnPressed != null)
+            DefaultTextButton(
               onPressed: () {
                 thirdOnPressed.call();
-                Navigator.of(context, rootNavigator: true).pop();
+                Navigator.of(dialogContext, rootNavigator: true).pop();
               },
-              child: Text(thirdLabel ?? "")),
-        DefaultTextButton(
-          onPressed: () {
-            positiveOnPressed?.call();
-            Navigator.of(context, rootNavigator: true).pop(true);
-          },
-          child: Text(
+              child: Text(thirdLabel ?? ""),
+            ),
+          DefaultTextButton(
+            onPressed: () {
+              positiveOnPressed?.call();
+              Navigator.of(dialogContext, rootNavigator: true).pop(true);
+            },
+            child: Text(
               positiveLabel ?? MaterialLocalizations.of(context).okButtonLabel,
               style: TextStyle(
                   fontWeight:
-                      highlightPositive ? FontWeight.bold : FontWeight.w500)),
-        ),
-      ],
-      useScroll: true,
-      boxConstraints: const BoxConstraints(maxHeight: 200));
+                      highlightPositive ? FontWeight.bold : FontWeight.w500),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 Future<T?> getDefaultDialog<T>(

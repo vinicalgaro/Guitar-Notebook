@@ -182,6 +182,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
               hintText: localizations.hintSongName,
               controller: _nomeMusicaController,
               required: true,
+              maxLength: 50,
             ),
             const SizedBox(height: 8.0),
             DefaultTextFormField(
@@ -189,6 +190,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
               hintText: localizations.hintSongUrl,
               helpText: localizations.helpYoutube,
               controller: _linkYoutubeController,
+              maxLength: 100,
             ),
             const SizedBox(height: 8.0),
             DefaultDropdownButton<Instrumento>(

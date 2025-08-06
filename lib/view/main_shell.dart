@@ -73,9 +73,9 @@ class _MainShellState extends State<MainShell> {
             BottomNavigationBarItem(
               icon: Transform.scale(
                   scale: _iconScaleFactor,
-                  child: const Icon(Icons.music_note_outlined)),
+                  child: const Icon(Icons.home_outlined)),
               activeIcon: Transform.scale(
-                  scale: _iconScaleFactor, child: const Icon(Icons.music_note)),
+                  scale: _iconScaleFactor, child: const Icon(Icons.home)),
               label: AppLocalizations.of(context)!.appTitle,
             ),
             BottomNavigationBarItem(

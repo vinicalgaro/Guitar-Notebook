@@ -9,16 +9,17 @@ class DefaultTextFormField extends StatelessWidget {
   final bool required;
   final String? Function(String)? validator;
   final String? helpText;
+  final int? maxLength;
 
-  const DefaultTextFormField({
-    super.key,
-    required this.label,
-    required this.hintText,
-    required this.controller,
-    this.required = false,
-    this.validator,
-    this.helpText,
-  });
+  const DefaultTextFormField(
+      {super.key,
+      required this.label,
+      required this.hintText,
+      required this.controller,
+      this.required = false,
+      this.validator,
+      this.helpText,
+      this.maxLength});
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,7 @@ class DefaultTextFormField extends StatelessWidget {
             }
             return null;
           },
+          maxLength: maxLength,
         ),
       ],
     );

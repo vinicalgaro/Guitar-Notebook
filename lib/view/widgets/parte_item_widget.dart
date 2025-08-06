@@ -46,6 +46,7 @@ class ParteItemWidget extends StatelessWidget {
             DefaultTextFormField(
                 label: localizations.partName,
                 hintText: localizations.hintSongPart,
+                maxLength: 30,
                 required: true,
                 controller: partNameController),
             const SizedBox(height: 12.0),

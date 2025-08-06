@@ -6,13 +6,31 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
 
   Future<void> upsertMusica(model.Musica musica) {
     return transaction(() async {
-      final musicaCompanion = MusicasCompanion.insert(
-        nome: musica.nome,
-        instrumento: musica.instrumento,
-        linkYoutube: Value(musica.linkYoutube),
-      );
+      int musicaId;
 
-      final musicaId = await into(musicas).insert(musicaCompanion);
+      if (musica.id != null) {
+        musicaId = musica.id!;
+
+        final musicaCompanion = MusicasCompanion(
+          id: Value(musicaId),
+          nome: Value(musica.nome),
+          instrumento: Value(musica.instrumento),
+          linkYoutube: Value(musica.linkYoutube),
+        );
+
+        await (update(musicas)..where((tbl) => tbl.id.equals(musicaId)))
+            .write(musicaCompanion);
+
+        await (delete(partes)..where((tbl) => tbl.musicaId.equals(musicaId)))
+            .go();
+      } else {
+        final musicaCompanion = MusicasCompanion.insert(
+          nome: musica.nome,
+          instrumento: musica.instrumento,
+          linkYoutube: Value(musica.linkYoutube),
+        );
+        musicaId = await into(musicas).insert(musicaCompanion);
+      }
 
       for (var parteModel in musica.partes) {
         final parteCompanion = PartesCompanion.insert(
@@ -21,7 +39,6 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
           ritmo: parteModel.ritmo.toString(),
           sequencia: parteModel.sequencia.toString(),
         );
-
         final parteId = await into(partes).insert(parteCompanion);
 
         int ordem = 0;

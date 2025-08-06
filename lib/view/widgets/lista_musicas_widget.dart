@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:guitar_learner/model/musica/models.dart' as model;
+import 'package:guitar_learner/view/widgets/musica_list_item_widget.dart';
 import 'package:guitar_learner/viewmodel/home_viewmodel.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../widgets/default_card_container.dart';
 
 class ListaMusicasWidget extends StatelessWidget {
   final HomeViewModel viewModel;
@@ -9,6 +13,8 @@ class ListaMusicasWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return StreamBuilder<List<model.Musica>>(
       stream: viewModel.musicasStream,
       builder: (context, snapshot) {
@@ -16,40 +22,45 @@ class ListaMusicasWidget extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
 
+        String? warningText;
         if (snapshot.hasError) {
-          return Center(
-              child: Text('Erro ao carregar músicas: ${snapshot.error}'));
+          warningText = localizations.errorLoadingMusics;
         }
 
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(
-            child: Text(
-              'Nenhuma música cadastrada ainda.\nClique em "+" para começar!',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
+          warningText = localizations.noMusics;
+        }
+
+        if (warningText != null) {
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: DefaultCardContainer(
+                margin: EdgeInsets.zero,
+                shadow: false,
+                child: ListTile(
+                  title: Text(warningText),
+                  trailing: const Icon(Icons.mood_bad_outlined),
+                )),
           );
         }
 
         final musicas = snapshot.data!;
-        return ListView.builder(
-          itemCount: musicas.length,
-          itemBuilder: (context, index) {
-            final musica = musicas[index];
-            return Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: ListTile(
-                leading: const Icon(Icons.music_note_rounded),
-                title: Text(musica.nome,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text(musica.instrumento.nameFormatted(context)),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {
-                  // TODO: Implementar navegação para a tela de tocar a música
-                },
-              ),
-            );
-          },
+        return Expanded(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ListView.builder(
+              itemCount: musicas.length,
+              itemBuilder: (context, index) {
+                final musica = musicas[index];
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 8.0),
+                  child: MusicaListItemWidget(
+                      musica: musica,
+                      deletarMusica: () => viewModel.deletarMusica(musica.id!)),
+                );
+              },
+            ),
+          ),
         );
       },
     );

@@ -67,5 +67,13 @@
   "temaAlterado": "Tema alterado!",
   "violao": "Violão",
   "guitarra": "Guitarra",
-  "ukelele": "Ukelele"
+  "ukelele": "Ukelele",
+  "deletar": "Deletar",
+  "editar": "Editar",
+  "deletarWarning": "Tem certeza que deseja deletar essa música?",
+  "mySongs": "Minhas Músicas",
+  "mySongsDesc": "Pratique com suas músicas!",
+  "errorLoadingMusics": "Falha ao carregar músicas :(",
+  "noMusics": "Você ainda não possui músicas cadastradas :(",
+  "songDeleted": "Música deletada!"
 }
