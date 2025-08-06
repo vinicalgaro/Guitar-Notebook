@@ -14,6 +14,7 @@ class ListaMusicasWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
+    const double horizontalMargin = 10.0;
 
     return StreamBuilder<List<model.Musica>>(
       stream: viewModel.musicasStream,
@@ -33,7 +34,7 @@ class ListaMusicasWidget extends StatelessWidget {
 
         if (warningText != null) {
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: horizontalMargin),
             child: DefaultCardContainer(
                 margin: EdgeInsets.zero,
                 shadow: false,
@@ -47,7 +48,7 @@ class ListaMusicasWidget extends StatelessWidget {
         final musicas = snapshot.data!;
         return Expanded(
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: horizontalMargin),
             child: ListView.builder(
               itemCount: musicas.length,
               itemBuilder: (context, index) {
