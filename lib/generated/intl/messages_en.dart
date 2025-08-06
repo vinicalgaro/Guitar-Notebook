@@ -77,11 +77,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
         "part": MessageLookupByLibrary.simpleMessage("Part"),
         "partName": MessageLookupByLibrary.simpleMessage("Part Name"),
+        "praticar": MessageLookupByLibrary.simpleMessage("Practice"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
         "ritmo": MessageLookupByLibrary.simpleMessage("Rhythm"),
         "saberMais": MessageLookupByLibrary.simpleMessage("Learn More"),
         "salvar": MessageLookupByLibrary.simpleMessage("Save"),
         "selecionar": MessageLookupByLibrary.simpleMessage("Select"),
+        "semMusicaPraticada": MessageLookupByLibrary.simpleMessage(
+            "Silent... we haven\'t played any chords yet. Let\'s start your musical journey?"),
         "sequencia": MessageLookupByLibrary.simpleMessage("Sequence"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "settingsDesc": MessageLookupByLibrary.simpleMessage(

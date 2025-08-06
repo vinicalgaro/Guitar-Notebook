@@ -70,5 +70,7 @@
   "mySongsDesc": "Practice with your songs!",
   "errorLoadingMusics": "Failed to load songs :(",
   "noMusics": "You haven't added any songs yet :(",
-  "songDeleted": "Song deleted!"
+  "songDeleted": "Song deleted!",
+  "praticar": "Practice",
+  "semMusicaPraticada": "Silent... we haven't played any chords yet. Let's start your musical journey?"
 }

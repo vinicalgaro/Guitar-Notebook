@@ -669,6 +669,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Practice`
+  String get praticar {
+    return Intl.message(
+      'Practice',
+      name: 'praticar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Silent... we haven't played any chords yet. Let's start your musical journey?`
+  String get semMusicaPraticada {
+    return Intl.message(
+      'Silent... we haven\'t played any chords yet. Let\'s start your musical journey?',
+      name: 'semMusicaPraticada',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

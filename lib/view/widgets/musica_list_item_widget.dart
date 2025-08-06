@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -6,9 +7,11 @@ import 'package:guitar_learner/helpers/helper_bottom_sheet.dart';
 import 'package:guitar_learner/helpers/helper_dialog.dart';
 import 'package:guitar_learner/helpers/helper_toast.dart';
 import 'package:guitar_learner/widgets/default_textbutton.dart';
+import 'package:provider/provider.dart';
 
 import '../../model/musica/models.dart';
 import '../../routes/app_routes.dart';
+import '../../viewmodel/home_viewmodel.dart';
 import '../../widgets/default_bottom_sheet_header.dart';
 import '../../widgets/default_card_container.dart';
 
@@ -19,7 +22,7 @@ class MusicaListItemWidget extends StatelessWidget {
   const MusicaListItemWidget(
       {super.key, required this.musica, required this.deletarMusica});
 
-  _displayActions(BuildContext context) {
+  _displayActions(BuildContext context, AppLocalizations localizations) {
     callBottomSheet(
       context,
       heightPercent: 0.33,
@@ -27,15 +30,17 @@ class MusicaListItemWidget extends StatelessWidget {
         label: "'${musica.nome}'",
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16.0),
+            margin: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.13),
             child: Column(
               children: [
                 _buildActionWidget(
-                    context, "Praticar", () => _playSong(context),
+                    context, localizations.praticar, () => _playSong(context),
                     isPrimary: true),
-                _buildActionWidget(context, "Editar", () => _editSong(context)),
                 _buildActionWidget(
-                    context, "Deletar", () => _deletarDialog(context),
+                    context, localizations.editar, () => _editSong(context)),
+                _buildActionWidget(context, localizations.deletar,
+                    () => _deletarDialog(context),
                     specialColor: Theme.of(context).colorScheme.error),
               ],
             ),
@@ -46,7 +51,7 @@ class MusicaListItemWidget extends StatelessWidget {
   }
 
   _playSong(BuildContext context) {
-    context.goTo(AppRoutes.playSong, arguments: musica);
+    context.read<HomeViewModel>().playSong(context, musica);
   }
 
   _editSong(BuildContext context) {
@@ -84,7 +89,7 @@ class MusicaListItemWidget extends StatelessWidget {
             shadow: false,
             child: ListTile(
               leading: const Icon(Icons.music_note_outlined),
-              onTap: () => _displayActions(context),
+              onTap: () => _displayActions(context, localizations),
               title: RichText(
                 maxLines: 2,
                 text: TextSpan(

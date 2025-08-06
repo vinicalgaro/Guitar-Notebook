@@ -4,7 +4,9 @@ import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/model/repository/musica_repository.dart';
 import 'package:guitar_learner/routes/app_routes.dart';
 import 'package:guitar_learner/view/widgets/lista_musicas_widget.dart';
+import 'package:guitar_learner/view/widgets/musica_last_widget.dart';
 import 'package:guitar_learner/viewmodel/home_viewmodel.dart';
+import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:provider/provider.dart';
 
 import '../model/settings_repository.dart';
@@ -14,7 +16,7 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   void _addMusic(BuildContext context) {
-    context.goTo(AppRoutes.addSong);
+    context.goTo(AppRoutes.editSong);
   }
 
   @override
@@ -29,11 +31,26 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: [
             Flexible(
-              flex: 5,
-              child: Placeholder(),
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DefaultCardContainer(
+                    child: Column(
+                  children: [
+                    const DefaultHeaderPage(
+                      title: "Seu Progresso",
+                      subtitle: "Continue de onde parou!",
+                      margin: EdgeInsets.only(top: 6.0, left: 8.0),
+                    ),
+                    Consumer<HomeViewModel>(
+                        builder: (context, value, child) =>
+                            MusicaLastWidget(musica: value.ultimaMusica))
+                  ],
+                )),
+              ),
             ),
             Flexible(
-              flex: 8,
+              flex: 2,
               child: Column(
                 children: [
                   DefaultHeaderPage(

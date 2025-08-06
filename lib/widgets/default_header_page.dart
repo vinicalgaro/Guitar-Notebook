@@ -4,9 +4,14 @@ class DefaultHeaderPage extends StatelessWidget {
   final String title;
   final String subtitle;
   final List<Widget>? content;
+  final EdgeInsets? margin;
 
   const DefaultHeaderPage(
-      {super.key, required this.title, required this.subtitle, this.content});
+      {super.key,
+      required this.title,
+      required this.subtitle,
+      this.content,
+      this.margin});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +19,9 @@ class DefaultHeaderPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: const EdgeInsets.only(
-              left: 16.0, right: 16.0, top: 20.0, bottom: 10.0),
+          margin: margin ??
+              const EdgeInsets.only(
+                  left: 16.0, right: 16.0, top: 20.0, bottom: 10.0),
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: const EdgeInsets.all(8.0),

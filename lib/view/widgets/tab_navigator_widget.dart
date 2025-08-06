@@ -8,6 +8,7 @@ import '../../model/repository/musica_repository.dart';
 import '../../model/settings_repository.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
 import '../cadastro_musica_page.dart';
+import '../play_song_page.dart';
 
 class TabNavigatorWidget extends StatelessWidget {
   const TabNavigatorWidget({
@@ -31,7 +32,6 @@ class TabNavigatorWidget extends StatelessWidget {
 
         Widget? page;
         switch (settings.name) {
-          case AppRoutes.addSong:
           case AppRoutes.editSong:
             page = ChangeNotifierProvider(
               create: (_) => CadastroMusicaViewModel(
@@ -44,6 +44,10 @@ class TabNavigatorWidget extends StatelessWidget {
 
           case AppRoutes.about:
             page = const AboutPage();
+            break;
+
+          case AppRoutes.playSong:
+            page = PlaySongPage(musica: settings.arguments as Musica);
             break;
         }
 

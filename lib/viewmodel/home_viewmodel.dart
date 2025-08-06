@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/model/musica/models.dart' as model;
 import 'package:guitar_learner/model/repository/musica_repository.dart';
 
 import '../model/musica/models.dart';
 import '../model/settings_repository.dart';
+import '../routes/app_routes.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final IMusicaRepository _musicaRepository;
@@ -58,5 +60,16 @@ class HomeViewModel extends ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  void atualizarUltimaMusica(Musica musica) {
+    ultimaMusica = musica;
+    _settingsRepository.saveUltimaMusicaId(musica.id!);
+    notifyListeners();
+  }
+
+  playSong(BuildContext context, Musica musica) {
+    atualizarUltimaMusica(musica);
+    context.goTo(AppRoutes.playSong, arguments: musica);
   }
 }
