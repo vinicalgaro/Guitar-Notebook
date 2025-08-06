@@ -75,7 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nenhuma sequência adicionada."),
         "newSong": MessageLookupByLibrary.simpleMessage("Nova Música"),
         "noMusics": MessageLookupByLibrary.simpleMessage(
-            "Você ainda não possui músicas cadastradas :("),
+            "Nenhuma música cadastrada :("),
         "optional": MessageLookupByLibrary.simpleMessage("Opcional"),
         "part": MessageLookupByLibrary.simpleMessage("Parte"),
         "partName": MessageLookupByLibrary.simpleMessage("Nome da Parte"),

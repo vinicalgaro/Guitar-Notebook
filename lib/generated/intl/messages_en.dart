@@ -72,8 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nenhumaSequenciaAdicionada": MessageLookupByLibrary.simpleMessage(
             "No sequence has been added yet"),
         "newSong": MessageLookupByLibrary.simpleMessage("New Song"),
-        "noMusics": MessageLookupByLibrary.simpleMessage(
-            "You haven\'t added any songs yet :("),
+        "noMusics":
+            MessageLookupByLibrary.simpleMessage("Any songs added yet :("),
         "optional": MessageLookupByLibrary.simpleMessage("Optional"),
         "part": MessageLookupByLibrary.simpleMessage("Part"),
         "partName": MessageLookupByLibrary.simpleMessage("Part Name"),

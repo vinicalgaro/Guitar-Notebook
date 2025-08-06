@@ -650,10 +650,10 @@ class S {
     );
   }
 
-  /// `You haven't added any songs yet :(`
+  /// `Any songs added yet :(`
   String get noMusics {
     return Intl.message(
-      'You haven\'t added any songs yet :(',
+      'Any songs added yet :(',
       name: 'noMusics',
       desc: '',
       args: [],
