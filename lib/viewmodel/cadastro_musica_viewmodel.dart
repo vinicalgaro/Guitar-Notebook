@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
 import '../model/musica/models.dart';
+import '../model/repository/acorde_repository.dart';
 import '../model/repository/musica_repository.dart';
 
 class CadastroMusicaViewModel extends ChangeNotifier {
   final IMusicaRepository _musicaRepository;
+  final IAcordeRepository _acordeRepository;
 
   final int _maxPartes = 4;
   final int _maxRitmos = 8;
@@ -14,10 +16,16 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   int _currentStep = 0;
   final List<TextEditingController> partNameControllers = [];
 
-  CadastroMusicaViewModel({
-    Musica? musica,
-    required IMusicaRepository repository,
-  }) : _musicaRepository = repository {
+  List<Afinacao> _afinacoesDisponiveis = [];
+  Afinacao? _afinacaoSelecionada;
+  bool _carregandoAfinacoes = true;
+
+  CadastroMusicaViewModel(
+      {Musica? musica,
+      required IMusicaRepository repository,
+      required IAcordeRepository acordeRepository})
+      : _musicaRepository = repository,
+        _acordeRepository = acordeRepository {
     _isEditing = musica != null;
 
     if (musica != null) {
@@ -29,10 +37,12 @@ class CadastroMusicaViewModel extends ChangeNotifier {
       _musicaRascunho = const Musica(
         nome: '',
         instrumento: Instrumento.violao,
+        afinacaoId: 0,
         partes: [],
       );
       adicionarNovaParte();
     }
+    _inicializarAfinacoes();
   }
 
   Musica get musicaRascunho => _musicaRascunho;
@@ -43,7 +53,48 @@ class CadastroMusicaViewModel extends ChangeNotifier {
 
   bool get isEditing => _isEditing;
 
+  List<Afinacao> get afinacoesDisponiveis => _afinacoesDisponiveis;
+
+  Afinacao? get afinacaoSelecionada => _afinacaoSelecionada;
+
+  bool get carregandoAfinacoes => _carregandoAfinacoes;
+
   bool get podeAdicionarParte => _musicaRascunho.partes.length < _maxPartes;
+
+  Future<void> _inicializarAfinacoes() async {
+    await atualizarInstrumento(_musicaRascunho.instrumento);
+    if (_isEditing) {
+      _afinacaoSelecionada = _afinacoesDisponiveis
+          .firstWhere((a) => a.id == _musicaRascunho.afinacaoId);
+    }
+    notifyListeners();
+  }
+
+  Future<void> atualizarInstrumento(Instrumento instrumento) async {
+    _carregandoAfinacoes = true;
+    _musicaRascunho = _musicaRascunho.copyWith(instrumento: instrumento);
+    _afinacaoSelecionada = null;
+    notifyListeners();
+
+    _afinacoesDisponiveis =
+        await _acordeRepository.getAfinacoesPorInstrumento(instrumento);
+
+    if (_afinacoesDisponiveis.isNotEmpty) {
+      _afinacaoSelecionada = _afinacoesDisponiveis.first;
+      _musicaRascunho =
+          _musicaRascunho.copyWith(afinacaoId: _afinacaoSelecionada!.id);
+    }
+    _carregandoAfinacoes = false;
+    notifyListeners();
+  }
+
+  void atualizarAfinacao(Afinacao? afinacao) {
+    _afinacaoSelecionada = afinacao;
+    if (afinacao != null) {
+      _musicaRascunho = _musicaRascunho.copyWith(afinacaoId: afinacao.id);
+    }
+    notifyListeners();
+  }
 
   bool podeAdicionarRitmo(int partIndex) =>
       _musicaRascunho.partes[partIndex].ritmo.batidas.length < _maxRitmos;
@@ -90,11 +141,6 @@ class CadastroMusicaViewModel extends ChangeNotifier {
       _currentStep--;
       notifyListeners();
     }
-  }
-
-  void atualizarInstrumento(Instrumento instrumento) {
-    _musicaRascunho = _musicaRascunho.copyWith(instrumento: instrumento);
-    notifyListeners();
   }
 
   Future<void> salvarMusica(

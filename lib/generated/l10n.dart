@@ -809,6 +809,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Tuning`
+  String get afinacao {
+    return Intl.message(
+      'Tuning',
+      name: 'afinacao',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Revise the required fields.`
+  String get revise {
+    return Intl.message(
+      'Revise the required fields.',
+      name: 'revise',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

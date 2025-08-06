@@ -9,71 +9,75 @@ import 'package:guitar_learner/model/musica/models.dart' as model;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-part 'dao/musicas_dao.dart';
-
 part 'dao/acordes_dao.dart';
-
+part 'dao/musicas_dao.dart';
 part 'database.g.dart';
 
 class TipoAcordeConverter extends TypeConverter<model.TipoAcorde, String> {
   const TipoAcordeConverter();
 
   @override
-  model.TipoAcorde fromSql(String fromDb) {
-    return model.TipoAcorde.values.byName(fromDb);
-  }
+  model.TipoAcorde fromSql(String fromDb) =>
+      model.TipoAcorde.values.byName(fromDb);
 
   @override
-  String toSql(model.TipoAcorde value) {
-    return value.name;
-  }
+  String toSql(model.TipoAcorde value) => value.name;
 }
 
 class InstrumentoConverter extends TypeConverter<model.Instrumento, String> {
   const InstrumentoConverter();
 
   @override
-  model.Instrumento fromSql(String fromDb) {
-    return model.Instrumento.values.byName(fromDb);
-  }
+  model.Instrumento fromSql(String fromDb) =>
+      model.Instrumento.values.byName(fromDb);
 
   @override
-  String toSql(model.Instrumento value) {
-    return value.name;
-  }
+  String toSql(model.Instrumento value) => value.name;
 }
 
 class PosicoesConverter extends TypeConverter<model.Posicoes, String> {
   const PosicoesConverter();
 
   @override
-  model.Posicoes fromSql(String fromDb) {
-    return model.Posicoes.fromJson(jsonDecode(fromDb) as Map<String, dynamic>);
-  }
+  model.Posicoes fromSql(String fromDb) =>
+      model.Posicoes.fromJson(jsonDecode(fromDb) as Map<String, dynamic>);
 
   @override
-  String toSql(model.Posicoes value) {
-    return jsonEncode(value.toJson());
-  }
+  String toSql(model.Posicoes value) => jsonEncode(value.toJson());
 }
 
 @DataClassName('AcordeData')
 class Acordes extends Table {
   IntColumn get id => integer().autoIncrement()();
 
-  TextColumn get nome => text()();
+  TextColumn get nome => text().unique()(); // Ex: "C", "Am"
 
   TextColumn get tipo => text().map(const TipoAcordeConverter())();
+}
 
-  IntColumn get cordas => integer()();
+@DataClassName('AfinacaoData')
+class Afinacoes extends Table {
+  IntColumn get id => integer().autoIncrement()();
+
+  TextColumn get nome => text()(); // Ex: "Padrão", "Drop D"
+
+  TextColumn get instrumento => text().map(const InstrumentoConverter())();
+
+  TextColumn get notas => text()(); // Ex: "EADGBe"
+}
+
+@DataClassName('DigitacaoData')
+class Digitacoes extends Table {
+  IntColumn get id => integer().autoIncrement()();
+
+  IntColumn get acordeId =>
+      integer().references(Acordes, #id, onDelete: KeyAction.cascade)();
+
+  IntColumn get afinacaoId =>
+      integer().references(Afinacoes, #id, onDelete: KeyAction.cascade)();
 
   TextColumn get posicoes =>
       text().named('posicoes_json').map(const PosicoesConverter())();
-
-  @override
-  List<Set<Column>> get uniqueKeys => [
-        {nome, cordas},
-      ];
 }
 
 @DataClassName('MusicaData')
@@ -83,6 +87,8 @@ class Musicas extends Table {
   TextColumn get nome => text()();
 
   TextColumn get instrumento => text().map(const InstrumentoConverter())();
+
+  IntColumn get afinacaoId => integer().references(Afinacoes, #id)();
 
   TextColumn get linkYoutube => text().nullable()();
 }
@@ -115,13 +121,14 @@ class SequenciaCompassos extends Table {
 }
 
 @DriftDatabase(
-    tables: [Musicas, Partes, Acordes, SequenciaCompassos],
-    daos: [MusicasDao, AcordesDao])
+  tables: [Musicas, Partes, Acordes, Afinacoes, Digitacoes, SequenciaCompassos],
+  daos: [MusicasDao, AcordesDao],
+)
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration {
@@ -129,24 +136,49 @@ class AppDatabase extends _$AppDatabase {
       onCreate: (Migrator m) async {
         await m.createAll();
 
-        try {
-          final jsonString = await rootBundle
-              .loadString(getDataFromAssets('initial_chords.json'));
-          final List<dynamic> jsonList = jsonDecode(jsonString);
+        final jsonString = await rootBundle
+            .loadString(getDataFromAssets('initial_chords.json'));
+        final Map<String, dynamic> data = jsonDecode(jsonString);
 
-          final acordesParaSalvar = jsonList.map((json) {
-            final acordeModel =
-                model.Acorde.fromJson(json as Map<String, dynamic>);
-            return AcordesCompanion.insert(
-                nome: acordeModel.nome,
-                tipo: acordeModel.tipo,
-                cordas: acordeModel.cordas,
-                posicoes: acordeModel.posicoes);
-          }).toList();
+        // 1. Popula as Afinacoes
+        final List<dynamic> afinacoesJson = data['afinacoes'];
+        final afinacoesParaSalvar = afinacoesJson.map((json) {
+          return AfinacoesCompanion.insert(
+            nome: json['nome'] as String,
+            instrumento: model.Instrumento.values.byName(json['instrumento']),
+            notas: json['notas'] as String,
+          );
+        }).toList();
+        await batch((b) => b.insertAll(afinacoes, afinacoesParaSalvar));
 
-          await acordesDao.seedAcordes(acordesParaSalvar);
+        // 2. Popula os Acordes
+        final List<dynamic> acordesJson = data['acordes'];
+        final acordesParaSalvar = acordesJson.map((json) {
+          return AcordesCompanion.insert(
+            nome: json['nome'] as String,
+            tipo: model.TipoAcorde.values.byName(json['tipo']),
+          );
+        }).toList();
+        await batch((b) => b.insertAll(acordes, acordesParaSalvar));
 
-        } catch (ignored) {}
+        // 3. Popula as Digitações
+        final List<dynamic> digitacoesJson = data['digitacoes'];
+        final digitacoesParaSalvar = digitacoesJson.map((json) {
+          return DigitacoesCompanion.insert(
+            acordeId: json['acorde_id'] as int,
+            afinacaoId: json['afinacao_id'] as int,
+            posicoes: model.Posicoes.fromJson(json['posicoes_json']),
+          );
+        }).toList();
+        await batch((b) => b.insertAll(digitacoes, digitacoesParaSalvar));
+      },
+      onUpgrade: (m, from, to) async {
+        if (from < 2) {
+          for (final table in allTables) {
+            await m.deleteTable(table.actualTableName);
+          }
+          await m.createAll();
+        }
       },
     );
   }
@@ -160,7 +192,6 @@ LazyDatabase _openConnection() {
   });
 }
 
-// Agrupa uma MusicaData com sua lista de Partes
 class MusicaCompletaData {
   final MusicaData musica;
   final List<ParteComCompassosData> partes;
@@ -168,7 +199,6 @@ class MusicaCompletaData {
   MusicaCompletaData({required this.musica, required this.partes});
 }
 
-// Agrupa uma ParteData com sua lista de Compassos
 class ParteComCompassosData {
   final ParteData parte;
   final List<CompassoComAcorde> compassos;
@@ -176,7 +206,6 @@ class ParteComCompassosData {
   ParteComCompassosData({required this.parte, required this.compassos});
 }
 
-// Agrupa um compasso (da tabela SequenciaCompassos) com seu Acorde correspondente
 class CompassoComAcorde {
   final SequenciaCompasso compasso;
   final AcordeData acorde;

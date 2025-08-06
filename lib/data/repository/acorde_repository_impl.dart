@@ -1,5 +1,4 @@
 import 'package:guitar_learner/data/database.dart';
-import 'package:guitar_learner/model/musica/acorde.dart';
 import 'package:guitar_learner/model/repository/acorde_repository.dart';
 
 import '../../model/musica/models.dart' as model;
@@ -10,15 +9,36 @@ class AcordeRepositoryImpl implements IAcordeRepository {
   AcordeRepositoryImpl(this._acordesDao);
 
   @override
-  Future<List<Acorde>> getAcordesDisponiveis(int numCordas) async {
-    List<AcordeData> acordesData = await _acordesDao.getTodosAcordes(numCordas);
-    return acordesData.map((e) => _converterParaModelo(e)).toList();
+  Future<List<model.Afinacao>> getAfinacoesPorInstrumento(
+      model.Instrumento instrumento) async {
+    final afinacoesData =
+        await _acordesDao.getAfinacoesPorInstrumento(instrumento);
+    return afinacoesData.map((e) => _converterAfinacaoParaModelo(e)).toList();
   }
 
-  model.Acorde _converterParaModelo(AcordeData data) => model.Acorde(
-      id: data.id,
-      nome: data.nome,
-      tipo: data.tipo,
-      cordas: data.cordas,
-      posicoes: data.posicoes);
+  @override
+  Future<List<model.Acorde>> getAcordesDisponiveis(int afinacaoId) async {
+    final acordesComDigitacao =
+        await _acordesDao.getAcordesComDigitacao(afinacaoId);
+    return acordesComDigitacao
+        .map((e) => _converterAcordeParaModelo(e.acorde, e.digitacao))
+        .toList();
+  }
+
+  model.Afinacao _converterAfinacaoParaModelo(AfinacaoData data) => model.Afinacao(
+        id: data.id,
+        nome: data.nome,
+        instrumento: data.instrumento,
+        notas: data.notas,
+      );
+
+  model.Acorde _converterAcordeParaModelo(
+          AcordeData acordeData, DigitacaoData digitacaoData) =>
+      model.Acorde(
+        id: acordeData.id,
+        nome: acordeData.nome,
+        tipo: acordeData.tipo,
+        cordas: digitacaoData.posicoes.dedos.length,
+        posicoes: digitacaoData.posicoes,
+      );
 }

@@ -111,6 +111,8 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     } else {
       if (_formKeyStep1.currentState!.validate()) {
         viewModel.onStepContinue();
+      } else {
+        displayWarningToast(localizations.atencao, localizations.revise);
       }
     }
   }
@@ -168,7 +170,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
   }
 
   Step _buildStepDadosMusica(BuildContext context) {
-    final viewModel = context.read<CadastroMusicaViewModel>();
+    final viewModel = context.watch<CadastroMusicaViewModel>();
     final localizations = AppLocalizations.of(context)!;
 
     return buildStep(
@@ -204,6 +206,19 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
               },
               itemBuilder: (item) => Text(item.nameFormatted(context)),
             ),
+            const SizedBox(height: 16.0),
+            if (viewModel.carregandoAfinacoes)
+              const Center(child: CircularProgressIndicator())
+            else
+              DefaultDropdownButton<Afinacao>(
+                label: localizations.afinacao,
+                items: viewModel.afinacoesDisponiveis,
+                value: viewModel.afinacaoSelecionada,
+                onChanged: (selected) {
+                  viewModel.atualizarAfinacao(selected);
+                },
+                itemBuilder: (item) => Text(item.nome),
+              ),
           ],
         ),
       ),

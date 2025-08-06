@@ -5,6 +5,7 @@ import '../model/musica/models.dart';
 
 class SelectionSequenciaViewModel extends ChangeNotifier {
   final IAcordeRepository _repository;
+  final int afinacaoId;
 
   final int _maxCompassos = 8;
 
@@ -13,18 +14,18 @@ class SelectionSequenciaViewModel extends ChangeNotifier {
   List<Acorde> acordesDisponiveis = [];
   List<Compasso> sequenciaAtual = [];
 
-  SelectionSequenciaViewModel(
-      {required Instrumento instrumento, required repository})
-      : _repository = repository {
-    _buscarAcordesDisponiveis(instrumento);
+  SelectionSequenciaViewModel({
+    required this.afinacaoId,
+    required repository,
+  }) : _repository = repository {
+    _buscarAcordesDisponiveis();
   }
 
   bool get isLoading => _isLoading;
 
-  void _buscarAcordesDisponiveis(Instrumento instrumento) async {
-    acordesDisponiveis = await _getAcordesDisponiveis(instrumento);
+  void _buscarAcordesDisponiveis() async {
+    acordesDisponiveis = await _repository.getAcordesDisponiveis(afinacaoId);
     _isLoading = false;
-
     notifyListeners();
   }
 
@@ -60,7 +61,4 @@ class SelectionSequenciaViewModel extends ChangeNotifier {
     sequenciaAtual.clear();
     notifyListeners();
   }
-
-  Future<List<Acorde>> _getAcordesDisponiveis(Instrumento instrumento) async =>
-      _repository.getAcordesDisponiveis(instrumento.numCordas);
 }

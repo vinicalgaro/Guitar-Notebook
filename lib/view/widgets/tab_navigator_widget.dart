@@ -4,6 +4,7 @@ import 'package:guitar_learner/view/about_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/musica/musica.dart';
+import '../../model/repository/acorde_repository.dart';
 import '../../model/repository/musica_repository.dart';
 import '../../model/settings_repository.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
@@ -37,6 +38,7 @@ class TabNavigatorWidget extends StatelessWidget {
               create: (_) => CadastroMusicaViewModel(
                 musica: settings.arguments as Musica?,
                 repository: context.read<IMusicaRepository>(),
+                acordeRepository: context.read<IAcordeRepository>(),
               ),
               child: const CadastroMusicaPage(),
             );

@@ -3,6 +3,271 @@
 part of 'database.dart';
 
 // ignore_for_file: type=lint
+class $AfinacoesTable extends Afinacoes
+    with TableInfo<$AfinacoesTable, AfinacaoData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AfinacoesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _nomeMeta = const VerificationMeta('nome');
+  @override
+  late final GeneratedColumn<String> nome = GeneratedColumn<String>(
+      'nome', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _instrumentoMeta =
+      const VerificationMeta('instrumento');
+  @override
+  late final GeneratedColumnWithTypeConverter<model.Instrumento, String>
+      instrumento = GeneratedColumn<String>('instrumento', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<model.Instrumento>(
+              $AfinacoesTable.$converterinstrumento);
+  static const VerificationMeta _notasMeta = const VerificationMeta('notas');
+  @override
+  late final GeneratedColumn<String> notas = GeneratedColumn<String>(
+      'notas', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, nome, instrumento, notas];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'afinacoes';
+  @override
+  VerificationContext validateIntegrity(Insertable<AfinacaoData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('nome')) {
+      context.handle(
+          _nomeMeta, nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta));
+    } else if (isInserting) {
+      context.missing(_nomeMeta);
+    }
+    context.handle(_instrumentoMeta, const VerificationResult.success());
+    if (data.containsKey('notas')) {
+      context.handle(
+          _notasMeta, notas.isAcceptableOrUnknown(data['notas']!, _notasMeta));
+    } else if (isInserting) {
+      context.missing(_notasMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AfinacaoData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AfinacaoData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      nome: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}nome'])!,
+      instrumento: $AfinacoesTable.$converterinstrumento.fromSql(
+          attachedDatabase.typeMapping.read(
+              DriftSqlType.string, data['${effectivePrefix}instrumento'])!),
+      notas: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notas'])!,
+    );
+  }
+
+  @override
+  $AfinacoesTable createAlias(String alias) {
+    return $AfinacoesTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<model.Instrumento, String> $converterinstrumento =
+      const InstrumentoConverter();
+}
+
+class AfinacaoData extends DataClass implements Insertable<AfinacaoData> {
+  final int id;
+  final String nome;
+  final model.Instrumento instrumento;
+  final String notas;
+  const AfinacaoData(
+      {required this.id,
+      required this.nome,
+      required this.instrumento,
+      required this.notas});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['nome'] = Variable<String>(nome);
+    {
+      map['instrumento'] = Variable<String>(
+          $AfinacoesTable.$converterinstrumento.toSql(instrumento));
+    }
+    map['notas'] = Variable<String>(notas);
+    return map;
+  }
+
+  AfinacoesCompanion toCompanion(bool nullToAbsent) {
+    return AfinacoesCompanion(
+      id: Value(id),
+      nome: Value(nome),
+      instrumento: Value(instrumento),
+      notas: Value(notas),
+    );
+  }
+
+  factory AfinacaoData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AfinacaoData(
+      id: serializer.fromJson<int>(json['id']),
+      nome: serializer.fromJson<String>(json['nome']),
+      instrumento: serializer.fromJson<model.Instrumento>(json['instrumento']),
+      notas: serializer.fromJson<String>(json['notas']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'nome': serializer.toJson<String>(nome),
+      'instrumento': serializer.toJson<model.Instrumento>(instrumento),
+      'notas': serializer.toJson<String>(notas),
+    };
+  }
+
+  AfinacaoData copyWith(
+          {int? id,
+          String? nome,
+          model.Instrumento? instrumento,
+          String? notas}) =>
+      AfinacaoData(
+        id: id ?? this.id,
+        nome: nome ?? this.nome,
+        instrumento: instrumento ?? this.instrumento,
+        notas: notas ?? this.notas,
+      );
+  AfinacaoData copyWithCompanion(AfinacoesCompanion data) {
+    return AfinacaoData(
+      id: data.id.present ? data.id.value : this.id,
+      nome: data.nome.present ? data.nome.value : this.nome,
+      instrumento:
+          data.instrumento.present ? data.instrumento.value : this.instrumento,
+      notas: data.notas.present ? data.notas.value : this.notas,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AfinacaoData(')
+          ..write('id: $id, ')
+          ..write('nome: $nome, ')
+          ..write('instrumento: $instrumento, ')
+          ..write('notas: $notas')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, nome, instrumento, notas);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AfinacaoData &&
+          other.id == this.id &&
+          other.nome == this.nome &&
+          other.instrumento == this.instrumento &&
+          other.notas == this.notas);
+}
+
+class AfinacoesCompanion extends UpdateCompanion<AfinacaoData> {
+  final Value<int> id;
+  final Value<String> nome;
+  final Value<model.Instrumento> instrumento;
+  final Value<String> notas;
+  const AfinacoesCompanion({
+    this.id = const Value.absent(),
+    this.nome = const Value.absent(),
+    this.instrumento = const Value.absent(),
+    this.notas = const Value.absent(),
+  });
+  AfinacoesCompanion.insert({
+    this.id = const Value.absent(),
+    required String nome,
+    required model.Instrumento instrumento,
+    required String notas,
+  })  : nome = Value(nome),
+        instrumento = Value(instrumento),
+        notas = Value(notas);
+  static Insertable<AfinacaoData> custom({
+    Expression<int>? id,
+    Expression<String>? nome,
+    Expression<String>? instrumento,
+    Expression<String>? notas,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (nome != null) 'nome': nome,
+      if (instrumento != null) 'instrumento': instrumento,
+      if (notas != null) 'notas': notas,
+    });
+  }
+
+  AfinacoesCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? nome,
+      Value<model.Instrumento>? instrumento,
+      Value<String>? notas}) {
+    return AfinacoesCompanion(
+      id: id ?? this.id,
+      nome: nome ?? this.nome,
+      instrumento: instrumento ?? this.instrumento,
+      notas: notas ?? this.notas,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (nome.present) {
+      map['nome'] = Variable<String>(nome.value);
+    }
+    if (instrumento.present) {
+      map['instrumento'] = Variable<String>(
+          $AfinacoesTable.$converterinstrumento.toSql(instrumento.value));
+    }
+    if (notas.present) {
+      map['notas'] = Variable<String>(notas.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AfinacoesCompanion(')
+          ..write('id: $id, ')
+          ..write('nome: $nome, ')
+          ..write('instrumento: $instrumento, ')
+          ..write('notas: $notas')
+          ..write(')'))
+        .toString();
+  }
+}
+
 class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
   @override
   final GeneratedDatabase attachedDatabase;
@@ -30,6 +295,15 @@ class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
               type: DriftSqlType.string, requiredDuringInsert: true)
           .withConverter<model.Instrumento>(
               $MusicasTable.$converterinstrumento);
+  static const VerificationMeta _afinacaoIdMeta =
+      const VerificationMeta('afinacaoId');
+  @override
+  late final GeneratedColumn<int> afinacaoId = GeneratedColumn<int>(
+      'afinacao_id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('REFERENCES afinacoes (id)'));
   static const VerificationMeta _linkYoutubeMeta =
       const VerificationMeta('linkYoutube');
   @override
@@ -37,7 +311,8 @@ class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
       'link_youtube', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
   @override
-  List<GeneratedColumn> get $columns => [id, nome, instrumento, linkYoutube];
+  List<GeneratedColumn> get $columns =>
+      [id, nome, instrumento, afinacaoId, linkYoutube];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -58,6 +333,14 @@ class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
       context.missing(_nomeMeta);
     }
     context.handle(_instrumentoMeta, const VerificationResult.success());
+    if (data.containsKey('afinacao_id')) {
+      context.handle(
+          _afinacaoIdMeta,
+          afinacaoId.isAcceptableOrUnknown(
+              data['afinacao_id']!, _afinacaoIdMeta));
+    } else if (isInserting) {
+      context.missing(_afinacaoIdMeta);
+    }
     if (data.containsKey('link_youtube')) {
       context.handle(
           _linkYoutubeMeta,
@@ -80,6 +363,8 @@ class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
       instrumento: $MusicasTable.$converterinstrumento.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}instrumento'])!),
+      afinacaoId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}afinacao_id'])!,
       linkYoutube: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}link_youtube']),
     );
@@ -98,11 +383,13 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
   final int id;
   final String nome;
   final model.Instrumento instrumento;
+  final int afinacaoId;
   final String? linkYoutube;
   const MusicaData(
       {required this.id,
       required this.nome,
       required this.instrumento,
+      required this.afinacaoId,
       this.linkYoutube});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -113,6 +400,7 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
       map['instrumento'] = Variable<String>(
           $MusicasTable.$converterinstrumento.toSql(instrumento));
     }
+    map['afinacao_id'] = Variable<int>(afinacaoId);
     if (!nullToAbsent || linkYoutube != null) {
       map['link_youtube'] = Variable<String>(linkYoutube);
     }
@@ -124,6 +412,7 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
       id: Value(id),
       nome: Value(nome),
       instrumento: Value(instrumento),
+      afinacaoId: Value(afinacaoId),
       linkYoutube: linkYoutube == null && nullToAbsent
           ? const Value.absent()
           : Value(linkYoutube),
@@ -137,6 +426,7 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
       id: serializer.fromJson<int>(json['id']),
       nome: serializer.fromJson<String>(json['nome']),
       instrumento: serializer.fromJson<model.Instrumento>(json['instrumento']),
+      afinacaoId: serializer.fromJson<int>(json['afinacaoId']),
       linkYoutube: serializer.fromJson<String?>(json['linkYoutube']),
     );
   }
@@ -147,6 +437,7 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
       'id': serializer.toJson<int>(id),
       'nome': serializer.toJson<String>(nome),
       'instrumento': serializer.toJson<model.Instrumento>(instrumento),
+      'afinacaoId': serializer.toJson<int>(afinacaoId),
       'linkYoutube': serializer.toJson<String?>(linkYoutube),
     };
   }
@@ -155,11 +446,13 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
           {int? id,
           String? nome,
           model.Instrumento? instrumento,
+          int? afinacaoId,
           Value<String?> linkYoutube = const Value.absent()}) =>
       MusicaData(
         id: id ?? this.id,
         nome: nome ?? this.nome,
         instrumento: instrumento ?? this.instrumento,
+        afinacaoId: afinacaoId ?? this.afinacaoId,
         linkYoutube: linkYoutube.present ? linkYoutube.value : this.linkYoutube,
       );
   MusicaData copyWithCompanion(MusicasCompanion data) {
@@ -168,6 +461,8 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
       nome: data.nome.present ? data.nome.value : this.nome,
       instrumento:
           data.instrumento.present ? data.instrumento.value : this.instrumento,
+      afinacaoId:
+          data.afinacaoId.present ? data.afinacaoId.value : this.afinacaoId,
       linkYoutube:
           data.linkYoutube.present ? data.linkYoutube.value : this.linkYoutube,
     );
@@ -179,13 +474,15 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
           ..write('id: $id, ')
           ..write('nome: $nome, ')
           ..write('instrumento: $instrumento, ')
+          ..write('afinacaoId: $afinacaoId, ')
           ..write('linkYoutube: $linkYoutube')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, nome, instrumento, linkYoutube);
+  int get hashCode =>
+      Object.hash(id, nome, instrumento, afinacaoId, linkYoutube);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -193,6 +490,7 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
           other.id == this.id &&
           other.nome == this.nome &&
           other.instrumento == this.instrumento &&
+          other.afinacaoId == this.afinacaoId &&
           other.linkYoutube == this.linkYoutube);
 }
 
@@ -200,30 +498,36 @@ class MusicasCompanion extends UpdateCompanion<MusicaData> {
   final Value<int> id;
   final Value<String> nome;
   final Value<model.Instrumento> instrumento;
+  final Value<int> afinacaoId;
   final Value<String?> linkYoutube;
   const MusicasCompanion({
     this.id = const Value.absent(),
     this.nome = const Value.absent(),
     this.instrumento = const Value.absent(),
+    this.afinacaoId = const Value.absent(),
     this.linkYoutube = const Value.absent(),
   });
   MusicasCompanion.insert({
     this.id = const Value.absent(),
     required String nome,
     required model.Instrumento instrumento,
+    required int afinacaoId,
     this.linkYoutube = const Value.absent(),
   })  : nome = Value(nome),
-        instrumento = Value(instrumento);
+        instrumento = Value(instrumento),
+        afinacaoId = Value(afinacaoId);
   static Insertable<MusicaData> custom({
     Expression<int>? id,
     Expression<String>? nome,
     Expression<String>? instrumento,
+    Expression<int>? afinacaoId,
     Expression<String>? linkYoutube,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (nome != null) 'nome': nome,
       if (instrumento != null) 'instrumento': instrumento,
+      if (afinacaoId != null) 'afinacao_id': afinacaoId,
       if (linkYoutube != null) 'link_youtube': linkYoutube,
     });
   }
@@ -232,11 +536,13 @@ class MusicasCompanion extends UpdateCompanion<MusicaData> {
       {Value<int>? id,
       Value<String>? nome,
       Value<model.Instrumento>? instrumento,
+      Value<int>? afinacaoId,
       Value<String?>? linkYoutube}) {
     return MusicasCompanion(
       id: id ?? this.id,
       nome: nome ?? this.nome,
       instrumento: instrumento ?? this.instrumento,
+      afinacaoId: afinacaoId ?? this.afinacaoId,
       linkYoutube: linkYoutube ?? this.linkYoutube,
     );
   }
@@ -254,6 +560,9 @@ class MusicasCompanion extends UpdateCompanion<MusicaData> {
       map['instrumento'] = Variable<String>(
           $MusicasTable.$converterinstrumento.toSql(instrumento.value));
     }
+    if (afinacaoId.present) {
+      map['afinacao_id'] = Variable<int>(afinacaoId.value);
+    }
     if (linkYoutube.present) {
       map['link_youtube'] = Variable<String>(linkYoutube.value);
     }
@@ -266,6 +575,7 @@ class MusicasCompanion extends UpdateCompanion<MusicaData> {
           ..write('id: $id, ')
           ..write('nome: $nome, ')
           ..write('instrumento: $instrumento, ')
+          ..write('afinacaoId: $afinacaoId, ')
           ..write('linkYoutube: $linkYoutube')
           ..write(')'))
         .toString();
@@ -588,27 +898,17 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
   @override
   late final GeneratedColumn<String> nome = GeneratedColumn<String>(
       'nome', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
   static const VerificationMeta _tipoMeta = const VerificationMeta('tipo');
   @override
   late final GeneratedColumnWithTypeConverter<model.TipoAcorde, String> tipo =
       GeneratedColumn<String>('tipo', aliasedName, false,
               type: DriftSqlType.string, requiredDuringInsert: true)
           .withConverter<model.TipoAcorde>($AcordesTable.$convertertipo);
-  static const VerificationMeta _cordasMeta = const VerificationMeta('cordas');
   @override
-  late final GeneratedColumn<int> cordas = GeneratedColumn<int>(
-      'cordas', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _posicoesMeta =
-      const VerificationMeta('posicoes');
-  @override
-  late final GeneratedColumnWithTypeConverter<model.Posicoes, String> posicoes =
-      GeneratedColumn<String>('posicoes_json', aliasedName, false,
-              type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<model.Posicoes>($AcordesTable.$converterposicoes);
-  @override
-  List<GeneratedColumn> get $columns => [id, nome, tipo, cordas, posicoes];
+  List<GeneratedColumn> get $columns => [id, nome, tipo];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -629,22 +929,11 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
       context.missing(_nomeMeta);
     }
     context.handle(_tipoMeta, const VerificationResult.success());
-    if (data.containsKey('cordas')) {
-      context.handle(_cordasMeta,
-          cordas.isAcceptableOrUnknown(data['cordas']!, _cordasMeta));
-    } else if (isInserting) {
-      context.missing(_cordasMeta);
-    }
-    context.handle(_posicoesMeta, const VerificationResult.success());
     return context;
   }
 
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  List<Set<GeneratedColumn>> get uniqueKeys => [
-        {nome, cordas},
-      ];
   @override
   AcordeData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -655,11 +944,6 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
           .read(DriftSqlType.string, data['${effectivePrefix}nome'])!,
       tipo: $AcordesTable.$convertertipo.fromSql(attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}tipo'])!),
-      cordas: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}cordas'])!,
-      posicoes: $AcordesTable.$converterposicoes.fromSql(attachedDatabase
-          .typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}posicoes_json'])!),
     );
   }
 
@@ -670,22 +954,13 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
 
   static TypeConverter<model.TipoAcorde, String> $convertertipo =
       const TipoAcordeConverter();
-  static TypeConverter<model.Posicoes, String> $converterposicoes =
-      const PosicoesConverter();
 }
 
 class AcordeData extends DataClass implements Insertable<AcordeData> {
   final int id;
   final String nome;
   final model.TipoAcorde tipo;
-  final int cordas;
-  final model.Posicoes posicoes;
-  const AcordeData(
-      {required this.id,
-      required this.nome,
-      required this.tipo,
-      required this.cordas,
-      required this.posicoes});
+  const AcordeData({required this.id, required this.nome, required this.tipo});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -693,11 +968,6 @@ class AcordeData extends DataClass implements Insertable<AcordeData> {
     map['nome'] = Variable<String>(nome);
     {
       map['tipo'] = Variable<String>($AcordesTable.$convertertipo.toSql(tipo));
-    }
-    map['cordas'] = Variable<int>(cordas);
-    {
-      map['posicoes_json'] =
-          Variable<String>($AcordesTable.$converterposicoes.toSql(posicoes));
     }
     return map;
   }
@@ -707,8 +977,6 @@ class AcordeData extends DataClass implements Insertable<AcordeData> {
       id: Value(id),
       nome: Value(nome),
       tipo: Value(tipo),
-      cordas: Value(cordas),
-      posicoes: Value(posicoes),
     );
   }
 
@@ -719,8 +987,6 @@ class AcordeData extends DataClass implements Insertable<AcordeData> {
       id: serializer.fromJson<int>(json['id']),
       nome: serializer.fromJson<String>(json['nome']),
       tipo: serializer.fromJson<model.TipoAcorde>(json['tipo']),
-      cordas: serializer.fromJson<int>(json['cordas']),
-      posicoes: serializer.fromJson<model.Posicoes>(json['posicoes']),
     );
   }
   @override
@@ -730,31 +996,20 @@ class AcordeData extends DataClass implements Insertable<AcordeData> {
       'id': serializer.toJson<int>(id),
       'nome': serializer.toJson<String>(nome),
       'tipo': serializer.toJson<model.TipoAcorde>(tipo),
-      'cordas': serializer.toJson<int>(cordas),
-      'posicoes': serializer.toJson<model.Posicoes>(posicoes),
     };
   }
 
-  AcordeData copyWith(
-          {int? id,
-          String? nome,
-          model.TipoAcorde? tipo,
-          int? cordas,
-          model.Posicoes? posicoes}) =>
+  AcordeData copyWith({int? id, String? nome, model.TipoAcorde? tipo}) =>
       AcordeData(
         id: id ?? this.id,
         nome: nome ?? this.nome,
         tipo: tipo ?? this.tipo,
-        cordas: cordas ?? this.cordas,
-        posicoes: posicoes ?? this.posicoes,
       );
   AcordeData copyWithCompanion(AcordesCompanion data) {
     return AcordeData(
       id: data.id.present ? data.id.value : this.id,
       nome: data.nome.present ? data.nome.value : this.nome,
       tipo: data.tipo.present ? data.tipo.value : this.tipo,
-      cordas: data.cordas.present ? data.cordas.value : this.cordas,
-      posicoes: data.posicoes.present ? data.posicoes.value : this.posicoes,
     );
   }
 
@@ -763,77 +1018,55 @@ class AcordeData extends DataClass implements Insertable<AcordeData> {
     return (StringBuffer('AcordeData(')
           ..write('id: $id, ')
           ..write('nome: $nome, ')
-          ..write('tipo: $tipo, ')
-          ..write('cordas: $cordas, ')
-          ..write('posicoes: $posicoes')
+          ..write('tipo: $tipo')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, nome, tipo, cordas, posicoes);
+  int get hashCode => Object.hash(id, nome, tipo);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is AcordeData &&
           other.id == this.id &&
           other.nome == this.nome &&
-          other.tipo == this.tipo &&
-          other.cordas == this.cordas &&
-          other.posicoes == this.posicoes);
+          other.tipo == this.tipo);
 }
 
 class AcordesCompanion extends UpdateCompanion<AcordeData> {
   final Value<int> id;
   final Value<String> nome;
   final Value<model.TipoAcorde> tipo;
-  final Value<int> cordas;
-  final Value<model.Posicoes> posicoes;
   const AcordesCompanion({
     this.id = const Value.absent(),
     this.nome = const Value.absent(),
     this.tipo = const Value.absent(),
-    this.cordas = const Value.absent(),
-    this.posicoes = const Value.absent(),
   });
   AcordesCompanion.insert({
     this.id = const Value.absent(),
     required String nome,
     required model.TipoAcorde tipo,
-    required int cordas,
-    required model.Posicoes posicoes,
   })  : nome = Value(nome),
-        tipo = Value(tipo),
-        cordas = Value(cordas),
-        posicoes = Value(posicoes);
+        tipo = Value(tipo);
   static Insertable<AcordeData> custom({
     Expression<int>? id,
     Expression<String>? nome,
     Expression<String>? tipo,
-    Expression<int>? cordas,
-    Expression<String>? posicoes,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (nome != null) 'nome': nome,
       if (tipo != null) 'tipo': tipo,
-      if (cordas != null) 'cordas': cordas,
-      if (posicoes != null) 'posicoes_json': posicoes,
     });
   }
 
   AcordesCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? nome,
-      Value<model.TipoAcorde>? tipo,
-      Value<int>? cordas,
-      Value<model.Posicoes>? posicoes}) {
+      {Value<int>? id, Value<String>? nome, Value<model.TipoAcorde>? tipo}) {
     return AcordesCompanion(
       id: id ?? this.id,
       nome: nome ?? this.nome,
       tipo: tipo ?? this.tipo,
-      cordas: cordas ?? this.cordas,
-      posicoes: posicoes ?? this.posicoes,
     );
   }
 
@@ -850,13 +1083,6 @@ class AcordesCompanion extends UpdateCompanion<AcordeData> {
       map['tipo'] =
           Variable<String>($AcordesTable.$convertertipo.toSql(tipo.value));
     }
-    if (cordas.present) {
-      map['cordas'] = Variable<int>(cordas.value);
-    }
-    if (posicoes.present) {
-      map['posicoes_json'] = Variable<String>(
-          $AcordesTable.$converterposicoes.toSql(posicoes.value));
-    }
     return map;
   }
 
@@ -865,8 +1091,280 @@ class AcordesCompanion extends UpdateCompanion<AcordeData> {
     return (StringBuffer('AcordesCompanion(')
           ..write('id: $id, ')
           ..write('nome: $nome, ')
-          ..write('tipo: $tipo, ')
-          ..write('cordas: $cordas, ')
+          ..write('tipo: $tipo')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $DigitacoesTable extends Digitacoes
+    with TableInfo<$DigitacoesTable, DigitacaoData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DigitacoesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _acordeIdMeta =
+      const VerificationMeta('acordeId');
+  @override
+  late final GeneratedColumn<int> acordeId = GeneratedColumn<int>(
+      'acorde_id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'REFERENCES acordes (id) ON DELETE CASCADE'));
+  static const VerificationMeta _afinacaoIdMeta =
+      const VerificationMeta('afinacaoId');
+  @override
+  late final GeneratedColumn<int> afinacaoId = GeneratedColumn<int>(
+      'afinacao_id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'REFERENCES afinacoes (id) ON DELETE CASCADE'));
+  static const VerificationMeta _posicoesMeta =
+      const VerificationMeta('posicoes');
+  @override
+  late final GeneratedColumnWithTypeConverter<model.Posicoes, String> posicoes =
+      GeneratedColumn<String>('posicoes_json', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<model.Posicoes>($DigitacoesTable.$converterposicoes);
+  @override
+  List<GeneratedColumn> get $columns => [id, acordeId, afinacaoId, posicoes];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'digitacoes';
+  @override
+  VerificationContext validateIntegrity(Insertable<DigitacaoData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('acorde_id')) {
+      context.handle(_acordeIdMeta,
+          acordeId.isAcceptableOrUnknown(data['acorde_id']!, _acordeIdMeta));
+    } else if (isInserting) {
+      context.missing(_acordeIdMeta);
+    }
+    if (data.containsKey('afinacao_id')) {
+      context.handle(
+          _afinacaoIdMeta,
+          afinacaoId.isAcceptableOrUnknown(
+              data['afinacao_id']!, _afinacaoIdMeta));
+    } else if (isInserting) {
+      context.missing(_afinacaoIdMeta);
+    }
+    context.handle(_posicoesMeta, const VerificationResult.success());
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  DigitacaoData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DigitacaoData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      acordeId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}acorde_id'])!,
+      afinacaoId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}afinacao_id'])!,
+      posicoes: $DigitacoesTable.$converterposicoes.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}posicoes_json'])!),
+    );
+  }
+
+  @override
+  $DigitacoesTable createAlias(String alias) {
+    return $DigitacoesTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<model.Posicoes, String> $converterposicoes =
+      const PosicoesConverter();
+}
+
+class DigitacaoData extends DataClass implements Insertable<DigitacaoData> {
+  final int id;
+  final int acordeId;
+  final int afinacaoId;
+  final model.Posicoes posicoes;
+  const DigitacaoData(
+      {required this.id,
+      required this.acordeId,
+      required this.afinacaoId,
+      required this.posicoes});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['acorde_id'] = Variable<int>(acordeId);
+    map['afinacao_id'] = Variable<int>(afinacaoId);
+    {
+      map['posicoes_json'] =
+          Variable<String>($DigitacoesTable.$converterposicoes.toSql(posicoes));
+    }
+    return map;
+  }
+
+  DigitacoesCompanion toCompanion(bool nullToAbsent) {
+    return DigitacoesCompanion(
+      id: Value(id),
+      acordeId: Value(acordeId),
+      afinacaoId: Value(afinacaoId),
+      posicoes: Value(posicoes),
+    );
+  }
+
+  factory DigitacaoData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return DigitacaoData(
+      id: serializer.fromJson<int>(json['id']),
+      acordeId: serializer.fromJson<int>(json['acordeId']),
+      afinacaoId: serializer.fromJson<int>(json['afinacaoId']),
+      posicoes: serializer.fromJson<model.Posicoes>(json['posicoes']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'acordeId': serializer.toJson<int>(acordeId),
+      'afinacaoId': serializer.toJson<int>(afinacaoId),
+      'posicoes': serializer.toJson<model.Posicoes>(posicoes),
+    };
+  }
+
+  DigitacaoData copyWith(
+          {int? id,
+          int? acordeId,
+          int? afinacaoId,
+          model.Posicoes? posicoes}) =>
+      DigitacaoData(
+        id: id ?? this.id,
+        acordeId: acordeId ?? this.acordeId,
+        afinacaoId: afinacaoId ?? this.afinacaoId,
+        posicoes: posicoes ?? this.posicoes,
+      );
+  DigitacaoData copyWithCompanion(DigitacoesCompanion data) {
+    return DigitacaoData(
+      id: data.id.present ? data.id.value : this.id,
+      acordeId: data.acordeId.present ? data.acordeId.value : this.acordeId,
+      afinacaoId:
+          data.afinacaoId.present ? data.afinacaoId.value : this.afinacaoId,
+      posicoes: data.posicoes.present ? data.posicoes.value : this.posicoes,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DigitacaoData(')
+          ..write('id: $id, ')
+          ..write('acordeId: $acordeId, ')
+          ..write('afinacaoId: $afinacaoId, ')
+          ..write('posicoes: $posicoes')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, acordeId, afinacaoId, posicoes);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is DigitacaoData &&
+          other.id == this.id &&
+          other.acordeId == this.acordeId &&
+          other.afinacaoId == this.afinacaoId &&
+          other.posicoes == this.posicoes);
+}
+
+class DigitacoesCompanion extends UpdateCompanion<DigitacaoData> {
+  final Value<int> id;
+  final Value<int> acordeId;
+  final Value<int> afinacaoId;
+  final Value<model.Posicoes> posicoes;
+  const DigitacoesCompanion({
+    this.id = const Value.absent(),
+    this.acordeId = const Value.absent(),
+    this.afinacaoId = const Value.absent(),
+    this.posicoes = const Value.absent(),
+  });
+  DigitacoesCompanion.insert({
+    this.id = const Value.absent(),
+    required int acordeId,
+    required int afinacaoId,
+    required model.Posicoes posicoes,
+  })  : acordeId = Value(acordeId),
+        afinacaoId = Value(afinacaoId),
+        posicoes = Value(posicoes);
+  static Insertable<DigitacaoData> custom({
+    Expression<int>? id,
+    Expression<int>? acordeId,
+    Expression<int>? afinacaoId,
+    Expression<String>? posicoes,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (acordeId != null) 'acorde_id': acordeId,
+      if (afinacaoId != null) 'afinacao_id': afinacaoId,
+      if (posicoes != null) 'posicoes_json': posicoes,
+    });
+  }
+
+  DigitacoesCompanion copyWith(
+      {Value<int>? id,
+      Value<int>? acordeId,
+      Value<int>? afinacaoId,
+      Value<model.Posicoes>? posicoes}) {
+    return DigitacoesCompanion(
+      id: id ?? this.id,
+      acordeId: acordeId ?? this.acordeId,
+      afinacaoId: afinacaoId ?? this.afinacaoId,
+      posicoes: posicoes ?? this.posicoes,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (acordeId.present) {
+      map['acorde_id'] = Variable<int>(acordeId.value);
+    }
+    if (afinacaoId.present) {
+      map['afinacao_id'] = Variable<int>(afinacaoId.value);
+    }
+    if (posicoes.present) {
+      map['posicoes_json'] = Variable<String>(
+          $DigitacoesTable.$converterposicoes.toSql(posicoes.value));
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DigitacoesCompanion(')
+          ..write('id: $id, ')
+          ..write('acordeId: $acordeId, ')
+          ..write('afinacaoId: $afinacaoId, ')
           ..write('posicoes: $posicoes')
           ..write(')'))
         .toString();
@@ -1175,9 +1673,11 @@ class SequenciaCompassosCompanion extends UpdateCompanion<SequenciaCompasso> {
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
+  late final $AfinacoesTable afinacoes = $AfinacoesTable(this);
   late final $MusicasTable musicas = $MusicasTable(this);
   late final $PartesTable partes = $PartesTable(this);
   late final $AcordesTable acordes = $AcordesTable(this);
+  late final $DigitacoesTable digitacoes = $DigitacoesTable(this);
   late final $SequenciaCompassosTable sequenciaCompassos =
       $SequenciaCompassosTable(this);
   late final MusicasDao musicasDao = MusicasDao(this as AppDatabase);
@@ -1187,7 +1687,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [musicas, partes, acordes, sequenciaCompassos];
+      [afinacoes, musicas, partes, acordes, digitacoes, sequenciaCompassos];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules(
         [
@@ -1196,6 +1696,20 @@ abstract class _$AppDatabase extends GeneratedDatabase {
                 limitUpdateKind: UpdateKind.delete),
             result: [
               TableUpdate('partes', kind: UpdateKind.delete),
+            ],
+          ),
+          WritePropagation(
+            on: TableUpdateQuery.onTableName('acordes',
+                limitUpdateKind: UpdateKind.delete),
+            result: [
+              TableUpdate('digitacoes', kind: UpdateKind.delete),
+            ],
+          ),
+          WritePropagation(
+            on: TableUpdateQuery.onTableName('afinacoes',
+                limitUpdateKind: UpdateKind.delete),
+            result: [
+              TableUpdate('digitacoes', kind: UpdateKind.delete),
             ],
           ),
           WritePropagation(
@@ -1209,16 +1723,150 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       );
 }
 
+typedef $$AfinacoesTableCreateCompanionBuilder = AfinacoesCompanion Function({
+  Value<int> id,
+  required String nome,
+  required model.Instrumento instrumento,
+  required String notas,
+});
+typedef $$AfinacoesTableUpdateCompanionBuilder = AfinacoesCompanion Function({
+  Value<int> id,
+  Value<String> nome,
+  Value<model.Instrumento> instrumento,
+  Value<String> notas,
+});
+
+class $$AfinacoesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $AfinacoesTable,
+    AfinacaoData,
+    $$AfinacoesTableFilterComposer,
+    $$AfinacoesTableOrderingComposer,
+    $$AfinacoesTableCreateCompanionBuilder,
+    $$AfinacoesTableUpdateCompanionBuilder> {
+  $$AfinacoesTableTableManager(_$AppDatabase db, $AfinacoesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$AfinacoesTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$AfinacoesTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> nome = const Value.absent(),
+            Value<model.Instrumento> instrumento = const Value.absent(),
+            Value<String> notas = const Value.absent(),
+          }) =>
+              AfinacoesCompanion(
+            id: id,
+            nome: nome,
+            instrumento: instrumento,
+            notas: notas,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required String nome,
+            required model.Instrumento instrumento,
+            required String notas,
+          }) =>
+              AfinacoesCompanion.insert(
+            id: id,
+            nome: nome,
+            instrumento: instrumento,
+            notas: notas,
+          ),
+        ));
+}
+
+class $$AfinacoesTableFilterComposer
+    extends FilterComposer<_$AppDatabase, $AfinacoesTable> {
+  $$AfinacoesTableFilterComposer(super.$state);
+  ColumnFilters<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get nome => $state.composableBuilder(
+      column: $state.table.nome,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnWithTypeConverterFilters<model.Instrumento, model.Instrumento, String>
+      get instrumento => $state.composableBuilder(
+          column: $state.table.instrumento,
+          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
+              column,
+              joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get notas => $state.composableBuilder(
+      column: $state.table.notas,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ComposableFilter musicasRefs(
+      ComposableFilter Function($$MusicasTableFilterComposer f) f) {
+    final $$MusicasTableFilterComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $state.db.musicas,
+        getReferencedColumn: (t) => t.afinacaoId,
+        builder: (joinBuilder, parentComposers) => $$MusicasTableFilterComposer(
+            ComposerState(
+                $state.db, $state.db.musicas, joinBuilder, parentComposers)));
+    return f(composer);
+  }
+
+  ComposableFilter digitacoesRefs(
+      ComposableFilter Function($$DigitacoesTableFilterComposer f) f) {
+    final $$DigitacoesTableFilterComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $state.db.digitacoes,
+        getReferencedColumn: (t) => t.afinacaoId,
+        builder: (joinBuilder, parentComposers) =>
+            $$DigitacoesTableFilterComposer(ComposerState($state.db,
+                $state.db.digitacoes, joinBuilder, parentComposers)));
+    return f(composer);
+  }
+}
+
+class $$AfinacoesTableOrderingComposer
+    extends OrderingComposer<_$AppDatabase, $AfinacoesTable> {
+  $$AfinacoesTableOrderingComposer(super.$state);
+  ColumnOrderings<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get nome => $state.composableBuilder(
+      column: $state.table.nome,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get instrumento => $state.composableBuilder(
+      column: $state.table.instrumento,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get notas => $state.composableBuilder(
+      column: $state.table.notas,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+}
+
 typedef $$MusicasTableCreateCompanionBuilder = MusicasCompanion Function({
   Value<int> id,
   required String nome,
   required model.Instrumento instrumento,
+  required int afinacaoId,
   Value<String?> linkYoutube,
 });
 typedef $$MusicasTableUpdateCompanionBuilder = MusicasCompanion Function({
   Value<int> id,
   Value<String> nome,
   Value<model.Instrumento> instrumento,
+  Value<int> afinacaoId,
   Value<String?> linkYoutube,
 });
 
@@ -1242,24 +1890,28 @@ class $$MusicasTableTableManager extends RootTableManager<
             Value<int> id = const Value.absent(),
             Value<String> nome = const Value.absent(),
             Value<model.Instrumento> instrumento = const Value.absent(),
+            Value<int> afinacaoId = const Value.absent(),
             Value<String?> linkYoutube = const Value.absent(),
           }) =>
               MusicasCompanion(
             id: id,
             nome: nome,
             instrumento: instrumento,
+            afinacaoId: afinacaoId,
             linkYoutube: linkYoutube,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required String nome,
             required model.Instrumento instrumento,
+            required int afinacaoId,
             Value<String?> linkYoutube = const Value.absent(),
           }) =>
               MusicasCompanion.insert(
             id: id,
             nome: nome,
             instrumento: instrumento,
+            afinacaoId: afinacaoId,
             linkYoutube: linkYoutube,
           ),
         ));
@@ -1289,6 +1941,18 @@ class $$MusicasTableFilterComposer
       column: $state.table.linkYoutube,
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
+
+  $$AfinacoesTableFilterComposer get afinacaoId {
+    final $$AfinacoesTableFilterComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.afinacaoId,
+        referencedTable: $state.db.afinacoes,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder, parentComposers) =>
+            $$AfinacoesTableFilterComposer(ComposerState(
+                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    return composer;
+  }
 
   ComposableFilter partesRefs(
       ComposableFilter Function($$PartesTableFilterComposer f) f) {
@@ -1326,6 +1990,18 @@ class $$MusicasTableOrderingComposer
       column: $state.table.linkYoutube,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  $$AfinacoesTableOrderingComposer get afinacaoId {
+    final $$AfinacoesTableOrderingComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.afinacaoId,
+        referencedTable: $state.db.afinacoes,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder, parentComposers) =>
+            $$AfinacoesTableOrderingComposer(ComposerState(
+                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    return composer;
+  }
 }
 
 typedef $$PartesTableCreateCompanionBuilder = PartesCompanion Function({
@@ -1483,15 +2159,11 @@ typedef $$AcordesTableCreateCompanionBuilder = AcordesCompanion Function({
   Value<int> id,
   required String nome,
   required model.TipoAcorde tipo,
-  required int cordas,
-  required model.Posicoes posicoes,
 });
 typedef $$AcordesTableUpdateCompanionBuilder = AcordesCompanion Function({
   Value<int> id,
   Value<String> nome,
   Value<model.TipoAcorde> tipo,
-  Value<int> cordas,
-  Value<model.Posicoes> posicoes,
 });
 
 class $$AcordesTableTableManager extends RootTableManager<
@@ -1514,29 +2186,21 @@ class $$AcordesTableTableManager extends RootTableManager<
             Value<int> id = const Value.absent(),
             Value<String> nome = const Value.absent(),
             Value<model.TipoAcorde> tipo = const Value.absent(),
-            Value<int> cordas = const Value.absent(),
-            Value<model.Posicoes> posicoes = const Value.absent(),
           }) =>
               AcordesCompanion(
             id: id,
             nome: nome,
             tipo: tipo,
-            cordas: cordas,
-            posicoes: posicoes,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
             required String nome,
             required model.TipoAcorde tipo,
-            required int cordas,
-            required model.Posicoes posicoes,
           }) =>
               AcordesCompanion.insert(
             id: id,
             nome: nome,
             tipo: tipo,
-            cordas: cordas,
-            posicoes: posicoes,
           ),
         ));
 }
@@ -1561,17 +2225,18 @@ class $$AcordesTableFilterComposer
               column,
               joinBuilders: joinBuilders));
 
-  ColumnFilters<int> get cordas => $state.composableBuilder(
-      column: $state.table.cordas,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
-  ColumnWithTypeConverterFilters<model.Posicoes, model.Posicoes, String>
-      get posicoes => $state.composableBuilder(
-          column: $state.table.posicoes,
-          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
-              column,
-              joinBuilders: joinBuilders));
+  ComposableFilter digitacoesRefs(
+      ComposableFilter Function($$DigitacoesTableFilterComposer f) f) {
+    final $$DigitacoesTableFilterComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $state.db.digitacoes,
+        getReferencedColumn: (t) => t.acordeId,
+        builder: (joinBuilder, parentComposers) =>
+            $$DigitacoesTableFilterComposer(ComposerState($state.db,
+                $state.db.digitacoes, joinBuilder, parentComposers)));
+    return f(composer);
+  }
 
   ComposableFilter sequenciaCompassosRefs(
       ComposableFilter Function($$SequenciaCompassosTableFilterComposer f) f) {
@@ -1608,9 +2273,109 @@ class $$AcordesTableOrderingComposer
       column: $state.table.tipo,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
+}
 
-  ColumnOrderings<int> get cordas => $state.composableBuilder(
-      column: $state.table.cordas,
+typedef $$DigitacoesTableCreateCompanionBuilder = DigitacoesCompanion Function({
+  Value<int> id,
+  required int acordeId,
+  required int afinacaoId,
+  required model.Posicoes posicoes,
+});
+typedef $$DigitacoesTableUpdateCompanionBuilder = DigitacoesCompanion Function({
+  Value<int> id,
+  Value<int> acordeId,
+  Value<int> afinacaoId,
+  Value<model.Posicoes> posicoes,
+});
+
+class $$DigitacoesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $DigitacoesTable,
+    DigitacaoData,
+    $$DigitacoesTableFilterComposer,
+    $$DigitacoesTableOrderingComposer,
+    $$DigitacoesTableCreateCompanionBuilder,
+    $$DigitacoesTableUpdateCompanionBuilder> {
+  $$DigitacoesTableTableManager(_$AppDatabase db, $DigitacoesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$DigitacoesTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$DigitacoesTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<int> acordeId = const Value.absent(),
+            Value<int> afinacaoId = const Value.absent(),
+            Value<model.Posicoes> posicoes = const Value.absent(),
+          }) =>
+              DigitacoesCompanion(
+            id: id,
+            acordeId: acordeId,
+            afinacaoId: afinacaoId,
+            posicoes: posicoes,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required int acordeId,
+            required int afinacaoId,
+            required model.Posicoes posicoes,
+          }) =>
+              DigitacoesCompanion.insert(
+            id: id,
+            acordeId: acordeId,
+            afinacaoId: afinacaoId,
+            posicoes: posicoes,
+          ),
+        ));
+}
+
+class $$DigitacoesTableFilterComposer
+    extends FilterComposer<_$AppDatabase, $DigitacoesTable> {
+  $$DigitacoesTableFilterComposer(super.$state);
+  ColumnFilters<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnWithTypeConverterFilters<model.Posicoes, model.Posicoes, String>
+      get posicoes => $state.composableBuilder(
+          column: $state.table.posicoes,
+          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
+              column,
+              joinBuilders: joinBuilders));
+
+  $$AcordesTableFilterComposer get acordeId {
+    final $$AcordesTableFilterComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.acordeId,
+        referencedTable: $state.db.acordes,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder, parentComposers) => $$AcordesTableFilterComposer(
+            ComposerState(
+                $state.db, $state.db.acordes, joinBuilder, parentComposers)));
+    return composer;
+  }
+
+  $$AfinacoesTableFilterComposer get afinacaoId {
+    final $$AfinacoesTableFilterComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.afinacaoId,
+        referencedTable: $state.db.afinacoes,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder, parentComposers) =>
+            $$AfinacoesTableFilterComposer(ComposerState(
+                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    return composer;
+  }
+}
+
+class $$DigitacoesTableOrderingComposer
+    extends OrderingComposer<_$AppDatabase, $DigitacoesTable> {
+  $$DigitacoesTableOrderingComposer(super.$state);
+  ColumnOrderings<int> get id => $state.composableBuilder(
+      column: $state.table.id,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
 
@@ -1618,6 +2383,30 @@ class $$AcordesTableOrderingComposer
       column: $state.table.posicoes,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  $$AcordesTableOrderingComposer get acordeId {
+    final $$AcordesTableOrderingComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.acordeId,
+        referencedTable: $state.db.acordes,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder, parentComposers) =>
+            $$AcordesTableOrderingComposer(ComposerState(
+                $state.db, $state.db.acordes, joinBuilder, parentComposers)));
+    return composer;
+  }
+
+  $$AfinacoesTableOrderingComposer get afinacaoId {
+    final $$AfinacoesTableOrderingComposer composer = $state.composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.afinacaoId,
+        referencedTable: $state.db.afinacoes,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder, parentComposers) =>
+            $$AfinacoesTableOrderingComposer(ComposerState(
+                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    return composer;
+  }
 }
 
 typedef $$SequenciaCompassosTableCreateCompanionBuilder
@@ -1774,17 +2563,22 @@ class $$SequenciaCompassosTableOrderingComposer
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
+  $$AfinacoesTableTableManager get afinacoes =>
+      $$AfinacoesTableTableManager(_db, _db.afinacoes);
   $$MusicasTableTableManager get musicas =>
       $$MusicasTableTableManager(_db, _db.musicas);
   $$PartesTableTableManager get partes =>
       $$PartesTableTableManager(_db, _db.partes);
   $$AcordesTableTableManager get acordes =>
       $$AcordesTableTableManager(_db, _db.acordes);
+  $$DigitacoesTableTableManager get digitacoes =>
+      $$DigitacoesTableTableManager(_db, _db.digitacoes);
   $$SequenciaCompassosTableTableManager get sequenciaCompassos =>
       $$SequenciaCompassosTableTableManager(_db, _db.sequenciaCompassos);
 }
 
 mixin _$MusicasDaoMixin on DatabaseAccessor<AppDatabase> {
+  $AfinacoesTable get afinacoes => attachedDatabase.afinacoes;
   $MusicasTable get musicas => attachedDatabase.musicas;
   $PartesTable get partes => attachedDatabase.partes;
   $AcordesTable get acordes => attachedDatabase.acordes;
@@ -1793,4 +2587,6 @@ mixin _$MusicasDaoMixin on DatabaseAccessor<AppDatabase> {
 }
 mixin _$AcordesDaoMixin on DatabaseAccessor<AppDatabase> {
   $AcordesTable get acordes => attachedDatabase.acordes;
+  $AfinacoesTable get afinacoes => attachedDatabase.afinacoes;
+  $DigitacoesTable get digitacoes => attachedDatabase.digitacoes;
 }

@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Este aplicativo foi desenvolvido para ajudar músicos a organizar seus estudos, registrar o progresso e dominar suas músicas favoritas."),
         "addParte":
             MessageLookupByLibrary.simpleMessage("Adicionar Nova Parte"),
+        "afinacao": MessageLookupByLibrary.simpleMessage("Afinação"),
         "appLema": MessageLookupByLibrary.simpleMessage(
             "Pratique hoje, evolua sempre!"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
@@ -94,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "progresso": MessageLookupByLibrary.simpleMessage("Seu Progresso"),
         "progressoDesc":
             MessageLookupByLibrary.simpleMessage("Continue de onde parou!"),
+        "revise": MessageLookupByLibrary.simpleMessage(
+            "Revise os campos obrigatórios."),
         "ritmo": MessageLookupByLibrary.simpleMessage("Ritmo"),
         "saberMais": MessageLookupByLibrary.simpleMessage("Saber Mais"),
         "salvar": MessageLookupByLibrary.simpleMessage("Salvar"),

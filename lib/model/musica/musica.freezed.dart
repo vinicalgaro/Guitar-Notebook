@@ -19,6 +19,7 @@ mixin _$Musica {
   int? get id => throw _privateConstructorUsedError;
   String get nome => throw _privateConstructorUsedError;
   Instrumento get instrumento => throw _privateConstructorUsedError;
+  int get afinacaoId => throw _privateConstructorUsedError;
   String? get linkYoutube => throw _privateConstructorUsedError;
   List<Parte> get partes => throw _privateConstructorUsedError;
 
@@ -35,6 +36,7 @@ abstract class $MusicaCopyWith<$Res> {
       {int? id,
       String nome,
       Instrumento instrumento,
+      int afinacaoId,
       String? linkYoutube,
       List<Parte> partes});
 }
@@ -55,6 +57,7 @@ class _$MusicaCopyWithImpl<$Res, $Val extends Musica>
     Object? id = freezed,
     Object? nome = null,
     Object? instrumento = null,
+    Object? afinacaoId = null,
     Object? linkYoutube = freezed,
     Object? partes = null,
   }) {
@@ -71,6 +74,10 @@ class _$MusicaCopyWithImpl<$Res, $Val extends Musica>
           ? _value.instrumento
           : instrumento // ignore: cast_nullable_to_non_nullable
               as Instrumento,
+      afinacaoId: null == afinacaoId
+          ? _value.afinacaoId
+          : afinacaoId // ignore: cast_nullable_to_non_nullable
+              as int,
       linkYoutube: freezed == linkYoutube
           ? _value.linkYoutube
           : linkYoutube // ignore: cast_nullable_to_non_nullable
@@ -94,6 +101,7 @@ abstract class _$$MusicaImplCopyWith<$Res> implements $MusicaCopyWith<$Res> {
       {int? id,
       String nome,
       Instrumento instrumento,
+      int afinacaoId,
       String? linkYoutube,
       List<Parte> partes});
 }
@@ -112,6 +120,7 @@ class __$$MusicaImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? nome = null,
     Object? instrumento = null,
+    Object? afinacaoId = null,
     Object? linkYoutube = freezed,
     Object? partes = null,
   }) {
@@ -128,6 +137,10 @@ class __$$MusicaImplCopyWithImpl<$Res>
           ? _value.instrumento
           : instrumento // ignore: cast_nullable_to_non_nullable
               as Instrumento,
+      afinacaoId: null == afinacaoId
+          ? _value.afinacaoId
+          : afinacaoId // ignore: cast_nullable_to_non_nullable
+              as int,
       linkYoutube: freezed == linkYoutube
           ? _value.linkYoutube
           : linkYoutube // ignore: cast_nullable_to_non_nullable
@@ -147,6 +160,7 @@ class _$MusicaImpl implements _Musica {
       {this.id,
       required this.nome,
       required this.instrumento,
+      required this.afinacaoId,
       this.linkYoutube,
       required final List<Parte> partes})
       : _partes = partes;
@@ -157,6 +171,8 @@ class _$MusicaImpl implements _Musica {
   final String nome;
   @override
   final Instrumento instrumento;
+  @override
+  final int afinacaoId;
   @override
   final String? linkYoutube;
   final List<Parte> _partes;
@@ -169,7 +185,7 @@ class _$MusicaImpl implements _Musica {
 
   @override
   String toString() {
-    return 'Musica(id: $id, nome: $nome, instrumento: $instrumento, linkYoutube: $linkYoutube, partes: $partes)';
+    return 'Musica(id: $id, nome: $nome, instrumento: $instrumento, afinacaoId: $afinacaoId, linkYoutube: $linkYoutube, partes: $partes)';
   }
 
   @override
@@ -181,6 +197,8 @@ class _$MusicaImpl implements _Musica {
             (identical(other.nome, nome) || other.nome == nome) &&
             (identical(other.instrumento, instrumento) ||
                 other.instrumento == instrumento) &&
+            (identical(other.afinacaoId, afinacaoId) ||
+                other.afinacaoId == afinacaoId) &&
             (identical(other.linkYoutube, linkYoutube) ||
                 other.linkYoutube == linkYoutube) &&
             const DeepCollectionEquality().equals(other._partes, _partes));
@@ -188,7 +206,7 @@ class _$MusicaImpl implements _Musica {
 
   @override
   int get hashCode => Object.hash(runtimeType, id, nome, instrumento,
-      linkYoutube, const DeepCollectionEquality().hash(_partes));
+      afinacaoId, linkYoutube, const DeepCollectionEquality().hash(_partes));
 
   @JsonKey(ignore: true)
   @override
@@ -202,6 +220,7 @@ abstract class _Musica implements Musica {
       {final int? id,
       required final String nome,
       required final Instrumento instrumento,
+      required final int afinacaoId,
       final String? linkYoutube,
       required final List<Parte> partes}) = _$MusicaImpl;
 
@@ -211,6 +230,8 @@ abstract class _Musica implements Musica {
   String get nome;
   @override
   Instrumento get instrumento;
+  @override
+  int get afinacaoId;
   @override
   String? get linkYoutube;
   @override

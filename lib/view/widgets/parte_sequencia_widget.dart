@@ -99,11 +99,15 @@ class ParteSequenciaWidget extends StatelessWidget {
       BuildContext context, FormFieldState<List<Compasso>> field) {
     final viewModel = context.read<CadastroMusicaViewModel>();
 
+    if (viewModel.afinacaoSelecionada == null) {
+      return;
+    }
+
     callBottomSheet(
         context,
         ChangeNotifierProvider(
           create: (_) => SelectionSequenciaViewModel(
-              instrumento: viewModel.musicaRascunho.instrumento,
+              afinacaoId: viewModel.afinacaoSelecionada!.id,
               repository: context.read<IAcordeRepository>()),
           child: SelectionSequenciaPage(
             onSelectionCallback: (sequencia) =>

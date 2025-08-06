@@ -89,5 +89,7 @@
   "nota_F": "Fá",
   "nota_G": "Sol",
   "nota_A": "Lá",
-  "nota_B": "Si"
+  "nota_B": "Si",
+  "afinacao": "Afinação",
+  "revise": "Revise os campos obrigatórios."
 }

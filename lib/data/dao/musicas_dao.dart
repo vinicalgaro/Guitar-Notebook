@@ -8,27 +8,20 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
     return transaction(() async {
       int musicaId;
 
+      final musicaCompanion = MusicasCompanion(
+        nome: Value(musica.nome),
+        instrumento: Value(musica.instrumento),
+        afinacaoId: Value(musica.afinacaoId),
+        linkYoutube: Value(musica.linkYoutube),
+      );
+
       if (musica.id != null) {
         musicaId = musica.id!;
-
-        final musicaCompanion = MusicasCompanion(
-          id: Value(musicaId),
-          nome: Value(musica.nome),
-          instrumento: Value(musica.instrumento),
-          linkYoutube: Value(musica.linkYoutube),
-        );
-
         await (update(musicas)..where((tbl) => tbl.id.equals(musicaId)))
             .write(musicaCompanion);
-
         await (delete(partes)..where((tbl) => tbl.musicaId.equals(musicaId)))
             .go();
       } else {
-        final musicaCompanion = MusicasCompanion.insert(
-          nome: musica.nome,
-          instrumento: musica.instrumento,
-          linkYoutube: Value(musica.linkYoutube),
-        );
         musicaId = await into(musicas).insert(musicaCompanion);
       }
 
@@ -44,9 +37,7 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
         int ordem = 0;
         for (var compasso in parteModel.sequencia.compassos) {
           final acorde = await (select(acordes)
-                ..where((tbl) =>
-                    tbl.nome.equals(compasso.acorde.nome) &
-                    tbl.cordas.equals(musica.instrumento.numCordas)))
+                ..where((tbl) => tbl.nome.equals(compasso.acorde.nome)))
               .getSingleOrNull();
 
           if (acorde != null) {

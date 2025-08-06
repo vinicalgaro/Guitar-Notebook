@@ -84,5 +84,7 @@
   "nota_F": "F",
   "nota_G": "G",
   "nota_A": "A",
-  "nota_B": "B"
+  "nota_B": "B",
+  "afinacao": "Tuning",
+  "revise": "Revise the required fields."
 }

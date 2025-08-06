@@ -13,6 +13,7 @@ class Musica with _$Musica {
       {int? id,
       required String nome,
       required Instrumento instrumento,
+      required int afinacaoId,
       String? linkYoutube,
       required List<Parte> partes}) = _Musica;
 }

@@ -23,44 +23,54 @@ class MusicaRepositoryImpl implements IMusicaRepository {
     if (musicaCompletaData == null) {
       return null;
     }
-    return _converterParaModelo(musicaCompletaData);
+    return await _converterParaModelo(musicaCompletaData);
   }
 
   @override
   Stream<List<model.Musica>> watchAllMusicas() {
-    return _musicasDao.watchTodasMusicasCompletas().map((listaDoBanco) {
-      return listaDoBanco.map(_converterParaModelo).toList();
+    return _musicasDao
+        .watchTodasMusicasCompletas()
+        .asyncMap((listaDoBanco) async {
+      final List<model.Musica> listaConvertida = [];
+      for (var data in listaDoBanco) {
+        listaConvertida.add(await _converterParaModelo(data));
+      }
+      return listaConvertida;
     });
   }
 
-  model.Musica _converterParaModelo(MusicaCompletaData data) {
-    final partesDoModelo = data.partes.map((parteData) {
-      final compassosDoModelo = parteData.compassos.map((compassoComAcorde) {
+  Future<model.Musica> _converterParaModelo(MusicaCompletaData data) async {
+    final partesDoModelo = <model.Parte>[];
+
+    for (var parteData in data.partes) {
+      final compassosDoModelo = <model.Compasso>[];
+      for (var compassoComAcorde in parteData.compassos) {
         final acordeDoModelo = model.Acorde(
           id: compassoComAcorde.acorde.id,
           nome: compassoComAcorde.acorde.nome,
           tipo: compassoComAcorde.acorde.tipo,
-          cordas: compassoComAcorde.acorde.cordas,
-          posicoes: compassoComAcorde.acorde.posicoes,
+          cordas: 0,
+          posicoes: const model.Posicoes(trasteInicial: 0, dedos: []),
         );
 
-        return model.Compasso(
+        compassosDoModelo.add(model.Compasso(
           acordeDoModelo,
           compassoComAcorde.compasso.vezes,
-        );
-      }).toList();
+        ));
+      }
 
-      return model.Parte(
+      partesDoModelo.add(model.Parte(
         nome: parteData.parte.nome,
         ritmo: model.Ritmo.fromString(parteData.parte.ritmo),
         sequencia: model.Sequencia(compassosDoModelo),
-      );
-    }).toList();
+      ));
+    }
 
     return model.Musica(
       id: data.musica.id,
       nome: data.musica.nome,
       instrumento: data.musica.instrumento,
+      afinacaoId: data.musica.afinacaoId,
       linkYoutube: data.musica.linkYoutube,
       partes: partesDoModelo,
     );
