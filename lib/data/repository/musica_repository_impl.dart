@@ -28,9 +28,9 @@ class MusicaRepositoryImpl implements IMusicaRepository {
 
   @override
   Stream<List<model.Musica>> watchAllMusicas() {
-    return _musicasDao
-        .watchTodasMusicasCompletas()
-        .asyncMap((listaDoBanco) async {
+    return _musicasDao.watchTodasMusicasCompletas().asyncMap((
+      listaDoBanco,
+    ) async {
       final List<model.Musica> listaConvertida = [];
       for (var data in listaDoBanco) {
         listaConvertida.add(await _converterParaModelo(data));
@@ -53,17 +53,18 @@ class MusicaRepositoryImpl implements IMusicaRepository {
           posicoes: const model.Posicoes(trasteInicial: 0, dedos: []),
         );
 
-        compassosDoModelo.add(model.Compasso(
-          acordeDoModelo,
-          compassoComAcorde.compasso.vezes,
-        ));
+        compassosDoModelo.add(
+          model.Compasso(acordeDoModelo, compassoComAcorde.compasso.vezes),
+        );
       }
 
-      partesDoModelo.add(model.Parte(
-        nome: parteData.parte.nome,
-        ritmo: model.Ritmo.fromString(parteData.parte.ritmo),
-        sequencia: model.Sequencia(compassosDoModelo),
-      ));
+      partesDoModelo.add(
+        model.Parte(
+          nome: parteData.parte.nome,
+          ritmo: model.Ritmo.fromString(parteData.parte.ritmo),
+          sequencia: model.Sequencia(compassosDoModelo),
+        ),
+      );
     }
 
     return model.Musica(
