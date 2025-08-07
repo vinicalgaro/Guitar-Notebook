@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/model/repository/musica_repository.dart';
 import 'package:guitar_learner/routes/app_routes.dart';

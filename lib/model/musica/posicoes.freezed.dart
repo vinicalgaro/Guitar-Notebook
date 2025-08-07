@@ -12,7 +12,8 @@ part of 'posicoes.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Posicoes _$PosicoesFromJson(Map<String, dynamic> json) {
   return _Posicoes.fromJson(json);
@@ -24,8 +25,12 @@ mixin _$Posicoes {
   int get trasteInicial => throw _privateConstructorUsedError;
   List<int> get dedos => throw _privateConstructorUsedError;
 
+  /// Serializes this Posicoes to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Posicoes
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PosicoesCopyWith<Posicoes> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -35,8 +40,10 @@ abstract class $PosicoesCopyWith<$Res> {
   factory $PosicoesCopyWith(Posicoes value, $Res Function(Posicoes) then) =
       _$PosicoesCopyWithImpl<$Res, Posicoes>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'traste_inicial') int trasteInicial, List<int> dedos});
+  $Res call({
+    @JsonKey(name: 'traste_inicial') int trasteInicial,
+    List<int> dedos,
+  });
 }
 
 /// @nodoc
@@ -49,22 +56,24 @@ class _$PosicoesCopyWithImpl<$Res, $Val extends Posicoes>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Posicoes
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? trasteInicial = null,
-    Object? dedos = null,
-  }) {
-    return _then(_value.copyWith(
-      trasteInicial: null == trasteInicial
-          ? _value.trasteInicial
-          : trasteInicial // ignore: cast_nullable_to_non_nullable
-              as int,
-      dedos: null == dedos
-          ? _value.dedos
-          : dedos // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-    ) as $Val);
+  $Res call({Object? trasteInicial = null, Object? dedos = null}) {
+    return _then(
+      _value.copyWith(
+            trasteInicial: null == trasteInicial
+                ? _value.trasteInicial
+                : trasteInicial // ignore: cast_nullable_to_non_nullable
+                      as int,
+            dedos: null == dedos
+                ? _value.dedos
+                : dedos // ignore: cast_nullable_to_non_nullable
+                      as List<int>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -72,12 +81,15 @@ class _$PosicoesCopyWithImpl<$Res, $Val extends Posicoes>
 abstract class _$$PosicoesImplCopyWith<$Res>
     implements $PosicoesCopyWith<$Res> {
   factory _$$PosicoesImplCopyWith(
-          _$PosicoesImpl value, $Res Function(_$PosicoesImpl) then) =
-      __$$PosicoesImplCopyWithImpl<$Res>;
+    _$PosicoesImpl value,
+    $Res Function(_$PosicoesImpl) then,
+  ) = __$$PosicoesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'traste_inicial') int trasteInicial, List<int> dedos});
+  $Res call({
+    @JsonKey(name: 'traste_inicial') int trasteInicial,
+    List<int> dedos,
+  });
 }
 
 /// @nodoc
@@ -85,35 +97,37 @@ class __$$PosicoesImplCopyWithImpl<$Res>
     extends _$PosicoesCopyWithImpl<$Res, _$PosicoesImpl>
     implements _$$PosicoesImplCopyWith<$Res> {
   __$$PosicoesImplCopyWithImpl(
-      _$PosicoesImpl _value, $Res Function(_$PosicoesImpl) _then)
-      : super(_value, _then);
+    _$PosicoesImpl _value,
+    $Res Function(_$PosicoesImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of Posicoes
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? trasteInicial = null,
-    Object? dedos = null,
-  }) {
-    return _then(_$PosicoesImpl(
-      trasteInicial: null == trasteInicial
-          ? _value.trasteInicial
-          : trasteInicial // ignore: cast_nullable_to_non_nullable
-              as int,
-      dedos: null == dedos
-          ? _value._dedos
-          : dedos // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-    ));
+  $Res call({Object? trasteInicial = null, Object? dedos = null}) {
+    return _then(
+      _$PosicoesImpl(
+        trasteInicial: null == trasteInicial
+            ? _value.trasteInicial
+            : trasteInicial // ignore: cast_nullable_to_non_nullable
+                  as int,
+        dedos: null == dedos
+            ? _value._dedos
+            : dedos // ignore: cast_nullable_to_non_nullable
+                  as List<int>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PosicoesImpl implements _Posicoes {
-  const _$PosicoesImpl(
-      {@JsonKey(name: 'traste_inicial') required this.trasteInicial,
-      required final List<int> dedos})
-      : _dedos = dedos;
+  const _$PosicoesImpl({
+    @JsonKey(name: 'traste_inicial') required this.trasteInicial,
+    required final List<int> dedos,
+  }) : _dedos = dedos;
 
   factory _$PosicoesImpl.fromJson(Map<String, dynamic> json) =>
       _$$PosicoesImplFromJson(json);
@@ -144,12 +158,17 @@ class _$PosicoesImpl implements _Posicoes {
             const DeepCollectionEquality().equals(other._dedos, _dedos));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, trasteInicial, const DeepCollectionEquality().hash(_dedos));
+    runtimeType,
+    trasteInicial,
+    const DeepCollectionEquality().hash(_dedos),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Posicoes
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PosicoesImplCopyWith<_$PosicoesImpl> get copyWith =>
@@ -157,16 +176,15 @@ class _$PosicoesImpl implements _Posicoes {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PosicoesImplToJson(
-      this,
-    );
+    return _$$PosicoesImplToJson(this);
   }
 }
 
 abstract class _Posicoes implements Posicoes {
-  const factory _Posicoes(
-      {@JsonKey(name: 'traste_inicial') required final int trasteInicial,
-      required final List<int> dedos}) = _$PosicoesImpl;
+  const factory _Posicoes({
+    @JsonKey(name: 'traste_inicial') required final int trasteInicial,
+    required final List<int> dedos,
+  }) = _$PosicoesImpl;
 
   factory _Posicoes.fromJson(Map<String, dynamic> json) =
       _$PosicoesImpl.fromJson;
@@ -176,8 +194,11 @@ abstract class _Posicoes implements Posicoes {
   int get trasteInicial;
   @override
   List<int> get dedos;
+
+  /// Create a copy of Posicoes
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PosicoesImplCopyWith<_$PosicoesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

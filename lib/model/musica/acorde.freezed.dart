@@ -12,7 +12,8 @@ part of 'acorde.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Acorde _$AcordeFromJson(Map<String, dynamic> json) {
   return _Acorde.fromJson(json);
@@ -27,8 +28,12 @@ mixin _$Acorde {
   @JsonKey(name: 'posicoes_json')
   Posicoes get posicoes => throw _privateConstructorUsedError;
 
+  /// Serializes this Acorde to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Acorde
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AcordeCopyWith<Acorde> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -37,12 +42,13 @@ abstract class $AcordeCopyWith<$Res> {
   factory $AcordeCopyWith(Acorde value, $Res Function(Acorde) then) =
       _$AcordeCopyWithImpl<$Res, Acorde>;
   @useResult
-  $Res call(
-      {int id,
-      String nome,
-      TipoAcorde tipo,
-      int cordas,
-      @JsonKey(name: 'posicoes_json') Posicoes posicoes});
+  $Res call({
+    int id,
+    String nome,
+    TipoAcorde tipo,
+    int cordas,
+    @JsonKey(name: 'posicoes_json') Posicoes posicoes,
+  });
 
   $PosicoesCopyWith<$Res> get posicoes;
 }
@@ -57,6 +63,8 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Acorde
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -66,30 +74,35 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
     Object? cordas = null,
     Object? posicoes = null,
   }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      tipo: null == tipo
-          ? _value.tipo
-          : tipo // ignore: cast_nullable_to_non_nullable
-              as TipoAcorde,
-      cordas: null == cordas
-          ? _value.cordas
-          : cordas // ignore: cast_nullable_to_non_nullable
-              as int,
-      posicoes: null == posicoes
-          ? _value.posicoes
-          : posicoes // ignore: cast_nullable_to_non_nullable
-              as Posicoes,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int,
+            nome: null == nome
+                ? _value.nome
+                : nome // ignore: cast_nullable_to_non_nullable
+                      as String,
+            tipo: null == tipo
+                ? _value.tipo
+                : tipo // ignore: cast_nullable_to_non_nullable
+                      as TipoAcorde,
+            cordas: null == cordas
+                ? _value.cordas
+                : cordas // ignore: cast_nullable_to_non_nullable
+                      as int,
+            posicoes: null == posicoes
+                ? _value.posicoes
+                : posicoes // ignore: cast_nullable_to_non_nullable
+                      as Posicoes,
+          )
+          as $Val,
+    );
   }
 
+  /// Create a copy of Acorde
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PosicoesCopyWith<$Res> get posicoes {
@@ -102,16 +115,18 @@ class _$AcordeCopyWithImpl<$Res, $Val extends Acorde>
 /// @nodoc
 abstract class _$$AcordeImplCopyWith<$Res> implements $AcordeCopyWith<$Res> {
   factory _$$AcordeImplCopyWith(
-          _$AcordeImpl value, $Res Function(_$AcordeImpl) then) =
-      __$$AcordeImplCopyWithImpl<$Res>;
+    _$AcordeImpl value,
+    $Res Function(_$AcordeImpl) then,
+  ) = __$$AcordeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      String nome,
-      TipoAcorde tipo,
-      int cordas,
-      @JsonKey(name: 'posicoes_json') Posicoes posicoes});
+  $Res call({
+    int id,
+    String nome,
+    TipoAcorde tipo,
+    int cordas,
+    @JsonKey(name: 'posicoes_json') Posicoes posicoes,
+  });
 
   @override
   $PosicoesCopyWith<$Res> get posicoes;
@@ -122,9 +137,12 @@ class __$$AcordeImplCopyWithImpl<$Res>
     extends _$AcordeCopyWithImpl<$Res, _$AcordeImpl>
     implements _$$AcordeImplCopyWith<$Res> {
   __$$AcordeImplCopyWithImpl(
-      _$AcordeImpl _value, $Res Function(_$AcordeImpl) _then)
-      : super(_value, _then);
+    _$AcordeImpl _value,
+    $Res Function(_$AcordeImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of Acorde
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,41 +152,43 @@ class __$$AcordeImplCopyWithImpl<$Res>
     Object? cordas = null,
     Object? posicoes = null,
   }) {
-    return _then(_$AcordeImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      tipo: null == tipo
-          ? _value.tipo
-          : tipo // ignore: cast_nullable_to_non_nullable
-              as TipoAcorde,
-      cordas: null == cordas
-          ? _value.cordas
-          : cordas // ignore: cast_nullable_to_non_nullable
-              as int,
-      posicoes: null == posicoes
-          ? _value.posicoes
-          : posicoes // ignore: cast_nullable_to_non_nullable
-              as Posicoes,
-    ));
+    return _then(
+      _$AcordeImpl(
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        nome: null == nome
+            ? _value.nome
+            : nome // ignore: cast_nullable_to_non_nullable
+                  as String,
+        tipo: null == tipo
+            ? _value.tipo
+            : tipo // ignore: cast_nullable_to_non_nullable
+                  as TipoAcorde,
+        cordas: null == cordas
+            ? _value.cordas
+            : cordas // ignore: cast_nullable_to_non_nullable
+                  as int,
+        posicoes: null == posicoes
+            ? _value.posicoes
+            : posicoes // ignore: cast_nullable_to_non_nullable
+                  as Posicoes,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$AcordeImpl extends _Acorde {
-  const _$AcordeImpl(
-      {required this.id,
-      required this.nome,
-      required this.tipo,
-      required this.cordas,
-      @JsonKey(name: 'posicoes_json') required this.posicoes})
-      : super._();
+  const _$AcordeImpl({
+    required this.id,
+    required this.nome,
+    required this.tipo,
+    required this.cordas,
+    @JsonKey(name: 'posicoes_json') required this.posicoes,
+  }) : super._();
 
   factory _$AcordeImpl.fromJson(Map<String, dynamic> json) =>
       _$$AcordeImplFromJson(json);
@@ -203,12 +223,14 @@ class _$AcordeImpl extends _Acorde {
                 other.posicoes == posicoes));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, nome, tipo, cordas, posicoes);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Acorde
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AcordeImplCopyWith<_$AcordeImpl> get copyWith =>
@@ -216,20 +238,18 @@ class _$AcordeImpl extends _Acorde {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AcordeImplToJson(
-      this,
-    );
+    return _$$AcordeImplToJson(this);
   }
 }
 
 abstract class _Acorde extends Acorde {
-  const factory _Acorde(
-          {required final int id,
-          required final String nome,
-          required final TipoAcorde tipo,
-          required final int cordas,
-          @JsonKey(name: 'posicoes_json') required final Posicoes posicoes}) =
-      _$AcordeImpl;
+  const factory _Acorde({
+    required final int id,
+    required final String nome,
+    required final TipoAcorde tipo,
+    required final int cordas,
+    @JsonKey(name: 'posicoes_json') required final Posicoes posicoes,
+  }) = _$AcordeImpl;
   const _Acorde._() : super._();
 
   factory _Acorde.fromJson(Map<String, dynamic> json) = _$AcordeImpl.fromJson;
@@ -245,8 +265,11 @@ abstract class _Acorde extends Acorde {
   @override
   @JsonKey(name: 'posicoes_json')
   Posicoes get posicoes;
+
+  /// Create a copy of Acorde
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AcordeImplCopyWith<_$AcordeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

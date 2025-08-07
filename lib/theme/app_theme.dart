@@ -63,7 +63,7 @@ class AppTheme {
           foregroundColor: foregroundColor,
           shape: const CircleBorder());
 
-  static CardTheme _buildCardTheme(Color color) => CardTheme(
+  static CardThemeData _buildCardTheme(Color color) => CardThemeData(
         color: color,
         elevation: 2,
         shape: RoundedRectangleBorder(

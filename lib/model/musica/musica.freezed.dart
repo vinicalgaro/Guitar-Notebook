@@ -12,7 +12,8 @@ part of 'musica.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$Musica {
@@ -23,7 +24,9 @@ mixin _$Musica {
   String? get linkYoutube => throw _privateConstructorUsedError;
   List<Parte> get partes => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Musica
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MusicaCopyWith<Musica> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -32,13 +35,14 @@ abstract class $MusicaCopyWith<$Res> {
   factory $MusicaCopyWith(Musica value, $Res Function(Musica) then) =
       _$MusicaCopyWithImpl<$Res, Musica>;
   @useResult
-  $Res call(
-      {int? id,
-      String nome,
-      Instrumento instrumento,
-      int afinacaoId,
-      String? linkYoutube,
-      List<Parte> partes});
+  $Res call({
+    int? id,
+    String nome,
+    Instrumento instrumento,
+    int afinacaoId,
+    String? linkYoutube,
+    List<Parte> partes,
+  });
 }
 
 /// @nodoc
@@ -51,6 +55,8 @@ class _$MusicaCopyWithImpl<$Res, $Val extends Musica>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Musica
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -61,49 +67,54 @@ class _$MusicaCopyWithImpl<$Res, $Val extends Musica>
     Object? linkYoutube = freezed,
     Object? partes = null,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      instrumento: null == instrumento
-          ? _value.instrumento
-          : instrumento // ignore: cast_nullable_to_non_nullable
-              as Instrumento,
-      afinacaoId: null == afinacaoId
-          ? _value.afinacaoId
-          : afinacaoId // ignore: cast_nullable_to_non_nullable
-              as int,
-      linkYoutube: freezed == linkYoutube
-          ? _value.linkYoutube
-          : linkYoutube // ignore: cast_nullable_to_non_nullable
-              as String?,
-      partes: null == partes
-          ? _value.partes
-          : partes // ignore: cast_nullable_to_non_nullable
-              as List<Parte>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            nome: null == nome
+                ? _value.nome
+                : nome // ignore: cast_nullable_to_non_nullable
+                      as String,
+            instrumento: null == instrumento
+                ? _value.instrumento
+                : instrumento // ignore: cast_nullable_to_non_nullable
+                      as Instrumento,
+            afinacaoId: null == afinacaoId
+                ? _value.afinacaoId
+                : afinacaoId // ignore: cast_nullable_to_non_nullable
+                      as int,
+            linkYoutube: freezed == linkYoutube
+                ? _value.linkYoutube
+                : linkYoutube // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            partes: null == partes
+                ? _value.partes
+                : partes // ignore: cast_nullable_to_non_nullable
+                      as List<Parte>,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$MusicaImplCopyWith<$Res> implements $MusicaCopyWith<$Res> {
   factory _$$MusicaImplCopyWith(
-          _$MusicaImpl value, $Res Function(_$MusicaImpl) then) =
-      __$$MusicaImplCopyWithImpl<$Res>;
+    _$MusicaImpl value,
+    $Res Function(_$MusicaImpl) then,
+  ) = __$$MusicaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? id,
-      String nome,
-      Instrumento instrumento,
-      int afinacaoId,
-      String? linkYoutube,
-      List<Parte> partes});
+  $Res call({
+    int? id,
+    String nome,
+    Instrumento instrumento,
+    int afinacaoId,
+    String? linkYoutube,
+    List<Parte> partes,
+  });
 }
 
 /// @nodoc
@@ -111,9 +122,12 @@ class __$$MusicaImplCopyWithImpl<$Res>
     extends _$MusicaCopyWithImpl<$Res, _$MusicaImpl>
     implements _$$MusicaImplCopyWith<$Res> {
   __$$MusicaImplCopyWithImpl(
-      _$MusicaImpl _value, $Res Function(_$MusicaImpl) _then)
-      : super(_value, _then);
+    _$MusicaImpl _value,
+    $Res Function(_$MusicaImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of Musica
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,46 +138,48 @@ class __$$MusicaImplCopyWithImpl<$Res>
     Object? linkYoutube = freezed,
     Object? partes = null,
   }) {
-    return _then(_$MusicaImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      instrumento: null == instrumento
-          ? _value.instrumento
-          : instrumento // ignore: cast_nullable_to_non_nullable
-              as Instrumento,
-      afinacaoId: null == afinacaoId
-          ? _value.afinacaoId
-          : afinacaoId // ignore: cast_nullable_to_non_nullable
-              as int,
-      linkYoutube: freezed == linkYoutube
-          ? _value.linkYoutube
-          : linkYoutube // ignore: cast_nullable_to_non_nullable
-              as String?,
-      partes: null == partes
-          ? _value._partes
-          : partes // ignore: cast_nullable_to_non_nullable
-              as List<Parte>,
-    ));
+    return _then(
+      _$MusicaImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        nome: null == nome
+            ? _value.nome
+            : nome // ignore: cast_nullable_to_non_nullable
+                  as String,
+        instrumento: null == instrumento
+            ? _value.instrumento
+            : instrumento // ignore: cast_nullable_to_non_nullable
+                  as Instrumento,
+        afinacaoId: null == afinacaoId
+            ? _value.afinacaoId
+            : afinacaoId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        linkYoutube: freezed == linkYoutube
+            ? _value.linkYoutube
+            : linkYoutube // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        partes: null == partes
+            ? _value._partes
+            : partes // ignore: cast_nullable_to_non_nullable
+                  as List<Parte>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$MusicaImpl implements _Musica {
-  const _$MusicaImpl(
-      {this.id,
-      required this.nome,
-      required this.instrumento,
-      required this.afinacaoId,
-      this.linkYoutube,
-      required final List<Parte> partes})
-      : _partes = partes;
+  const _$MusicaImpl({
+    this.id,
+    required this.nome,
+    required this.instrumento,
+    required this.afinacaoId,
+    this.linkYoutube,
+    required final List<Parte> partes,
+  }) : _partes = partes;
 
   @override
   final int? id;
@@ -205,10 +221,19 @@ class _$MusicaImpl implements _Musica {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, nome, instrumento,
-      afinacaoId, linkYoutube, const DeepCollectionEquality().hash(_partes));
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    nome,
+    instrumento,
+    afinacaoId,
+    linkYoutube,
+    const DeepCollectionEquality().hash(_partes),
+  );
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Musica
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MusicaImplCopyWith<_$MusicaImpl> get copyWith =>
@@ -216,13 +241,14 @@ class _$MusicaImpl implements _Musica {
 }
 
 abstract class _Musica implements Musica {
-  const factory _Musica(
-      {final int? id,
-      required final String nome,
-      required final Instrumento instrumento,
-      required final int afinacaoId,
-      final String? linkYoutube,
-      required final List<Parte> partes}) = _$MusicaImpl;
+  const factory _Musica({
+    final int? id,
+    required final String nome,
+    required final Instrumento instrumento,
+    required final int afinacaoId,
+    final String? linkYoutube,
+    required final List<Parte> partes,
+  }) = _$MusicaImpl;
 
   @override
   int? get id;
@@ -236,8 +262,11 @@ abstract class _Musica implements Musica {
   String? get linkYoutube;
   @override
   List<Parte> get partes;
+
+  /// Create a copy of Musica
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MusicaImplCopyWith<_$MusicaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

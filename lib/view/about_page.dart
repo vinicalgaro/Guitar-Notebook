@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import 'package:guitar_learner/helpers/get_from_assets.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:guitar_learner/widgets/default_page_scaffold.dart';

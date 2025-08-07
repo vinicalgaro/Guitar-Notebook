@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import 'package:guitar_learner/extensions/locale_extension.dart';
 import 'package:guitar_learner/helpers/helper_toast.dart';
 import 'package:guitar_learner/widgets/default_header_page.dart';

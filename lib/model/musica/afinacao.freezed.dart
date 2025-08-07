@@ -12,7 +12,8 @@ part of 'afinacao.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$Afinacao {
@@ -21,7 +22,9 @@ mixin _$Afinacao {
   Instrumento get instrumento => throw _privateConstructorUsedError;
   String get notas => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Afinacao
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AfinacaoCopyWith<Afinacao> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +47,8 @@ class _$AfinacaoCopyWithImpl<$Res, $Val extends Afinacao>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Afinacao
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -52,24 +57,27 @@ class _$AfinacaoCopyWithImpl<$Res, $Val extends Afinacao>
     Object? instrumento = null,
     Object? notas = null,
   }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      instrumento: null == instrumento
-          ? _value.instrumento
-          : instrumento // ignore: cast_nullable_to_non_nullable
-              as Instrumento,
-      notas: null == notas
-          ? _value.notas
-          : notas // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int,
+            nome: null == nome
+                ? _value.nome
+                : nome // ignore: cast_nullable_to_non_nullable
+                      as String,
+            instrumento: null == instrumento
+                ? _value.instrumento
+                : instrumento // ignore: cast_nullable_to_non_nullable
+                      as Instrumento,
+            notas: null == notas
+                ? _value.notas
+                : notas // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -77,8 +85,9 @@ class _$AfinacaoCopyWithImpl<$Res, $Val extends Afinacao>
 abstract class _$$AfinacaoImplCopyWith<$Res>
     implements $AfinacaoCopyWith<$Res> {
   factory _$$AfinacaoImplCopyWith(
-          _$AfinacaoImpl value, $Res Function(_$AfinacaoImpl) then) =
-      __$$AfinacaoImplCopyWithImpl<$Res>;
+    _$AfinacaoImpl value,
+    $Res Function(_$AfinacaoImpl) then,
+  ) = __$$AfinacaoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String nome, Instrumento instrumento, String notas});
@@ -89,9 +98,12 @@ class __$$AfinacaoImplCopyWithImpl<$Res>
     extends _$AfinacaoCopyWithImpl<$Res, _$AfinacaoImpl>
     implements _$$AfinacaoImplCopyWith<$Res> {
   __$$AfinacaoImplCopyWithImpl(
-      _$AfinacaoImpl _value, $Res Function(_$AfinacaoImpl) _then)
-      : super(_value, _then);
+    _$AfinacaoImpl _value,
+    $Res Function(_$AfinacaoImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of Afinacao
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,35 +112,38 @@ class __$$AfinacaoImplCopyWithImpl<$Res>
     Object? instrumento = null,
     Object? notas = null,
   }) {
-    return _then(_$AfinacaoImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      instrumento: null == instrumento
-          ? _value.instrumento
-          : instrumento // ignore: cast_nullable_to_non_nullable
-              as Instrumento,
-      notas: null == notas
-          ? _value.notas
-          : notas // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$AfinacaoImpl(
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        nome: null == nome
+            ? _value.nome
+            : nome // ignore: cast_nullable_to_non_nullable
+                  as String,
+        instrumento: null == instrumento
+            ? _value.instrumento
+            : instrumento // ignore: cast_nullable_to_non_nullable
+                  as Instrumento,
+        notas: null == notas
+            ? _value.notas
+            : notas // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$AfinacaoImpl implements _Afinacao {
-  const _$AfinacaoImpl(
-      {required this.id,
-      required this.nome,
-      required this.instrumento,
-      required this.notas});
+  const _$AfinacaoImpl({
+    required this.id,
+    required this.nome,
+    required this.instrumento,
+    required this.notas,
+  });
 
   @override
   final int id;
@@ -159,7 +174,9 @@ class _$AfinacaoImpl implements _Afinacao {
   @override
   int get hashCode => Object.hash(runtimeType, id, nome, instrumento, notas);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Afinacao
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AfinacaoImplCopyWith<_$AfinacaoImpl> get copyWith =>
@@ -167,11 +184,12 @@ class _$AfinacaoImpl implements _Afinacao {
 }
 
 abstract class _Afinacao implements Afinacao {
-  const factory _Afinacao(
-      {required final int id,
-      required final String nome,
-      required final Instrumento instrumento,
-      required final String notas}) = _$AfinacaoImpl;
+  const factory _Afinacao({
+    required final int id,
+    required final String nome,
+    required final Instrumento instrumento,
+    required final String notas,
+  }) = _$AfinacaoImpl;
 
   @override
   int get id;
@@ -181,8 +199,11 @@ abstract class _Afinacao implements Afinacao {
   Instrumento get instrumento;
   @override
   String get notas;
+
+  /// Create a copy of Afinacao
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AfinacaoImplCopyWith<_$AfinacaoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

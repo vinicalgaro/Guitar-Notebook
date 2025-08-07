@@ -12,7 +12,8 @@ part of 'parte.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$Parte {
@@ -20,7 +21,9 @@ mixin _$Parte {
   Ritmo get ritmo => throw _privateConstructorUsedError;
   Sequencia get sequencia => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Parte
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ParteCopyWith<Parte> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -42,6 +45,8 @@ class _$ParteCopyWithImpl<$Res, $Val extends Parte>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Parte
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -49,28 +54,32 @@ class _$ParteCopyWithImpl<$Res, $Val extends Parte>
     Object? ritmo = null,
     Object? sequencia = null,
   }) {
-    return _then(_value.copyWith(
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      ritmo: null == ritmo
-          ? _value.ritmo
-          : ritmo // ignore: cast_nullable_to_non_nullable
-              as Ritmo,
-      sequencia: null == sequencia
-          ? _value.sequencia
-          : sequencia // ignore: cast_nullable_to_non_nullable
-              as Sequencia,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            nome: null == nome
+                ? _value.nome
+                : nome // ignore: cast_nullable_to_non_nullable
+                      as String,
+            ritmo: null == ritmo
+                ? _value.ritmo
+                : ritmo // ignore: cast_nullable_to_non_nullable
+                      as Ritmo,
+            sequencia: null == sequencia
+                ? _value.sequencia
+                : sequencia // ignore: cast_nullable_to_non_nullable
+                      as Sequencia,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$ParteImplCopyWith<$Res> implements $ParteCopyWith<$Res> {
   factory _$$ParteImplCopyWith(
-          _$ParteImpl value, $Res Function(_$ParteImpl) then) =
-      __$$ParteImplCopyWithImpl<$Res>;
+    _$ParteImpl value,
+    $Res Function(_$ParteImpl) then,
+  ) = __$$ParteImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String nome, Ritmo ritmo, Sequencia sequencia});
@@ -81,9 +90,12 @@ class __$$ParteImplCopyWithImpl<$Res>
     extends _$ParteCopyWithImpl<$Res, _$ParteImpl>
     implements _$$ParteImplCopyWith<$Res> {
   __$$ParteImplCopyWithImpl(
-      _$ParteImpl _value, $Res Function(_$ParteImpl) _then)
-      : super(_value, _then);
+    _$ParteImpl _value,
+    $Res Function(_$ParteImpl) _then,
+  ) : super(_value, _then);
 
+  /// Create a copy of Parte
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -91,28 +103,33 @@ class __$$ParteImplCopyWithImpl<$Res>
     Object? ritmo = null,
     Object? sequencia = null,
   }) {
-    return _then(_$ParteImpl(
-      nome: null == nome
-          ? _value.nome
-          : nome // ignore: cast_nullable_to_non_nullable
-              as String,
-      ritmo: null == ritmo
-          ? _value.ritmo
-          : ritmo // ignore: cast_nullable_to_non_nullable
-              as Ritmo,
-      sequencia: null == sequencia
-          ? _value.sequencia
-          : sequencia // ignore: cast_nullable_to_non_nullable
-              as Sequencia,
-    ));
+    return _then(
+      _$ParteImpl(
+        nome: null == nome
+            ? _value.nome
+            : nome // ignore: cast_nullable_to_non_nullable
+                  as String,
+        ritmo: null == ritmo
+            ? _value.ritmo
+            : ritmo // ignore: cast_nullable_to_non_nullable
+                  as Ritmo,
+        sequencia: null == sequencia
+            ? _value.sequencia
+            : sequencia // ignore: cast_nullable_to_non_nullable
+                  as Sequencia,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ParteImpl implements _Parte {
-  const _$ParteImpl(
-      {required this.nome, required this.ritmo, required this.sequencia});
+  const _$ParteImpl({
+    required this.nome,
+    required this.ritmo,
+    required this.sequencia,
+  });
 
   @override
   final String nome;
@@ -140,7 +157,9 @@ class _$ParteImpl implements _Parte {
   @override
   int get hashCode => Object.hash(runtimeType, nome, ritmo, sequencia);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Parte
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ParteImplCopyWith<_$ParteImpl> get copyWith =>
@@ -148,10 +167,11 @@ class _$ParteImpl implements _Parte {
 }
 
 abstract class _Parte implements Parte {
-  const factory _Parte(
-      {required final String nome,
-      required final Ritmo ritmo,
-      required final Sequencia sequencia}) = _$ParteImpl;
+  const factory _Parte({
+    required final String nome,
+    required final Ritmo ritmo,
+    required final Sequencia sequencia,
+  }) = _$ParteImpl;
 
   @override
   String get nome;
@@ -159,8 +179,11 @@ abstract class _Parte implements Parte {
   Ritmo get ritmo;
   @override
   Sequencia get sequencia;
+
+  /// Create a copy of Parte
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ParteImplCopyWith<_$ParteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../l10n/app_localizations.dart';
 import 'posicoes.dart';
 
 part 'acorde.freezed.dart';
-
 part 'acorde.g.dart';
 
 enum TipoAcorde {

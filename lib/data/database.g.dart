@@ -12,30 +12,43 @@ class $AfinacoesTable extends Afinacoes
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
   static const VerificationMeta _nomeMeta = const VerificationMeta('nome');
   @override
   late final GeneratedColumn<String> nome = GeneratedColumn<String>(
-      'nome', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _instrumentoMeta =
-      const VerificationMeta('instrumento');
+    'nome',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   @override
   late final GeneratedColumnWithTypeConverter<model.Instrumento, String>
-      instrumento = GeneratedColumn<String>('instrumento', aliasedName, false,
-              type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<model.Instrumento>(
-              $AfinacoesTable.$converterinstrumento);
+  instrumento = GeneratedColumn<String>(
+    'instrumento',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  ).withConverter<model.Instrumento>($AfinacoesTable.$converterinstrumento);
   static const VerificationMeta _notasMeta = const VerificationMeta('notas');
   @override
   late final GeneratedColumn<String> notas = GeneratedColumn<String>(
-      'notas', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'notas',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   @override
   List<GeneratedColumn> get $columns => [id, nome, instrumento, notas];
   @override
@@ -44,8 +57,10 @@ class $AfinacoesTable extends Afinacoes
   String get actualTableName => $name;
   static const String $name = 'afinacoes';
   @override
-  VerificationContext validateIntegrity(Insertable<AfinacaoData> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<AfinacaoData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -53,14 +68,17 @@ class $AfinacoesTable extends Afinacoes
     }
     if (data.containsKey('nome')) {
       context.handle(
-          _nomeMeta, nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta));
+        _nomeMeta,
+        nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta),
+      );
     } else if (isInserting) {
       context.missing(_nomeMeta);
     }
-    context.handle(_instrumentoMeta, const VerificationResult.success());
     if (data.containsKey('notas')) {
       context.handle(
-          _notasMeta, notas.isAcceptableOrUnknown(data['notas']!, _notasMeta));
+        _notasMeta,
+        notas.isAcceptableOrUnknown(data['notas']!, _notasMeta),
+      );
     } else if (isInserting) {
       context.missing(_notasMeta);
     }
@@ -73,15 +91,24 @@ class $AfinacoesTable extends Afinacoes
   AfinacaoData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return AfinacaoData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      nome: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}nome'])!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      nome: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}nome'],
+      )!,
       instrumento: $AfinacoesTable.$converterinstrumento.fromSql(
-          attachedDatabase.typeMapping.read(
-              DriftSqlType.string, data['${effectivePrefix}instrumento'])!),
-      notas: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}notas'])!,
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}instrumento'],
+        )!,
+      ),
+      notas: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}notas'],
+      )!,
     );
   }
 
@@ -99,11 +126,12 @@ class AfinacaoData extends DataClass implements Insertable<AfinacaoData> {
   final String nome;
   final model.Instrumento instrumento;
   final String notas;
-  const AfinacaoData(
-      {required this.id,
-      required this.nome,
-      required this.instrumento,
-      required this.notas});
+  const AfinacaoData({
+    required this.id,
+    required this.nome,
+    required this.instrumento,
+    required this.notas,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -111,7 +139,8 @@ class AfinacaoData extends DataClass implements Insertable<AfinacaoData> {
     map['nome'] = Variable<String>(nome);
     {
       map['instrumento'] = Variable<String>(
-          $AfinacoesTable.$converterinstrumento.toSql(instrumento));
+        $AfinacoesTable.$converterinstrumento.toSql(instrumento),
+      );
     }
     map['notas'] = Variable<String>(notas);
     return map;
@@ -126,8 +155,10 @@ class AfinacaoData extends DataClass implements Insertable<AfinacaoData> {
     );
   }
 
-  factory AfinacaoData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory AfinacaoData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return AfinacaoData(
       id: serializer.fromJson<int>(json['id']),
@@ -147,23 +178,24 @@ class AfinacaoData extends DataClass implements Insertable<AfinacaoData> {
     };
   }
 
-  AfinacaoData copyWith(
-          {int? id,
-          String? nome,
-          model.Instrumento? instrumento,
-          String? notas}) =>
-      AfinacaoData(
-        id: id ?? this.id,
-        nome: nome ?? this.nome,
-        instrumento: instrumento ?? this.instrumento,
-        notas: notas ?? this.notas,
-      );
+  AfinacaoData copyWith({
+    int? id,
+    String? nome,
+    model.Instrumento? instrumento,
+    String? notas,
+  }) => AfinacaoData(
+    id: id ?? this.id,
+    nome: nome ?? this.nome,
+    instrumento: instrumento ?? this.instrumento,
+    notas: notas ?? this.notas,
+  );
   AfinacaoData copyWithCompanion(AfinacoesCompanion data) {
     return AfinacaoData(
       id: data.id.present ? data.id.value : this.id,
       nome: data.nome.present ? data.nome.value : this.nome,
-      instrumento:
-          data.instrumento.present ? data.instrumento.value : this.instrumento,
+      instrumento: data.instrumento.present
+          ? data.instrumento.value
+          : this.instrumento,
       notas: data.notas.present ? data.notas.value : this.notas,
     );
   }
@@ -207,9 +239,9 @@ class AfinacoesCompanion extends UpdateCompanion<AfinacaoData> {
     required String nome,
     required model.Instrumento instrumento,
     required String notas,
-  })  : nome = Value(nome),
-        instrumento = Value(instrumento),
-        notas = Value(notas);
+  }) : nome = Value(nome),
+       instrumento = Value(instrumento),
+       notas = Value(notas);
   static Insertable<AfinacaoData> custom({
     Expression<int>? id,
     Expression<String>? nome,
@@ -224,11 +256,12 @@ class AfinacoesCompanion extends UpdateCompanion<AfinacaoData> {
     });
   }
 
-  AfinacoesCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? nome,
-      Value<model.Instrumento>? instrumento,
-      Value<String>? notas}) {
+  AfinacoesCompanion copyWith({
+    Value<int>? id,
+    Value<String>? nome,
+    Value<model.Instrumento>? instrumento,
+    Value<String>? notas,
+  }) {
     return AfinacoesCompanion(
       id: id ?? this.id,
       nome: nome ?? this.nome,
@@ -248,7 +281,8 @@ class AfinacoesCompanion extends UpdateCompanion<AfinacaoData> {
     }
     if (instrumento.present) {
       map['instrumento'] = Variable<String>(
-          $AfinacoesTable.$converterinstrumento.toSql(instrumento.value));
+        $AfinacoesTable.$converterinstrumento.toSql(instrumento.value),
+      );
     }
     if (notas.present) {
       map['notas'] = Variable<String>(notas.value);
@@ -276,51 +310,77 @@ class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
   static const VerificationMeta _nomeMeta = const VerificationMeta('nome');
   @override
   late final GeneratedColumn<String> nome = GeneratedColumn<String>(
-      'nome', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _instrumentoMeta =
-      const VerificationMeta('instrumento');
+    'nome',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   @override
   late final GeneratedColumnWithTypeConverter<model.Instrumento, String>
-      instrumento = GeneratedColumn<String>('instrumento', aliasedName, false,
-              type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<model.Instrumento>(
-              $MusicasTable.$converterinstrumento);
-  static const VerificationMeta _afinacaoIdMeta =
-      const VerificationMeta('afinacaoId');
+  instrumento = GeneratedColumn<String>(
+    'instrumento',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  ).withConverter<model.Instrumento>($MusicasTable.$converterinstrumento);
+  static const VerificationMeta _afinacaoIdMeta = const VerificationMeta(
+    'afinacaoId',
+  );
   @override
   late final GeneratedColumn<int> afinacaoId = GeneratedColumn<int>(
-      'afinacao_id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: true,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('REFERENCES afinacoes (id)'));
-  static const VerificationMeta _linkYoutubeMeta =
-      const VerificationMeta('linkYoutube');
+    'afinacao_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES afinacoes (id)',
+    ),
+  );
+  static const VerificationMeta _linkYoutubeMeta = const VerificationMeta(
+    'linkYoutube',
+  );
   @override
   late final GeneratedColumn<String> linkYoutube = GeneratedColumn<String>(
-      'link_youtube', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
+    'link_youtube',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, nome, instrumento, afinacaoId, linkYoutube];
+  List<GeneratedColumn> get $columns => [
+    id,
+    nome,
+    instrumento,
+    afinacaoId,
+    linkYoutube,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'musicas';
   @override
-  VerificationContext validateIntegrity(Insertable<MusicaData> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<MusicaData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -328,24 +388,28 @@ class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
     }
     if (data.containsKey('nome')) {
       context.handle(
-          _nomeMeta, nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta));
+        _nomeMeta,
+        nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta),
+      );
     } else if (isInserting) {
       context.missing(_nomeMeta);
     }
-    context.handle(_instrumentoMeta, const VerificationResult.success());
     if (data.containsKey('afinacao_id')) {
       context.handle(
-          _afinacaoIdMeta,
-          afinacaoId.isAcceptableOrUnknown(
-              data['afinacao_id']!, _afinacaoIdMeta));
+        _afinacaoIdMeta,
+        afinacaoId.isAcceptableOrUnknown(data['afinacao_id']!, _afinacaoIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_afinacaoIdMeta);
     }
     if (data.containsKey('link_youtube')) {
       context.handle(
+        _linkYoutubeMeta,
+        linkYoutube.isAcceptableOrUnknown(
+          data['link_youtube']!,
           _linkYoutubeMeta,
-          linkYoutube.isAcceptableOrUnknown(
-              data['link_youtube']!, _linkYoutubeMeta));
+        ),
+      );
     }
     return context;
   }
@@ -356,17 +420,28 @@ class $MusicasTable extends Musicas with TableInfo<$MusicasTable, MusicaData> {
   MusicaData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return MusicaData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      nome: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}nome'])!,
-      instrumento: $MusicasTable.$converterinstrumento.fromSql(attachedDatabase
-          .typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}instrumento'])!),
-      afinacaoId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}afinacao_id'])!,
-      linkYoutube: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}link_youtube']),
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      nome: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}nome'],
+      )!,
+      instrumento: $MusicasTable.$converterinstrumento.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}instrumento'],
+        )!,
+      ),
+      afinacaoId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}afinacao_id'],
+      )!,
+      linkYoutube: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}link_youtube'],
+      ),
     );
   }
 
@@ -385,12 +460,13 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
   final model.Instrumento instrumento;
   final int afinacaoId;
   final String? linkYoutube;
-  const MusicaData(
-      {required this.id,
-      required this.nome,
-      required this.instrumento,
-      required this.afinacaoId,
-      this.linkYoutube});
+  const MusicaData({
+    required this.id,
+    required this.nome,
+    required this.instrumento,
+    required this.afinacaoId,
+    this.linkYoutube,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -398,7 +474,8 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
     map['nome'] = Variable<String>(nome);
     {
       map['instrumento'] = Variable<String>(
-          $MusicasTable.$converterinstrumento.toSql(instrumento));
+        $MusicasTable.$converterinstrumento.toSql(instrumento),
+      );
     }
     map['afinacao_id'] = Variable<int>(afinacaoId);
     if (!nullToAbsent || linkYoutube != null) {
@@ -419,8 +496,10 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
     );
   }
 
-  factory MusicaData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory MusicaData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return MusicaData(
       id: serializer.fromJson<int>(json['id']),
@@ -442,29 +521,32 @@ class MusicaData extends DataClass implements Insertable<MusicaData> {
     };
   }
 
-  MusicaData copyWith(
-          {int? id,
-          String? nome,
-          model.Instrumento? instrumento,
-          int? afinacaoId,
-          Value<String?> linkYoutube = const Value.absent()}) =>
-      MusicaData(
-        id: id ?? this.id,
-        nome: nome ?? this.nome,
-        instrumento: instrumento ?? this.instrumento,
-        afinacaoId: afinacaoId ?? this.afinacaoId,
-        linkYoutube: linkYoutube.present ? linkYoutube.value : this.linkYoutube,
-      );
+  MusicaData copyWith({
+    int? id,
+    String? nome,
+    model.Instrumento? instrumento,
+    int? afinacaoId,
+    Value<String?> linkYoutube = const Value.absent(),
+  }) => MusicaData(
+    id: id ?? this.id,
+    nome: nome ?? this.nome,
+    instrumento: instrumento ?? this.instrumento,
+    afinacaoId: afinacaoId ?? this.afinacaoId,
+    linkYoutube: linkYoutube.present ? linkYoutube.value : this.linkYoutube,
+  );
   MusicaData copyWithCompanion(MusicasCompanion data) {
     return MusicaData(
       id: data.id.present ? data.id.value : this.id,
       nome: data.nome.present ? data.nome.value : this.nome,
-      instrumento:
-          data.instrumento.present ? data.instrumento.value : this.instrumento,
-      afinacaoId:
-          data.afinacaoId.present ? data.afinacaoId.value : this.afinacaoId,
-      linkYoutube:
-          data.linkYoutube.present ? data.linkYoutube.value : this.linkYoutube,
+      instrumento: data.instrumento.present
+          ? data.instrumento.value
+          : this.instrumento,
+      afinacaoId: data.afinacaoId.present
+          ? data.afinacaoId.value
+          : this.afinacaoId,
+      linkYoutube: data.linkYoutube.present
+          ? data.linkYoutube.value
+          : this.linkYoutube,
     );
   }
 
@@ -513,9 +595,9 @@ class MusicasCompanion extends UpdateCompanion<MusicaData> {
     required model.Instrumento instrumento,
     required int afinacaoId,
     this.linkYoutube = const Value.absent(),
-  })  : nome = Value(nome),
-        instrumento = Value(instrumento),
-        afinacaoId = Value(afinacaoId);
+  }) : nome = Value(nome),
+       instrumento = Value(instrumento),
+       afinacaoId = Value(afinacaoId);
   static Insertable<MusicaData> custom({
     Expression<int>? id,
     Expression<String>? nome,
@@ -532,12 +614,13 @@ class MusicasCompanion extends UpdateCompanion<MusicaData> {
     });
   }
 
-  MusicasCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? nome,
-      Value<model.Instrumento>? instrumento,
-      Value<int>? afinacaoId,
-      Value<String?>? linkYoutube}) {
+  MusicasCompanion copyWith({
+    Value<int>? id,
+    Value<String>? nome,
+    Value<model.Instrumento>? instrumento,
+    Value<int>? afinacaoId,
+    Value<String?>? linkYoutube,
+  }) {
     return MusicasCompanion(
       id: id ?? this.id,
       nome: nome ?? this.nome,
@@ -558,7 +641,8 @@ class MusicasCompanion extends UpdateCompanion<MusicaData> {
     }
     if (instrumento.present) {
       map['instrumento'] = Variable<String>(
-          $MusicasTable.$converterinstrumento.toSql(instrumento.value));
+        $MusicasTable.$converterinstrumento.toSql(instrumento.value),
+      );
     }
     if (afinacaoId.present) {
       map['afinacao_id'] = Variable<int>(afinacaoId.value);
@@ -590,37 +674,59 @@ class $PartesTable extends Partes with TableInfo<$PartesTable, ParteData> {
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
-  static const VerificationMeta _musicaIdMeta =
-      const VerificationMeta('musicaId');
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _musicaIdMeta = const VerificationMeta(
+    'musicaId',
+  );
   @override
   late final GeneratedColumn<int> musicaId = GeneratedColumn<int>(
-      'musica_id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: true,
-      defaultConstraints: GeneratedColumn.constraintIsAlways(
-          'REFERENCES musicas (id) ON DELETE CASCADE'));
+    'musica_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES musicas (id) ON DELETE CASCADE',
+    ),
+  );
   static const VerificationMeta _nomeMeta = const VerificationMeta('nome');
   @override
   late final GeneratedColumn<String> nome = GeneratedColumn<String>(
-      'nome', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'nome',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _ritmoMeta = const VerificationMeta('ritmo');
   @override
   late final GeneratedColumn<String> ritmo = GeneratedColumn<String>(
-      'ritmo', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _sequenciaMeta =
-      const VerificationMeta('sequencia');
+    'ritmo',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _sequenciaMeta = const VerificationMeta(
+    'sequencia',
+  );
   @override
   late final GeneratedColumn<String> sequencia = GeneratedColumn<String>(
-      'sequencia', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+    'sequencia',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   @override
   List<GeneratedColumn> get $columns => [id, musicaId, nome, ritmo, sequencia];
   @override
@@ -629,34 +735,44 @@ class $PartesTable extends Partes with TableInfo<$PartesTable, ParteData> {
   String get actualTableName => $name;
   static const String $name = 'partes';
   @override
-  VerificationContext validateIntegrity(Insertable<ParteData> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<ParteData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('musica_id')) {
-      context.handle(_musicaIdMeta,
-          musicaId.isAcceptableOrUnknown(data['musica_id']!, _musicaIdMeta));
+      context.handle(
+        _musicaIdMeta,
+        musicaId.isAcceptableOrUnknown(data['musica_id']!, _musicaIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_musicaIdMeta);
     }
     if (data.containsKey('nome')) {
       context.handle(
-          _nomeMeta, nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta));
+        _nomeMeta,
+        nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta),
+      );
     } else if (isInserting) {
       context.missing(_nomeMeta);
     }
     if (data.containsKey('ritmo')) {
       context.handle(
-          _ritmoMeta, ritmo.isAcceptableOrUnknown(data['ritmo']!, _ritmoMeta));
+        _ritmoMeta,
+        ritmo.isAcceptableOrUnknown(data['ritmo']!, _ritmoMeta),
+      );
     } else if (isInserting) {
       context.missing(_ritmoMeta);
     }
     if (data.containsKey('sequencia')) {
-      context.handle(_sequenciaMeta,
-          sequencia.isAcceptableOrUnknown(data['sequencia']!, _sequenciaMeta));
+      context.handle(
+        _sequenciaMeta,
+        sequencia.isAcceptableOrUnknown(data['sequencia']!, _sequenciaMeta),
+      );
     } else if (isInserting) {
       context.missing(_sequenciaMeta);
     }
@@ -669,16 +785,26 @@ class $PartesTable extends Partes with TableInfo<$PartesTable, ParteData> {
   ParteData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return ParteData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      musicaId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}musica_id'])!,
-      nome: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}nome'])!,
-      ritmo: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}ritmo'])!,
-      sequencia: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}sequencia'])!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      musicaId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}musica_id'],
+      )!,
+      nome: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}nome'],
+      )!,
+      ritmo: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}ritmo'],
+      )!,
+      sequencia: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}sequencia'],
+      )!,
     );
   }
 
@@ -694,12 +820,13 @@ class ParteData extends DataClass implements Insertable<ParteData> {
   final String nome;
   final String ritmo;
   final String sequencia;
-  const ParteData(
-      {required this.id,
-      required this.musicaId,
-      required this.nome,
-      required this.ritmo,
-      required this.sequencia});
+  const ParteData({
+    required this.id,
+    required this.musicaId,
+    required this.nome,
+    required this.ritmo,
+    required this.sequencia,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -721,8 +848,10 @@ class ParteData extends DataClass implements Insertable<ParteData> {
     );
   }
 
-  factory ParteData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory ParteData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return ParteData(
       id: serializer.fromJson<int>(json['id']),
@@ -744,19 +873,19 @@ class ParteData extends DataClass implements Insertable<ParteData> {
     };
   }
 
-  ParteData copyWith(
-          {int? id,
-          int? musicaId,
-          String? nome,
-          String? ritmo,
-          String? sequencia}) =>
-      ParteData(
-        id: id ?? this.id,
-        musicaId: musicaId ?? this.musicaId,
-        nome: nome ?? this.nome,
-        ritmo: ritmo ?? this.ritmo,
-        sequencia: sequencia ?? this.sequencia,
-      );
+  ParteData copyWith({
+    int? id,
+    int? musicaId,
+    String? nome,
+    String? ritmo,
+    String? sequencia,
+  }) => ParteData(
+    id: id ?? this.id,
+    musicaId: musicaId ?? this.musicaId,
+    nome: nome ?? this.nome,
+    ritmo: ritmo ?? this.ritmo,
+    sequencia: sequencia ?? this.sequencia,
+  );
   ParteData copyWithCompanion(PartesCompanion data) {
     return ParteData(
       id: data.id.present ? data.id.value : this.id,
@@ -811,10 +940,10 @@ class PartesCompanion extends UpdateCompanion<ParteData> {
     required String nome,
     required String ritmo,
     required String sequencia,
-  })  : musicaId = Value(musicaId),
-        nome = Value(nome),
-        ritmo = Value(ritmo),
-        sequencia = Value(sequencia);
+  }) : musicaId = Value(musicaId),
+       nome = Value(nome),
+       ritmo = Value(ritmo),
+       sequencia = Value(sequencia);
   static Insertable<ParteData> custom({
     Expression<int>? id,
     Expression<int>? musicaId,
@@ -831,12 +960,13 @@ class PartesCompanion extends UpdateCompanion<ParteData> {
     });
   }
 
-  PartesCompanion copyWith(
-      {Value<int>? id,
-      Value<int>? musicaId,
-      Value<String>? nome,
-      Value<String>? ritmo,
-      Value<String>? sequencia}) {
+  PartesCompanion copyWith({
+    Value<int>? id,
+    Value<int>? musicaId,
+    Value<String>? nome,
+    Value<String>? ritmo,
+    Value<String>? sequencia,
+  }) {
     return PartesCompanion(
       id: id ?? this.id,
       musicaId: musicaId ?? this.musicaId,
@@ -888,25 +1018,35 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
   static const VerificationMeta _nomeMeta = const VerificationMeta('nome');
   @override
   late final GeneratedColumn<String> nome = GeneratedColumn<String>(
-      'nome', aliasedName, false,
-      type: DriftSqlType.string,
-      requiredDuringInsert: true,
-      defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
-  static const VerificationMeta _tipoMeta = const VerificationMeta('tipo');
+    'nome',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'),
+  );
   @override
   late final GeneratedColumnWithTypeConverter<model.TipoAcorde, String> tipo =
-      GeneratedColumn<String>('tipo', aliasedName, false,
-              type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<model.TipoAcorde>($AcordesTable.$convertertipo);
+      GeneratedColumn<String>(
+        'tipo',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<model.TipoAcorde>($AcordesTable.$convertertipo);
   @override
   List<GeneratedColumn> get $columns => [id, nome, tipo];
   @override
@@ -915,8 +1055,10 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
   String get actualTableName => $name;
   static const String $name = 'acordes';
   @override
-  VerificationContext validateIntegrity(Insertable<AcordeData> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<AcordeData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -924,11 +1066,12 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
     }
     if (data.containsKey('nome')) {
       context.handle(
-          _nomeMeta, nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta));
+        _nomeMeta,
+        nome.isAcceptableOrUnknown(data['nome']!, _nomeMeta),
+      );
     } else if (isInserting) {
       context.missing(_nomeMeta);
     }
-    context.handle(_tipoMeta, const VerificationResult.success());
     return context;
   }
 
@@ -938,12 +1081,20 @@ class $AcordesTable extends Acordes with TableInfo<$AcordesTable, AcordeData> {
   AcordeData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return AcordeData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      nome: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}nome'])!,
-      tipo: $AcordesTable.$convertertipo.fromSql(attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}tipo'])!),
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      nome: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}nome'],
+      )!,
+      tipo: $AcordesTable.$convertertipo.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}tipo'],
+        )!,
+      ),
     );
   }
 
@@ -980,8 +1131,10 @@ class AcordeData extends DataClass implements Insertable<AcordeData> {
     );
   }
 
-  factory AcordeData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory AcordeData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return AcordeData(
       id: serializer.fromJson<int>(json['id']),
@@ -1047,8 +1200,8 @@ class AcordesCompanion extends UpdateCompanion<AcordeData> {
     this.id = const Value.absent(),
     required String nome,
     required model.TipoAcorde tipo,
-  })  : nome = Value(nome),
-        tipo = Value(tipo);
+  }) : nome = Value(nome),
+       tipo = Value(tipo);
   static Insertable<AcordeData> custom({
     Expression<int>? id,
     Expression<String>? nome,
@@ -1061,8 +1214,11 @@ class AcordesCompanion extends UpdateCompanion<AcordeData> {
     });
   }
 
-  AcordesCompanion copyWith(
-      {Value<int>? id, Value<String>? nome, Value<model.TipoAcorde>? tipo}) {
+  AcordesCompanion copyWith({
+    Value<int>? id,
+    Value<String>? nome,
+    Value<model.TipoAcorde>? tipo,
+  }) {
     return AcordesCompanion(
       id: id ?? this.id,
       nome: nome ?? this.nome,
@@ -1080,8 +1236,9 @@ class AcordesCompanion extends UpdateCompanion<AcordeData> {
       map['nome'] = Variable<String>(nome.value);
     }
     if (tipo.present) {
-      map['tipo'] =
-          Variable<String>($AcordesTable.$convertertipo.toSql(tipo.value));
+      map['tipo'] = Variable<String>(
+        $AcordesTable.$convertertipo.toSql(tipo.value),
+      );
     }
     return map;
   }
@@ -1106,37 +1263,53 @@ class $DigitacoesTable extends Digitacoes
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
-  static const VerificationMeta _acordeIdMeta =
-      const VerificationMeta('acordeId');
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _acordeIdMeta = const VerificationMeta(
+    'acordeId',
+  );
   @override
   late final GeneratedColumn<int> acordeId = GeneratedColumn<int>(
-      'acorde_id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: true,
-      defaultConstraints: GeneratedColumn.constraintIsAlways(
-          'REFERENCES acordes (id) ON DELETE CASCADE'));
-  static const VerificationMeta _afinacaoIdMeta =
-      const VerificationMeta('afinacaoId');
+    'acorde_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES acordes (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _afinacaoIdMeta = const VerificationMeta(
+    'afinacaoId',
+  );
   @override
   late final GeneratedColumn<int> afinacaoId = GeneratedColumn<int>(
-      'afinacao_id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: true,
-      defaultConstraints: GeneratedColumn.constraintIsAlways(
-          'REFERENCES afinacoes (id) ON DELETE CASCADE'));
-  static const VerificationMeta _posicoesMeta =
-      const VerificationMeta('posicoes');
+    'afinacao_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES afinacoes (id) ON DELETE CASCADE',
+    ),
+  );
   @override
   late final GeneratedColumnWithTypeConverter<model.Posicoes, String> posicoes =
-      GeneratedColumn<String>('posicoes_json', aliasedName, false,
-              type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<model.Posicoes>($DigitacoesTable.$converterposicoes);
+      GeneratedColumn<String>(
+        'posicoes_json',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+      ).withConverter<model.Posicoes>($DigitacoesTable.$converterposicoes);
   @override
   List<GeneratedColumn> get $columns => [id, acordeId, afinacaoId, posicoes];
   @override
@@ -1145,28 +1318,31 @@ class $DigitacoesTable extends Digitacoes
   String get actualTableName => $name;
   static const String $name = 'digitacoes';
   @override
-  VerificationContext validateIntegrity(Insertable<DigitacaoData> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<DigitacaoData> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('acorde_id')) {
-      context.handle(_acordeIdMeta,
-          acordeId.isAcceptableOrUnknown(data['acorde_id']!, _acordeIdMeta));
+      context.handle(
+        _acordeIdMeta,
+        acordeId.isAcceptableOrUnknown(data['acorde_id']!, _acordeIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_acordeIdMeta);
     }
     if (data.containsKey('afinacao_id')) {
       context.handle(
-          _afinacaoIdMeta,
-          afinacaoId.isAcceptableOrUnknown(
-              data['afinacao_id']!, _afinacaoIdMeta));
+        _afinacaoIdMeta,
+        afinacaoId.isAcceptableOrUnknown(data['afinacao_id']!, _afinacaoIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_afinacaoIdMeta);
     }
-    context.handle(_posicoesMeta, const VerificationResult.success());
     return context;
   }
 
@@ -1176,15 +1352,24 @@ class $DigitacoesTable extends Digitacoes
   DigitacaoData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return DigitacaoData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      acordeId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}acorde_id'])!,
-      afinacaoId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}afinacao_id'])!,
-      posicoes: $DigitacoesTable.$converterposicoes.fromSql(attachedDatabase
-          .typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}posicoes_json'])!),
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      acordeId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}acorde_id'],
+      )!,
+      afinacaoId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}afinacao_id'],
+      )!,
+      posicoes: $DigitacoesTable.$converterposicoes.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}posicoes_json'],
+        )!,
+      ),
     );
   }
 
@@ -1202,11 +1387,12 @@ class DigitacaoData extends DataClass implements Insertable<DigitacaoData> {
   final int acordeId;
   final int afinacaoId;
   final model.Posicoes posicoes;
-  const DigitacaoData(
-      {required this.id,
-      required this.acordeId,
-      required this.afinacaoId,
-      required this.posicoes});
+  const DigitacaoData({
+    required this.id,
+    required this.acordeId,
+    required this.afinacaoId,
+    required this.posicoes,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -1214,8 +1400,9 @@ class DigitacaoData extends DataClass implements Insertable<DigitacaoData> {
     map['acorde_id'] = Variable<int>(acordeId);
     map['afinacao_id'] = Variable<int>(afinacaoId);
     {
-      map['posicoes_json'] =
-          Variable<String>($DigitacoesTable.$converterposicoes.toSql(posicoes));
+      map['posicoes_json'] = Variable<String>(
+        $DigitacoesTable.$converterposicoes.toSql(posicoes),
+      );
     }
     return map;
   }
@@ -1229,8 +1416,10 @@ class DigitacaoData extends DataClass implements Insertable<DigitacaoData> {
     );
   }
 
-  factory DigitacaoData.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory DigitacaoData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return DigitacaoData(
       id: serializer.fromJson<int>(json['id']),
@@ -1250,23 +1439,24 @@ class DigitacaoData extends DataClass implements Insertable<DigitacaoData> {
     };
   }
 
-  DigitacaoData copyWith(
-          {int? id,
-          int? acordeId,
-          int? afinacaoId,
-          model.Posicoes? posicoes}) =>
-      DigitacaoData(
-        id: id ?? this.id,
-        acordeId: acordeId ?? this.acordeId,
-        afinacaoId: afinacaoId ?? this.afinacaoId,
-        posicoes: posicoes ?? this.posicoes,
-      );
+  DigitacaoData copyWith({
+    int? id,
+    int? acordeId,
+    int? afinacaoId,
+    model.Posicoes? posicoes,
+  }) => DigitacaoData(
+    id: id ?? this.id,
+    acordeId: acordeId ?? this.acordeId,
+    afinacaoId: afinacaoId ?? this.afinacaoId,
+    posicoes: posicoes ?? this.posicoes,
+  );
   DigitacaoData copyWithCompanion(DigitacoesCompanion data) {
     return DigitacaoData(
       id: data.id.present ? data.id.value : this.id,
       acordeId: data.acordeId.present ? data.acordeId.value : this.acordeId,
-      afinacaoId:
-          data.afinacaoId.present ? data.afinacaoId.value : this.afinacaoId,
+      afinacaoId: data.afinacaoId.present
+          ? data.afinacaoId.value
+          : this.afinacaoId,
       posicoes: data.posicoes.present ? data.posicoes.value : this.posicoes,
     );
   }
@@ -1310,9 +1500,9 @@ class DigitacoesCompanion extends UpdateCompanion<DigitacaoData> {
     required int acordeId,
     required int afinacaoId,
     required model.Posicoes posicoes,
-  })  : acordeId = Value(acordeId),
-        afinacaoId = Value(afinacaoId),
-        posicoes = Value(posicoes);
+  }) : acordeId = Value(acordeId),
+       afinacaoId = Value(afinacaoId),
+       posicoes = Value(posicoes);
   static Insertable<DigitacaoData> custom({
     Expression<int>? id,
     Expression<int>? acordeId,
@@ -1327,11 +1517,12 @@ class DigitacoesCompanion extends UpdateCompanion<DigitacaoData> {
     });
   }
 
-  DigitacoesCompanion copyWith(
-      {Value<int>? id,
-      Value<int>? acordeId,
-      Value<int>? afinacaoId,
-      Value<model.Posicoes>? posicoes}) {
+  DigitacoesCompanion copyWith({
+    Value<int>? id,
+    Value<int>? acordeId,
+    Value<int>? afinacaoId,
+    Value<model.Posicoes>? posicoes,
+  }) {
     return DigitacoesCompanion(
       id: id ?? this.id,
       acordeId: acordeId ?? this.acordeId,
@@ -1354,7 +1545,8 @@ class DigitacoesCompanion extends UpdateCompanion<DigitacaoData> {
     }
     if (posicoes.present) {
       map['posicoes_json'] = Variable<String>(
-          $DigitacoesTable.$converterposicoes.toSql(posicoes.value));
+        $DigitacoesTable.$converterposicoes.toSql(posicoes.value),
+      );
     }
     return map;
   }
@@ -1380,40 +1572,62 @@ class $SequenciaCompassosTable extends SequenciaCompassos
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
-  static const VerificationMeta _parteIdMeta =
-      const VerificationMeta('parteId');
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _parteIdMeta = const VerificationMeta(
+    'parteId',
+  );
   @override
   late final GeneratedColumn<int> parteId = GeneratedColumn<int>(
-      'parte_id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: true,
-      defaultConstraints: GeneratedColumn.constraintIsAlways(
-          'REFERENCES partes (id) ON DELETE CASCADE'));
-  static const VerificationMeta _acordeIdMeta =
-      const VerificationMeta('acordeId');
+    'parte_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES partes (id) ON DELETE CASCADE',
+    ),
+  );
+  static const VerificationMeta _acordeIdMeta = const VerificationMeta(
+    'acordeId',
+  );
   @override
   late final GeneratedColumn<int> acordeId = GeneratedColumn<int>(
-      'acorde_id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: true,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('REFERENCES acordes (id)'));
+    'acorde_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES acordes (id)',
+    ),
+  );
   static const VerificationMeta _vezesMeta = const VerificationMeta('vezes');
   @override
   late final GeneratedColumn<int> vezes = GeneratedColumn<int>(
-      'vezes', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+    'vezes',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _ordemMeta = const VerificationMeta('ordem');
   @override
   late final GeneratedColumn<int> ordem = GeneratedColumn<int>(
-      'ordem', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+    'ordem',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
   @override
   List<GeneratedColumn> get $columns => [id, parteId, acordeId, vezes, ordem];
   @override
@@ -1422,34 +1636,44 @@ class $SequenciaCompassosTable extends SequenciaCompassos
   String get actualTableName => $name;
   static const String $name = 'sequencia_compassos';
   @override
-  VerificationContext validateIntegrity(Insertable<SequenciaCompasso> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<SequenciaCompasso> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('parte_id')) {
-      context.handle(_parteIdMeta,
-          parteId.isAcceptableOrUnknown(data['parte_id']!, _parteIdMeta));
+      context.handle(
+        _parteIdMeta,
+        parteId.isAcceptableOrUnknown(data['parte_id']!, _parteIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_parteIdMeta);
     }
     if (data.containsKey('acorde_id')) {
-      context.handle(_acordeIdMeta,
-          acordeId.isAcceptableOrUnknown(data['acorde_id']!, _acordeIdMeta));
+      context.handle(
+        _acordeIdMeta,
+        acordeId.isAcceptableOrUnknown(data['acorde_id']!, _acordeIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_acordeIdMeta);
     }
     if (data.containsKey('vezes')) {
       context.handle(
-          _vezesMeta, vezes.isAcceptableOrUnknown(data['vezes']!, _vezesMeta));
+        _vezesMeta,
+        vezes.isAcceptableOrUnknown(data['vezes']!, _vezesMeta),
+      );
     } else if (isInserting) {
       context.missing(_vezesMeta);
     }
     if (data.containsKey('ordem')) {
       context.handle(
-          _ordemMeta, ordem.isAcceptableOrUnknown(data['ordem']!, _ordemMeta));
+        _ordemMeta,
+        ordem.isAcceptableOrUnknown(data['ordem']!, _ordemMeta),
+      );
     } else if (isInserting) {
       context.missing(_ordemMeta);
     }
@@ -1462,16 +1686,26 @@ class $SequenciaCompassosTable extends SequenciaCompassos
   SequenciaCompasso map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return SequenciaCompasso(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      parteId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}parte_id'])!,
-      acordeId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}acorde_id'])!,
-      vezes: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}vezes'])!,
-      ordem: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}ordem'])!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      parteId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}parte_id'],
+      )!,
+      acordeId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}acorde_id'],
+      )!,
+      vezes: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}vezes'],
+      )!,
+      ordem: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}ordem'],
+      )!,
     );
   }
 
@@ -1488,12 +1722,13 @@ class SequenciaCompasso extends DataClass
   final int acordeId;
   final int vezes;
   final int ordem;
-  const SequenciaCompasso(
-      {required this.id,
-      required this.parteId,
-      required this.acordeId,
-      required this.vezes,
-      required this.ordem});
+  const SequenciaCompasso({
+    required this.id,
+    required this.parteId,
+    required this.acordeId,
+    required this.vezes,
+    required this.ordem,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -1515,8 +1750,10 @@ class SequenciaCompasso extends DataClass
     );
   }
 
-  factory SequenciaCompasso.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory SequenciaCompasso.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return SequenciaCompasso(
       id: serializer.fromJson<int>(json['id']),
@@ -1538,15 +1775,19 @@ class SequenciaCompasso extends DataClass
     };
   }
 
-  SequenciaCompasso copyWith(
-          {int? id, int? parteId, int? acordeId, int? vezes, int? ordem}) =>
-      SequenciaCompasso(
-        id: id ?? this.id,
-        parteId: parteId ?? this.parteId,
-        acordeId: acordeId ?? this.acordeId,
-        vezes: vezes ?? this.vezes,
-        ordem: ordem ?? this.ordem,
-      );
+  SequenciaCompasso copyWith({
+    int? id,
+    int? parteId,
+    int? acordeId,
+    int? vezes,
+    int? ordem,
+  }) => SequenciaCompasso(
+    id: id ?? this.id,
+    parteId: parteId ?? this.parteId,
+    acordeId: acordeId ?? this.acordeId,
+    vezes: vezes ?? this.vezes,
+    ordem: ordem ?? this.ordem,
+  );
   SequenciaCompasso copyWithCompanion(SequenciaCompassosCompanion data) {
     return SequenciaCompasso(
       id: data.id.present ? data.id.value : this.id,
@@ -1601,10 +1842,10 @@ class SequenciaCompassosCompanion extends UpdateCompanion<SequenciaCompasso> {
     required int acordeId,
     required int vezes,
     required int ordem,
-  })  : parteId = Value(parteId),
-        acordeId = Value(acordeId),
-        vezes = Value(vezes),
-        ordem = Value(ordem);
+  }) : parteId = Value(parteId),
+       acordeId = Value(acordeId),
+       vezes = Value(vezes),
+       ordem = Value(ordem);
   static Insertable<SequenciaCompasso> custom({
     Expression<int>? id,
     Expression<int>? parteId,
@@ -1621,12 +1862,13 @@ class SequenciaCompassosCompanion extends UpdateCompanion<SequenciaCompasso> {
     });
   }
 
-  SequenciaCompassosCompanion copyWith(
-      {Value<int>? id,
-      Value<int>? parteId,
-      Value<int>? acordeId,
-      Value<int>? vezes,
-      Value<int>? ordem}) {
+  SequenciaCompassosCompanion copyWith({
+    Value<int>? id,
+    Value<int>? parteId,
+    Value<int>? acordeId,
+    Value<int>? vezes,
+    Value<int>? ordem,
+  }) {
     return SequenciaCompassosCompanion(
       id: id ?? this.id,
       parteId: parteId ?? this.parteId,
@@ -1686,879 +1928,2390 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [afinacoes, musicas, partes, acordes, digitacoes, sequenciaCompassos];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+    afinacoes,
+    musicas,
+    partes,
+    acordes,
+    digitacoes,
+    sequenciaCompassos,
+  ];
   @override
-  StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules(
-        [
-          WritePropagation(
-            on: TableUpdateQuery.onTableName('musicas',
-                limitUpdateKind: UpdateKind.delete),
-            result: [
-              TableUpdate('partes', kind: UpdateKind.delete),
-            ],
-          ),
-          WritePropagation(
-            on: TableUpdateQuery.onTableName('acordes',
-                limitUpdateKind: UpdateKind.delete),
-            result: [
-              TableUpdate('digitacoes', kind: UpdateKind.delete),
-            ],
-          ),
-          WritePropagation(
-            on: TableUpdateQuery.onTableName('afinacoes',
-                limitUpdateKind: UpdateKind.delete),
-            result: [
-              TableUpdate('digitacoes', kind: UpdateKind.delete),
-            ],
-          ),
-          WritePropagation(
-            on: TableUpdateQuery.onTableName('partes',
-                limitUpdateKind: UpdateKind.delete),
-            result: [
-              TableUpdate('sequencia_compassos', kind: UpdateKind.delete),
-            ],
-          ),
-        ],
-      );
+  StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'musicas',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('partes', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'acordes',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('digitacoes', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'afinacoes',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('digitacoes', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'partes',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('sequencia_compassos', kind: UpdateKind.delete)],
+    ),
+  ]);
 }
 
-typedef $$AfinacoesTableCreateCompanionBuilder = AfinacoesCompanion Function({
-  Value<int> id,
-  required String nome,
-  required model.Instrumento instrumento,
-  required String notas,
-});
-typedef $$AfinacoesTableUpdateCompanionBuilder = AfinacoesCompanion Function({
-  Value<int> id,
-  Value<String> nome,
-  Value<model.Instrumento> instrumento,
-  Value<String> notas,
-});
+typedef $$AfinacoesTableCreateCompanionBuilder =
+    AfinacoesCompanion Function({
+      Value<int> id,
+      required String nome,
+      required model.Instrumento instrumento,
+      required String notas,
+    });
+typedef $$AfinacoesTableUpdateCompanionBuilder =
+    AfinacoesCompanion Function({
+      Value<int> id,
+      Value<String> nome,
+      Value<model.Instrumento> instrumento,
+      Value<String> notas,
+    });
 
-class $$AfinacoesTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $AfinacoesTable,
-    AfinacaoData,
-    $$AfinacoesTableFilterComposer,
-    $$AfinacoesTableOrderingComposer,
-    $$AfinacoesTableCreateCompanionBuilder,
-    $$AfinacoesTableUpdateCompanionBuilder> {
-  $$AfinacoesTableTableManager(_$AppDatabase db, $AfinacoesTable table)
-      : super(TableManagerState(
-          db: db,
-          table: table,
-          filteringComposer:
-              $$AfinacoesTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$AfinacoesTableOrderingComposer(ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> nome = const Value.absent(),
-            Value<model.Instrumento> instrumento = const Value.absent(),
-            Value<String> notas = const Value.absent(),
-          }) =>
-              AfinacoesCompanion(
-            id: id,
-            nome: nome,
-            instrumento: instrumento,
-            notas: notas,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required String nome,
-            required model.Instrumento instrumento,
-            required String notas,
-          }) =>
-              AfinacoesCompanion.insert(
-            id: id,
-            nome: nome,
-            instrumento: instrumento,
-            notas: notas,
-          ),
-        ));
+final class $$AfinacoesTableReferences
+    extends BaseReferences<_$AppDatabase, $AfinacoesTable, AfinacaoData> {
+  $$AfinacoesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$MusicasTable, List<MusicaData>> _musicasRefsTable(
+    _$AppDatabase db,
+  ) => MultiTypedResultKey.fromTable(
+    db.musicas,
+    aliasName: $_aliasNameGenerator(db.afinacoes.id, db.musicas.afinacaoId),
+  );
+
+  $$MusicasTableProcessedTableManager get musicasRefs {
+    final manager = $$MusicasTableTableManager(
+      $_db,
+      $_db.musicas,
+    ).filter((f) => f.afinacaoId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_musicasRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$DigitacoesTable, List<DigitacaoData>>
+  _digitacoesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.digitacoes,
+    aliasName: $_aliasNameGenerator(db.afinacoes.id, db.digitacoes.afinacaoId),
+  );
+
+  $$DigitacoesTableProcessedTableManager get digitacoesRefs {
+    final manager = $$DigitacoesTableTableManager(
+      $_db,
+      $_db.digitacoes,
+    ).filter((f) => f.afinacaoId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_digitacoesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$AfinacoesTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $AfinacoesTable> {
-  $$AfinacoesTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $AfinacoesTable> {
+  $$AfinacoesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnWithTypeConverterFilters<model.Instrumento, model.Instrumento, String>
-      get instrumento => $state.composableBuilder(
-          column: $state.table.instrumento,
-          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
-              column,
-              joinBuilders: joinBuilders));
+  get instrumento => $composableBuilder(
+    column: $table.instrumento,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
-  ColumnFilters<String> get notas => $state.composableBuilder(
-      column: $state.table.notas,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get notas => $composableBuilder(
+    column: $table.notas,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ComposableFilter musicasRefs(
-      ComposableFilter Function($$MusicasTableFilterComposer f) f) {
-    final $$MusicasTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.id,
-        referencedTable: $state.db.musicas,
-        getReferencedColumn: (t) => t.afinacaoId,
-        builder: (joinBuilder, parentComposers) => $$MusicasTableFilterComposer(
-            ComposerState(
-                $state.db, $state.db.musicas, joinBuilder, parentComposers)));
+  Expression<bool> musicasRefs(
+    Expression<bool> Function($$MusicasTableFilterComposer f) f,
+  ) {
+    final $$MusicasTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.musicas,
+      getReferencedColumn: (t) => t.afinacaoId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MusicasTableFilterComposer(
+            $db: $db,
+            $table: $db.musicas,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return f(composer);
   }
 
-  ComposableFilter digitacoesRefs(
-      ComposableFilter Function($$DigitacoesTableFilterComposer f) f) {
-    final $$DigitacoesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.id,
-        referencedTable: $state.db.digitacoes,
-        getReferencedColumn: (t) => t.afinacaoId,
-        builder: (joinBuilder, parentComposers) =>
-            $$DigitacoesTableFilterComposer(ComposerState($state.db,
-                $state.db.digitacoes, joinBuilder, parentComposers)));
+  Expression<bool> digitacoesRefs(
+    Expression<bool> Function($$DigitacoesTableFilterComposer f) f,
+  ) {
+    final $$DigitacoesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.digitacoes,
+      getReferencedColumn: (t) => t.afinacaoId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DigitacoesTableFilterComposer(
+            $db: $db,
+            $table: $db.digitacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return f(composer);
   }
 }
 
 class $$AfinacoesTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $AfinacoesTable> {
-  $$AfinacoesTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $AfinacoesTable> {
+  $$AfinacoesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get instrumento => $state.composableBuilder(
-      column: $state.table.instrumento,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get instrumento => $composableBuilder(
+    column: $table.instrumento,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get notas => $state.composableBuilder(
-      column: $state.table.notas,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get notas => $composableBuilder(
+    column: $table.notas,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
-typedef $$MusicasTableCreateCompanionBuilder = MusicasCompanion Function({
-  Value<int> id,
-  required String nome,
-  required model.Instrumento instrumento,
-  required int afinacaoId,
-  Value<String?> linkYoutube,
-});
-typedef $$MusicasTableUpdateCompanionBuilder = MusicasCompanion Function({
-  Value<int> id,
-  Value<String> nome,
-  Value<model.Instrumento> instrumento,
-  Value<int> afinacaoId,
-  Value<String?> linkYoutube,
-});
+class $$AfinacoesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $AfinacoesTable> {
+  $$AfinacoesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
 
-class $$MusicasTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $MusicasTable,
-    MusicaData,
-    $$MusicasTableFilterComposer,
-    $$MusicasTableOrderingComposer,
-    $$MusicasTableCreateCompanionBuilder,
-    $$MusicasTableUpdateCompanionBuilder> {
-  $$MusicasTableTableManager(_$AppDatabase db, $MusicasTable table)
-      : super(TableManagerState(
+  GeneratedColumn<String> get nome =>
+      $composableBuilder(column: $table.nome, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<model.Instrumento, String> get instrumento =>
+      $composableBuilder(
+        column: $table.instrumento,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<String> get notas =>
+      $composableBuilder(column: $table.notas, builder: (column) => column);
+
+  Expression<T> musicasRefs<T extends Object>(
+    Expression<T> Function($$MusicasTableAnnotationComposer a) f,
+  ) {
+    final $$MusicasTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.musicas,
+      getReferencedColumn: (t) => t.afinacaoId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MusicasTableAnnotationComposer(
+            $db: $db,
+            $table: $db.musicas,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> digitacoesRefs<T extends Object>(
+    Expression<T> Function($$DigitacoesTableAnnotationComposer a) f,
+  ) {
+    final $$DigitacoesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.digitacoes,
+      getReferencedColumn: (t) => t.afinacaoId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DigitacoesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.digitacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$AfinacoesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $AfinacoesTable,
+          AfinacaoData,
+          $$AfinacoesTableFilterComposer,
+          $$AfinacoesTableOrderingComposer,
+          $$AfinacoesTableAnnotationComposer,
+          $$AfinacoesTableCreateCompanionBuilder,
+          $$AfinacoesTableUpdateCompanionBuilder,
+          (AfinacaoData, $$AfinacoesTableReferences),
+          AfinacaoData,
+          PrefetchHooks Function({bool musicasRefs, bool digitacoesRefs})
+        > {
+  $$AfinacoesTableTableManager(_$AppDatabase db, $AfinacoesTable table)
+    : super(
+        TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$MusicasTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$MusicasTableOrderingComposer(ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> nome = const Value.absent(),
-            Value<model.Instrumento> instrumento = const Value.absent(),
-            Value<int> afinacaoId = const Value.absent(),
-            Value<String?> linkYoutube = const Value.absent(),
-          }) =>
-              MusicasCompanion(
-            id: id,
-            nome: nome,
-            instrumento: instrumento,
-            afinacaoId: afinacaoId,
-            linkYoutube: linkYoutube,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required String nome,
-            required model.Instrumento instrumento,
-            required int afinacaoId,
-            Value<String?> linkYoutube = const Value.absent(),
-          }) =>
-              MusicasCompanion.insert(
-            id: id,
-            nome: nome,
-            instrumento: instrumento,
-            afinacaoId: afinacaoId,
-            linkYoutube: linkYoutube,
-          ),
-        ));
+          createFilteringComposer: () =>
+              $$AfinacoesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AfinacoesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AfinacoesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> nome = const Value.absent(),
+                Value<model.Instrumento> instrumento = const Value.absent(),
+                Value<String> notas = const Value.absent(),
+              }) => AfinacoesCompanion(
+                id: id,
+                nome: nome,
+                instrumento: instrumento,
+                notas: notas,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String nome,
+                required model.Instrumento instrumento,
+                required String notas,
+              }) => AfinacoesCompanion.insert(
+                id: id,
+                nome: nome,
+                instrumento: instrumento,
+                notas: notas,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$AfinacoesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({musicasRefs = false, digitacoesRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (musicasRefs) db.musicas,
+                    if (digitacoesRefs) db.digitacoes,
+                  ],
+                  addJoins: null,
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (musicasRefs)
+                        await $_getPrefetchedData<
+                          AfinacaoData,
+                          $AfinacoesTable,
+                          MusicaData
+                        >(
+                          currentTable: table,
+                          referencedTable: $$AfinacoesTableReferences
+                              ._musicasRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$AfinacoesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).musicasRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.afinacaoId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (digitacoesRefs)
+                        await $_getPrefetchedData<
+                          AfinacaoData,
+                          $AfinacoesTable,
+                          DigitacaoData
+                        >(
+                          currentTable: table,
+                          referencedTable: $$AfinacoesTableReferences
+                              ._digitacoesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$AfinacoesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).digitacoesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.afinacaoId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$AfinacoesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $AfinacoesTable,
+      AfinacaoData,
+      $$AfinacoesTableFilterComposer,
+      $$AfinacoesTableOrderingComposer,
+      $$AfinacoesTableAnnotationComposer,
+      $$AfinacoesTableCreateCompanionBuilder,
+      $$AfinacoesTableUpdateCompanionBuilder,
+      (AfinacaoData, $$AfinacoesTableReferences),
+      AfinacaoData,
+      PrefetchHooks Function({bool musicasRefs, bool digitacoesRefs})
+    >;
+typedef $$MusicasTableCreateCompanionBuilder =
+    MusicasCompanion Function({
+      Value<int> id,
+      required String nome,
+      required model.Instrumento instrumento,
+      required int afinacaoId,
+      Value<String?> linkYoutube,
+    });
+typedef $$MusicasTableUpdateCompanionBuilder =
+    MusicasCompanion Function({
+      Value<int> id,
+      Value<String> nome,
+      Value<model.Instrumento> instrumento,
+      Value<int> afinacaoId,
+      Value<String?> linkYoutube,
+    });
+
+final class $$MusicasTableReferences
+    extends BaseReferences<_$AppDatabase, $MusicasTable, MusicaData> {
+  $$MusicasTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $AfinacoesTable _afinacaoIdTable(_$AppDatabase db) =>
+      db.afinacoes.createAlias(
+        $_aliasNameGenerator(db.musicas.afinacaoId, db.afinacoes.id),
+      );
+
+  $$AfinacoesTableProcessedTableManager get afinacaoId {
+    final $_column = $_itemColumn<int>('afinacao_id')!;
+
+    final manager = $$AfinacoesTableTableManager(
+      $_db,
+      $_db.afinacoes,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_afinacaoIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static MultiTypedResultKey<$PartesTable, List<ParteData>> _partesRefsTable(
+    _$AppDatabase db,
+  ) => MultiTypedResultKey.fromTable(
+    db.partes,
+    aliasName: $_aliasNameGenerator(db.musicas.id, db.partes.musicaId),
+  );
+
+  $$PartesTableProcessedTableManager get partesRefs {
+    final manager = $$PartesTableTableManager(
+      $_db,
+      $_db.partes,
+    ).filter((f) => f.musicaId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_partesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$MusicasTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $MusicasTable> {
-  $$MusicasTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $MusicasTable> {
+  $$MusicasTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnWithTypeConverterFilters<model.Instrumento, model.Instrumento, String>
-      get instrumento => $state.composableBuilder(
-          column: $state.table.instrumento,
-          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
-              column,
-              joinBuilders: joinBuilders));
+  get instrumento => $composableBuilder(
+    column: $table.instrumento,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
-  ColumnFilters<String> get linkYoutube => $state.composableBuilder(
-      column: $state.table.linkYoutube,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get linkYoutube => $composableBuilder(
+    column: $table.linkYoutube,
+    builder: (column) => ColumnFilters(column),
+  );
 
   $$AfinacoesTableFilterComposer get afinacaoId {
-    final $$AfinacoesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.afinacaoId,
-        referencedTable: $state.db.afinacoes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$AfinacoesTableFilterComposer(ComposerState(
-                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    final $$AfinacoesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.afinacaoId,
+      referencedTable: $db.afinacoes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AfinacoesTableFilterComposer(
+            $db: $db,
+            $table: $db.afinacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 
-  ComposableFilter partesRefs(
-      ComposableFilter Function($$PartesTableFilterComposer f) f) {
-    final $$PartesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.id,
-        referencedTable: $state.db.partes,
-        getReferencedColumn: (t) => t.musicaId,
-        builder: (joinBuilder, parentComposers) => $$PartesTableFilterComposer(
-            ComposerState(
-                $state.db, $state.db.partes, joinBuilder, parentComposers)));
+  Expression<bool> partesRefs(
+    Expression<bool> Function($$PartesTableFilterComposer f) f,
+  ) {
+    final $$PartesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.partes,
+      getReferencedColumn: (t) => t.musicaId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PartesTableFilterComposer(
+            $db: $db,
+            $table: $db.partes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return f(composer);
   }
 }
 
 class $$MusicasTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $MusicasTable> {
-  $$MusicasTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $MusicasTable> {
+  $$MusicasTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get instrumento => $state.composableBuilder(
-      column: $state.table.instrumento,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get instrumento => $composableBuilder(
+    column: $table.instrumento,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get linkYoutube => $state.composableBuilder(
-      column: $state.table.linkYoutube,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get linkYoutube => $composableBuilder(
+    column: $table.linkYoutube,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   $$AfinacoesTableOrderingComposer get afinacaoId {
-    final $$AfinacoesTableOrderingComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.afinacaoId,
-        referencedTable: $state.db.afinacoes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$AfinacoesTableOrderingComposer(ComposerState(
-                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    final $$AfinacoesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.afinacaoId,
+      referencedTable: $db.afinacoes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AfinacoesTableOrderingComposer(
+            $db: $db,
+            $table: $db.afinacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 }
 
-typedef $$PartesTableCreateCompanionBuilder = PartesCompanion Function({
-  Value<int> id,
-  required int musicaId,
-  required String nome,
-  required String ritmo,
-  required String sequencia,
-});
-typedef $$PartesTableUpdateCompanionBuilder = PartesCompanion Function({
-  Value<int> id,
-  Value<int> musicaId,
-  Value<String> nome,
-  Value<String> ritmo,
-  Value<String> sequencia,
-});
+class $$MusicasTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MusicasTable> {
+  $$MusicasTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
 
-class $$PartesTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $PartesTable,
-    ParteData,
-    $$PartesTableFilterComposer,
-    $$PartesTableOrderingComposer,
-    $$PartesTableCreateCompanionBuilder,
-    $$PartesTableUpdateCompanionBuilder> {
-  $$PartesTableTableManager(_$AppDatabase db, $PartesTable table)
-      : super(TableManagerState(
+  GeneratedColumn<String> get nome =>
+      $composableBuilder(column: $table.nome, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<model.Instrumento, String> get instrumento =>
+      $composableBuilder(
+        column: $table.instrumento,
+        builder: (column) => column,
+      );
+
+  GeneratedColumn<String> get linkYoutube => $composableBuilder(
+    column: $table.linkYoutube,
+    builder: (column) => column,
+  );
+
+  $$AfinacoesTableAnnotationComposer get afinacaoId {
+    final $$AfinacoesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.afinacaoId,
+      referencedTable: $db.afinacoes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AfinacoesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.afinacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<T> partesRefs<T extends Object>(
+    Expression<T> Function($$PartesTableAnnotationComposer a) f,
+  ) {
+    final $$PartesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.partes,
+      getReferencedColumn: (t) => t.musicaId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PartesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.partes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$MusicasTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MusicasTable,
+          MusicaData,
+          $$MusicasTableFilterComposer,
+          $$MusicasTableOrderingComposer,
+          $$MusicasTableAnnotationComposer,
+          $$MusicasTableCreateCompanionBuilder,
+          $$MusicasTableUpdateCompanionBuilder,
+          (MusicaData, $$MusicasTableReferences),
+          MusicaData,
+          PrefetchHooks Function({bool afinacaoId, bool partesRefs})
+        > {
+  $$MusicasTableTableManager(_$AppDatabase db, $MusicasTable table)
+    : super(
+        TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$PartesTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$PartesTableOrderingComposer(ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<int> musicaId = const Value.absent(),
-            Value<String> nome = const Value.absent(),
-            Value<String> ritmo = const Value.absent(),
-            Value<String> sequencia = const Value.absent(),
-          }) =>
-              PartesCompanion(
-            id: id,
-            musicaId: musicaId,
-            nome: nome,
-            ritmo: ritmo,
-            sequencia: sequencia,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required int musicaId,
-            required String nome,
-            required String ritmo,
-            required String sequencia,
-          }) =>
-              PartesCompanion.insert(
-            id: id,
-            musicaId: musicaId,
-            nome: nome,
-            ritmo: ritmo,
-            sequencia: sequencia,
-          ),
-        ));
+          createFilteringComposer: () =>
+              $$MusicasTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MusicasTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MusicasTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> nome = const Value.absent(),
+                Value<model.Instrumento> instrumento = const Value.absent(),
+                Value<int> afinacaoId = const Value.absent(),
+                Value<String?> linkYoutube = const Value.absent(),
+              }) => MusicasCompanion(
+                id: id,
+                nome: nome,
+                instrumento: instrumento,
+                afinacaoId: afinacaoId,
+                linkYoutube: linkYoutube,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String nome,
+                required model.Instrumento instrumento,
+                required int afinacaoId,
+                Value<String?> linkYoutube = const Value.absent(),
+              }) => MusicasCompanion.insert(
+                id: id,
+                nome: nome,
+                instrumento: instrumento,
+                afinacaoId: afinacaoId,
+                linkYoutube: linkYoutube,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$MusicasTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({afinacaoId = false, partesRefs = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [if (partesRefs) db.partes],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (afinacaoId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.afinacaoId,
+                                referencedTable: $$MusicasTableReferences
+                                    ._afinacaoIdTable(db),
+                                referencedColumn: $$MusicasTableReferences
+                                    ._afinacaoIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [
+                  if (partesRefs)
+                    await $_getPrefetchedData<
+                      MusicaData,
+                      $MusicasTable,
+                      ParteData
+                    >(
+                      currentTable: table,
+                      referencedTable: $$MusicasTableReferences
+                          ._partesRefsTable(db),
+                      managerFromTypedResult: (p0) =>
+                          $$MusicasTableReferences(db, table, p0).partesRefs,
+                      referencedItemsForCurrentItem: (item, referencedItems) =>
+                          referencedItems.where((e) => e.musicaId == item.id),
+                      typedResults: items,
+                    ),
+                ];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$MusicasTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MusicasTable,
+      MusicaData,
+      $$MusicasTableFilterComposer,
+      $$MusicasTableOrderingComposer,
+      $$MusicasTableAnnotationComposer,
+      $$MusicasTableCreateCompanionBuilder,
+      $$MusicasTableUpdateCompanionBuilder,
+      (MusicaData, $$MusicasTableReferences),
+      MusicaData,
+      PrefetchHooks Function({bool afinacaoId, bool partesRefs})
+    >;
+typedef $$PartesTableCreateCompanionBuilder =
+    PartesCompanion Function({
+      Value<int> id,
+      required int musicaId,
+      required String nome,
+      required String ritmo,
+      required String sequencia,
+    });
+typedef $$PartesTableUpdateCompanionBuilder =
+    PartesCompanion Function({
+      Value<int> id,
+      Value<int> musicaId,
+      Value<String> nome,
+      Value<String> ritmo,
+      Value<String> sequencia,
+    });
+
+final class $$PartesTableReferences
+    extends BaseReferences<_$AppDatabase, $PartesTable, ParteData> {
+  $$PartesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $MusicasTable _musicaIdTable(_$AppDatabase db) => db.musicas
+      .createAlias($_aliasNameGenerator(db.partes.musicaId, db.musicas.id));
+
+  $$MusicasTableProcessedTableManager get musicaId {
+    final $_column = $_itemColumn<int>('musica_id')!;
+
+    final manager = $$MusicasTableTableManager(
+      $_db,
+      $_db.musicas,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_musicaIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static MultiTypedResultKey<$SequenciaCompassosTable, List<SequenciaCompasso>>
+  _sequenciaCompassosRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.sequenciaCompassos,
+        aliasName: $_aliasNameGenerator(
+          db.partes.id,
+          db.sequenciaCompassos.parteId,
+        ),
+      );
+
+  $$SequenciaCompassosTableProcessedTableManager get sequenciaCompassosRefs {
+    final manager = $$SequenciaCompassosTableTableManager(
+      $_db,
+      $_db.sequenciaCompassos,
+    ).filter((f) => f.parteId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _sequenciaCompassosRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$PartesTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $PartesTable> {
-  $$PartesTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $PartesTable> {
+  $$PartesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get ritmo => $state.composableBuilder(
-      column: $state.table.ritmo,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get ritmo => $composableBuilder(
+    column: $table.ritmo,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get sequencia => $state.composableBuilder(
-      column: $state.table.sequencia,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get sequencia => $composableBuilder(
+    column: $table.sequencia,
+    builder: (column) => ColumnFilters(column),
+  );
 
   $$MusicasTableFilterComposer get musicaId {
-    final $$MusicasTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.musicaId,
-        referencedTable: $state.db.musicas,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) => $$MusicasTableFilterComposer(
-            ComposerState(
-                $state.db, $state.db.musicas, joinBuilder, parentComposers)));
+    final $$MusicasTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.musicaId,
+      referencedTable: $db.musicas,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MusicasTableFilterComposer(
+            $db: $db,
+            $table: $db.musicas,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 
-  ComposableFilter sequenciaCompassosRefs(
-      ComposableFilter Function($$SequenciaCompassosTableFilterComposer f) f) {
-    final $$SequenciaCompassosTableFilterComposer composer = $state
-        .composerBuilder(
-            composer: this,
-            getCurrentColumn: (t) => t.id,
-            referencedTable: $state.db.sequenciaCompassos,
-            getReferencedColumn: (t) => t.parteId,
-            builder: (joinBuilder, parentComposers) =>
-                $$SequenciaCompassosTableFilterComposer(ComposerState(
-                    $state.db,
-                    $state.db.sequenciaCompassos,
-                    joinBuilder,
-                    parentComposers)));
+  Expression<bool> sequenciaCompassosRefs(
+    Expression<bool> Function($$SequenciaCompassosTableFilterComposer f) f,
+  ) {
+    final $$SequenciaCompassosTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sequenciaCompassos,
+      getReferencedColumn: (t) => t.parteId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SequenciaCompassosTableFilterComposer(
+            $db: $db,
+            $table: $db.sequenciaCompassos,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return f(composer);
   }
 }
 
 class $$PartesTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $PartesTable> {
-  $$PartesTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $PartesTable> {
+  $$PartesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get ritmo => $state.composableBuilder(
-      column: $state.table.ritmo,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get ritmo => $composableBuilder(
+    column: $table.ritmo,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get sequencia => $state.composableBuilder(
-      column: $state.table.sequencia,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get sequencia => $composableBuilder(
+    column: $table.sequencia,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   $$MusicasTableOrderingComposer get musicaId {
-    final $$MusicasTableOrderingComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.musicaId,
-        referencedTable: $state.db.musicas,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$MusicasTableOrderingComposer(ComposerState(
-                $state.db, $state.db.musicas, joinBuilder, parentComposers)));
+    final $$MusicasTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.musicaId,
+      referencedTable: $db.musicas,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MusicasTableOrderingComposer(
+            $db: $db,
+            $table: $db.musicas,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 }
 
-typedef $$AcordesTableCreateCompanionBuilder = AcordesCompanion Function({
-  Value<int> id,
-  required String nome,
-  required model.TipoAcorde tipo,
-});
-typedef $$AcordesTableUpdateCompanionBuilder = AcordesCompanion Function({
-  Value<int> id,
-  Value<String> nome,
-  Value<model.TipoAcorde> tipo,
-});
+class $$PartesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PartesTable> {
+  $$PartesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
 
-class $$AcordesTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $AcordesTable,
-    AcordeData,
-    $$AcordesTableFilterComposer,
-    $$AcordesTableOrderingComposer,
-    $$AcordesTableCreateCompanionBuilder,
-    $$AcordesTableUpdateCompanionBuilder> {
-  $$AcordesTableTableManager(_$AppDatabase db, $AcordesTable table)
-      : super(TableManagerState(
+  GeneratedColumn<String> get nome =>
+      $composableBuilder(column: $table.nome, builder: (column) => column);
+
+  GeneratedColumn<String> get ritmo =>
+      $composableBuilder(column: $table.ritmo, builder: (column) => column);
+
+  GeneratedColumn<String> get sequencia =>
+      $composableBuilder(column: $table.sequencia, builder: (column) => column);
+
+  $$MusicasTableAnnotationComposer get musicaId {
+    final $$MusicasTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.musicaId,
+      referencedTable: $db.musicas,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$MusicasTableAnnotationComposer(
+            $db: $db,
+            $table: $db.musicas,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<T> sequenciaCompassosRefs<T extends Object>(
+    Expression<T> Function($$SequenciaCompassosTableAnnotationComposer a) f,
+  ) {
+    final $$SequenciaCompassosTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.sequenciaCompassos,
+          getReferencedColumn: (t) => t.parteId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$SequenciaCompassosTableAnnotationComposer(
+                $db: $db,
+                $table: $db.sequenciaCompassos,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+}
+
+class $$PartesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PartesTable,
+          ParteData,
+          $$PartesTableFilterComposer,
+          $$PartesTableOrderingComposer,
+          $$PartesTableAnnotationComposer,
+          $$PartesTableCreateCompanionBuilder,
+          $$PartesTableUpdateCompanionBuilder,
+          (ParteData, $$PartesTableReferences),
+          ParteData,
+          PrefetchHooks Function({bool musicaId, bool sequenciaCompassosRefs})
+        > {
+  $$PartesTableTableManager(_$AppDatabase db, $PartesTable table)
+    : super(
+        TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$AcordesTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$AcordesTableOrderingComposer(ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> nome = const Value.absent(),
-            Value<model.TipoAcorde> tipo = const Value.absent(),
-          }) =>
-              AcordesCompanion(
-            id: id,
-            nome: nome,
-            tipo: tipo,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required String nome,
-            required model.TipoAcorde tipo,
-          }) =>
-              AcordesCompanion.insert(
-            id: id,
-            nome: nome,
-            tipo: tipo,
-          ),
-        ));
+          createFilteringComposer: () =>
+              $$PartesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PartesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PartesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> musicaId = const Value.absent(),
+                Value<String> nome = const Value.absent(),
+                Value<String> ritmo = const Value.absent(),
+                Value<String> sequencia = const Value.absent(),
+              }) => PartesCompanion(
+                id: id,
+                musicaId: musicaId,
+                nome: nome,
+                ritmo: ritmo,
+                sequencia: sequencia,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int musicaId,
+                required String nome,
+                required String ritmo,
+                required String sequencia,
+              }) => PartesCompanion.insert(
+                id: id,
+                musicaId: musicaId,
+                nome: nome,
+                ritmo: ritmo,
+                sequencia: sequencia,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) =>
+                    (e.readTable(table), $$PartesTableReferences(db, table, e)),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({musicaId = false, sequenciaCompassosRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (sequenciaCompassosRefs) db.sequenciaCompassos,
+                  ],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (musicaId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.musicaId,
+                                    referencedTable: $$PartesTableReferences
+                                        ._musicaIdTable(db),
+                                    referencedColumn: $$PartesTableReferences
+                                        ._musicaIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
+
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (sequenciaCompassosRefs)
+                        await $_getPrefetchedData<
+                          ParteData,
+                          $PartesTable,
+                          SequenciaCompasso
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PartesTableReferences
+                              ._sequenciaCompassosRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PartesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).sequenciaCompassosRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.parteId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$PartesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PartesTable,
+      ParteData,
+      $$PartesTableFilterComposer,
+      $$PartesTableOrderingComposer,
+      $$PartesTableAnnotationComposer,
+      $$PartesTableCreateCompanionBuilder,
+      $$PartesTableUpdateCompanionBuilder,
+      (ParteData, $$PartesTableReferences),
+      ParteData,
+      PrefetchHooks Function({bool musicaId, bool sequenciaCompassosRefs})
+    >;
+typedef $$AcordesTableCreateCompanionBuilder =
+    AcordesCompanion Function({
+      Value<int> id,
+      required String nome,
+      required model.TipoAcorde tipo,
+    });
+typedef $$AcordesTableUpdateCompanionBuilder =
+    AcordesCompanion Function({
+      Value<int> id,
+      Value<String> nome,
+      Value<model.TipoAcorde> tipo,
+    });
+
+final class $$AcordesTableReferences
+    extends BaseReferences<_$AppDatabase, $AcordesTable, AcordeData> {
+  $$AcordesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$DigitacoesTable, List<DigitacaoData>>
+  _digitacoesRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.digitacoes,
+    aliasName: $_aliasNameGenerator(db.acordes.id, db.digitacoes.acordeId),
+  );
+
+  $$DigitacoesTableProcessedTableManager get digitacoesRefs {
+    final manager = $$DigitacoesTableTableManager(
+      $_db,
+      $_db.digitacoes,
+    ).filter((f) => f.acordeId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_digitacoesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<$SequenciaCompassosTable, List<SequenciaCompasso>>
+  _sequenciaCompassosRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.sequenciaCompassos,
+        aliasName: $_aliasNameGenerator(
+          db.acordes.id,
+          db.sequenciaCompassos.acordeId,
+        ),
+      );
+
+  $$SequenciaCompassosTableProcessedTableManager get sequenciaCompassosRefs {
+    final manager = $$SequenciaCompassosTableTableManager(
+      $_db,
+      $_db.sequenciaCompassos,
+    ).filter((f) => f.acordeId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _sequenciaCompassosRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$AcordesTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $AcordesTable> {
-  $$AcordesTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $AcordesTable> {
+  $$AcordesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnWithTypeConverterFilters<model.TipoAcorde, model.TipoAcorde, String>
-      get tipo => $state.composableBuilder(
-          column: $state.table.tipo,
-          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
-              column,
-              joinBuilders: joinBuilders));
+  get tipo => $composableBuilder(
+    column: $table.tipo,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
-  ComposableFilter digitacoesRefs(
-      ComposableFilter Function($$DigitacoesTableFilterComposer f) f) {
-    final $$DigitacoesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.id,
-        referencedTable: $state.db.digitacoes,
-        getReferencedColumn: (t) => t.acordeId,
-        builder: (joinBuilder, parentComposers) =>
-            $$DigitacoesTableFilterComposer(ComposerState($state.db,
-                $state.db.digitacoes, joinBuilder, parentComposers)));
+  Expression<bool> digitacoesRefs(
+    Expression<bool> Function($$DigitacoesTableFilterComposer f) f,
+  ) {
+    final $$DigitacoesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.digitacoes,
+      getReferencedColumn: (t) => t.acordeId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DigitacoesTableFilterComposer(
+            $db: $db,
+            $table: $db.digitacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return f(composer);
   }
 
-  ComposableFilter sequenciaCompassosRefs(
-      ComposableFilter Function($$SequenciaCompassosTableFilterComposer f) f) {
-    final $$SequenciaCompassosTableFilterComposer composer = $state
-        .composerBuilder(
-            composer: this,
-            getCurrentColumn: (t) => t.id,
-            referencedTable: $state.db.sequenciaCompassos,
-            getReferencedColumn: (t) => t.acordeId,
-            builder: (joinBuilder, parentComposers) =>
-                $$SequenciaCompassosTableFilterComposer(ComposerState(
-                    $state.db,
-                    $state.db.sequenciaCompassos,
-                    joinBuilder,
-                    parentComposers)));
+  Expression<bool> sequenciaCompassosRefs(
+    Expression<bool> Function($$SequenciaCompassosTableFilterComposer f) f,
+  ) {
+    final $$SequenciaCompassosTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.sequenciaCompassos,
+      getReferencedColumn: (t) => t.acordeId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$SequenciaCompassosTableFilterComposer(
+            $db: $db,
+            $table: $db.sequenciaCompassos,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return f(composer);
   }
 }
 
 class $$AcordesTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $AcordesTable> {
-  $$AcordesTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $AcordesTable> {
+  $$AcordesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get nome => $state.composableBuilder(
-      column: $state.table.nome,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get nome => $composableBuilder(
+    column: $table.nome,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get tipo => $state.composableBuilder(
-      column: $state.table.tipo,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get tipo => $composableBuilder(
+    column: $table.tipo,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
-typedef $$DigitacoesTableCreateCompanionBuilder = DigitacoesCompanion Function({
-  Value<int> id,
-  required int acordeId,
-  required int afinacaoId,
-  required model.Posicoes posicoes,
-});
-typedef $$DigitacoesTableUpdateCompanionBuilder = DigitacoesCompanion Function({
-  Value<int> id,
-  Value<int> acordeId,
-  Value<int> afinacaoId,
-  Value<model.Posicoes> posicoes,
-});
+class $$AcordesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $AcordesTable> {
+  $$AcordesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
 
-class $$DigitacoesTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $DigitacoesTable,
-    DigitacaoData,
-    $$DigitacoesTableFilterComposer,
-    $$DigitacoesTableOrderingComposer,
-    $$DigitacoesTableCreateCompanionBuilder,
-    $$DigitacoesTableUpdateCompanionBuilder> {
-  $$DigitacoesTableTableManager(_$AppDatabase db, $DigitacoesTable table)
-      : super(TableManagerState(
+  GeneratedColumn<String> get nome =>
+      $composableBuilder(column: $table.nome, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<model.TipoAcorde, String> get tipo =>
+      $composableBuilder(column: $table.tipo, builder: (column) => column);
+
+  Expression<T> digitacoesRefs<T extends Object>(
+    Expression<T> Function($$DigitacoesTableAnnotationComposer a) f,
+  ) {
+    final $$DigitacoesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.digitacoes,
+      getReferencedColumn: (t) => t.acordeId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DigitacoesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.digitacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> sequenciaCompassosRefs<T extends Object>(
+    Expression<T> Function($$SequenciaCompassosTableAnnotationComposer a) f,
+  ) {
+    final $$SequenciaCompassosTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.sequenciaCompassos,
+          getReferencedColumn: (t) => t.acordeId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$SequenciaCompassosTableAnnotationComposer(
+                $db: $db,
+                $table: $db.sequenciaCompassos,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
+}
+
+class $$AcordesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $AcordesTable,
+          AcordeData,
+          $$AcordesTableFilterComposer,
+          $$AcordesTableOrderingComposer,
+          $$AcordesTableAnnotationComposer,
+          $$AcordesTableCreateCompanionBuilder,
+          $$AcordesTableUpdateCompanionBuilder,
+          (AcordeData, $$AcordesTableReferences),
+          AcordeData,
+          PrefetchHooks Function({
+            bool digitacoesRefs,
+            bool sequenciaCompassosRefs,
+          })
+        > {
+  $$AcordesTableTableManager(_$AppDatabase db, $AcordesTable table)
+    : super(
+        TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$DigitacoesTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$DigitacoesTableOrderingComposer(ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<int> acordeId = const Value.absent(),
-            Value<int> afinacaoId = const Value.absent(),
-            Value<model.Posicoes> posicoes = const Value.absent(),
-          }) =>
-              DigitacoesCompanion(
-            id: id,
-            acordeId: acordeId,
-            afinacaoId: afinacaoId,
-            posicoes: posicoes,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required int acordeId,
-            required int afinacaoId,
-            required model.Posicoes posicoes,
-          }) =>
-              DigitacoesCompanion.insert(
-            id: id,
-            acordeId: acordeId,
-            afinacaoId: afinacaoId,
-            posicoes: posicoes,
-          ),
-        ));
+          createFilteringComposer: () =>
+              $$AcordesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AcordesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AcordesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> nome = const Value.absent(),
+                Value<model.TipoAcorde> tipo = const Value.absent(),
+              }) => AcordesCompanion(id: id, nome: nome, tipo: tipo),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String nome,
+                required model.TipoAcorde tipo,
+              }) => AcordesCompanion.insert(id: id, nome: nome, tipo: tipo),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$AcordesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({digitacoesRefs = false, sequenciaCompassosRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (digitacoesRefs) db.digitacoes,
+                    if (sequenciaCompassosRefs) db.sequenciaCompassos,
+                  ],
+                  addJoins: null,
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (digitacoesRefs)
+                        await $_getPrefetchedData<
+                          AcordeData,
+                          $AcordesTable,
+                          DigitacaoData
+                        >(
+                          currentTable: table,
+                          referencedTable: $$AcordesTableReferences
+                              ._digitacoesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$AcordesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).digitacoesRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.acordeId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                      if (sequenciaCompassosRefs)
+                        await $_getPrefetchedData<
+                          AcordeData,
+                          $AcordesTable,
+                          SequenciaCompasso
+                        >(
+                          currentTable: table,
+                          referencedTable: $$AcordesTableReferences
+                              ._sequenciaCompassosRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$AcordesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).sequenciaCompassosRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.acordeId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$AcordesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $AcordesTable,
+      AcordeData,
+      $$AcordesTableFilterComposer,
+      $$AcordesTableOrderingComposer,
+      $$AcordesTableAnnotationComposer,
+      $$AcordesTableCreateCompanionBuilder,
+      $$AcordesTableUpdateCompanionBuilder,
+      (AcordeData, $$AcordesTableReferences),
+      AcordeData,
+      PrefetchHooks Function({bool digitacoesRefs, bool sequenciaCompassosRefs})
+    >;
+typedef $$DigitacoesTableCreateCompanionBuilder =
+    DigitacoesCompanion Function({
+      Value<int> id,
+      required int acordeId,
+      required int afinacaoId,
+      required model.Posicoes posicoes,
+    });
+typedef $$DigitacoesTableUpdateCompanionBuilder =
+    DigitacoesCompanion Function({
+      Value<int> id,
+      Value<int> acordeId,
+      Value<int> afinacaoId,
+      Value<model.Posicoes> posicoes,
+    });
+
+final class $$DigitacoesTableReferences
+    extends BaseReferences<_$AppDatabase, $DigitacoesTable, DigitacaoData> {
+  $$DigitacoesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $AcordesTable _acordeIdTable(_$AppDatabase db) => db.acordes
+      .createAlias($_aliasNameGenerator(db.digitacoes.acordeId, db.acordes.id));
+
+  $$AcordesTableProcessedTableManager get acordeId {
+    final $_column = $_itemColumn<int>('acorde_id')!;
+
+    final manager = $$AcordesTableTableManager(
+      $_db,
+      $_db.acordes,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_acordeIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $AfinacoesTable _afinacaoIdTable(_$AppDatabase db) =>
+      db.afinacoes.createAlias(
+        $_aliasNameGenerator(db.digitacoes.afinacaoId, db.afinacoes.id),
+      );
+
+  $$AfinacoesTableProcessedTableManager get afinacaoId {
+    final $_column = $_itemColumn<int>('afinacao_id')!;
+
+    final manager = $$AfinacoesTableTableManager(
+      $_db,
+      $_db.afinacoes,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_afinacaoIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
 }
 
 class $$DigitacoesTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $DigitacoesTable> {
-  $$DigitacoesTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $DigitacoesTable> {
+  $$DigitacoesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnWithTypeConverterFilters<model.Posicoes, model.Posicoes, String>
-      get posicoes => $state.composableBuilder(
-          column: $state.table.posicoes,
-          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
-              column,
-              joinBuilders: joinBuilders));
+  get posicoes => $composableBuilder(
+    column: $table.posicoes,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
   $$AcordesTableFilterComposer get acordeId {
-    final $$AcordesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.acordeId,
-        referencedTable: $state.db.acordes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) => $$AcordesTableFilterComposer(
-            ComposerState(
-                $state.db, $state.db.acordes, joinBuilder, parentComposers)));
+    final $$AcordesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.acordeId,
+      referencedTable: $db.acordes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AcordesTableFilterComposer(
+            $db: $db,
+            $table: $db.acordes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 
   $$AfinacoesTableFilterComposer get afinacaoId {
-    final $$AfinacoesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.afinacaoId,
-        referencedTable: $state.db.afinacoes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$AfinacoesTableFilterComposer(ComposerState(
-                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    final $$AfinacoesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.afinacaoId,
+      referencedTable: $db.afinacoes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AfinacoesTableFilterComposer(
+            $db: $db,
+            $table: $db.afinacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 }
 
 class $$DigitacoesTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $DigitacoesTable> {
-  $$DigitacoesTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $DigitacoesTable> {
+  $$DigitacoesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get posicoes => $state.composableBuilder(
-      column: $state.table.posicoes,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get posicoes => $composableBuilder(
+    column: $table.posicoes,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   $$AcordesTableOrderingComposer get acordeId {
-    final $$AcordesTableOrderingComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.acordeId,
-        referencedTable: $state.db.acordes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$AcordesTableOrderingComposer(ComposerState(
-                $state.db, $state.db.acordes, joinBuilder, parentComposers)));
+    final $$AcordesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.acordeId,
+      referencedTable: $db.acordes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AcordesTableOrderingComposer(
+            $db: $db,
+            $table: $db.acordes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 
   $$AfinacoesTableOrderingComposer get afinacaoId {
-    final $$AfinacoesTableOrderingComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.afinacaoId,
-        referencedTable: $state.db.afinacoes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$AfinacoesTableOrderingComposer(ComposerState(
-                $state.db, $state.db.afinacoes, joinBuilder, parentComposers)));
+    final $$AfinacoesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.afinacaoId,
+      referencedTable: $db.afinacoes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AfinacoesTableOrderingComposer(
+            $db: $db,
+            $table: $db.afinacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 }
 
-typedef $$SequenciaCompassosTableCreateCompanionBuilder
-    = SequenciaCompassosCompanion Function({
-  Value<int> id,
-  required int parteId,
-  required int acordeId,
-  required int vezes,
-  required int ordem,
-});
-typedef $$SequenciaCompassosTableUpdateCompanionBuilder
-    = SequenciaCompassosCompanion Function({
-  Value<int> id,
-  Value<int> parteId,
-  Value<int> acordeId,
-  Value<int> vezes,
-  Value<int> ordem,
-});
+class $$DigitacoesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $DigitacoesTable> {
+  $$DigitacoesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
 
-class $$SequenciaCompassosTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $SequenciaCompassosTable,
-    SequenciaCompasso,
-    $$SequenciaCompassosTableFilterComposer,
-    $$SequenciaCompassosTableOrderingComposer,
-    $$SequenciaCompassosTableCreateCompanionBuilder,
-    $$SequenciaCompassosTableUpdateCompanionBuilder> {
-  $$SequenciaCompassosTableTableManager(
-      _$AppDatabase db, $SequenciaCompassosTable table)
-      : super(TableManagerState(
+  GeneratedColumnWithTypeConverter<model.Posicoes, String> get posicoes =>
+      $composableBuilder(column: $table.posicoes, builder: (column) => column);
+
+  $$AcordesTableAnnotationComposer get acordeId {
+    final $$AcordesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.acordeId,
+      referencedTable: $db.acordes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AcordesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.acordes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$AfinacoesTableAnnotationComposer get afinacaoId {
+    final $$AfinacoesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.afinacaoId,
+      referencedTable: $db.afinacoes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AfinacoesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.afinacoes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$DigitacoesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $DigitacoesTable,
+          DigitacaoData,
+          $$DigitacoesTableFilterComposer,
+          $$DigitacoesTableOrderingComposer,
+          $$DigitacoesTableAnnotationComposer,
+          $$DigitacoesTableCreateCompanionBuilder,
+          $$DigitacoesTableUpdateCompanionBuilder,
+          (DigitacaoData, $$DigitacoesTableReferences),
+          DigitacaoData,
+          PrefetchHooks Function({bool acordeId, bool afinacaoId})
+        > {
+  $$DigitacoesTableTableManager(_$AppDatabase db, $DigitacoesTable table)
+    : super(
+        TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$SequenciaCompassosTableFilterComposer(ComposerState(db, table)),
-          orderingComposer: $$SequenciaCompassosTableOrderingComposer(
-              ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<int> parteId = const Value.absent(),
-            Value<int> acordeId = const Value.absent(),
-            Value<int> vezes = const Value.absent(),
-            Value<int> ordem = const Value.absent(),
-          }) =>
-              SequenciaCompassosCompanion(
-            id: id,
-            parteId: parteId,
-            acordeId: acordeId,
-            vezes: vezes,
-            ordem: ordem,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required int parteId,
-            required int acordeId,
-            required int vezes,
-            required int ordem,
-          }) =>
-              SequenciaCompassosCompanion.insert(
-            id: id,
-            parteId: parteId,
-            acordeId: acordeId,
-            vezes: vezes,
-            ordem: ordem,
-          ),
-        ));
+          createFilteringComposer: () =>
+              $$DigitacoesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DigitacoesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$DigitacoesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> acordeId = const Value.absent(),
+                Value<int> afinacaoId = const Value.absent(),
+                Value<model.Posicoes> posicoes = const Value.absent(),
+              }) => DigitacoesCompanion(
+                id: id,
+                acordeId: acordeId,
+                afinacaoId: afinacaoId,
+                posicoes: posicoes,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int acordeId,
+                required int afinacaoId,
+                required model.Posicoes posicoes,
+              }) => DigitacoesCompanion.insert(
+                id: id,
+                acordeId: acordeId,
+                afinacaoId: afinacaoId,
+                posicoes: posicoes,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$DigitacoesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({acordeId = false, afinacaoId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (acordeId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.acordeId,
+                                referencedTable: $$DigitacoesTableReferences
+                                    ._acordeIdTable(db),
+                                referencedColumn: $$DigitacoesTableReferences
+                                    ._acordeIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+                    if (afinacaoId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.afinacaoId,
+                                referencedTable: $$DigitacoesTableReferences
+                                    ._afinacaoIdTable(db),
+                                referencedColumn: $$DigitacoesTableReferences
+                                    ._afinacaoIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$DigitacoesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $DigitacoesTable,
+      DigitacaoData,
+      $$DigitacoesTableFilterComposer,
+      $$DigitacoesTableOrderingComposer,
+      $$DigitacoesTableAnnotationComposer,
+      $$DigitacoesTableCreateCompanionBuilder,
+      $$DigitacoesTableUpdateCompanionBuilder,
+      (DigitacaoData, $$DigitacoesTableReferences),
+      DigitacaoData,
+      PrefetchHooks Function({bool acordeId, bool afinacaoId})
+    >;
+typedef $$SequenciaCompassosTableCreateCompanionBuilder =
+    SequenciaCompassosCompanion Function({
+      Value<int> id,
+      required int parteId,
+      required int acordeId,
+      required int vezes,
+      required int ordem,
+    });
+typedef $$SequenciaCompassosTableUpdateCompanionBuilder =
+    SequenciaCompassosCompanion Function({
+      Value<int> id,
+      Value<int> parteId,
+      Value<int> acordeId,
+      Value<int> vezes,
+      Value<int> ordem,
+    });
+
+final class $$SequenciaCompassosTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $SequenciaCompassosTable,
+          SequenciaCompasso
+        > {
+  $$SequenciaCompassosTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $PartesTable _parteIdTable(_$AppDatabase db) => db.partes.createAlias(
+    $_aliasNameGenerator(db.sequenciaCompassos.parteId, db.partes.id),
+  );
+
+  $$PartesTableProcessedTableManager get parteId {
+    final $_column = $_itemColumn<int>('parte_id')!;
+
+    final manager = $$PartesTableTableManager(
+      $_db,
+      $_db.partes,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_parteIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static $AcordesTable _acordeIdTable(_$AppDatabase db) =>
+      db.acordes.createAlias(
+        $_aliasNameGenerator(db.sequenciaCompassos.acordeId, db.acordes.id),
+      );
+
+  $$AcordesTableProcessedTableManager get acordeId {
+    final $_column = $_itemColumn<int>('acorde_id')!;
+
+    final manager = $$AcordesTableTableManager(
+      $_db,
+      $_db.acordes,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_acordeIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
 }
 
 class $$SequenciaCompassosTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $SequenciaCompassosTable> {
-  $$SequenciaCompassosTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $SequenciaCompassosTable> {
+  $$SequenciaCompassosTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<int> get vezes => $state.composableBuilder(
-      column: $state.table.vezes,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<int> get vezes => $composableBuilder(
+    column: $table.vezes,
+    builder: (column) => ColumnFilters(column),
+  );
 
-  ColumnFilters<int> get ordem => $state.composableBuilder(
-      column: $state.table.ordem,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<int> get ordem => $composableBuilder(
+    column: $table.ordem,
+    builder: (column) => ColumnFilters(column),
+  );
 
   $$PartesTableFilterComposer get parteId {
-    final $$PartesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.parteId,
-        referencedTable: $state.db.partes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) => $$PartesTableFilterComposer(
-            ComposerState(
-                $state.db, $state.db.partes, joinBuilder, parentComposers)));
+    final $$PartesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.parteId,
+      referencedTable: $db.partes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PartesTableFilterComposer(
+            $db: $db,
+            $table: $db.partes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 
   $$AcordesTableFilterComposer get acordeId {
-    final $$AcordesTableFilterComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.acordeId,
-        referencedTable: $state.db.acordes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) => $$AcordesTableFilterComposer(
-            ComposerState(
-                $state.db, $state.db.acordes, joinBuilder, parentComposers)));
+    final $$AcordesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.acordeId,
+      referencedTable: $db.acordes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AcordesTableFilterComposer(
+            $db: $db,
+            $table: $db.acordes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 }
 
 class $$SequenciaCompassosTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $SequenciaCompassosTable> {
-  $$SequenciaCompassosTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $SequenciaCompassosTable> {
+  $$SequenciaCompassosTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<int> get vezes => $state.composableBuilder(
-      column: $state.table.vezes,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<int> get vezes => $composableBuilder(
+    column: $table.vezes,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<int> get ordem => $state.composableBuilder(
-      column: $state.table.ordem,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<int> get ordem => $composableBuilder(
+    column: $table.ordem,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   $$PartesTableOrderingComposer get parteId {
-    final $$PartesTableOrderingComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.parteId,
-        referencedTable: $state.db.partes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$PartesTableOrderingComposer(ComposerState(
-                $state.db, $state.db.partes, joinBuilder, parentComposers)));
+    final $$PartesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.parteId,
+      referencedTable: $db.partes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PartesTableOrderingComposer(
+            $db: $db,
+            $table: $db.partes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 
   $$AcordesTableOrderingComposer get acordeId {
-    final $$AcordesTableOrderingComposer composer = $state.composerBuilder(
-        composer: this,
-        getCurrentColumn: (t) => t.acordeId,
-        referencedTable: $state.db.acordes,
-        getReferencedColumn: (t) => t.id,
-        builder: (joinBuilder, parentComposers) =>
-            $$AcordesTableOrderingComposer(ComposerState(
-                $state.db, $state.db.acordes, joinBuilder, parentComposers)));
+    final $$AcordesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.acordeId,
+      referencedTable: $db.acordes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AcordesTableOrderingComposer(
+            $db: $db,
+            $table: $db.acordes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
     return composer;
   }
 }
+
+class $$SequenciaCompassosTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SequenciaCompassosTable> {
+  $$SequenciaCompassosTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<int> get vezes =>
+      $composableBuilder(column: $table.vezes, builder: (column) => column);
+
+  GeneratedColumn<int> get ordem =>
+      $composableBuilder(column: $table.ordem, builder: (column) => column);
+
+  $$PartesTableAnnotationComposer get parteId {
+    final $$PartesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.parteId,
+      referencedTable: $db.partes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PartesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.partes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $$AcordesTableAnnotationComposer get acordeId {
+    final $$AcordesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.acordeId,
+      referencedTable: $db.acordes,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$AcordesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.acordes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$SequenciaCompassosTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $SequenciaCompassosTable,
+          SequenciaCompasso,
+          $$SequenciaCompassosTableFilterComposer,
+          $$SequenciaCompassosTableOrderingComposer,
+          $$SequenciaCompassosTableAnnotationComposer,
+          $$SequenciaCompassosTableCreateCompanionBuilder,
+          $$SequenciaCompassosTableUpdateCompanionBuilder,
+          (SequenciaCompasso, $$SequenciaCompassosTableReferences),
+          SequenciaCompasso,
+          PrefetchHooks Function({bool parteId, bool acordeId})
+        > {
+  $$SequenciaCompassosTableTableManager(
+    _$AppDatabase db,
+    $SequenciaCompassosTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SequenciaCompassosTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SequenciaCompassosTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SequenciaCompassosTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> parteId = const Value.absent(),
+                Value<int> acordeId = const Value.absent(),
+                Value<int> vezes = const Value.absent(),
+                Value<int> ordem = const Value.absent(),
+              }) => SequenciaCompassosCompanion(
+                id: id,
+                parteId: parteId,
+                acordeId: acordeId,
+                vezes: vezes,
+                ordem: ordem,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int parteId,
+                required int acordeId,
+                required int vezes,
+                required int ordem,
+              }) => SequenciaCompassosCompanion.insert(
+                id: id,
+                parteId: parteId,
+                acordeId: acordeId,
+                vezes: vezes,
+                ordem: ordem,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$SequenciaCompassosTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({parteId = false, acordeId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (parteId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.parteId,
+                                referencedTable:
+                                    $$SequenciaCompassosTableReferences
+                                        ._parteIdTable(db),
+                                referencedColumn:
+                                    $$SequenciaCompassosTableReferences
+                                        ._parteIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+                    if (acordeId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.acordeId,
+                                referencedTable:
+                                    $$SequenciaCompassosTableReferences
+                                        ._acordeIdTable(db),
+                                referencedColumn:
+                                    $$SequenciaCompassosTableReferences
+                                        ._acordeIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$SequenciaCompassosTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $SequenciaCompassosTable,
+      SequenciaCompasso,
+      $$SequenciaCompassosTableFilterComposer,
+      $$SequenciaCompassosTableOrderingComposer,
+      $$SequenciaCompassosTableAnnotationComposer,
+      $$SequenciaCompassosTableCreateCompanionBuilder,
+      $$SequenciaCompassosTableUpdateCompanionBuilder,
+      (SequenciaCompasso, $$SequenciaCompassosTableReferences),
+      SequenciaCompasso,
+      PrefetchHooks Function({bool parteId, bool acordeId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;

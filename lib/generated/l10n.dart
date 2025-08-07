@@ -18,8 +18,10 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,72 +56,37 @@ class S {
 
   /// `Guitar Learner`
   String get appTitle {
-    return Intl.message(
-      'Guitar Learner',
-      name: 'appTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Guitar Learner', name: 'appTitle', desc: '', args: []);
   }
 
   /// `Menu`
   String get menu {
-    return Intl.message(
-      'Menu',
-      name: 'menu',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Menu', name: 'menu', desc: '', args: []);
   }
 
   /// `Settings`
   String get settings {
-    return Intl.message(
-      'Settings',
-      name: 'settings',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
   }
 
   /// `About`
   String get about {
-    return Intl.message(
-      'About',
-      name: 'about',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('About', name: 'about', desc: '', args: []);
   }
 
   /// `New Song`
   String get newSong {
-    return Intl.message(
-      'New Song',
-      name: 'newSong',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('New Song', name: 'newSong', desc: '', args: []);
   }
 
   /// `Edit Song`
   String get editSong {
-    return Intl.message(
-      'Edit Song',
-      name: 'editSong',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Edit Song', name: 'editSong', desc: '', args: []);
   }
 
   /// `Theme`
   String get tema {
-    return Intl.message(
-      'Theme',
-      name: 'tema',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Theme', name: 'tema', desc: '', args: []);
   }
 
   /// `Version {versionNumber}`
@@ -142,12 +111,7 @@ class S {
 
   /// `Developer`
   String get dev {
-    return Intl.message(
-      'Developer',
-      name: 'dev',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Developer', name: 'dev', desc: '', args: []);
   }
 
   /// `Practice today, get better always!`
@@ -162,12 +126,7 @@ class S {
 
   /// `Song Data`
   String get step1Title {
-    return Intl.message(
-      'Song Data',
-      name: 'step1Title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Song Data', name: 'step1Title', desc: '', args: []);
   }
 
   /// `Fill in the basic details of the song. The title is essential to find it later.`
@@ -182,12 +141,7 @@ class S {
 
   /// `Song Parts`
   String get step2Title {
-    return Intl.message(
-      'Song Parts',
-      name: 'step2Title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Song Parts', name: 'step2Title', desc: '', args: []);
   }
 
   /// ` Define the song structure with sections, rhythm, and chords. Add as many parts as you like.`
@@ -202,12 +156,7 @@ class S {
 
   /// `Step`
   String get step {
-    return Intl.message(
-      'Step',
-      name: 'step',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Step', name: 'step', desc: '', args: []);
   }
 
   /// `Required field`
@@ -222,22 +171,12 @@ class S {
 
   /// `Optional`
   String get optional {
-    return Intl.message(
-      'Optional',
-      name: 'optional',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Optional', name: 'optional', desc: '', args: []);
   }
 
   /// `Song Name`
   String get songName {
-    return Intl.message(
-      'Song Name',
-      name: 'songName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Song Name', name: 'songName', desc: '', args: []);
   }
 
   /// `Youtube Link`
@@ -252,42 +191,22 @@ class S {
 
   /// `Part Name`
   String get partName {
-    return Intl.message(
-      'Part Name',
-      name: 'partName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Part Name', name: 'partName', desc: '', args: []);
   }
 
   /// `Save`
   String get salvar {
-    return Intl.message(
-      'Save',
-      name: 'salvar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save', name: 'salvar', desc: '', args: []);
   }
 
   /// `Back`
   String get voltar {
-    return Intl.message(
-      'Back',
-      name: 'voltar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Back', name: 'voltar', desc: '', args: []);
   }
 
   /// `Continue`
   String get continuar {
-    return Intl.message(
-      'Continue',
-      name: 'continuar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Continue', name: 'continuar', desc: '', args: []);
   }
 
   /// `e.g., Californication`
@@ -332,12 +251,7 @@ class S {
 
   /// `All set`
   String get sucessoToast {
-    return Intl.message(
-      'All set',
-      name: 'sucessoToast',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('All set', name: 'sucessoToast', desc: '', args: []);
   }
 
   /// `Your changes have been saved successfully!`
@@ -362,72 +276,37 @@ class S {
 
   /// `Help`
   String get help {
-    return Intl.message(
-      'Help',
-      name: 'help',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Help', name: 'help', desc: '', args: []);
   }
 
   /// `Learn More`
   String get saberMais {
-    return Intl.message(
-      'Learn More',
-      name: 'saberMais',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Learn More', name: 'saberMais', desc: '', args: []);
   }
 
   /// `Add New Part`
   String get addParte {
-    return Intl.message(
-      'Add New Part',
-      name: 'addParte',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add New Part', name: 'addParte', desc: '', args: []);
   }
 
   /// `Part`
   String get part {
-    return Intl.message(
-      'Part',
-      name: 'part',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Part', name: 'part', desc: '', args: []);
   }
 
   /// `Rhythm`
   String get ritmo {
-    return Intl.message(
-      'Rhythm',
-      name: 'ritmo',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Rhythm', name: 'ritmo', desc: '', args: []);
   }
 
   /// `Sequence`
   String get sequencia {
-    return Intl.message(
-      'Sequence',
-      name: 'sequencia',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sequence', name: 'sequencia', desc: '', args: []);
   }
 
   /// `Instrument`
   String get instrumento {
-    return Intl.message(
-      'Instrument',
-      name: 'instrumento',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Instrument', name: 'instrumento', desc: '', args: []);
   }
 
   /// `No beat has been added yet.`
@@ -442,12 +321,7 @@ class S {
 
   /// `Atention!`
   String get atencao {
-    return Intl.message(
-      'Atention!',
-      name: 'atencao',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Atention!', name: 'atencao', desc: '', args: []);
   }
 
   /// `Beat limit reached.`
@@ -472,12 +346,7 @@ class S {
 
   /// `Select`
   String get selecionar {
-    return Intl.message(
-      'Select',
-      name: 'selecionar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Select', name: 'selecionar', desc: '', args: []);
   }
 
   /// `Sequence limit reached.`
@@ -502,42 +371,22 @@ class S {
 
   /// `Content`
   String get content {
-    return Intl.message(
-      'Content',
-      name: 'content',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Content', name: 'content', desc: '', args: []);
   }
 
   /// `Preferences`
   String get preferences {
-    return Intl.message(
-      'Preferences',
-      name: 'preferences',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Preferences', name: 'preferences', desc: '', args: []);
   }
 
   /// `Language`
   String get linguagem {
-    return Intl.message(
-      'Language',
-      name: 'linguagem',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Language', name: 'linguagem', desc: '', args: []);
   }
 
   /// `Dark Mode`
   String get temaEscuro {
-    return Intl.message(
-      'Dark Mode',
-      name: 'temaEscuro',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Dark Mode', name: 'temaEscuro', desc: '', args: []);
   }
 
   /// `Language changed!`
@@ -562,52 +411,27 @@ class S {
 
   /// `Acoustic Guitar`
   String get violao {
-    return Intl.message(
-      'Acoustic Guitar',
-      name: 'violao',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Acoustic Guitar', name: 'violao', desc: '', args: []);
   }
 
   /// `Eletric Guitar`
   String get guitarra {
-    return Intl.message(
-      'Eletric Guitar',
-      name: 'guitarra',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Eletric Guitar', name: 'guitarra', desc: '', args: []);
   }
 
   /// `Ukulele`
   String get ukelele {
-    return Intl.message(
-      'Ukulele',
-      name: 'ukelele',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ukulele', name: 'ukelele', desc: '', args: []);
   }
 
   /// `Delete`
   String get deletar {
-    return Intl.message(
-      'Delete',
-      name: 'deletar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Delete', name: 'deletar', desc: '', args: []);
   }
 
   /// `Edit`
   String get editar {
-    return Intl.message(
-      'Edit',
-      name: 'editar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Edit', name: 'editar', desc: '', args: []);
   }
 
   /// `Are you sure you want to delete this song?`
@@ -622,12 +446,7 @@ class S {
 
   /// `My Songs`
   String get mySongs {
-    return Intl.message(
-      'My Songs',
-      name: 'mySongs',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('My Songs', name: 'mySongs', desc: '', args: []);
   }
 
   /// `Practice with your songs!`
@@ -672,12 +491,7 @@ class S {
 
   /// `Practice`
   String get praticar {
-    return Intl.message(
-      'Practice',
-      name: 'praticar',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Practice', name: 'praticar', desc: '', args: []);
   }
 
   /// `Silent... we haven't played any chords yet. Let's start your musical journey?`
@@ -692,12 +506,7 @@ class S {
 
   /// `Your Progress`
   String get progresso {
-    return Intl.message(
-      'Your Progress',
-      name: 'progresso',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Your Progress', name: 'progresso', desc: '', args: []);
   }
 
   /// `Continue where you left off!`
@@ -712,112 +521,57 @@ class S {
 
   /// `Major`
   String get maior {
-    return Intl.message(
-      'Major',
-      name: 'maior',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Major', name: 'maior', desc: '', args: []);
   }
 
   /// `Minor`
   String get menor {
-    return Intl.message(
-      'Minor',
-      name: 'menor',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Minor', name: 'menor', desc: '', args: []);
   }
 
   /// `Other`
   String get outro {
-    return Intl.message(
-      'Other',
-      name: 'outro',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Other', name: 'outro', desc: '', args: []);
   }
 
   /// `C`
   String get nota_C {
-    return Intl.message(
-      'C',
-      name: 'nota_C',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('C', name: 'nota_C', desc: '', args: []);
   }
 
   /// `D`
   String get nota_D {
-    return Intl.message(
-      'D',
-      name: 'nota_D',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('D', name: 'nota_D', desc: '', args: []);
   }
 
   /// `E`
   String get nota_E {
-    return Intl.message(
-      'E',
-      name: 'nota_E',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('E', name: 'nota_E', desc: '', args: []);
   }
 
   /// `F`
   String get nota_F {
-    return Intl.message(
-      'F',
-      name: 'nota_F',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('F', name: 'nota_F', desc: '', args: []);
   }
 
   /// `G`
   String get nota_G {
-    return Intl.message(
-      'G',
-      name: 'nota_G',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('G', name: 'nota_G', desc: '', args: []);
   }
 
   /// `A`
   String get nota_A {
-    return Intl.message(
-      'A',
-      name: 'nota_A',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('A', name: 'nota_A', desc: '', args: []);
   }
 
   /// `B`
   String get nota_B {
-    return Intl.message(
-      'B',
-      name: 'nota_B',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('B', name: 'nota_B', desc: '', args: []);
   }
 
   /// `Tuning`
   String get afinacao {
-    return Intl.message(
-      'Tuning',
-      name: 'afinacao',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Tuning', name: 'afinacao', desc: '', args: []);
   }
 
   /// `Revise the required fields.`
