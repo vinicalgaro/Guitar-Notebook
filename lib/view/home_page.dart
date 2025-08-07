@@ -9,6 +9,7 @@ import 'package:guitar_learner/viewmodel/home_viewmodel.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:provider/provider.dart';
 
+import '../model/musica/models.dart' show Musica;
 import '../model/settings_repository.dart';
 import '../widgets/default_header_page.dart';
 
@@ -25,8 +26,9 @@ class HomePage extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (context) => HomeViewModel(
-          repository: context.read<IMusicaRepository>(),
-          settingsRepository: context.read<SettingsRepository>()),
+        repository: context.read<IMusicaRepository>(),
+        settingsRepository: context.read<SettingsRepository>(),
+      ),
       child: Scaffold(
         body: Column(
           children: [
@@ -35,18 +37,24 @@ class HomePage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DefaultCardContainer(
-                    child: Column(
-                  children: [
-                    DefaultHeaderPage(
-                      title: localizations.progresso,
-                      subtitle: localizations.progressoDesc,
-                      margin: const EdgeInsets.only(top: 6.0, left: 8.0),
-                    ),
-                    Consumer<HomeViewModel>(
-                        builder: (context, value, child) =>
-                            MusicaLastWidget(musica: value.ultimaMusica))
-                  ],
-                )),
+                  child: Column(
+                    children: [
+                      DefaultHeaderPage(
+                        title: localizations.progresso,
+                        subtitle: localizations.progressoDesc,
+                        margin: const EdgeInsets.only(top: 6.0, left: 8.0),
+                      ),
+                      Consumer<HomeViewModel>(
+                        builder: (context, viewModel, child) =>
+                            StreamBuilder<Musica?>(
+                              stream: viewModel.ultimaMusicaStream,
+                              builder: (context, snapshot) =>
+                                  MusicaLastWidget(musica: snapshot.data),
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
             Flexible(

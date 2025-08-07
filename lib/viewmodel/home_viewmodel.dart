@@ -11,65 +11,46 @@ class HomeViewModel extends ChangeNotifier {
   final IMusicaRepository _musicaRepository;
   final SettingsRepository _settingsRepository;
 
-  Stream<List<model.Musica>>? musicasStream;
-  Musica? ultimaMusica;
+  HomeViewModel({
+    required IMusicaRepository repository,
+    required SettingsRepository settingsRepository,
+  }) : _musicaRepository = repository,
+       _settingsRepository = settingsRepository;
 
-  HomeViewModel(
-      {required IMusicaRepository repository,
-      required SettingsRepository settingsRepository})
-      : _musicaRepository = repository,
-        _settingsRepository = settingsRepository {
-    _init();
-  }
+  Stream<List<model.Musica>> get musicasStream =>
+      _musicaRepository.watchAllMusicas();
 
-  void _init() {
-    _carregarDados();
-    _watchMusicas();
+  Stream<Musica?> get ultimaMusicaStream async* {
+    final lastPlayedId = await _settingsRepository.getUltimaMusicaId();
+    if (lastPlayedId == null) {
+      yield null;
+      return;
+    }
+
+    await for (final musicas in musicasStream) {
+      try {
+        final musicaAtualizada = musicas.firstWhere(
+          (m) => m.id == lastPlayedId,
+        );
+        yield musicaAtualizada;
+      } catch (e) {
+        await _settingsRepository.clearUltimaMusica();
+        yield null;
+      }
+    }
   }
 
   void deletarMusica(int musicaId) async {
+    final lastPlayedId = await _settingsRepository.getUltimaMusicaId();
     await _musicaRepository.deletarMusica(musicaId);
 
-    if (ultimaMusica?.id == musicaId) {
+    if (lastPlayedId == musicaId) {
       await _settingsRepository.clearUltimaMusica();
-      ultimaMusica = null;
     }
-
-    notifyListeners();
   }
 
-  void _watchMusicas() {
-    musicasStream = _musicaRepository.watchAllMusicas();
-    notifyListeners();
-  }
-
-  Future<void> _carregarDados() async {
-    final lastPlayedId = await _settingsRepository.getUltimaMusicaId();
-
-    if (lastPlayedId != null) {
-      final musicaEncontrada = await _musicaRepository.getMusica(lastPlayedId);
-
-      if (musicaEncontrada != null) {
-        ultimaMusica = musicaEncontrada;
-      } else {
-        await _settingsRepository.clearUltimaMusica();
-        ultimaMusica = null;
-      }
-    } else {
-      ultimaMusica = null;
-    }
-
-    notifyListeners();
-  }
-
-  void atualizarUltimaMusica(Musica musica) {
-    ultimaMusica = musica;
+  void playSong(BuildContext context, Musica musica) {
     _settingsRepository.saveUltimaMusicaId(musica.id!);
-    notifyListeners();
-  }
-
-  playSong(BuildContext context, Musica musica) {
-    atualizarUltimaMusica(musica);
     context.goTo(AppRoutes.playSong, arguments: musica);
   }
 }
