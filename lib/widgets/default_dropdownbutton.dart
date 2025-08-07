@@ -24,15 +24,15 @@ class DefaultDropdownButton<T> extends StatelessWidget {
         Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
         DropdownButtonFormField<T>(
-          value: value,
+          initialValue: value,
           decoration: const InputDecoration(),
           borderRadius: BorderRadius.circular(8.0),
-          items: items.map((item) {
-            return DropdownMenuItem<T>(
-              value: item,
-              child: itemBuilder(item),
-            );
-          }).toList(),
+          items: items
+              .map(
+                (item) =>
+                    DropdownMenuItem<T>(value: item, child: itemBuilder(item)),
+              )
+              .toList(),
           dropdownColor: Theme.of(context).colorScheme.surface,
           onChanged: onChanged,
         ),

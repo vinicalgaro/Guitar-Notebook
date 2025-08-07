@@ -9,4 +9,6 @@ extension ColorUtils on Color {
     final lighterColor = Color.lerp(this, Colors.white, amount)!;
     return lighterColor;
   }
+
+  Color withSafeOpacity(double percent) => withAlpha((percent * 255).round());
 }

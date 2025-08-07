@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guitar_learner/extensions/color_extension.dart';
 
 class DefaultDivider extends StatelessWidget {
   final double height;
@@ -8,9 +9,10 @@ class DefaultDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
-        indent: 8.0,
-        endIndent: 8.0,
-        height: height,
-        color: Theme.of(context).dividerColor.withOpacity(0.2));
+      indent: 8.0,
+      endIndent: 8.0,
+      height: height,
+      color: Theme.of(context).dividerColor.withSafeOpacity(0.2),
+    );
   }
 }

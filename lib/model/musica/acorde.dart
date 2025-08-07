@@ -24,8 +24,6 @@ enum TipoAcorde {
         return localizations.menor;
       case TipoAcorde.outro:
         return localizations.outro;
-      default:
-        return "";
     }
   }
 }

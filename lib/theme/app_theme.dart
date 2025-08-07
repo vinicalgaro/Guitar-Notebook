@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:guitar_learner/extensions/color_extension.dart';
 
 import 'app_colors_extension.dart';
 
@@ -30,75 +30,77 @@ class AppTheme {
   static TextTheme get _textTheme => GoogleFonts.redHatDisplayTextTheme();
 
   static TextTheme _buildTextTheme(Color bodyColor, Color displayColor) =>
-      _textTheme.apply(
-        bodyColor: bodyColor,
-        displayColor: displayColor,
-      );
+      _textTheme.apply(bodyColor: bodyColor, displayColor: displayColor);
 
   static AppBarTheme _buildAppBarTheme(
-          Color backgroundColor, Color foregroundColor) =>
-      AppBarTheme(
-          backgroundColor: backgroundColor,
-          foregroundColor: foregroundColor,
-          elevation: 4.0,
-          centerTitle: true);
+    Color backgroundColor,
+    Color foregroundColor,
+  ) => AppBarTheme(
+    backgroundColor: backgroundColor,
+    foregroundColor: foregroundColor,
+    elevation: 4.0,
+    centerTitle: true,
+  );
 
   static ElevatedButtonThemeData _buildElevatedButtonTheme(
-          Color backgroundColor, Color foregroundColor) =>
-      ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-          foregroundColor: foregroundColor,
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      );
+    Color backgroundColor,
+    Color foregroundColor,
+  ) => ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
+  );
 
   static FloatingActionButtonThemeData _buildFloatingActionButtonTheme(
-          Color backgroundColor, Color foregroundColor) =>
-      FloatingActionButtonThemeData(
-          backgroundColor: backgroundColor,
-          foregroundColor: foregroundColor,
-          shape: const CircleBorder());
+    Color backgroundColor,
+    Color foregroundColor,
+  ) => FloatingActionButtonThemeData(
+    backgroundColor: backgroundColor,
+    foregroundColor: foregroundColor,
+    shape: const CircleBorder(),
+  );
 
   static CardThemeData _buildCardTheme(Color color) => CardThemeData(
-        color: color,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      );
+    color: color,
+    elevation: 2,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  );
 
-  static SwitchThemeData _buildSwitchTheme(Color color) =>
-      SwitchThemeData(overlayColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.hovered)) {
-          return color.withOpacity(0.5);
-        }
-        return null;
-      }), thumbColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
-          return Colors.white;
-        }
-        return null;
-      }));
+  static SwitchThemeData _buildSwitchTheme(Color color) => SwitchThemeData(
+    overlayColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.hovered)) {
+        return color.withSafeOpacity(0.5);
+      }
+      return null;
+    }),
+    thumbColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
+        return Colors.white;
+      }
+      return null;
+    }),
+  );
 
   static InputDecorationTheme _buildInputDecorationTheme(
-          Color fillColor, Color borderSideColor, Color labelColor) =>
-      InputDecorationTheme(
-        filled: true,
-        fillColor: fillColor,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: borderSideColor, width: 2.0),
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-        ),
-        labelStyle: TextStyle(color: labelColor),
-      );
+    Color fillColor,
+    Color borderSideColor,
+    Color labelColor,
+  ) => InputDecorationTheme(
+    filled: true,
+    fillColor: fillColor,
+    border: const OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: borderSideColor, width: 2.0),
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+    ),
+    labelStyle: TextStyle(color: labelColor),
+  );
 
   // --- TEMA CLARO ---
   static final ThemeData lightTheme = ThemeData(
@@ -113,8 +115,6 @@ class AppTheme {
       onSecondary: Colors.white,
       tertiary: paletaDarkRed,
       onTertiary: Colors.white,
-      background: paletaCream,
-      onBackground: _lightTextColor,
       surface: Color(0xFFF5EFE0),
       onSurface: _lightTextColor,
       error: paletaBrightRed,
@@ -131,30 +131,31 @@ class AppTheme {
     scaffoldBackgroundColor: paletaCream,
 
     // Tema dos Botões
-    elevatedButtonTheme:
-        _buildElevatedButtonTheme(paletaDarkBlue, Colors.white),
+    elevatedButtonTheme: _buildElevatedButtonTheme(
+      paletaDarkBlue,
+      Colors.white,
+    ),
 
     // Tema do Floating Action Button (FAB)
-    floatingActionButtonTheme:
-        _buildFloatingActionButtonTheme(paletaDarkRed, Colors.white),
+    floatingActionButtonTheme: _buildFloatingActionButtonTheme(
+      paletaDarkRed,
+      Colors.white,
+    ),
 
     // Tema dos Cards
     cardTheme: _buildCardTheme(Colors.white),
 
     // Tema dos campos de texto
     inputDecorationTheme: _buildInputDecorationTheme(
-        const Color(0xFFE0E0E0).withOpacity(0.7),
-        paletaDarkBlue,
-        paletaDarkBlue),
+      const Color(0xFFE0E0E0).withSafeOpacity(0.7),
+      paletaDarkBlue,
+      paletaDarkBlue,
+    ),
 
     // Tema dos Switches
     switchTheme: _buildSwitchTheme(paletaLightBlue),
 
-    extensions: const [
-      AppColorsExtension(
-        textSecondary: _textSecondary,
-      ),
-    ],
+    extensions: const [AppColorsExtension(textSecondary: _textSecondary)],
   );
 
   // --- TEMA ESCURO ---
@@ -170,8 +171,6 @@ class AppTheme {
       onSecondary: _darkTextColor,
       tertiary: paletaDarkRed,
       onTertiary: _darkTextColor,
-      background: Color(0xFF121212),
-      onBackground: _darkTextColor,
       surface: Color(0xFF1E1E1E),
       onSurface: _darkTextColor,
       error: paletaBrightRed,
@@ -188,12 +187,16 @@ class AppTheme {
     scaffoldBackgroundColor: const Color(0xFF121212),
 
     // Tema dos Botões para o modo escuro
-    elevatedButtonTheme:
-        _buildElevatedButtonTheme(paletaLightBlue, _darkTextColor),
+    elevatedButtonTheme: _buildElevatedButtonTheme(
+      paletaLightBlue,
+      _darkTextColor,
+    ),
 
     // Tema do Floating Action Button (FAB)
-    floatingActionButtonTheme:
-        _buildFloatingActionButtonTheme(paletaDarkRed, Colors.white),
+    floatingActionButtonTheme: _buildFloatingActionButtonTheme(
+      paletaDarkRed,
+      Colors.white,
+    ),
 
     // Tema dos Cards
     cardTheme: _buildCardTheme(const Color(0xFF1E1E1E)),
@@ -203,12 +206,11 @@ class AppTheme {
 
     // Tema dos campos de texto
     inputDecorationTheme: _buildInputDecorationTheme(
-        const Color(0xFF2C2C2C), paletaLightBlue, Colors.white70),
+      const Color(0xFF2C2C2C),
+      paletaLightBlue,
+      Colors.white70,
+    ),
 
-    extensions: const [
-      AppColorsExtension(
-        textSecondary: _textSecondaryDark,
-      ),
-    ],
+    extensions: const [AppColorsExtension(textSecondary: _textSecondaryDark)],
   );
 }

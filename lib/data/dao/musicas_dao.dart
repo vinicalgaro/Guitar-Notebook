@@ -2,7 +2,7 @@ part of '../database.dart';
 
 @DriftAccessor(tables: [Musicas, Partes, Acordes, SequenciaCompassos])
 class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
-  MusicasDao(AppDatabase db) : super(db);
+  MusicasDao(super.db);
 
   Future<void> upsertMusica(model.Musica musica) {
     return transaction(() async {
@@ -17,10 +17,12 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
 
       if (musica.id != null) {
         musicaId = musica.id!;
-        await (update(musicas)..where((tbl) => tbl.id.equals(musicaId)))
-            .write(musicaCompanion);
-        await (delete(partes)..where((tbl) => tbl.musicaId.equals(musicaId)))
-            .go();
+        await (update(
+          musicas,
+        )..where((tbl) => tbl.id.equals(musicaId))).write(musicaCompanion);
+        await (delete(
+          partes,
+        )..where((tbl) => tbl.musicaId.equals(musicaId))).go();
       } else {
         musicaId = await into(musicas).insert(musicaCompanion);
       }
@@ -36,9 +38,10 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
 
         int ordem = 0;
         for (var compasso in parteModel.sequencia.compassos) {
-          final acorde = await (select(acordes)
-                ..where((tbl) => tbl.nome.equals(compasso.acorde.nome)))
-              .getSingleOrNull();
+          final acorde =
+              await (select(acordes)
+                    ..where((tbl) => tbl.nome.equals(compasso.acorde.nome)))
+                  .getSingleOrNull();
 
           if (acorde != null) {
             final sequenciaCompanion = SequenciaCompassosCompanion.insert(
@@ -64,16 +67,17 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
 
     for (var musicaData in musicasResult) {
       final partesResult = await _getPartesComCompassos(musicaData.id);
-      musicasCompletas
-          .add(MusicaCompletaData(musica: musicaData, partes: partesResult));
+      musicasCompletas.add(
+        MusicaCompletaData(musica: musicaData, partes: partesResult),
+      );
     }
     return musicasCompletas;
   }
 
   Future<MusicaCompletaData?> getMusicaCompleta(int id) async {
-    final musicaResult = await (select(musicas)
-          ..where((tbl) => tbl.id.equals(id)))
-        .getSingleOrNull();
+    final musicaResult = await (select(
+      musicas,
+    )..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
     if (musicaResult == null) {
       return null;
     }
@@ -88,25 +92,32 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
       final musicasCompletas = <MusicaCompletaData>[];
       for (var musicaData in musicasResult) {
         final partesResult = await _getPartesComCompassos(musicaData.id);
-        musicasCompletas
-            .add(MusicaCompletaData(musica: musicaData, partes: partesResult));
+        musicasCompletas.add(
+          MusicaCompletaData(musica: musicaData, partes: partesResult),
+        );
       }
       return musicasCompletas;
     });
   }
 
   Future<List<ParteComCompassosData>> _getPartesComCompassos(
-      int musicaId) async {
-    final partesResult =
-        await (select(partes)..where((p) => p.musicaId.equals(musicaId))).get();
+    int musicaId,
+  ) async {
+    final partesResult = await (select(
+      partes,
+    )..where((p) => p.musicaId.equals(musicaId))).get();
     final partesCompletas = <ParteComCompassosData>[];
 
     for (var parteData in partesResult) {
-      final query = select(sequenciaCompassos).join([
-        innerJoin(acordes, acordes.id.equalsExp(sequenciaCompassos.acordeId))
-      ])
-        ..where(sequenciaCompassos.parteId.equals(parteData.id))
-        ..orderBy([OrderingTerm.asc(sequenciaCompassos.ordem)]);
+      final query =
+          select(sequenciaCompassos).join([
+              innerJoin(
+                acordes,
+                acordes.id.equalsExp(sequenciaCompassos.acordeId),
+              ),
+            ])
+            ..where(sequenciaCompassos.parteId.equals(parteData.id))
+            ..orderBy([OrderingTerm.asc(sequenciaCompassos.ordem)]);
 
       final compassosResult = await query.get();
 
@@ -117,8 +128,9 @@ class MusicasDao extends DatabaseAccessor<AppDatabase> with _$MusicasDaoMixin {
         );
       }).toList();
 
-      partesCompletas.add(ParteComCompassosData(
-          parte: parteData, compassos: compassosComAcordes));
+      partesCompletas.add(
+        ParteComCompassosData(parte: parteData, compassos: compassosComAcordes),
+      );
     }
     return partesCompletas;
   }

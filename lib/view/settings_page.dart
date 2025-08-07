@@ -27,55 +27,62 @@ class SettingsPage extends StatelessWidget {
         Text(localizations.content),
         const SizedBox(height: 8.0),
         DefaultNextButton(
-            title: localizations.about,
-            leadingIcon: const Icon(Icons.info_outline),
-            route: AppRoutes.about),
+          title: localizations.about,
+          leadingIcon: const Icon(Icons.info_outline),
+          route: AppRoutes.about,
+        ),
         const SizedBox(height: 8.0),
         Text(localizations.preferences),
         const SizedBox(height: 8.0),
         DefaultNextButton(
-            title: localizations.tema,
-            leadingIcon: Icon(themeViewModel.isDarkMode
+          title: localizations.tema,
+          leadingIcon: Icon(
+            themeViewModel.isDarkMode
                 ? Icons.dark_mode_outlined
-                : Icons.light_mode_outlined),
-            modalContent: [_buildThemeSwitch(context)]),
+                : Icons.light_mode_outlined,
+          ),
+          modalContent: [_buildThemeSwitch(context)],
+        ),
         DefaultNextButton(
-            title: localizations.linguagem,
-            leadingIcon: const Icon(Icons.language_outlined),
-            trailing: localeViewModel.locale.toDisplayName(),
-            modalContent: [_buildLanguageOptions(context)]),
+          title: localizations.linguagem,
+          leadingIcon: const Icon(Icons.language_outlined),
+          trailing: localeViewModel.locale.toDisplayName(),
+          modalContent: [_buildLanguageOptions(context)],
+        ),
       ],
     );
   }
 
   Widget _buildThemeSwitch(BuildContext context) => Consumer<ThemeViewModel>(
-        builder: (context, viewModel, child) => SwitchListTile(
-          secondary: Icon(
-            viewModel.isDarkMode
-                ? Icons.dark_mode_outlined
-                : Icons.light_mode_outlined,
-          ),
-          value: viewModel.isDarkMode,
-          onChanged: (isDark) =>
-              viewModel.setThemeMode(isDark ? ThemeMode.dark : ThemeMode.light),
-          title: Text(AppLocalizations.of(context)!.temaEscuro),
-        ),
-      );
+    builder: (context, viewModel, child) => SwitchListTile(
+      secondary: Icon(
+        viewModel.isDarkMode
+            ? Icons.dark_mode_outlined
+            : Icons.light_mode_outlined,
+      ),
+      value: viewModel.isDarkMode,
+      onChanged: (isDark) =>
+          viewModel.setThemeMode(isDark ? ThemeMode.dark : ThemeMode.light),
+      title: Text(AppLocalizations.of(context)!.temaEscuro),
+    ),
+  );
 
   Widget _buildLanguageOptions(BuildContext context) {
     List<Locale> locales = [const Locale('pt'), const Locale('en')];
 
     return Consumer<LocaleViewModel>(
-      builder: (context, localeViewModel, child) => Column(
-        children: locales
-            .map((l) => RadioListTile<Locale>(
-                  title: Text(l.toDisplayName()),
-                  value: l,
-                  groupValue: localeViewModel.locale,
-                  onChanged: (Locale? value) =>
-                      _setNewLocale(localeViewModel, value),
-                ))
-            .toList(),
+      builder: (context, localeViewModel, child) => RadioGroup<Locale>(
+        groupValue: localeViewModel.locale,
+        onChanged: (Locale? newLocale) =>
+            _setNewLocale(localeViewModel, newLocale),
+        child: Column(
+          children: locales.map((l) {
+            return RadioListTile<Locale>(
+              title: Text(l.toDisplayName()),
+              value: l,
+            );
+          }).toList(),
+        ),
       ),
     );
   }
@@ -87,7 +94,9 @@ class SettingsPage extends StatelessWidget {
       final localizations = await S.delegate.load(value);
 
       displayInfoToast(
-          localizations.sucessoToast, localizations.idiomaAlterado);
+        localizations.sucessoToast,
+        localizations.idiomaAlterado,
+      );
     }
   }
 }

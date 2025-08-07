@@ -9,13 +9,14 @@ part 'musica.freezed.dart';
 
 @freezed
 class Musica with _$Musica {
-  const factory Musica(
-      {int? id,
-      required String nome,
-      required Instrumento instrumento,
-      required int afinacaoId,
-      String? linkYoutube,
-      required List<Parte> partes}) = _Musica;
+  const factory Musica({
+    int? id,
+    required String nome,
+    required Instrumento instrumento,
+    required int afinacaoId,
+    String? linkYoutube,
+    required List<Parte> partes,
+  }) = _Musica;
 }
 
 enum Instrumento {
@@ -39,8 +40,6 @@ enum Instrumento {
         return localizations.guitarra;
       case Instrumento.ukelele:
         return localizations.ukelele;
-      default:
-        return "";
     }
   }
 }

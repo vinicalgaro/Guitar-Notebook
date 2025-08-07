@@ -21,10 +21,7 @@ class _MainShellState extends State<MainShell> {
     GlobalKey<NavigatorState>(),
   ];
 
-  final List<Widget> _rootPages = [
-    const HomePage(),
-    const SettingsPage(),
-  ];
+  final List<Widget> _rootPages = [const HomePage(), const SettingsPage()];
 
   void _onItemTapped(int index) {
     if (_selectedIndex == index) {
@@ -40,7 +37,7 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (bool didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         // Se um pop já aconteceu no Navigator da aba, não fazemos nada.
         if (didPop) {
           return;
@@ -71,18 +68,24 @@ class _MainShellState extends State<MainShell> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Transform.scale(
-                  scale: _iconScaleFactor,
-                  child: const Icon(Icons.home_outlined)),
+                scale: _iconScaleFactor,
+                child: const Icon(Icons.home_outlined),
+              ),
               activeIcon: Transform.scale(
-                  scale: _iconScaleFactor, child: const Icon(Icons.home)),
+                scale: _iconScaleFactor,
+                child: const Icon(Icons.home),
+              ),
               label: AppLocalizations.of(context)!.appTitle,
             ),
             BottomNavigationBarItem(
               icon: Transform.scale(
-                  scale: _iconScaleFactor,
-                  child: const Icon(Icons.settings_outlined)),
+                scale: _iconScaleFactor,
+                child: const Icon(Icons.settings_outlined),
+              ),
               activeIcon: Transform.scale(
-                  scale: _iconScaleFactor, child: const Icon(Icons.settings)),
+                scale: _iconScaleFactor,
+                child: const Icon(Icons.settings),
+              ),
               label: AppLocalizations.of(context)!.about,
             ),
           ],
