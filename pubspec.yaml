@@ -39,6 +39,7 @@ dev_dependencies:
   json_serializable: ^6.8.0
   build_runner: ^2.4.9
   drift_dev: ^2.19.1
+  rename: ^3.1.0
 
 flutter_native_splash:
   color: "#003366"
