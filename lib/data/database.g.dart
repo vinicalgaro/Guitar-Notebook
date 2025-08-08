@@ -4337,6 +4337,7 @@ mixin _$MusicasDaoMixin on DatabaseAccessor<AppDatabase> {
   $AcordesTable get acordes => attachedDatabase.acordes;
   $SequenciaCompassosTable get sequenciaCompassos =>
       attachedDatabase.sequenciaCompassos;
+  $DigitacoesTable get digitacoes => attachedDatabase.digitacoes;
 }
 mixin _$AcordesDaoMixin on DatabaseAccessor<AppDatabase> {
   $AcordesTable get acordes => attachedDatabase.acordes;

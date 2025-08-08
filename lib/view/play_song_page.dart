@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/musica/musica.dart';
+import '../widgets/default_page_scaffold_scrolless.dart';
 
 class PlaySongPage extends StatelessWidget {
   final Musica musica;
@@ -9,6 +10,11 @@ class PlaySongPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return DefaultPageScaffoldScrolless(
+      title: musica.nome,
+      body: Column(children: [
+      
+    ],),
+    );
   }
 }

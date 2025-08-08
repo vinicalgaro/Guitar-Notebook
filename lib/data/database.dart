@@ -209,6 +209,11 @@ class ParteComCompassosData {
 class CompassoComAcorde {
   final SequenciaCompasso compasso;
   final AcordeData acorde;
+  final DigitacaoData? digitacao;
 
-  CompassoComAcorde({required this.compasso, required this.acorde});
+  CompassoComAcorde(
+    {required this.digitacao,
+    required this.compasso,
+    required this.acorde,
+  });
 }

@@ -17,9 +17,7 @@ import '../widgets/default_raw_page_with_margin.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  void _addMusic(BuildContext context) {
-    context.goTo(AppRoutes.editSong);
-  }
+  void _addMusic(BuildContext context) => context.goTo(AppRoutes.editSong);
 
   @override
   Widget build(BuildContext context) {

@@ -45,12 +45,19 @@ class MusicaRepositoryImpl implements IMusicaRepository {
     for (var parteData in data.partes) {
       final compassosDoModelo = <model.Compasso>[];
       for (var compassoComAcorde in parteData.compassos) {
+        final digitacao = compassoComAcorde.digitacao;
+
+        final posicoes =
+            digitacao?.posicoes ??
+            const model.Posicoes(trasteInicial: 0, dedos: []);
+        final cordas = digitacao?.posicoes.dedos.length ?? 0;
+
         final acordeDoModelo = model.Acorde(
           id: compassoComAcorde.acorde.id,
           nome: compassoComAcorde.acorde.nome,
           tipo: compassoComAcorde.acorde.tipo,
-          cordas: 0,
-          posicoes: const model.Posicoes(trasteInicial: 0, dedos: []),
+          cordas: cordas,
+          posicoes: posicoes,
         );
 
         compassosDoModelo.add(
