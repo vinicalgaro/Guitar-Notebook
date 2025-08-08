@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/extensions/color_extension.dart';
+import 'package:guitar_notebook/extensions/color_extension.dart';
 
 class DefaultDivider extends StatelessWidget {
   final double height;

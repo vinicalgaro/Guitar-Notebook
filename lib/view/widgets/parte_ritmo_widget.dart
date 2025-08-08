@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/helpers/helper_toast.dart';
-import 'package:guitar_learner/widgets/default_divider.dart';
-import 'package:guitar_learner/widgets/default_draggable_widget.dart';
+import 'package:guitar_notebook/helpers/helper_toast.dart';
+import 'package:guitar_notebook/widgets/default_divider.dart';
+import 'package:guitar_notebook/widgets/default_draggable_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/musica/models.dart';

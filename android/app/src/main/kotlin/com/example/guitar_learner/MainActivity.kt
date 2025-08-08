@@ -1,4 +1,4 @@
-package com.example.guitar_learner
+package com.vinicalgaro.guitarnotebook
 
 import io.flutter.embedding.android.FlutterActivity
 

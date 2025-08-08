@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/helpers/get_from_assets.dart';
+import 'package:guitar_notebook/helpers/get_from_assets.dart';
 import 'package:lottie/lottie.dart';
 
 import 'default_textbutton.dart';

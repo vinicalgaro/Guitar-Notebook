@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/view/home_page.dart';
-import 'package:guitar_learner/view/settings_page.dart';
-import 'package:guitar_learner/view/widgets/tab_navigator_widget.dart';
+import 'package:guitar_notebook/view/home_page.dart';
+import 'package:guitar_notebook/view/settings_page.dart';
+import 'package:guitar_notebook/view/widgets/tab_navigator_widget.dart';
 
 class MainShell extends StatefulWidget {
   const MainShell({super.key});

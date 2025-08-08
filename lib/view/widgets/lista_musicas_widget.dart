@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/model/musica/models.dart' as model;
-import 'package:guitar_learner/view/widgets/musica_list_item_widget.dart';
-import 'package:guitar_learner/viewmodel/home_viewmodel.dart';
+import 'package:guitar_notebook/model/musica/models.dart' as model;
+import 'package:guitar_notebook/view/widgets/musica_list_item_widget.dart';
+import 'package:guitar_notebook/viewmodel/home_viewmodel.dart';
 import '../../l10n/app_localizations.dart';
 
 import '../../widgets/default_card_container.dart';

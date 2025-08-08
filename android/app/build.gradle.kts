@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.guitar_learner"
+    namespace = "com.vinicalgaro.guitarnotebook"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 

@@ -1,6 +1,6 @@
 # pubspec.yaml
 
-name: guitar_learner
+name: guitar_notebook
 description: "Aplicativo para auxiliar na prática de violão."
 publish_to: 'none'
 version: 0.1.0

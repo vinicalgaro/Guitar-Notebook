@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/extensions/navigation_extension.dart';
-import 'package:guitar_learner/widgets/default_bottom_sheet_header.dart';
-import 'package:guitar_learner/widgets/default_card_container.dart';
+import 'package:guitar_notebook/extensions/navigation_extension.dart';
+import 'package:guitar_notebook/widgets/default_bottom_sheet_header.dart';
+import 'package:guitar_notebook/widgets/default_card_container.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/helper_toast.dart';

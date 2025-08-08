@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/viewmodel/home_viewmodel.dart';
+import 'package:guitar_notebook/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/musica/models.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/extensions/navigation_extension.dart';
-import 'package:guitar_learner/model/repository/musica_repository.dart';
-import 'package:guitar_learner/routes/app_routes.dart';
-import 'package:guitar_learner/view/widgets/lista_musicas_widget.dart';
-import 'package:guitar_learner/view/widgets/musica_last_widget.dart';
-import 'package:guitar_learner/viewmodel/home_viewmodel.dart';
-import 'package:guitar_learner/widgets/default_card_container.dart';
+import 'package:guitar_notebook/extensions/navigation_extension.dart';
+import 'package:guitar_notebook/model/repository/musica_repository.dart';
+import 'package:guitar_notebook/routes/app_routes.dart';
+import 'package:guitar_notebook/view/widgets/lista_musicas_widget.dart';
+import 'package:guitar_notebook/view/widgets/musica_last_widget.dart';
+import 'package:guitar_notebook/viewmodel/home_viewmodel.dart';
+import 'package:guitar_notebook/widgets/default_card_container.dart';
 import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';

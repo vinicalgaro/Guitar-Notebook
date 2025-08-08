@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/helpers/get_from_assets.dart';
-import 'package:guitar_learner/widgets/default_card_container.dart';
-import 'package:guitar_learner/widgets/default_page_scaffold.dart';
+import 'package:guitar_notebook/helpers/get_from_assets.dart';
+import 'package:guitar_notebook/widgets/default_card_container.dart';
+import 'package:guitar_notebook/widgets/default_page_scaffold.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 

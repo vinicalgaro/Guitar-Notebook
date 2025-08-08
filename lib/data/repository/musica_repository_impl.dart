@@ -1,6 +1,6 @@
-import 'package:guitar_learner/data/database.dart';
-import 'package:guitar_learner/model/musica/models.dart' as model;
-import 'package:guitar_learner/model/repository/musica_repository.dart';
+import 'package:guitar_notebook/data/database.dart';
+import 'package:guitar_notebook/model/musica/models.dart' as model;
+import 'package:guitar_notebook/model/repository/musica_repository.dart';
 
 class MusicaRepositoryImpl implements IMusicaRepository {
   final MusicasDao _musicasDao;

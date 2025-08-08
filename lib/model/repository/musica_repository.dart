@@ -1,4 +1,4 @@
-import 'package:guitar_learner/model/musica/models.dart' as model;
+import 'package:guitar_notebook/model/musica/models.dart' as model;
 
 abstract class IMusicaRepository {
   Future<void> salvarMusica(model.Musica musica);

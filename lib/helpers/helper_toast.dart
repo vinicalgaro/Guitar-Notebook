@@ -1,8 +1,8 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/extensions/color_extension.dart';
-import 'package:guitar_learner/theme/app_theme.dart';
-import 'package:guitar_learner/widgets/banner/default_banner.dart';
+import 'package:guitar_notebook/extensions/color_extension.dart';
+import 'package:guitar_notebook/theme/app_theme.dart';
+import 'package:guitar_notebook/widgets/banner/default_banner.dart';
 
 void _displayToast(String titulo, String descricao, _ToastUteis tipoToast,
     ToastDuration toastDuration,

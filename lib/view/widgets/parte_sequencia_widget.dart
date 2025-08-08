@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/model/repository/acorde_repository.dart';
-import 'package:guitar_learner/view/selection_sequencia_page.dart';
-import 'package:guitar_learner/widgets/default_divider.dart';
-import 'package:guitar_learner/widgets/default_textbutton.dart';
+import 'package:guitar_notebook/model/repository/acorde_repository.dart';
+import 'package:guitar_notebook/view/selection_sequencia_page.dart';
+import 'package:guitar_notebook/widgets/default_divider.dart';
+import 'package:guitar_notebook/widgets/default_textbutton.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/helper_bottom_sheet.dart';

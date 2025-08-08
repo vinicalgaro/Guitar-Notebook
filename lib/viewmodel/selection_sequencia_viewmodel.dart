@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:guitar_learner/model/repository/acorde_repository.dart';
+import 'package:guitar_notebook/model/repository/acorde_repository.dart';
 
 import '../model/musica/models.dart';
 

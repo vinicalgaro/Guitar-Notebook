@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/extensions/navigation_extension.dart';
-import 'package:guitar_learner/helpers/appbar_gradient.dart';
+import 'package:guitar_notebook/extensions/navigation_extension.dart';
+import 'package:guitar_notebook/helpers/appbar_gradient.dart';
 
 class DefaultPageScaffoldFixedWidget extends StatelessWidget {
   final String title;

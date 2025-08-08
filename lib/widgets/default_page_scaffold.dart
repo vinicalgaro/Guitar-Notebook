@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/extensions/navigation_extension.dart';
+import 'package:guitar_notebook/extensions/navigation_extension.dart';
 
 import '../helpers/appbar_gradient.dart';
 

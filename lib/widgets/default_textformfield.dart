@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/helpers/helper_dialog.dart';
+import 'package:guitar_notebook/helpers/helper_dialog.dart';
 
 class DefaultTextFormField extends StatelessWidget {
   final String label;

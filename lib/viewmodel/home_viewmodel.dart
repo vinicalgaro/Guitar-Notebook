@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/extensions/navigation_extension.dart';
-import 'package:guitar_learner/model/musica/models.dart' as model;
-import 'package:guitar_learner/model/repository/musica_repository.dart';
+import 'package:guitar_notebook/extensions/navigation_extension.dart';
+import 'package:guitar_notebook/model/musica/models.dart' as model;
+import 'package:guitar_notebook/model/repository/musica_repository.dart';
 
 import '../model/musica/models.dart';
 import '../model/settings_repository.dart';

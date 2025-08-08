@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/view/widgets/parte_item_widget.dart';
-import 'package:guitar_learner/viewmodel/cadastro_musica_viewmodel.dart';
-import 'package:guitar_learner/widgets/default_animated_card_container.dart';
-import 'package:guitar_learner/widgets/default_dropdownbutton.dart';
-import 'package:guitar_learner/widgets/default_page_scaffold_fixed_widget.dart';
-import 'package:guitar_learner/widgets/default_stepper.dart';
-import 'package:guitar_learner/widgets/default_textformfield.dart';
+import 'package:guitar_notebook/view/widgets/parte_item_widget.dart';
+import 'package:guitar_notebook/viewmodel/cadastro_musica_viewmodel.dart';
+import 'package:guitar_notebook/widgets/default_animated_card_container.dart';
+import 'package:guitar_notebook/widgets/default_dropdownbutton.dart';
+import 'package:guitar_notebook/widgets/default_page_scaffold_fixed_widget.dart';
+import 'package:guitar_notebook/widgets/default_stepper.dart';
+import 'package:guitar_notebook/widgets/default_textformfield.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/helper_toast.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/widgets/default_raw_page_with_margin.dart';
+import 'package:guitar_notebook/widgets/default_raw_page_with_margin.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/extensions/locale_extension.dart';
-import 'package:guitar_learner/helpers/helper_toast.dart';
-import 'package:guitar_learner/widgets/default_header_page.dart';
-import 'package:guitar_learner/widgets/default_next_button.dart';
+import 'package:guitar_notebook/extensions/locale_extension.dart';
+import 'package:guitar_notebook/helpers/helper_toast.dart';
+import 'package:guitar_notebook/widgets/default_header_page.dart';
+import 'package:guitar_notebook/widgets/default_next_button.dart';
 import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';

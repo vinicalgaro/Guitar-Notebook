@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/extensions/navigation_extension.dart';
-import 'package:guitar_learner/helpers/helper_bottom_sheet.dart';
-import 'package:guitar_learner/widgets/default_bottom_sheet_header.dart';
+import 'package:guitar_notebook/extensions/navigation_extension.dart';
+import 'package:guitar_notebook/helpers/helper_bottom_sheet.dart';
+import 'package:guitar_notebook/widgets/default_bottom_sheet_header.dart';
 
 import 'default_card_container.dart';
 

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:guitar_learner/model/musica/models.dart';
+import 'package:guitar_notebook/model/musica/models.dart';
 
 part 'parte.freezed.dart';
 

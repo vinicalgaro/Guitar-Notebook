@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:guitar_learner/routes/app_routes.dart';
-import 'package:guitar_learner/view/about_page.dart';
+import 'package:guitar_notebook/routes/app_routes.dart';
+import 'package:guitar_notebook/view/about_page.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/musica/musica.dart';

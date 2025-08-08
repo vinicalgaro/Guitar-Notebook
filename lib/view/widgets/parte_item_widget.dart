@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/view/widgets/parte_ritmo_widget.dart';
-import 'package:guitar_learner/view/widgets/parte_sequencia_widget.dart';
-import 'package:guitar_learner/widgets/default_card_container.dart';
+import 'package:guitar_notebook/view/widgets/parte_ritmo_widget.dart';
+import 'package:guitar_notebook/view/widgets/parte_sequencia_widget.dart';
+import 'package:guitar_notebook/widgets/default_card_container.dart';
 
 import '../../model/musica/parte.dart';
 import '../../widgets/default_textformfield.dart';

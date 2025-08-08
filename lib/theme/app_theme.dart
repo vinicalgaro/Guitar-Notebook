@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:guitar_learner/extensions/color_extension.dart';
+import 'package:guitar_notebook/extensions/color_extension.dart';
 
 import 'app_colors_extension.dart';
 

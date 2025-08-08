@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
-import 'package:guitar_learner/data/repository/acorde_repository_impl.dart';
+import 'package:guitar_notebook/data/repository/acorde_repository_impl.dart';
 import 'package:provider/provider.dart';
 
 import 'data/database.dart';
