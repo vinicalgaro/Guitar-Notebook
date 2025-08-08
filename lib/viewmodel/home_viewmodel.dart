@@ -52,5 +52,6 @@ class HomeViewModel extends ChangeNotifier {
   void playSong(BuildContext context, Musica musica) {
     _settingsRepository.saveUltimaMusicaId(musica.id!);
     context.goTo(AppRoutes.playSong, arguments: musica);
+    notifyListeners();
   }
 }

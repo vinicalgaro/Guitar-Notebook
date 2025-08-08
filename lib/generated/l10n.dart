@@ -109,16 +109,6 @@ class S {
     return Intl.message('Developer', name: 'dev', desc: '', args: []);
   }
 
-  /// `Practice today, get better always!`
-  String get appLema {
-    return Intl.message(
-      'Practice today, get better always!',
-      name: 'appLema',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Song Data`
   String get step1Title {
     return Intl.message('Song Data', name: 'step1Title', desc: '', args: []);

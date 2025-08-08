@@ -57,9 +57,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dev => 'Developer';
 
   @override
-  String get appLema => 'Practice today, get better always!';
-
-  @override
   String get step1Title => 'Song Data';
 
   @override

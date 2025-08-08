@@ -188,12 +188,6 @@ abstract class AppLocalizations {
   /// **'Desenvolvedor'**
   String get dev;
 
-  /// No description provided for @appLema.
-  ///
-  /// In pt, this message translates to:
-  /// **'Pratique hoje, evolua sempre!'**
-  String get appLema;
-
   /// No description provided for @step1Title.
   ///
   /// In pt, this message translates to:

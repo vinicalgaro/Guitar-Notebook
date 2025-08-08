@@ -30,9 +30,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addParte": MessageLookupByLibrary.simpleMessage("Adicionar Nova Parte"),
     "afinacao": MessageLookupByLibrary.simpleMessage("Afinação"),
-    "appLema": MessageLookupByLibrary.simpleMessage(
-      "Pratique hoje, evolua sempre!",
-    ),
     "atencao": MessageLookupByLibrary.simpleMessage("Atenção!"),
     "content": MessageLookupByLibrary.simpleMessage("Conteúdo"),
     "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),

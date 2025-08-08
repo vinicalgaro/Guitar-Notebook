@@ -57,9 +57,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get dev => 'Desenvolvedor';
 
   @override
-  String get appLema => 'Pratique hoje, evolua sempre!';
-
-  @override
   String get step1Title => 'Dados da Música';
 
   @override

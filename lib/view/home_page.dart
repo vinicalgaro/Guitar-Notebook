@@ -46,13 +46,17 @@ class HomePage extends StatelessWidget {
                           subtitle: localizations.progressoDesc,
                           margin: const EdgeInsets.only(top: 6.0, left: 8.0),
                         ),
-                        Consumer<HomeViewModel>(
-                          builder: (context, viewModel, child) =>
-                              StreamBuilder<Musica?>(
-                                stream: viewModel.ultimaMusicaStream,
-                                builder: (context, snapshot) =>
-                                    MusicaLastWidget(musica: snapshot.data),
-                              ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Consumer<HomeViewModel>(
+                              builder: (context, viewModel, child) =>
+                                  StreamBuilder<Musica?>(
+                                    stream: viewModel.ultimaMusicaStream,
+                                    builder: (context, snapshot) =>
+                                        MusicaLastWidget(musica: snapshot.data),
+                                  ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
