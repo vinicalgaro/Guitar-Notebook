@@ -54,11 +54,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Guitar Learner`
-  String get appTitle {
-    return Intl.message('Guitar Learner', name: 'appTitle', desc: '', args: []);
-  }
-
   /// `Menu`
   String get menu {
     return Intl.message('Menu', name: 'menu', desc: '', args: []);

@@ -33,7 +33,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "appLema": MessageLookupByLibrary.simpleMessage(
       "Practice today, get better always!",
     ),
-    "appTitle": MessageLookupByLibrary.simpleMessage("Guitar Learner"),
     "atencao": MessageLookupByLibrary.simpleMessage("Atention!"),
     "content": MessageLookupByLibrary.simpleMessage("Content"),
     "continuar": MessageLookupByLibrary.simpleMessage("Continue"),
