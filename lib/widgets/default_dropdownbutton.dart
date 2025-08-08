@@ -24,7 +24,7 @@ class DefaultDropdownButton<T> extends StatelessWidget {
         Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
         DropdownButtonFormField<T>(
-          initialValue: value,
+          value: value,
           decoration: const InputDecoration(),
           borderRadius: BorderRadius.circular(8.0),
           items: items

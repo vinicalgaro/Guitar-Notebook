@@ -71,18 +71,16 @@ class SettingsPage extends StatelessWidget {
     List<Locale> locales = [const Locale('pt'), const Locale('en')];
 
     return Consumer<LocaleViewModel>(
-      builder: (context, localeViewModel, child) => RadioGroup<Locale>(
-        groupValue: localeViewModel.locale,
-        onChanged: (Locale? newLocale) =>
-            _setNewLocale(localeViewModel, newLocale),
-        child: Column(
-          children: locales.map((l) {
-            return RadioListTile<Locale>(
-              title: Text(l.toDisplayName()),
-              value: l,
-            );
-          }).toList(),
-        ),
+      builder: (context, localeViewModel, child) => Column(
+        children: locales
+            .map((l) => RadioListTile<Locale>(
+          title: Text(l.toDisplayName()),
+          value: l,
+          groupValue: localeViewModel.locale,
+          onChanged: (Locale? value) =>
+              _setNewLocale(localeViewModel, value),
+        ))
+            .toList(),
       ),
     );
   }
