@@ -20,36 +20,39 @@ class SettingsPage extends StatelessWidget {
     final themeViewModel = Provider.of<ThemeViewModel>(context);
     final localeViewModel = Provider.of<LocaleViewModel>(context);
 
-    return DefaultHeaderPage(
-      title: localizations.settings,
-      subtitle: localizations.settingsDesc,
-      content: [
-        Text(localizations.content),
-        const SizedBox(height: 8.0),
-        DefaultNextButton(
-          title: localizations.about,
-          leadingIcon: const Icon(Icons.info_outline),
-          route: AppRoutes.about,
-        ),
-        const SizedBox(height: 8.0),
-        Text(localizations.preferences),
-        const SizedBox(height: 8.0),
-        DefaultNextButton(
-          title: localizations.tema,
-          leadingIcon: Icon(
-            themeViewModel.isDarkMode
-                ? Icons.dark_mode_outlined
-                : Icons.light_mode_outlined,
+    return Container(
+      margin: const EdgeInsets.only(top: 36.0),
+      child: DefaultHeaderPage(
+        title: localizations.settings,
+        subtitle: localizations.settingsDesc,
+        content: [
+          Text(localizations.content),
+          const SizedBox(height: 8.0),
+          DefaultNextButton(
+            title: localizations.about,
+            leadingIcon: const Icon(Icons.info_outline),
+            route: AppRoutes.about,
           ),
-          modalContent: [_buildThemeSwitch(context)],
-        ),
-        DefaultNextButton(
-          title: localizations.linguagem,
-          leadingIcon: const Icon(Icons.language_outlined),
-          trailing: localeViewModel.locale.toDisplayName(),
-          modalContent: [_buildLanguageOptions(context)],
-        ),
-      ],
+          const SizedBox(height: 8.0),
+          Text(localizations.preferences),
+          const SizedBox(height: 8.0),
+          DefaultNextButton(
+            title: localizations.tema,
+            leadingIcon: Icon(
+              themeViewModel.isDarkMode
+                  ? Icons.dark_mode_outlined
+                  : Icons.light_mode_outlined,
+            ),
+            modalContent: [_buildThemeSwitch(context)],
+          ),
+          DefaultNextButton(
+            title: localizations.linguagem,
+            leadingIcon: const Icon(Icons.language_outlined),
+            trailing: localeViewModel.locale.toDisplayName(),
+            modalContent: [_buildLanguageOptions(context)],
+          ),
+        ],
+      ),
     );
   }
 

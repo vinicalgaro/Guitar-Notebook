@@ -29,54 +29,57 @@ class HomePage extends StatelessWidget {
         repository: context.read<IMusicaRepository>(),
         settingsRepository: context.read<SettingsRepository>(),
       ),
-      child: Scaffold(
-        body: Column(
-          children: [
-            Flexible(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DefaultCardContainer(
-                  child: Column(
-                    children: [
-                      DefaultHeaderPage(
-                        title: localizations.progresso,
-                        subtitle: localizations.progressoDesc,
-                        margin: const EdgeInsets.only(top: 6.0, left: 8.0),
-                      ),
-                      Consumer<HomeViewModel>(
-                        builder: (context, viewModel, child) =>
-                            StreamBuilder<Musica?>(
-                              stream: viewModel.ultimaMusicaStream,
-                              builder: (context, snapshot) =>
-                                  MusicaLastWidget(musica: snapshot.data),
-                            ),
-                      ),
-                    ],
+      child: Container(
+        margin: const EdgeInsets.only(top: 36.0),
+        child: Scaffold(
+          body: Column(
+            children: [
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DefaultCardContainer(
+                    child: Column(
+                      children: [
+                        DefaultHeaderPage(
+                          title: localizations.progresso,
+                          subtitle: localizations.progressoDesc,
+                          margin: const EdgeInsets.only(top: 6.0, left: 8.0),
+                        ),
+                        Consumer<HomeViewModel>(
+                          builder: (context, viewModel, child) =>
+                              StreamBuilder<Musica?>(
+                                stream: viewModel.ultimaMusicaStream,
+                                builder: (context, snapshot) =>
+                                    MusicaLastWidget(musica: snapshot.data),
+                              ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Flexible(
-              flex: 2,
-              child: Column(
-                children: [
-                  DefaultHeaderPage(
-                    title: localizations.mySongs,
-                    subtitle: localizations.mySongsDesc,
-                  ),
-                  Consumer<HomeViewModel>(
-                    builder: (context, viewModel, child) =>
-                        ListaMusicasWidget(viewModel: viewModel),
-                  ),
-                ],
+              Flexible(
+                flex: 2,
+                child: Column(
+                  children: [
+                    DefaultHeaderPage(
+                      title: localizations.mySongs,
+                      subtitle: localizations.mySongsDesc,
+                    ),
+                    Consumer<HomeViewModel>(
+                      builder: (context, viewModel, child) =>
+                          ListaMusicasWidget(viewModel: viewModel),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _addMusic(context),
-          child: const Icon(Icons.add),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => _addMusic(context),
+            child: const Icon(Icons.add),
+          ),
         ),
       ),
     );

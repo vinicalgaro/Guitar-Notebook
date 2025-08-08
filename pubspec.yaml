@@ -19,6 +19,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   
+  flutter_native_splash: ^2.4.6
   flutter_slidable: ^3.1.2
   freezed: ^2.5.2
   google_fonts: ^6.2.1
@@ -38,6 +39,13 @@ dev_dependencies:
   json_serializable: ^6.8.0
   build_runner: ^2.4.9
   drift_dev: ^2.19.1
+
+flutter_native_splash:
+  color: "#003366"
+  image: assets/icon/icon_tr.png
+  android_12:
+    color: "#003366"
+    image: assets/icon/icon_tr.png
 
 flutter:
   uses-material-design: true
