@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guitar_learner/widgets/default_raw_page_with_margin.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:guitar_learner/extensions/locale_extension.dart';
 import 'package:guitar_learner/helpers/helper_toast.dart';
@@ -20,8 +21,7 @@ class SettingsPage extends StatelessWidget {
     final themeViewModel = Provider.of<ThemeViewModel>(context);
     final localeViewModel = Provider.of<LocaleViewModel>(context);
 
-    return Container(
-      margin: const EdgeInsets.only(top: 36.0),
+    return DefaultRawPageWithMargin(
       child: DefaultHeaderPage(
         title: localizations.settings,
         subtitle: localizations.settingsDesc,

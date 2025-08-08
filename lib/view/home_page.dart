@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
 import 'package:guitar_learner/extensions/navigation_extension.dart';
 import 'package:guitar_learner/model/repository/musica_repository.dart';
 import 'package:guitar_learner/routes/app_routes.dart';
@@ -9,9 +8,11 @@ import 'package:guitar_learner/viewmodel/home_viewmodel.dart';
 import 'package:guitar_learner/widgets/default_card_container.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../model/musica/models.dart' show Musica;
 import '../model/settings_repository.dart';
 import '../widgets/default_header_page.dart';
+import '../widgets/default_raw_page_with_margin.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -29,8 +30,7 @@ class HomePage extends StatelessWidget {
         repository: context.read<IMusicaRepository>(),
         settingsRepository: context.read<SettingsRepository>(),
       ),
-      child: Container(
-        margin: const EdgeInsets.only(top: 36.0),
+      child: DefaultRawPageWithMargin(
         child: Scaffold(
           body: Column(
             children: [
