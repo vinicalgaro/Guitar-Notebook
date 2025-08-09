@@ -74,13 +74,10 @@ class CardMusicaWidget extends StatelessWidget {
       runSpacing: 4.0,
       children: [
         for (int i = 0; i < batidas.length; i++)
-          Transform.scale(
-            scale: 1.1,
-            child: Icon(
-              batidas[i] == Batida.baixo
-                  ? Icons.arrow_downward
-                  : Icons.arrow_upward,
-            ),
+          Icon(
+            batidas[i] == Batida.baixo
+                ? Icons.arrow_downward
+                : Icons.arrow_upward,
           ),
       ],
     );
@@ -96,6 +93,7 @@ class CardMusicaWidget extends StatelessWidget {
           Text(
             sequencias[i].toString(),
             style: TextStyle(
+              fontSize: 15,
               backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
             ),
           ),

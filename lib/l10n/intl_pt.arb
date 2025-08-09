@@ -98,5 +98,8 @@
   "options": "Opções",
   "song": "Música",
   "nenhumLink": "Nenhum link encontrado.",
-  "diagramas": "Diagramas"
+  "diagramas": "Diagramas",
+  "desabilitado": "Desabilitado",
+  "autoplayer": "AutoPlayer",
+  "autoplayerDesc": "As partes serão tocadas automaticamente após o intervalo de tempo definido."
 }

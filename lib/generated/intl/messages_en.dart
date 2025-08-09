@@ -35,12 +35,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "Standard C (High G)",
     ),
     "atencao": MessageLookupByLibrary.simpleMessage("Atention!"),
+    "autoplayerDesc": MessageLookupByLibrary.simpleMessage(
+      "The parts will be played automatically after the interval of time defined.",
+    ),
     "content": MessageLookupByLibrary.simpleMessage("Content"),
     "continuar": MessageLookupByLibrary.simpleMessage("Continue"),
     "deletar": MessageLookupByLibrary.simpleMessage("Delete"),
     "deletarWarning": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this song?",
     ),
+    "desabilitado": MessageLookupByLibrary.simpleMessage("Disabled"),
     "dev": MessageLookupByLibrary.simpleMessage("Developer"),
     "diagramas": MessageLookupByLibrary.simpleMessage("Diagrams"),
     "editSong": MessageLookupByLibrary.simpleMessage("Edit Song"),

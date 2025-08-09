@@ -637,6 +637,24 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Diagramas'**
   String get diagramas;
+
+  /// No description provided for @desabilitado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Desabilitado'**
+  String get desabilitado;
+
+  /// No description provided for @autoplayer.
+  ///
+  /// In pt, this message translates to:
+  /// **'AutoPlayer'**
+  String get autoplayer;
+
+  /// No description provided for @autoplayerDesc.
+  ///
+  /// In pt, this message translates to:
+  /// **'As partes serão tocadas automaticamente após o intervalo de tempo definido.'**
+  String get autoplayerDesc;
 }
 
 class _AppLocalizationsDelegate

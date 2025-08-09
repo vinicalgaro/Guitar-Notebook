@@ -608,6 +608,21 @@ class S {
   String get diagramas {
     return Intl.message('Diagrams', name: 'diagramas', desc: '', args: []);
   }
+
+  /// `Disabled`
+  String get desabilitado {
+    return Intl.message('Disabled', name: 'desabilitado', desc: '', args: []);
+  }
+
+  /// `The parts will be played automatically after the interval of time defined.`
+  String get autoplayerDesc {
+    return Intl.message(
+      'The parts will be played automatically after the interval of time defined.',
+      name: 'autoplayerDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

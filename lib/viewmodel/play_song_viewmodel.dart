@@ -8,6 +8,13 @@ class PlaySongViewModel extends ChangeNotifier {
 
   Musica musica;
   Afinacao? afinacao;
+  double autoPlaySeconds = 0;
+
+  double get maxAutoPlaySeconds => 60;
+
+  double get minAutoPlaySeconds => 0;
+
+  int get autoPlayDivisions => 12;
 
   PlaySongViewModel({required acordesRepository, required this.musica})
     : _acordesRepository = acordesRepository {
@@ -16,6 +23,11 @@ class PlaySongViewModel extends ChangeNotifier {
 
   _loadAfinacao(int afinacaoId) async {
     afinacao = await _acordesRepository.getAfinacaoPorId(afinacaoId);
+    notifyListeners();
+  }
+
+  void setAutoPlaySeconds(double seconds) {
+    autoPlaySeconds = seconds;
     notifyListeners();
   }
 }

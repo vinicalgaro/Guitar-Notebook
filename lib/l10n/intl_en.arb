@@ -90,5 +90,7 @@
   "options": "Options",
   "song": "Song",
   "nenhumLink": "No link found.",
-  "diagramas": "Diagrams"
+  "diagramas": "Diagrams",
+  "desabilitado": "Disabled",
+  "autoplayerDesc": "The parts will be played automatically after the interval of time defined."
 }

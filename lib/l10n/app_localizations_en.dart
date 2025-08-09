@@ -284,4 +284,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get diagramas => 'Diagrams';
+
+  @override
+  String get desabilitado => 'Disabled';
+
+  @override
+  String get autoplayer => 'AutoPlayer';
+
+  @override
+  String get autoplayerDesc =>
+      'The parts will be played automatically after the interval of time defined.';
 }
