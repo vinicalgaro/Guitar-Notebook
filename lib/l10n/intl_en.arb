@@ -87,6 +87,7 @@
   "revise": "Revise the required fields.",
   "afinacaoPadrao": "Standard",
   "afinacaoPadraoC": "Standard C (High G)",
-  "ajustesPlayer": "Player Settings",
-  "song": "Song"
+  "ajustesPlayer": "Settings",
+  "song": "Song",
+  "nenhumLink": "No link found."
 }

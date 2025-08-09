@@ -1,4 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_guitar_chord/flutter_guitar_chord.dart';
+import 'package:guitar_notebook/helpers/helper_size.dart';
+import 'package:guitar_notebook/helpers/helper_toast.dart';
+import 'package:guitar_notebook/widgets/default_card_container.dart';
+import 'package:guitar_notebook/widgets/default_header_page.dart';
+import 'package:guitar_notebook/widgets/default_image_builder.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/helper_bottom_sheet.dart';
@@ -7,7 +15,7 @@ import '../l10n/app_localizations.dart';
 import '../model/musica/models.dart';
 import '../viewmodel/play_song_viewmodel.dart';
 import '../widgets/default_bottom_sheet_header.dart';
-import '../widgets/default_page_scaffold_sheet.dart';
+import '../widgets/default_page_scaffold_scrolless.dart';
 
 class PlaySongPage extends StatelessWidget {
   const PlaySongPage({super.key});
@@ -18,72 +26,116 @@ class PlaySongPage extends StatelessWidget {
     Musica musica = viewModel.musica;
     final localizations = AppLocalizations.of(context)!;
 
-    return DefaultPageScaffoldSheet(
+    return DefaultPageScaffoldScrolless(
       title: Text(musica.nome),
-      floatingActionButton:
-          musica.linkYoutube != null && musica.linkYoutube!.isNotEmpty
-          ? FloatingActionButton(
-              onPressed: () => launchURL(musica.linkYoutube!),
-              child: const Icon(Icons.link),
-            )
-          : null,
-      actions: [
-        IconButton(
-          onPressed: () => _openConfigPlayer(context, localizations),
-          icon: const Icon(Icons.more_horiz),
-        ),
-      ],
-      body: Container(
-        margin: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            _infoSongLine(context, localizations.song, musica.nome),
-            _infoSongLine(
-              context,
-              localizations.instrumento,
-              musica.instrumento.nameFormatted(context),
-            ),
-            _infoSongLine(
-              context,
-              localizations.afinacao,
-              viewModel.afinacao?.nameFormatted(context),
-            ),
-          ],
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          String? feedback = await launchURL(musica.linkYoutube!);
+
+          if (feedback != null) {
+            displayInfoToast(localizations.linkYoutube, feedback);
+          }
+        },
+        child: const Icon(Icons.link),
       ),
-    );
-  }
-
-  _infoSongLine(BuildContext context, String title, String? value) {
-    if (value == null) return Container();
-
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Column(
         children: [
           Flexible(
-            flex: 1,
-            child: Text(
-              title,
-              maxLines: 1,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+            flex: 2,
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 8,
+                  child: DefaultHeaderPage(
+                    title: musica.nome,
+                    subtitle: _buildSubtitle(
+                      context,
+                      musica,
+                      viewModel.afinacao,
+                      localizations,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: _buildConfigPlayerButton(localizations),
+                ),
+              ],
             ),
           ),
-          Flexible(
-            flex: 2,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(value, maxLines: 1, overflow: TextOverflow.ellipsis),
+          const Flexible(
+            flex: 7,
+            child: Padding(
+              padding: EdgeInsets.all(32.0),
+              child: SizedBox(
+                height: 200,
+                width: 150,
+                child: FlutterGuitarChord(baseFret: 1,
+                  chordName: 'Cmajor',
+                  fingers: '0 3 2 0 1 0',
+                  frets: '-1 3 2 0 1 0',
+                  fingerSize: 24,
+                  totalString: 6,),
+              ),
             ),
           ),
         ],
       ),
     );
   }
+
+  String _buildSubtitle(
+    BuildContext context,
+    Musica musica,
+    Afinacao? afinacao,
+    AppLocalizations localizations,
+  ) =>
+      "${musica.instrumento.nameFormatted(context)} / ${localizations.afinacao}: ${afinacao?.nameFormatted(context) ?? ""}";
+
+  Widget _buildConfigPlayerButton(AppLocalizations localizations) =>
+      LayoutBuilder(
+        builder: (context, constraints) {
+          const double maxCardWidth = 210.0;
+          final double cardWidth = min(constraints.maxWidth, maxCardWidth);
+          return Align(
+            alignment: Alignment.centerRight,
+            child: SizedBox(
+              width: cardWidth,
+              child: Container(
+                margin: const EdgeInsets.only(right: 16.0),
+                child: InkWell(
+                  onTap: () => _openConfigPlayer(context, localizations),
+                  borderRadius: BorderRadius.circular(16.0),
+                  child: DefaultCardContainer(
+                    showBorder: false,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: DefaultImageBuilder(
+                                assetImageFileName: 'img_info_song.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          localizations.ajustesPlayer,
+                          style: const TextStyle(fontWeight: FontWeight.w900),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
 
   _openConfigPlayer(BuildContext context, AppLocalizations localizations) {
     callBottomSheet(

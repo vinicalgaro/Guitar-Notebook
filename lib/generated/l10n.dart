@@ -584,19 +584,24 @@ class S {
     );
   }
 
-  /// `Player Settings`
+  /// `Settings`
   String get ajustesPlayer {
-    return Intl.message(
-      'Player Settings',
-      name: 'ajustesPlayer',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Settings', name: 'ajustesPlayer', desc: '', args: []);
   }
 
   /// `Song`
   String get song {
     return Intl.message('Song', name: 'song', desc: '', args: []);
+  }
+
+  /// `No link found.`
+  String get nenhumLink {
+    return Intl.message(
+      'No link found.',
+      name: 'nenhumLink',
+      desc: '',
+      args: [],
+    );
   }
 }
 

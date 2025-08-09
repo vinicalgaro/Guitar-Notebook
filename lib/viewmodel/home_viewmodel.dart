@@ -55,21 +55,7 @@ class HomeViewModel extends ChangeNotifier {
 
   void playSong(BuildContext context, Musica musica) {
     _settingsRepository.saveUltimaMusicaId(musica.id!);
+    context.goTo(AppRoutes.playSong, arguments: musica);
     notifyListeners();
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) {
-        return ChangeNotifierProvider(
-          create: (context) => PlaySongViewModel(
-            musica: musica,
-            acordesRepository: context.read<IAcordeRepository>(),
-          ),
-          child: const PlaySongPage(),
-        );
-      },
-    );
   }
 }

@@ -30,10 +30,14 @@ class DefaultHeaderPage extends StatelessWidget {
               children: [
                 Text(
                   title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 26),
                 ),
                 Text(subtitle,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: const TextStyle(fontWeight: FontWeight.w500))
               ],
             ),

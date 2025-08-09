@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "afinacaoPadraoC": MessageLookupByLibrary.simpleMessage(
       "Standard C (High G)",
     ),
-    "ajustesPlayer": MessageLookupByLibrary.simpleMessage("Player Settings"),
+    "ajustesPlayer": MessageLookupByLibrary.simpleMessage("Settings"),
     "atencao": MessageLookupByLibrary.simpleMessage("Atention!"),
     "content": MessageLookupByLibrary.simpleMessage("Content"),
     "continuar": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "mySongsDesc": MessageLookupByLibrary.simpleMessage(
       "Practice with your songs!",
     ),
+    "nenhumLink": MessageLookupByLibrary.simpleMessage("No link found."),
     "nenhumaBatidaAdicionada": MessageLookupByLibrary.simpleMessage(
       "No beat has been added yet.",
     ),

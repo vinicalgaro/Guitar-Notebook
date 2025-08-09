@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "afinacaoPadraoC": MessageLookupByLibrary.simpleMessage(
       "Padrão C (High G)",
     ),
-    "ajustesPlayer": MessageLookupByLibrary.simpleMessage("Ajustes do Player"),
+    "ajustesPlayer": MessageLookupByLibrary.simpleMessage("Ajustes"),
     "atencao": MessageLookupByLibrary.simpleMessage("Atenção!"),
     "content": MessageLookupByLibrary.simpleMessage("Conteúdo"),
     "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),
@@ -80,6 +80,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "mySongs": MessageLookupByLibrary.simpleMessage("Minhas Músicas"),
     "mySongsDesc": MessageLookupByLibrary.simpleMessage(
       "Pratique com suas músicas!",
+    ),
+    "nenhumLink": MessageLookupByLibrary.simpleMessage(
+      "Nenhum link encontrado.",
     ),
     "nenhumaBatidaAdicionada": MessageLookupByLibrary.simpleMessage(
       "Nenhuma batida adicionada.",

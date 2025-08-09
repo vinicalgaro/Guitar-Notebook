@@ -28,7 +28,7 @@ class AboutPage extends StatelessWidget {
               child: Column(
                 children: [
                   const DefaultImageBuilder(
-                    assetImageFileName: 'img_violao_notas.png',
+                    assetImageFileName: 'img_violao_sobre.png',
                     height: 180,
                   ),
                   const SizedBox(height: 16),

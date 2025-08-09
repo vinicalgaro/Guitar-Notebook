@@ -274,8 +274,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get afinacaoLowG => 'Low G';
 
   @override
-  String get ajustesPlayer => 'Player Settings';
+  String get ajustesPlayer => 'Settings';
 
   @override
   String get song => 'Song';
+
+  @override
+  String get nenhumLink => 'No link found.';
 }

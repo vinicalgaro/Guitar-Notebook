@@ -35,7 +35,7 @@ class DefaultCardContainer extends StatelessWidget {
           ? [
               BoxShadow(
                 color: Colors.black.withSafeOpacity(0.175),
-                blurRadius: 4,
+                blurRadius: 1,
                 offset: const Offset(0, 2),
               ),
             ]

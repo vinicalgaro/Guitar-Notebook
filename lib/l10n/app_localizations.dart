@@ -617,7 +617,7 @@ abstract class AppLocalizations {
   /// No description provided for @ajustesPlayer.
   ///
   /// In pt, this message translates to:
-  /// **'Ajustes do Player'**
+  /// **'Ajustes'**
   String get ajustesPlayer;
 
   /// No description provided for @song.
@@ -625,6 +625,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Música'**
   String get song;
+
+  /// No description provided for @nenhumLink.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhum link encontrado.'**
+  String get nenhumLink;
 }
 
 class _AppLocalizationsDelegate

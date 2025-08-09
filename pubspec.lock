@@ -278,6 +278,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_guitar_chord:
+    dependency: "direct main"
+    description:
+      name: flutter_guitar_chord
+      sha256: "77c129af009ccf739660920c3f07086a366370104b61f311f306e02dd29ca425"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
