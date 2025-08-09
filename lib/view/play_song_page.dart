@@ -36,9 +36,9 @@ class _PlaySongPageState extends State<PlaySongPage> {
     final viewModel = context.read<PlaySongViewModel>();
     final segundos = viewModel.autoPlaySeconds;
 
-    if (segundos > 0) {
+    if (segundos > 0 && viewModel.musica.partes.length > 1) {
       _autoplayTimer = Timer.periodic(Duration(seconds: segundos.round()), (_) {
-        _cardController.swipe(CardSwiperDirection.bottom);
+          _cardController.swipe(CardSwiperDirection.bottom);
       });
     }
   }
@@ -104,7 +104,7 @@ class _PlaySongPageState extends State<PlaySongPage> {
             child: CardSwiper(
               controller: _cardController,
               cardsCount: partes.length,
-              numberOfCardsDisplayed: 2,
+              numberOfCardsDisplayed: min(2, partes.length),
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 25),
               cardBuilder:
                   (
@@ -152,11 +152,11 @@ class _PlaySongPageState extends State<PlaySongPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Flexible(
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Flexible(
+                        child: FittedBox(
+                          fit: BoxFit.contain,
                           child: DefaultImageBuilder(
                             assetImageFileName: 'img_info_song.png',
                           ),

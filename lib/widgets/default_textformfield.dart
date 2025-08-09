@@ -31,6 +31,7 @@ class DefaultTextFormField extends StatelessWidget {
         const SizedBox(height: 4),
         TextFormField(
           controller: controller,
+          autofocus: false,
           decoration: InputDecoration(
             hintText: hintText,
             suffixIcon: helpText == null

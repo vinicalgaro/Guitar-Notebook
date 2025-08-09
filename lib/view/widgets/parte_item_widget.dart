@@ -54,11 +54,11 @@ class ParteItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
+                Flexible(
                   child: ParteRitmoWidget(partIndex: index, parte: parte),
                 ),
                 const SizedBox(width: 4.0),
-                Expanded(
+                Flexible(
                   child: ParteSequenciaWidget(partIndex: index, parte: parte),
                 )
               ],

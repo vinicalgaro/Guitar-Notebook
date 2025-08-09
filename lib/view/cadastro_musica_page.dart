@@ -4,7 +4,7 @@ import 'package:guitar_notebook/view/widgets/parte_item_widget.dart';
 import 'package:guitar_notebook/viewmodel/cadastro_musica_viewmodel.dart';
 import 'package:guitar_notebook/widgets/default_animated_card_container.dart';
 import 'package:guitar_notebook/widgets/default_dropdownbutton.dart';
-import 'package:guitar_notebook/widgets/default_page_scaffold_fixed_widget.dart';
+import 'package:guitar_notebook/widgets/default_page_scaffold.dart';
 import 'package:guitar_notebook/widgets/default_stepper.dart';
 import 'package:guitar_notebook/widgets/default_textformfield.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +52,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     final viewModel = context.watch<CadastroMusicaViewModel>();
     final localizations = AppLocalizations.of(context)!;
 
-    return DefaultPageScaffoldFixedWidget(
+    return DefaultPageScaffold(
       fixedWidget: DefaultAnimatedCardContainer(
           widgetKey: ValueKey<int>(viewModel.currentStep),
           widget: Column(

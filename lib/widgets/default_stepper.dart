@@ -28,6 +28,7 @@ class DefaultStepper extends StatelessWidget {
       currentStep: currentStep,
       onStepContinue: onStepContinue,
       onStepCancel: onStepCancel,
+      controller: ScrollController(),
       onStepTapped: onStepTapped,
       stepIconBuilder: (stepIndex, stepState) {
         switch (stepState) {

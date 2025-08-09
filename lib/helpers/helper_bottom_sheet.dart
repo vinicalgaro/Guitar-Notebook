@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-void callBottomSheet(BuildContext context, Widget page,
+Future<T?> callBottomSheet<T>(BuildContext context, Widget page,
     {double heightPercent = 0.55}) {
-  showModalBottomSheet(
+  return showModalBottomSheet<T>(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,

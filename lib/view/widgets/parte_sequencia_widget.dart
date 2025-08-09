@@ -16,8 +16,11 @@ class ParteSequenciaWidget extends StatelessWidget {
   final int partIndex;
   final Parte parte;
 
-  const ParteSequenciaWidget(
-      {super.key, required this.partIndex, required this.parte});
+  const ParteSequenciaWidget({
+    super.key,
+    required this.partIndex,
+    required this.parte,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +41,10 @@ class ParteSequenciaWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(localizations.sequencia,
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              localizations.sequencia,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 10.0),
             DefaultTextButton(
               onPressed: () => _callSelectionBottomSheet(context, field),
@@ -59,89 +64,123 @@ class ParteSequenciaWidget extends StatelessWidget {
                       children: [
                         for (int i = 0; i < sequenciasAtuais.length; i++)
                           _buildDraggableIcon(
-                              viewModel, i, sequenciasAtuais[i], field)
+                            viewModel,
+                            i,
+                            sequenciasAtuais[i],
+                            field,
+                          ),
                       ],
                     )
                   : Center(
-                      child: Text(localizations.nenhumaSequenciaAdicionada,
-                          style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 12.0,
-                              color: field.hasError
-                                  ? Theme.of(context).colorScheme.error
-                                  : null)),
+                      child: Text(
+                        localizations.nenhumaSequenciaAdicionada,
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: 12.0,
+                          color: field.hasError
+                              ? Theme.of(context).colorScheme.error
+                              : null,
+                        ),
+                      ),
                     ),
-            )
+            ),
           ],
         );
       },
     );
   }
 
-  _buildDraggableIcon(CadastroMusicaViewModel viewModel, int index,
-      Compasso compasso, FormFieldState<List<Compasso>> field) {
+  _buildDraggableIcon(
+    CadastroMusicaViewModel viewModel,
+    int index,
+    Compasso compasso,
+    FormFieldState<List<Compasso>> field,
+  ) {
     return DefaultDraggableWidget(
-        index: index,
-        itemBuilder: () => GestureDetector(
-              onLongPress: () => _clearSequencia(viewModel, field),
-              child: DefaultTextButton(
-                hasBackgroundColor: true,
-                shrink: true,
-                child: Text(compasso.toString()),
-                onPressed: () => _removerCompasso(viewModel, index, field),
-              ),
-            ),
-        onAcceptWithDetails: (DragTargetDetails<int> oldIndex) =>
-            _reorganizarCompassos(viewModel, oldIndex.data, index, field));
+      index: index,
+      itemBuilder: () => GestureDetector(
+        onLongPress: () => _clearSequencia(viewModel, field),
+        child: DefaultTextButton(
+          hasBackgroundColor: true,
+          shrink: true,
+          child: Text(compasso.toString()),
+          onPressed: () => _removerCompasso(viewModel, index, field),
+        ),
+      ),
+      onAcceptWithDetails: (DragTargetDetails<int> oldIndex) =>
+          _reorganizarCompassos(viewModel, oldIndex.data, index, field),
+    );
   }
 
   _callSelectionBottomSheet(
-      BuildContext context, FormFieldState<List<Compasso>> field) {
+    BuildContext context,
+    FormFieldState<List<Compasso>> field,
+  ) async {
     final viewModel = context.read<CadastroMusicaViewModel>();
 
     if (viewModel.afinacaoSelecionada == null) {
       return;
     }
 
-    callBottomSheet(
-        context,
-        ChangeNotifierProvider(
-          create: (_) => SelectionSequenciaViewModel(
-              afinacaoId: viewModel.afinacaoSelecionada!.id,
-              repository: context.read<IAcordeRepository>()),
-          child: SelectionSequenciaPage(
-            onSelectionCallback: (sequencia) =>
-                _adicionarSequencia(viewModel, sequencia, field),
-          ),
-        ));
+    FocusScope.of(context).unfocus();
+
+    await callBottomSheet(
+      context,
+      ChangeNotifierProvider(
+        create: (_) => SelectionSequenciaViewModel(
+          afinacaoId: viewModel.afinacaoSelecionada!.id,
+          repository: context.read<IAcordeRepository>(),
+        ),
+        child: SelectionSequenciaPage(
+          onSelectionCallback: (sequencia) =>
+              _adicionarSequencia(viewModel, sequencia, field),
+        ),
+      ),
+    );
+
+    FocusScope.of(context).requestFocus(FocusNode());
   }
 
-  _adicionarSequencia(CadastroMusicaViewModel viewModel, Sequencia sequencia,
-      FormFieldState<List<Compasso>> field) {
+  _adicionarSequencia(
+    CadastroMusicaViewModel viewModel,
+    Sequencia sequencia,
+    FormFieldState<List<Compasso>> field,
+  ) {
     viewModel.adicionarSequencia(partIndex, sequencia);
     _notifyChangeToForm(viewModel, field);
   }
 
   _clearSequencia(
-      CadastroMusicaViewModel viewModel, FormFieldState<List<Compasso>> field) {
+    CadastroMusicaViewModel viewModel,
+    FormFieldState<List<Compasso>> field,
+  ) {
     viewModel.clearSequencia(partIndex);
     _notifyChangeToForm(viewModel, field);
   }
 
-  _removerCompasso(CadastroMusicaViewModel viewModel, int index,
-      FormFieldState<List<Compasso>> field) {
+  _removerCompasso(
+    CadastroMusicaViewModel viewModel,
+    int index,
+    FormFieldState<List<Compasso>> field,
+  ) {
     viewModel.removerCompasso(partIndex, index);
     _notifyChangeToForm(viewModel, field);
   }
 
-  _reorganizarCompassos(CadastroMusicaViewModel viewModel, int data, int index,
-      FormFieldState<List<Compasso>> field) {
+  _reorganizarCompassos(
+    CadastroMusicaViewModel viewModel,
+    int data,
+    int index,
+    FormFieldState<List<Compasso>> field,
+  ) {
     viewModel.reorganizarCompassos(partIndex, data, index);
     _notifyChangeToForm(viewModel, field);
   }
 
-  void _notifyChangeToForm(CadastroMusicaViewModel viewModel,
-          FormFieldState<List<Compasso>> field) =>
-      field.didChange(
-          viewModel.musicaRascunho.partes[partIndex].sequencia.compassos);
+  void _notifyChangeToForm(
+    CadastroMusicaViewModel viewModel,
+    FormFieldState<List<Compasso>> field,
+  ) => field.didChange(
+    viewModel.musicaRascunho.partes[partIndex].sequencia.compassos,
+  );
 }
