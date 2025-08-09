@@ -101,5 +101,7 @@
   "diagramas": "Diagramas",
   "desabilitado": "Desabilitado",
   "autoplayer": "AutoPlayer",
-  "autoplayerDesc": "As partes serão tocadas automaticamente após o intervalo de tempo definido."
+  "autoplayerDesc": "As partes serão tocadas automaticamente após o intervalo de tempo definido.",
+  "welcomeMessage": "Organize suas músicas e aprenda a tocar suas músicas favoritas.\nComece adicionando uma música!",
+  "letsgo": "Vamos lá!"
 }

@@ -655,6 +655,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'As partes serão tocadas automaticamente após o intervalo de tempo definido.'**
   String get autoplayerDesc;
+
+  /// No description provided for @welcomeMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Organize suas músicas e aprenda a tocar suas músicas favoritas.\nComece adicionando uma música!'**
+  String get welcomeMessage;
+
+  /// No description provided for @letsgo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vamos lá!'**
+  String get letsgo;
 }
 
 class _AppLocalizationsDelegate

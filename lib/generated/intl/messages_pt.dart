@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "idiomaAlterado": MessageLookupByLibrary.simpleMessage("Idioma alterado!"),
     "instrumento": MessageLookupByLibrary.simpleMessage("Instrumento"),
+    "letsgo": MessageLookupByLibrary.simpleMessage("Vamos lá!"),
     "limiteDeBatidasAtingido": MessageLookupByLibrary.simpleMessage(
       "Limite de batidas atingido.",
     ),
@@ -151,5 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "version": m0,
     "violao": MessageLookupByLibrary.simpleMessage("Violão"),
     "voltar": MessageLookupByLibrary.simpleMessage("Voltar"),
+    "welcomeMessage": MessageLookupByLibrary.simpleMessage(
+      "Organize suas músicas e aprenda a tocar suas músicas favoritas.\nComece adicionando uma música!",
+    ),
   };
 }

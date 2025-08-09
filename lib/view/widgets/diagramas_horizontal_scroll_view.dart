@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import '../../model/musica/models.dart';
 import 'acorde_diagram_widget.dart';
 
@@ -25,41 +24,34 @@ class _DiagramasHorizontalScrollViewState
   }
 
   @override
-  Widget build(BuildContext context) => Scrollbar(
-    interactive: false,
-    controller: _scrollController,
-    thumbVisibility: true,
-    trackVisibility: false,
-    thickness: 2,
-    radius: const Radius.circular(10),
-    child: RawGestureDetector(
-      gestures: <Type, GestureRecognizerFactory>{
-        HorizontalDragGestureRecognizer:
-            GestureRecognizerFactoryWithHandlers<
-              HorizontalDragGestureRecognizer
-            >(() => HorizontalDragGestureRecognizer(), (
-              HorizontalDragGestureRecognizer instance,
-            ) {
-              instance.onUpdate = (details) {
-                _scrollController.position.moveTo(
-                  _scrollController.offset - details.delta.dx,
-                );
-              };
-            }),
-      },
+  Widget build(BuildContext context) => Listener(
+    onPointerSignal: (pointerSignal) {
+      if (pointerSignal is PointerScrollEvent) {
+        final newOffset =
+            _scrollController.offset + pointerSignal.scrollDelta.dy;
+        _scrollController.jumpTo(newOffset);
+      }
+    },
+    child: Scrollbar(
+      controller: _scrollController,
+      thumbVisibility: true,
+      interactive: true,
+      thickness: 3,
+      radius: const Radius.circular(10),
       child: SingleChildScrollView(
         controller: _scrollController,
         scrollDirection: Axis.horizontal,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.only(bottom: 16.0, right: 8.0, left: 8.0),
         child: Row(
-          children: [
-            const SizedBox(width: 2.0),
-            for (final a in widget.acordes)
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: AcordeDiagramWidget(acorde: a),
-              ),
-          ],
+          children: widget.acordes
+              .map(
+                (acorde) => Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: AcordeDiagramWidget(acorde: acorde),
+                ),
+              )
+              .toList(),
         ),
       ),
     ),

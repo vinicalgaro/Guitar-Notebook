@@ -623,6 +623,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Organize your songs and learn to play your favorite songs.\nStart by adding a song!`
+  String get welcomeMessage {
+    return Intl.message(
+      'Organize your songs and learn to play your favorite songs.\nStart by adding a song!',
+      name: 'welcomeMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let's go!`
+  String get letsgo {
+    return Intl.message('Let\'s go!', name: 'letsgo', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

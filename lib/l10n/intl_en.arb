@@ -92,5 +92,7 @@
   "nenhumLink": "No link found.",
   "diagramas": "Diagrams",
   "desabilitado": "Disabled",
-  "autoplayerDesc": "The parts will be played automatically after the interval of time defined."
+  "autoplayerDesc": "The parts will be played automatically after the interval of time defined.",
+  "welcomeMessage": "Organize your songs and learn to play your favorite songs.\nStart by adding a song!",
+  "letsgo": "Let's go!"
 }

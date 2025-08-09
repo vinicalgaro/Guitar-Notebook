@@ -19,49 +19,65 @@ class CardMusicaWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              const Icon(Icons.music_note),
-              const SizedBox(width: 8),
-              Text(
-                parte.nome,
-                style: Theme.of(context).textTheme.headlineSmall,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
-            ],
-          ),
-          const SizedBox(height: 16.0),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          Flexible(
+            flex: 3,
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Text(localizations.ritmo),
-                    const SizedBox(height: 8.0),
-                    _buildRitmoList(),
+                    const Icon(Icons.music_note),
+                    const SizedBox(width: 8),
+                    Text(
+                      parte.nome,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                   ],
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Column(
+                const SizedBox(height: 16.0),
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(localizations.sequencia),
-                    const SizedBox(height: 8.0),
-                    _buildSequenciaList(context),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(localizations.ritmo),
+                          const SizedBox(height: 8.0),
+                          _buildRitmoList(),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(localizations.sequencia),
+                          const SizedBox(height: 8.0),
+                          _buildSequenciaList(context),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const DefaultDivider(),
-          Text(localizations.diagramas),
-          Expanded(child: _buildDiagramas()),
+          const SizedBox(height: 12.0),
+          Flexible(
+            flex: 7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(localizations.diagramas),
+                Expanded(child: Center(child: _buildDiagramas())),
+              ],
+            ),
+          ),
         ],
       ),
     );

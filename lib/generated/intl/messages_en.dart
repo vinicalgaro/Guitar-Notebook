@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "idiomaAlterado": MessageLookupByLibrary.simpleMessage("Language changed!"),
     "instrumento": MessageLookupByLibrary.simpleMessage("Instrument"),
+    "letsgo": MessageLookupByLibrary.simpleMessage("Let\'s go!"),
     "limiteDeBatidasAtingido": MessageLookupByLibrary.simpleMessage(
       "Beat limit reached.",
     ),
@@ -150,5 +151,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "version": m0,
     "violao": MessageLookupByLibrary.simpleMessage("Acoustic Guitar"),
     "voltar": MessageLookupByLibrary.simpleMessage("Back"),
+    "welcomeMessage": MessageLookupByLibrary.simpleMessage(
+      "Organize your songs and learn to play your favorite songs.\nStart by adding a song!",
+    ),
   };
 }

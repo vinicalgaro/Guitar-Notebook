@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:guitar_notebook/extensions/navigation_extension.dart';
 import 'package:guitar_notebook/model/musica/models.dart' as model;
 import 'package:guitar_notebook/model/repository/musica_repository.dart';
-import 'package:guitar_notebook/viewmodel/play_song_viewmodel.dart';
-import 'package:provider/provider.dart';
 
 import '../model/musica/models.dart';
-import '../model/repository/acorde_repository.dart';
 import '../model/settings_repository.dart';
 import '../routes/app_routes.dart';
-import '../view/play_song_page.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final IMusicaRepository _musicaRepository;
@@ -19,7 +15,37 @@ class HomeViewModel extends ChangeNotifier {
     required IMusicaRepository repository,
     required SettingsRepository settingsRepository,
   }) : _musicaRepository = repository,
-       _settingsRepository = settingsRepository;
+       _settingsRepository = settingsRepository {
+    checkWizardStatus();
+  }
+
+  bool _isLoading = true;
+
+  bool get isLoading => _isLoading;
+
+  bool _shouldShowWizard = false;
+
+  bool get shouldShowWizard => _shouldShowWizard;
+
+  Future<void> init() async {
+    await checkWizardStatus();
+  }
+
+  Future<void> checkWizardStatus() async {
+    _isLoading = true;
+    notifyListeners();
+
+    final hasSeenWizard = await _settingsRepository.getWizard();
+    _shouldShowWizard = !hasSeenWizard;
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> wizardCompleted() async {
+    await _settingsRepository.saveWizard();
+    _shouldShowWizard = false;
+    notifyListeners();
+  }
 
   Stream<List<model.Musica>> get musicasStream =>
       _musicaRepository.watchAllMusicas();

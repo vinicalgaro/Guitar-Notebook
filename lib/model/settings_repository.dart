@@ -5,6 +5,7 @@ class SettingsRepository {
   static const String _themeKey = 'theme_mode';
   static const String _languageKey = 'language_code';
   static const String _ultimaMusicaIdKey = 'ultima_musica_id';
+  static const String _wizardKey = 'wizard_id';
 
   final SharedPreferences _prefs;
 
@@ -41,4 +42,8 @@ class SettingsRepository {
 
   Future<void> clearUltimaMusica() async =>
       await _prefs.remove(_ultimaMusicaIdKey);
+
+  Future<void> saveWizard() async => await _prefs.setBool(_wizardKey, true);
+
+  Future<bool> getWizard() async => _prefs.getBool(_wizardKey) ?? false;
 }

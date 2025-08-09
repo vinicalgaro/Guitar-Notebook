@@ -294,4 +294,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get autoplayerDesc =>
       'The parts will be played automatically after the interval of time defined.';
+
+  @override
+  String get welcomeMessage =>
+      'Organize your songs and learn to play your favorite songs.\nStart by adding a song!';
+
+  @override
+  String get letsgo => 'Let\'s go!';
 }
