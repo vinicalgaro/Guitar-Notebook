@@ -479,10 +479,10 @@ class S {
     return Intl.message('Practice', name: 'praticar', desc: '', args: []);
   }
 
-  /// `Silent... we haven't played any chords yet. Let's start your musical journey?`
+  /// `Silent... we haven't played any chords yet.`
   String get semMusicaPraticada {
     return Intl.message(
-      'Silent... we haven\'t played any chords yet. Let\'s start your musical journey?',
+      'Silent... we haven\'t played any chords yet.',
       name: 'semMusicaPraticada',
       desc: '',
       args: [],
@@ -567,6 +567,36 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Standard`
+  String get afinacaoPadrao {
+    return Intl.message('Standard', name: 'afinacaoPadrao', desc: '', args: []);
+  }
+
+  /// `Standard C (High G)`
+  String get afinacaoPadraoC {
+    return Intl.message(
+      'Standard C (High G)',
+      name: 'afinacaoPadraoC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Player Settings`
+  String get ajustesPlayer {
+    return Intl.message(
+      'Player Settings',
+      name: 'ajustesPlayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Song`
+  String get song {
+    return Intl.message('Song', name: 'song', desc: '', args: []);
   }
 }
 

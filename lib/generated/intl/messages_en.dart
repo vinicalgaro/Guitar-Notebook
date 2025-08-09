@@ -30,6 +30,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addParte": MessageLookupByLibrary.simpleMessage("Add New Part"),
     "afinacao": MessageLookupByLibrary.simpleMessage("Tuning"),
+    "afinacaoPadrao": MessageLookupByLibrary.simpleMessage("Standard"),
+    "afinacaoPadraoC": MessageLookupByLibrary.simpleMessage(
+      "Standard C (High G)",
+    ),
+    "ajustesPlayer": MessageLookupByLibrary.simpleMessage("Player Settings"),
     "atencao": MessageLookupByLibrary.simpleMessage("Atention!"),
     "content": MessageLookupByLibrary.simpleMessage("Content"),
     "continuar": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -109,13 +114,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "salvar": MessageLookupByLibrary.simpleMessage("Save"),
     "selecionar": MessageLookupByLibrary.simpleMessage("Select"),
     "semMusicaPraticada": MessageLookupByLibrary.simpleMessage(
-      "Silent... we haven\'t played any chords yet. Let\'s start your musical journey?",
+      "Silent... we haven\'t played any chords yet.",
     ),
     "sequencia": MessageLookupByLibrary.simpleMessage("Sequence"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "settingsDesc": MessageLookupByLibrary.simpleMessage(
       "Customize your experience in the app.",
     ),
+    "song": MessageLookupByLibrary.simpleMessage("Song"),
     "songDeleted": MessageLookupByLibrary.simpleMessage("Song deleted!"),
     "songName": MessageLookupByLibrary.simpleMessage("Song Name"),
     "step": MessageLookupByLibrary.simpleMessage("Step"),

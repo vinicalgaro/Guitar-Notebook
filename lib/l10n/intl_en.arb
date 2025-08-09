@@ -70,7 +70,7 @@
   "noMusics": "Any songs added yet :(",
   "songDeleted": "Song deleted!",
   "praticar": "Practice",
-  "semMusicaPraticada": "Silent... we haven't played any chords yet. Let's start your musical journey?",
+  "semMusicaPraticada": "Silent... we haven't played any chords yet.",
   "progresso": "Your Progress",
   "progressoDesc": "Continue where you left off!",
   "maior": "Major",
@@ -84,5 +84,9 @@
   "nota_A": "A",
   "nota_B": "B",
   "afinacao": "Tuning",
-  "revise": "Revise the required fields."
+  "revise": "Revise the required fields.",
+  "afinacaoPadrao": "Standard",
+  "afinacaoPadraoC": "Standard C (High G)",
+  "ajustesPlayer": "Player Settings",
+  "song": "Song"
 }

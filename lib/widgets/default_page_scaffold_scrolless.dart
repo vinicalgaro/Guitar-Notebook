@@ -3,7 +3,7 @@ import 'package:guitar_notebook/extensions/navigation_extension.dart';
 import 'package:guitar_notebook/helpers/appbar_gradient.dart';
 
 class DefaultPageScaffoldScrolless extends StatelessWidget {
-  final String title;
+  final Widget title;
   final Widget body;
   final List<Widget>? actions;
   final Widget? floatingActionButton;
@@ -29,19 +29,14 @@ class DefaultPageScaffoldScrolless extends StatelessWidget {
           child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 4,
-            title: Text(
-              title,
-              style: const TextStyle(overflow: TextOverflow.ellipsis),
-            ),
+            title: FittedBox(fit: BoxFit.scaleDown, child: title),
             automaticallyImplyLeading: false,
             actions: actions,
+            actionsPadding: const EdgeInsets.all(8.0),
             leading: canPop
-                ? TextButton.icon(
+                ? IconButton(
                     onPressed: context.goBack,
-                    icon: const Icon(Icons.arrow_back_ios_new, size: 18),
-                    label: Text(
-                      MaterialLocalizations.of(context).backButtonTooltip,
-                    ),
+                    icon: const Icon(Icons.close, size: 18),
                     style: TextButton.styleFrom(
                       foregroundColor: Theme.of(
                         context,
@@ -50,7 +45,6 @@ class DefaultPageScaffoldScrolless extends StatelessWidget {
                     ),
                   )
                 : null,
-            leadingWidth: 100,
           ),
         ),
       ),

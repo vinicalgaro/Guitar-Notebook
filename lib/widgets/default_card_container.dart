@@ -5,6 +5,7 @@ class DefaultCardContainer extends StatelessWidget {
   final Widget child;
   final bool shadow;
   final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
   final Color? specialColor;
   final bool showBorder;
 
@@ -15,6 +16,7 @@ class DefaultCardContainer extends StatelessWidget {
     this.margin,
     this.specialColor,
     this.showBorder = true,
+    this.padding,
   });
 
   @override
@@ -39,6 +41,6 @@ class DefaultCardContainer extends StatelessWidget {
             ]
           : null,
     ),
-    child: Padding(padding: const EdgeInsets.all(8.0), child: child),
+    child: Padding(padding: padding ?? const EdgeInsets.all(8.0), child: child),
   );
 }

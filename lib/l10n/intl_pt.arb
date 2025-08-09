@@ -76,7 +76,7 @@
   "noMusics": "Nenhuma música cadastrada :(",
   "songDeleted": "Música deletada!",
   "praticar": "Praticar",
-  "semMusicaPraticada": "Silêncio... ainda não temos acordes tocados por aqui. Que tal começar sua jornada musical?",
+  "semMusicaPraticada": "Silêncio... ainda não temos acordes tocados por aqui.",
   "progresso": "Seu Progresso",
   "progressoDesc": "Continue de onde parou!",
   "maior": "Maior",
@@ -90,5 +90,11 @@
   "nota_A": "Lá",
   "nota_B": "Si",
   "afinacao": "Afinação",
-  "revise": "Revise os campos obrigatórios."
+  "revise": "Revise os campos obrigatórios.",
+  "afinacaoPadrao": "Padrão",
+  "afinacaoDropD": "Drop D",
+  "afinacaoPadraoC": "Padrão C (High G)",
+  "afinacaoLowG": "Low G",
+  "ajustesPlayer": "Ajustes do Player",
+  "song": "Música"
 }

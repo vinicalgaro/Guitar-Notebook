@@ -6,6 +6,7 @@ import 'package:guitar_notebook/view/widgets/lista_musicas_widget.dart';
 import 'package:guitar_notebook/view/widgets/musica_last_widget.dart';
 import 'package:guitar_notebook/viewmodel/home_viewmodel.dart';
 import 'package:guitar_notebook/widgets/default_card_container.dart';
+import 'package:guitar_notebook/widgets/default_image_builder.dart';
 import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';
@@ -37,22 +38,61 @@ class HomePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DefaultCardContainer(
-                    child: Column(
+                    padding: EdgeInsets.zero,
+                    child: Row(
                       children: [
-                        DefaultHeaderPage(
-                          title: localizations.progresso,
-                          subtitle: localizations.progressoDesc,
-                          margin: const EdgeInsets.only(top: 6.0, left: 8.0),
-                        ),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Consumer<HomeViewModel>(
-                              builder: (context, viewModel, child) =>
-                                  StreamBuilder<Musica?>(
-                                    stream: viewModel.ultimaMusicaStream,
-                                    builder: (context, snapshot) =>
-                                        MusicaLastWidget(musica: snapshot.data),
+                        Flexible(
+                          flex: 6,
+                          child: Column(
+                            children: [
+                              DefaultHeaderPage(
+                                title: localizations.progresso,
+                                subtitle: localizations.progressoDesc,
+                                margin: const EdgeInsets.only(
+                                  top: 6.0,
+                                  left: 16.0,
+                                ),
+                              ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Consumer<HomeViewModel>(
+                                    builder: (context, viewModel, child) =>
+                                        StreamBuilder<Musica?>(
+                                          stream: viewModel.ultimaMusicaStream,
+                                          builder: (context, snapshot) =>
+                                              MusicaLastWidget(
+                                                musica: snapshot.data,
+                                              ),
+                                        ),
                                   ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Flexible(
+                          flex: 4,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Consumer<HomeViewModel>(
+                              builder: (context, viewModel, child) {
+                                return StreamBuilder<Musica?>(
+                                  stream: viewModel.ultimaMusicaStream,
+                                  builder: (context, snapshot) {
+                                    return IconButton(
+                                      onPressed: snapshot.data == null
+                                          ? null
+                                          : () => viewModel.playSong(
+                                              context,
+                                              snapshot.data!,
+                                            ),
+                                      icon: const DefaultImageBuilder(
+                                        assetImageFileName: 'img_play_home.png',
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ),

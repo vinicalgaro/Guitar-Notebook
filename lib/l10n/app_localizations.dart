@@ -503,7 +503,7 @@ abstract class AppLocalizations {
   /// No description provided for @semMusicaPraticada.
   ///
   /// In pt, this message translates to:
-  /// **'Silêncio... ainda não temos acordes tocados por aqui. Que tal começar sua jornada musical?'**
+  /// **'Silêncio... ainda não temos acordes tocados por aqui.'**
   String get semMusicaPraticada;
 
   /// No description provided for @progresso.
@@ -589,6 +589,42 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Revise os campos obrigatórios.'**
   String get revise;
+
+  /// No description provided for @afinacaoPadrao.
+  ///
+  /// In pt, this message translates to:
+  /// **'Padrão'**
+  String get afinacaoPadrao;
+
+  /// No description provided for @afinacaoDropD.
+  ///
+  /// In pt, this message translates to:
+  /// **'Drop D'**
+  String get afinacaoDropD;
+
+  /// No description provided for @afinacaoPadraoC.
+  ///
+  /// In pt, this message translates to:
+  /// **'Padrão C (High G)'**
+  String get afinacaoPadraoC;
+
+  /// No description provided for @afinacaoLowG.
+  ///
+  /// In pt, this message translates to:
+  /// **'Low G'**
+  String get afinacaoLowG;
+
+  /// No description provided for @ajustesPlayer.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ajustes do Player'**
+  String get ajustesPlayer;
+
+  /// No description provided for @song.
+  ///
+  /// In pt, this message translates to:
+  /// **'Música'**
+  String get song;
 }
 
 class _AppLocalizationsDelegate

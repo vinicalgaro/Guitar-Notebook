@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
-import 'package:guitar_notebook/viewmodel/home_viewmodel.dart';
-import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../model/musica/models.dart';
 import '../../theme/app_colors_extension.dart';
 import '../../widgets/default_card_container.dart';
@@ -21,56 +19,51 @@ class MusicaLastWidget extends StatelessWidget {
 
   _buildMusicaTile(BuildContext context) {
     return DefaultCardContainer(
-        margin: EdgeInsets.zero,
-        shadow: false,
-        showBorder: false,
-        child: ListTile(
-          leading: const Icon(Icons.queue_music_outlined),
-          title: RichText(
-            maxLines: 2,
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: <TextSpan>[
-                TextSpan(
-                  text: musica!.nome,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
+      shadow: false,
+      showBorder: false,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Icon(Icons.queue_music_outlined),
+          const SizedBox(width: 8.0),
+          Expanded(
+            child: RichText(
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              text: TextSpan(
+                style: DefaultTextStyle.of(context).style,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: musica!.nome,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
-                ),
-                TextSpan(
-                  text: ' /${musica!.instrumento.nameFormatted(context)}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontStyle: FontStyle.italic,
+                  TextSpan(
+                    text: ' /${musica!.instrumento.nameFormatted(context)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            overflow: TextOverflow.ellipsis,
           ),
-          trailing: Transform.scale(
-              scale: 1.25,
-              child: IconButton.outlined(
-                onPressed: () =>
-                    context.read<HomeViewModel>().playSong(context, musica!),
-                icon: const Icon(Icons.play_arrow),
-              )),
-        ));
-  }
-
-  _buildNoMusicTile(BuildContext context) {
-    return ListTile(
-      title: Text(
-        AppLocalizations.of(context)!.semMusicaPraticada,
-        style: TextStyle(
-            fontSize: 14,
-            fontStyle: FontStyle.italic,
-            color: Theme.of(context)
-                .extension<AppColorsExtension>()!
-                .textSecondary),
-        overflow: TextOverflow.ellipsis,
-        maxLines: 3,
+        ],
       ),
     );
   }
+
+  _buildNoMusicTile(BuildContext context) => Container(
+    margin: const EdgeInsets.only(left: 24.0, top: 8.0),
+    child: Text(
+      AppLocalizations.of(context)!.semMusicaPraticada,
+      style: TextStyle(
+        fontSize: 14,
+        fontStyle: FontStyle.italic,
+        color: Theme.of(context).extension<AppColorsExtension>()!.textSecondary,
+      ),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 3,
+    ),
+  );
 }

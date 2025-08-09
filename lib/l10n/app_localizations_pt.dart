@@ -217,7 +217,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get semMusicaPraticada =>
-      'Silêncio... ainda não temos acordes tocados por aqui. Que tal começar sua jornada musical?';
+      'Silêncio... ainda não temos acordes tocados por aqui.';
 
   @override
   String get progresso => 'Seu Progresso';
@@ -260,4 +260,22 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get revise => 'Revise os campos obrigatórios.';
+
+  @override
+  String get afinacaoPadrao => 'Padrão';
+
+  @override
+  String get afinacaoDropD => 'Drop D';
+
+  @override
+  String get afinacaoPadraoC => 'Padrão C (High G)';
+
+  @override
+  String get afinacaoLowG => 'Low G';
+
+  @override
+  String get ajustesPlayer => 'Ajustes do Player';
+
+  @override
+  String get song => 'Música';
 }

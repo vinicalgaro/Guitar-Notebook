@@ -25,6 +25,13 @@ class AcordeRepositoryImpl implements IAcordeRepository {
         .toList();
   }
 
+  @override
+  Future<model.Afinacao?> getAfinacaoPorId(int id) async {
+    final afinacaoData = await _acordesDao.getAfinacaoPorId(id);
+    if (afinacaoData == null) return null;
+    return _converterAfinacaoParaModelo(afinacaoData);
+  }
+
   model.Afinacao _converterAfinacaoParaModelo(AfinacaoData data) => model.Afinacao(
         id: data.id,
         nome: data.nome,

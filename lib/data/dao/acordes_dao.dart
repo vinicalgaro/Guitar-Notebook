@@ -28,6 +28,9 @@ class AcordesDao extends DatabaseAccessor<AppDatabase> with _$AcordesDaoMixin {
       );
     }).toList();
   }
+
+  Future<AfinacaoData?> getAfinacaoPorId(int id) =>
+      (select(afinacoes)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
 }
 
 class AcordeComDigitacao {

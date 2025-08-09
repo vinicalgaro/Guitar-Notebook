@@ -7,6 +7,7 @@ import '../../model/musica/musica.dart';
 import '../../model/repository/acorde_repository.dart';
 import '../../model/repository/musica_repository.dart';
 import '../../viewmodel/cadastro_musica_viewmodel.dart';
+import '../../viewmodel/play_song_viewmodel.dart';
 import '../cadastro_musica_page.dart';
 import '../play_song_page.dart';
 
@@ -48,7 +49,13 @@ class TabNavigatorWidget extends StatelessWidget {
             break;
 
           case AppRoutes.playSong:
-            page = PlaySongPage(musica: settings.arguments as Musica);
+            page = ChangeNotifierProvider(
+              create: (context) => PlaySongViewModel(
+                musica: settings.arguments as Musica,
+                acordesRepository: context.read<IAcordeRepository>(),
+              ),
+              child: const PlaySongPage(),
+            );
             break;
         }
 

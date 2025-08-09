@@ -125,12 +125,9 @@ class MusicaListItemWidget extends StatelessWidget {
             ),
             overflow: TextOverflow.ellipsis,
           ),
-          trailing: Transform.scale(
-            scale: 1.5,
-            child: IconButton(
-              onPressed: () => _playSong(context),
-              icon: const Icon(Icons.play_arrow),
-            ),
+          trailing: IconButton.outlined(
+            onPressed: () => _playSong(context),
+            icon: const Icon(Icons.play_arrow),
           ),
         ),
       ),
