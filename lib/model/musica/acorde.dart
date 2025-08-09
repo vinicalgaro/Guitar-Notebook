@@ -5,6 +5,7 @@ import '../../l10n/app_localizations.dart';
 import 'posicoes.dart';
 
 part 'acorde.freezed.dart';
+
 part 'acorde.g.dart';
 
 enum TipoAcorde {
@@ -46,7 +47,7 @@ class Acorde with _$Acorde {
     final localizations = AppLocalizations.of(context)!;
 
     String notaBase = nome[0];
-    String modificadores = nome.substring(1);
+    String modificadores = nome.substring(1).replaceAll('m', '');
 
     String notaTraduzida;
     switch (notaBase) {

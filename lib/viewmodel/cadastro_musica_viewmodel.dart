@@ -62,10 +62,17 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   bool get podeAdicionarParte => _musicaRascunho.partes.length < _maxPartes;
 
   Future<void> _inicializarAfinacoes() async {
+    final originalAfinacaoId = _musicaRascunho.afinacaoId;
+
     await atualizarInstrumento(_musicaRascunho.instrumento);
+
     if (_isEditing) {
-      _afinacaoSelecionada = _afinacoesDisponiveis
-          .firstWhere((a) => a.id == _musicaRascunho.afinacaoId);
+      _afinacaoSelecionada = _afinacoesDisponiveis.firstWhere(
+            (a) => a.id == originalAfinacaoId,
+        orElse: () => _afinacoesDisponiveis.first,
+      );
+      _musicaRascunho =
+          _musicaRascunho.copyWith(afinacaoId: _afinacaoSelecionada!.id);
     }
     notifyListeners();
   }
