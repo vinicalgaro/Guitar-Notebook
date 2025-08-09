@@ -584,9 +584,9 @@ class S {
     );
   }
 
-  /// `Settings`
-  String get ajustesPlayer {
-    return Intl.message('Settings', name: 'ajustesPlayer', desc: '', args: []);
+  /// `Options`
+  String get options {
+    return Intl.message('Options', name: 'options', desc: '', args: []);
   }
 
   /// `Song`
@@ -602,6 +602,11 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Diagrams`
+  String get diagramas {
+    return Intl.message('Diagrams', name: 'diagramas', desc: '', args: []);
   }
 }
 

@@ -31,13 +31,13 @@ class DefaultHeaderPage extends StatelessWidget {
                 Text(
                   title,
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
+                  maxLines: 1,
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 26),
                 ),
                 Text(subtitle,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+                    maxLines: 2,
                     style: const TextStyle(fontWeight: FontWeight.w500))
               ],
             ),

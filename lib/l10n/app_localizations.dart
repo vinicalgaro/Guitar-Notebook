@@ -614,11 +614,11 @@ abstract class AppLocalizations {
   /// **'Low G'**
   String get afinacaoLowG;
 
-  /// No description provided for @ajustesPlayer.
+  /// No description provided for @options.
   ///
   /// In pt, this message translates to:
-  /// **'Ajustes'**
-  String get ajustesPlayer;
+  /// **'Opções'**
+  String get options;
 
   /// No description provided for @song.
   ///
@@ -631,6 +631,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Nenhum link encontrado.'**
   String get nenhumLink;
+
+  /// No description provided for @diagramas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Diagramas'**
+  String get diagramas;
 }
 
 class _AppLocalizationsDelegate

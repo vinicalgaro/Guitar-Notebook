@@ -1,10 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_guitar_chord/flutter_guitar_chord.dart';
-import 'package:guitar_notebook/helpers/helper_size.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:guitar_notebook/helpers/helper_toast.dart';
-import 'package:guitar_notebook/view/widgets/acorde_diagram_widget.dart';
+import 'package:guitar_notebook/view/widgets/card_musica_widget.dart';
 import 'package:guitar_notebook/widgets/default_card_container.dart';
 import 'package:guitar_notebook/widgets/default_header_page.dart';
 import 'package:guitar_notebook/widgets/default_image_builder.dart';
@@ -18,27 +17,38 @@ import '../viewmodel/play_song_viewmodel.dart';
 import '../widgets/default_bottom_sheet_header.dart';
 import '../widgets/default_page_scaffold_scrolless.dart';
 
-class PlaySongPage extends StatelessWidget {
+class PlaySongPage extends StatefulWidget {
   const PlaySongPage({super.key});
+
+  @override
+  State<PlaySongPage> createState() => _PlaySongPageState();
+}
+
+class _PlaySongPageState extends State<PlaySongPage> {
+  late final CardSwiperController _cardController;
+  int _cardAtual = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _cardController = CardSwiperController();
+  }
+
+  @override
+  void dispose() {
+    _cardController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     PlaySongViewModel viewModel = context.watch<PlaySongViewModel>();
     Musica musica = viewModel.musica;
+    final List<Parte> partes = musica.partes;
     final localizations = AppLocalizations.of(context)!;
 
     return DefaultPageScaffoldScrolless(
       title: Text(musica.nome),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          String? feedback = await launchURL(musica.linkYoutube!);
-
-          if (feedback != null) {
-            displayInfoToast(localizations.linkYoutube, feedback);
-          }
-        },
-        child: const Icon(Icons.link),
-      ),
       body: Column(
         children: [
           Flexible(
@@ -66,16 +76,37 @@ class PlaySongPage extends StatelessWidget {
           ),
           Flexible(
             flex: 7,
-            child: Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: AcordeDiagramWidget(
-                acorde: musica.partes.first.sequencia.compassos.first.acorde,
-              ),
+            child: CardSwiper(
+              controller: _cardController,
+              cardsCount: partes.length,
+              onSwipe: _onSwipe,
+              numberOfCardsDisplayed: 2,
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 25),
+              cardBuilder:
+                  (
+                    context,
+                    index,
+                    horizontalThresholdPercentage,
+                    verticalThresholdPercentage,
+                  ) => CardMusicaWidget(parte: partes[index]),
             ),
           ),
         ],
       ),
     );
+  }
+
+  bool _onSwipe(
+    int previousIndex,
+    int? currentIndex,
+    CardSwiperDirection direction,
+  ) {
+    if (currentIndex == null) return false;
+
+    setState(() {
+      _cardAtual = currentIndex;
+    });
+    return true;
   }
 
   String _buildSubtitle(
@@ -118,7 +149,7 @@ class PlaySongPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          localizations.ajustesPlayer,
+                          localizations.options,
                           style: const TextStyle(fontWeight: FontWeight.w900),
                         ),
                       ],
@@ -136,7 +167,7 @@ class PlaySongPage extends StatelessWidget {
       context,
       heightPercent: 0.33,
       DefaultBottomSheetHeader(
-        label: localizations.ajustesPlayer,
+        label: localizations.options,
         children: [
           Container(
             margin: EdgeInsets.symmetric(

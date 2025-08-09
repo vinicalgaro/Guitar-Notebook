@@ -34,7 +34,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "afinacaoPadraoC": MessageLookupByLibrary.simpleMessage(
       "Padrão C (High G)",
     ),
-    "ajustesPlayer": MessageLookupByLibrary.simpleMessage("Ajustes"),
     "atencao": MessageLookupByLibrary.simpleMessage("Atenção!"),
     "content": MessageLookupByLibrary.simpleMessage("Conteúdo"),
     "continuar": MessageLookupByLibrary.simpleMessage("Continuar"),
@@ -43,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tem certeza que deseja deletar essa música?",
     ),
     "dev": MessageLookupByLibrary.simpleMessage("Desenvolvedor"),
+    "diagramas": MessageLookupByLibrary.simpleMessage("Diagramas"),
     "editSong": MessageLookupByLibrary.simpleMessage("Editar Música"),
     "editar": MessageLookupByLibrary.simpleMessage("Editar"),
     "erroCadastrarMsg": MessageLookupByLibrary.simpleMessage(
@@ -102,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nota_F": MessageLookupByLibrary.simpleMessage("Fá"),
     "nota_G": MessageLookupByLibrary.simpleMessage("Sol"),
     "optional": MessageLookupByLibrary.simpleMessage("Opcional"),
+    "options": MessageLookupByLibrary.simpleMessage("Opções"),
     "outro": MessageLookupByLibrary.simpleMessage("Outro"),
     "part": MessageLookupByLibrary.simpleMessage("Parte"),
     "partName": MessageLookupByLibrary.simpleMessage("Nome da Parte"),

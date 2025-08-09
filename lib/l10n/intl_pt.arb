@@ -95,7 +95,8 @@
   "afinacaoDropD": "Drop D",
   "afinacaoPadraoC": "Padrão C (High G)",
   "afinacaoLowG": "Low G",
-  "ajustesPlayer": "Ajustes",
+  "options": "Opções",
   "song": "Música",
-  "nenhumLink": "Nenhum link encontrado."
+  "nenhumLink": "Nenhum link encontrado.",
+  "diagramas": "Diagramas"
 }

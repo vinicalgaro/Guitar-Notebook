@@ -274,11 +274,14 @@ class AppLocalizationsPt extends AppLocalizations {
   String get afinacaoLowG => 'Low G';
 
   @override
-  String get ajustesPlayer => 'Ajustes';
+  String get options => 'Opções';
 
   @override
   String get song => 'Música';
 
   @override
   String get nenhumLink => 'Nenhum link encontrado.';
+
+  @override
+  String get diagramas => 'Diagramas';
 }

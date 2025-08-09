@@ -15,6 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   
+  flutter_card_swiper: ^7.0.2
   flutter_guitar_chord: ^0.0.3
   flutter_launcher_icons: ^0.14.4
   flutter_localizations:
