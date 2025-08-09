@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:guitar_notebook/extensions/navigation_extension.dart';
 import 'package:guitar_notebook/model/musica/models.dart' as model;
 import 'package:guitar_notebook/model/repository/musica_repository.dart';
+import 'package:guitar_notebook/viewmodel/play_song_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 import '../model/musica/models.dart';
+import '../model/repository/acorde_repository.dart';
 import '../model/settings_repository.dart';
 import '../routes/app_routes.dart';
+import '../view/play_song_page.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final IMusicaRepository _musicaRepository;
@@ -51,7 +55,21 @@ class HomeViewModel extends ChangeNotifier {
 
   void playSong(BuildContext context, Musica musica) {
     _settingsRepository.saveUltimaMusicaId(musica.id!);
-    context.goTo(AppRoutes.playSong, arguments: musica);
     notifyListeners();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return ChangeNotifierProvider(
+          create: (context) => PlaySongViewModel(
+            musica: musica,
+            acordesRepository: context.read<IAcordeRepository>(),
+          ),
+          child: const PlaySongPage(),
+        );
+      },
+    );
   }
 }

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:guitar_notebook/extensions/navigation_extension.dart';
 import 'package:guitar_notebook/helpers/appbar_gradient.dart';
 
-class DefaultPageScaffoldScrolless extends StatelessWidget {
+class DefaultPageScaffoldSheet extends StatelessWidget {
   final Widget title;
   final Widget body;
   final List<Widget>? actions;
   final Widget? floatingActionButton;
 
-  const DefaultPageScaffoldScrolless({
+  const DefaultPageScaffoldSheet({
     super.key,
     required this.title,
     required this.body,
@@ -36,7 +36,7 @@ class DefaultPageScaffoldScrolless extends StatelessWidget {
             leading: canPop
                 ? IconButton(
                     onPressed: context.goBack,
-                    icon: const Icon(Icons.close, size: 18),
+                    icon: const Icon(Icons.keyboard_arrow_down_outlined),
                     style: TextButton.styleFrom(
                       foregroundColor: Theme.of(
                         context,

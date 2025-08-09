@@ -25,55 +25,52 @@ class AboutPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: DefaultCardContainer(
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: Column(
-                  children: [
-                    const DefaultImageBuilder(
-                      assetImageFileName: 'img_violao_sobre.png',
-                      height: 180,
-                    ),
-                    const SizedBox(height: 16),
-                    Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.appTitle,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
+              child: Column(
+                children: [
+                  const DefaultImageBuilder(
+                    assetImageFileName: 'img_violao_notas.png',
+                    height: 180,
+                  ),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.appTitle,
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    FutureBuilder<PackageInfo>(
-                      future: PackageInfo.fromPlatform(),
-                      builder: (context, snapshot) {
-                        final versionString = snapshot.data?.version ?? '...';
-                        final translatedText = AppLocalizations.of(
-                          context,
-                        )!.version(versionString);
+                  ),
+                  FutureBuilder<PackageInfo>(
+                    future: PackageInfo.fromPlatform(),
+                    builder: (context, snapshot) {
+                      final versionString = snapshot.data?.version ?? '...';
+                      final translatedText = AppLocalizations.of(
+                        context,
+                      )!.version(versionString);
 
-                        return Center(
-                          child: Text(
-                            translatedText,
-                            style: TextStyle(
-                              color: Theme.of(
-                                context,
-                              ).extension<AppColorsExtension>()!.textSecondary,
-                            ),
+                      return Center(
+                        child: Text(
+                          translatedText,
+                          style: TextStyle(
+                            color: Theme.of(
+                              context,
+                            ).extension<AppColorsExtension>()!.textSecondary,
                           ),
-                        );
-                      },
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 8.0),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      AppLocalizations.of(context)!.aboutAppText,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    const SizedBox(height: 14.0),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                      child: Text(
-                        AppLocalizations.of(context)!.aboutAppText,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -7,7 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../model/musica/models.dart';
 import '../viewmodel/play_song_viewmodel.dart';
 import '../widgets/default_bottom_sheet_header.dart';
-import '../widgets/default_page_scaffold_scrolless.dart';
+import '../widgets/default_page_scaffold_sheet.dart';
 
 class PlaySongPage extends StatelessWidget {
   const PlaySongPage({super.key});
@@ -18,7 +18,7 @@ class PlaySongPage extends StatelessWidget {
     Musica musica = viewModel.musica;
     final localizations = AppLocalizations.of(context)!;
 
-    return DefaultPageScaffoldScrolless(
+    return DefaultPageScaffoldSheet(
       title: Text(musica.nome),
       floatingActionButton:
           musica.linkYoutube != null && musica.linkYoutube!.isNotEmpty
@@ -41,7 +41,7 @@ class PlaySongPage extends StatelessWidget {
             _infoSongLine(
               context,
               localizations.instrumento,
-              "musica.instrumento.nameFormatted(context)",
+              musica.instrumento.nameFormatted(context),
             ),
             _infoSongLine(
               context,
