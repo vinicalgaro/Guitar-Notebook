@@ -23,7 +23,8 @@ Posicoes _$PosicoesFromJson(Map<String, dynamic> json) {
 mixin _$Posicoes {
   @JsonKey(name: 'traste_inicial')
   int get trasteInicial => throw _privateConstructorUsedError;
-  List<int> get dedos => throw _privateConstructorUsedError;
+  List<int> get fingers => throw _privateConstructorUsedError;
+  List<int> get frets => throw _privateConstructorUsedError;
 
   /// Serializes this Posicoes to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +43,8 @@ abstract class $PosicoesCopyWith<$Res> {
   @useResult
   $Res call({
     @JsonKey(name: 'traste_inicial') int trasteInicial,
-    List<int> dedos,
+    List<int> fingers,
+    List<int> frets,
   });
 }
 
@@ -60,16 +62,24 @@ class _$PosicoesCopyWithImpl<$Res, $Val extends Posicoes>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? trasteInicial = null, Object? dedos = null}) {
+  $Res call({
+    Object? trasteInicial = null,
+    Object? fingers = null,
+    Object? frets = null,
+  }) {
     return _then(
       _value.copyWith(
             trasteInicial: null == trasteInicial
                 ? _value.trasteInicial
                 : trasteInicial // ignore: cast_nullable_to_non_nullable
                       as int,
-            dedos: null == dedos
-                ? _value.dedos
-                : dedos // ignore: cast_nullable_to_non_nullable
+            fingers: null == fingers
+                ? _value.fingers
+                : fingers // ignore: cast_nullable_to_non_nullable
+                      as List<int>,
+            frets: null == frets
+                ? _value.frets
+                : frets // ignore: cast_nullable_to_non_nullable
                       as List<int>,
           )
           as $Val,
@@ -88,7 +98,8 @@ abstract class _$$PosicoesImplCopyWith<$Res>
   @useResult
   $Res call({
     @JsonKey(name: 'traste_inicial') int trasteInicial,
-    List<int> dedos,
+    List<int> fingers,
+    List<int> frets,
   });
 }
 
@@ -105,16 +116,24 @@ class __$$PosicoesImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? trasteInicial = null, Object? dedos = null}) {
+  $Res call({
+    Object? trasteInicial = null,
+    Object? fingers = null,
+    Object? frets = null,
+  }) {
     return _then(
       _$PosicoesImpl(
         trasteInicial: null == trasteInicial
             ? _value.trasteInicial
             : trasteInicial // ignore: cast_nullable_to_non_nullable
                   as int,
-        dedos: null == dedos
-            ? _value._dedos
-            : dedos // ignore: cast_nullable_to_non_nullable
+        fingers: null == fingers
+            ? _value._fingers
+            : fingers // ignore: cast_nullable_to_non_nullable
+                  as List<int>,
+        frets: null == frets
+            ? _value._frets
+            : frets // ignore: cast_nullable_to_non_nullable
                   as List<int>,
       ),
     );
@@ -126,8 +145,10 @@ class __$$PosicoesImplCopyWithImpl<$Res>
 class _$PosicoesImpl implements _Posicoes {
   const _$PosicoesImpl({
     @JsonKey(name: 'traste_inicial') required this.trasteInicial,
-    required final List<int> dedos,
-  }) : _dedos = dedos;
+    required final List<int> fingers,
+    required final List<int> frets,
+  }) : _fingers = fingers,
+       _frets = frets;
 
   factory _$PosicoesImpl.fromJson(Map<String, dynamic> json) =>
       _$$PosicoesImplFromJson(json);
@@ -135,17 +156,25 @@ class _$PosicoesImpl implements _Posicoes {
   @override
   @JsonKey(name: 'traste_inicial')
   final int trasteInicial;
-  final List<int> _dedos;
+  final List<int> _fingers;
   @override
-  List<int> get dedos {
-    if (_dedos is EqualUnmodifiableListView) return _dedos;
+  List<int> get fingers {
+    if (_fingers is EqualUnmodifiableListView) return _fingers;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dedos);
+    return EqualUnmodifiableListView(_fingers);
+  }
+
+  final List<int> _frets;
+  @override
+  List<int> get frets {
+    if (_frets is EqualUnmodifiableListView) return _frets;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_frets);
   }
 
   @override
   String toString() {
-    return 'Posicoes(trasteInicial: $trasteInicial, dedos: $dedos)';
+    return 'Posicoes(trasteInicial: $trasteInicial, fingers: $fingers, frets: $frets)';
   }
 
   @override
@@ -155,7 +184,8 @@ class _$PosicoesImpl implements _Posicoes {
             other is _$PosicoesImpl &&
             (identical(other.trasteInicial, trasteInicial) ||
                 other.trasteInicial == trasteInicial) &&
-            const DeepCollectionEquality().equals(other._dedos, _dedos));
+            const DeepCollectionEquality().equals(other._fingers, _fingers) &&
+            const DeepCollectionEquality().equals(other._frets, _frets));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -163,7 +193,8 @@ class _$PosicoesImpl implements _Posicoes {
   int get hashCode => Object.hash(
     runtimeType,
     trasteInicial,
-    const DeepCollectionEquality().hash(_dedos),
+    const DeepCollectionEquality().hash(_fingers),
+    const DeepCollectionEquality().hash(_frets),
   );
 
   /// Create a copy of Posicoes
@@ -183,7 +214,8 @@ class _$PosicoesImpl implements _Posicoes {
 abstract class _Posicoes implements Posicoes {
   const factory _Posicoes({
     @JsonKey(name: 'traste_inicial') required final int trasteInicial,
-    required final List<int> dedos,
+    required final List<int> fingers,
+    required final List<int> frets,
   }) = _$PosicoesImpl;
 
   factory _Posicoes.fromJson(Map<String, dynamic> json) =
@@ -193,7 +225,9 @@ abstract class _Posicoes implements Posicoes {
   @JsonKey(name: 'traste_inicial')
   int get trasteInicial;
   @override
-  List<int> get dedos;
+  List<int> get fingers;
+  @override
+  List<int> get frets;
 
   /// Create a copy of Posicoes
   /// with the given fields replaced by the non-null parameter values.

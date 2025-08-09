@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_guitar_chord/flutter_guitar_chord.dart';
 import 'package:guitar_notebook/helpers/helper_size.dart';
 import 'package:guitar_notebook/helpers/helper_toast.dart';
+import 'package:guitar_notebook/view/widgets/acorde_diagram_widget.dart';
 import 'package:guitar_notebook/widgets/default_card_container.dart';
 import 'package:guitar_notebook/widgets/default_header_page.dart';
 import 'package:guitar_notebook/widgets/default_image_builder.dart';
@@ -63,19 +64,12 @@ class PlaySongPage extends StatelessWidget {
               ],
             ),
           ),
-          const Flexible(
+          Flexible(
             flex: 7,
             child: Padding(
-              padding: EdgeInsets.all(32.0),
-              child: SizedBox(
-                height: 200,
-                width: 150,
-                child: FlutterGuitarChord(baseFret: 1,
-                  chordName: 'Cmajor',
-                  fingers: '0 3 2 0 1 0',
-                  frets: '-1 3 2 0 1 0',
-                  fingerSize: 24,
-                  totalString: 6,),
+              padding: const EdgeInsets.all(32.0),
+              child: AcordeDiagramWidget(
+                acorde: musica.partes.first.sequencia.compassos.first.acorde,
               ),
             ),
           ),

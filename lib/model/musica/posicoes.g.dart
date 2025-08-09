@@ -9,7 +9,10 @@ part of 'posicoes.dart';
 _$PosicoesImpl _$$PosicoesImplFromJson(Map<String, dynamic> json) =>
     _$PosicoesImpl(
       trasteInicial: (json['traste_inicial'] as num).toInt(),
-      dedos: (json['dedos'] as List<dynamic>)
+      fingers: (json['fingers'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
+      frets: (json['frets'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
     );
@@ -17,5 +20,6 @@ _$PosicoesImpl _$$PosicoesImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$PosicoesImplToJson(_$PosicoesImpl instance) =>
     <String, dynamic>{
       'traste_inicial': instance.trasteInicial,
-      'dedos': instance.dedos,
+      'fingers': instance.fingers,
+      'frets': instance.frets,
     };

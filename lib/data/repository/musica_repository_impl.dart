@@ -49,8 +49,8 @@ class MusicaRepositoryImpl implements IMusicaRepository {
 
         final posicoes =
             digitacao?.posicoes ??
-            const model.Posicoes(trasteInicial: 0, dedos: []);
-        final cordas = digitacao?.posicoes.dedos.length ?? 0;
+            const model.Posicoes(trasteInicial: 0, frets: [], fingers: []);
+        final cordas = digitacao?.posicoes.frets.length ?? 0;
 
         final acordeDoModelo = model.Acorde(
           id: compassoComAcorde.acorde.id,

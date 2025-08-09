@@ -8,7 +8,8 @@ part 'posicoes.g.dart';
 class Posicoes with _$Posicoes {
   const factory Posicoes({
     @JsonKey(name: 'traste_inicial') required int trasteInicial,
-    required List<int> dedos,
+    required List<int> fingers,
+    required List<int> frets,
   }) = _Posicoes;
 
   factory Posicoes.fromJson(Map<String, dynamic> json) =>

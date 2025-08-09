@@ -45,7 +45,7 @@ class AcordeRepositoryImpl implements IAcordeRepository {
         id: acordeData.id,
         nome: acordeData.nome,
         tipo: acordeData.tipo,
-        cordas: digitacaoData.posicoes.dedos.length,
+        cordas: digitacaoData.posicoes.frets.length,
         posicoes: digitacaoData.posicoes,
       );
 }
