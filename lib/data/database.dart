@@ -6,11 +6,13 @@ import 'package:guitar_notebook/helpers/get_from_assets.dart';
 import 'package:guitar_notebook/model/musica/models.dart' as model;
 
 import 'connection/unsupported.dart'
-if (dart.library.html) 'connection/web.dart'
-if (dart.library.io) 'connection/native.dart';
+    if (dart.library.html) 'connection/web.dart'
+    if (dart.library.io) 'connection/native.dart';
 
 part 'dao/acordes_dao.dart';
+
 part 'dao/musicas_dao.dart';
+
 part 'database.g.dart';
 
 class TipoAcordeConverter extends TypeConverter<model.TipoAcorde, String> {
@@ -134,44 +136,49 @@ class AppDatabase extends _$AppDatabase {
   MigrationStrategy get migration {
     return MigrationStrategy(
       onCreate: (Migrator m) async {
-        await m.createAll();
+        try {
+          await m.createAll();
 
-        final jsonString = await rootBundle.loadString(
-          getDataFromAssets('initial_chords.json'),
-        );
-        final Map<String, dynamic> data = jsonDecode(jsonString);
-
-        // 1. Popula as Afinacoes
-        final List<dynamic> afinacoesJson = data['afinacoes'];
-        final afinacoesParaSalvar = afinacoesJson.map((json) {
-          return AfinacoesCompanion.insert(
-            nome: json['nome'] as String,
-            instrumento: model.Instrumento.values.byName(json['instrumento']),
-            notas: json['notas'] as String,
+          final jsonString = await rootBundle.loadString(
+            getDataFromAssets('initial_chords.json'),
           );
-        }).toList();
-        await batch((b) => b.insertAll(afinacoes, afinacoesParaSalvar));
+          final Map<String, dynamic> data = jsonDecode(jsonString);
 
-        // 2. Popula os Acordes
-        final List<dynamic> acordesJson = data['acordes'];
-        final acordesParaSalvar = acordesJson.map((json) {
-          return AcordesCompanion.insert(
-            nome: json['nome'] as String,
-            tipo: model.TipoAcorde.values.byName(json['tipo']),
-          );
-        }).toList();
-        await batch((b) => b.insertAll(acordes, acordesParaSalvar));
+          // 1. Popula as Afinacoes
+          final List<dynamic> afinacoesJson = data['afinacoes'];
+          final afinacoesParaSalvar = afinacoesJson.map((json) {
+            return AfinacoesCompanion.insert(
+              nome: json['nome'] as String,
+              instrumento: model.Instrumento.values.byName(json['instrumento']),
+              notas: json['notas'] as String,
+            );
+          }).toList();
+          await batch((b) => b.insertAll(afinacoes, afinacoesParaSalvar));
 
-        // 3. Popula as Digitações
-        final List<dynamic> digitacoesJson = data['digitacoes'];
-        final digitacoesParaSalvar = digitacoesJson.map((json) {
-          return DigitacoesCompanion.insert(
-            acordeId: json['acorde_id'] as int,
-            afinacaoId: json['afinacao_id'] as int,
-            posicoes: model.Posicoes.fromJson(json['posicoes_json']),
-          );
-        }).toList();
-        await batch((b) => b.insertAll(digitacoes, digitacoesParaSalvar));
+          // 2. Popula os Acordes
+          final List<dynamic> acordesJson = data['acordes'];
+          final acordesParaSalvar = acordesJson.map((json) {
+            return AcordesCompanion.insert(
+              nome: json['nome'] as String,
+              tipo: model.TipoAcorde.values.byName(json['tipo']),
+            );
+          }).toList();
+          await batch((b) => b.insertAll(acordes, acordesParaSalvar));
+
+          // 3. Popula as Digitações
+          final List<dynamic> digitacoesJson = data['digitacoes'];
+          final digitacoesParaSalvar = digitacoesJson.map((json) {
+            return DigitacoesCompanion.insert(
+              acordeId: json['acorde_id'] as int,
+              afinacaoId: json['afinacao_id'] as int,
+              posicoes: model.Posicoes.fromJson(json['posicoes_json']),
+            );
+          }).toList();
+          await batch((b) => b.insertAll(digitacoes, digitacoesParaSalvar));
+          print('>>> LOG: onCreate FINALIZADO COM SUCESSO.');
+        } on Exception catch (e) {
+          print('>>> ERRO FATAL no onCreate: $e');
+        }
       },
       onUpgrade: (m, from, to) async {
         if (from < 2) {
