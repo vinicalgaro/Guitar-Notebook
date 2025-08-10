@@ -1,6 +1,6 @@
 {
-    "name": "guitar_learner",
-    "short_name": "guitar_learner",
+    "name": "Guitar Notebook",
+    "short_name": "Guitar Notebook",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",
