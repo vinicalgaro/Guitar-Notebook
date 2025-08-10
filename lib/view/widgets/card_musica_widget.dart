@@ -96,7 +96,7 @@ class CardMusicaWidget extends StatelessWidget {
           Text(
             sequencias[i].toString(),
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
             ),
           ),
