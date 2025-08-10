@@ -1,5 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../l10n/app_localizations.dart';
 import 'package:guitar_notebook/data/repository/acorde_repository_impl.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,11 @@ import 'viewmodel/theme_viewmodel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   final settingsRepository = await SettingsRepository.init();
   final appDatabase = AppDatabase();

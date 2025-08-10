@@ -38,7 +38,7 @@ class _PlaySongPageState extends State<PlaySongPage> {
 
     if (segundos > 0 && viewModel.musica.partes.length > 1) {
       _autoplayTimer = Timer.periodic(Duration(seconds: segundos.round()), (_) {
-          _cardController.swipe(CardSwiperDirection.bottom);
+        _cardController.swipe(CardSwiperDirection.bottom);
       });
     }
   }
@@ -89,7 +89,7 @@ class _PlaySongPageState extends State<PlaySongPage> {
                   ),
                 ),
                 Expanded(
-                  flex: 4,
+                  flex: MediaQuery.of(context).size.width > 500 ? 3 : 4,
                   child: _buildConfigPlayerButton(
                     localizations,
                     musica,
@@ -151,11 +151,10 @@ class _PlaySongPageState extends State<PlaySongPage> {
                 showBorder: false,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Flexible(
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: DefaultImageBuilder(
@@ -164,9 +163,12 @@ class _PlaySongPageState extends State<PlaySongPage> {
                         ),
                       ),
                     ),
-                    Text(
-                      localizations.options,
-                      style: const TextStyle(fontWeight: FontWeight.w900),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Text(
+                        localizations.options,
+                        style: const TextStyle(fontWeight: FontWeight.w900),
+                      ),
                     ),
                   ],
                 ),

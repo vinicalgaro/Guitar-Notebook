@@ -52,7 +52,6 @@ class ParteSequenciaWidget extends StatelessWidget {
               showBorder: true,
               child: Text(localizations.selecionar),
             ),
-            const SizedBox(height: 8.0),
             const DefaultDivider(),
             SizedBox(
               width: double.infinity,

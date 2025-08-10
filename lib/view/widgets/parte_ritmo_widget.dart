@@ -12,8 +12,11 @@ class ParteRitmoWidget extends StatelessWidget {
   final int partIndex;
   final Parte parte;
 
-  const ParteRitmoWidget(
-      {super.key, required this.partIndex, required this.parte});
+  const ParteRitmoWidget({
+    super.key,
+    required this.partIndex,
+    required this.parte,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +37,10 @@ class ParteRitmoWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(localizations.ritmo,
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              localizations.ritmo,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 10.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -43,12 +48,20 @@ class ParteRitmoWidget extends StatelessWidget {
                 IconButton.outlined(
                   icon: const Icon(Icons.arrow_downward),
                   onPressed: () => _adicionarBatida(
-                      viewModel, Batida.baixo, field, localizations),
+                    viewModel,
+                    Batida.baixo,
+                    field,
+                    localizations,
+                  ),
                 ),
                 IconButton.outlined(
                   icon: const Icon(Icons.arrow_upward),
                   onPressed: () => _adicionarBatida(
-                      viewModel, Batida.cima, field, localizations),
+                    viewModel,
+                    Batida.cima,
+                    field,
+                    localizations,
+                  ),
                 ),
               ],
             ),
@@ -58,82 +71,112 @@ class ParteRitmoWidget extends StatelessWidget {
               child: batidasAtuais.isNotEmpty
                   ? Wrap(
                       alignment: WrapAlignment.center,
-                      spacing: 8.0,
                       runSpacing: 4.0,
                       children: [
                         for (int i = 0; i < batidasAtuais.length; i++)
                           _buildDraggableIcon(
-                              viewModel, i, batidasAtuais[i], field)
+                            viewModel,
+                            i,
+                            batidasAtuais[i],
+                            field,
+                          ),
                       ],
                     )
                   : Center(
-                      child: Text(localizations.nenhumaBatidaAdicionada,
-                          style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontSize: 12.0,
-                              color: field.hasError
-                                  ? Theme.of(context).colorScheme.error
-                                  : null)),
+                      child: Text(
+                        localizations.nenhumaBatidaAdicionada,
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: 12.0,
+                          color: field.hasError
+                              ? Theme.of(context).colorScheme.error
+                              : null,
+                        ),
+                      ),
                     ),
-            )
+            ),
           ],
         );
       },
     );
   }
 
-  void _adicionarBatida(CadastroMusicaViewModel viewModel, Batida batida,
-      FormFieldState<List<Batida>> field, AppLocalizations localizations) {
+  void _adicionarBatida(
+    CadastroMusicaViewModel viewModel,
+    Batida batida,
+    FormFieldState<List<Batida>> field,
+    AppLocalizations localizations,
+  ) {
     if (viewModel.podeAdicionarRitmo(partIndex)) {
       viewModel.adicionarBatida(partIndex, batida);
       _notifyChangeToForm(viewModel, field);
     } else {
       displayInfoToast(
-          localizations.atencao, localizations.limiteDeBatidasAtingido);
+        localizations.atencao,
+        localizations.limiteDeBatidasAtingido,
+      );
     }
   }
 
-  void _removerBatida(CadastroMusicaViewModel viewModel, int index,
-      FormFieldState<List<Batida>> field) {
+  void _removerBatida(
+    CadastroMusicaViewModel viewModel,
+    int index,
+    FormFieldState<List<Batida>> field,
+  ) {
     viewModel.removerBatida(partIndex, index);
     _notifyChangeToForm(viewModel, field);
   }
 
   void _clearBatidas(
-      CadastroMusicaViewModel viewModel, FormFieldState<List<Batida>> field) {
+    CadastroMusicaViewModel viewModel,
+    FormFieldState<List<Batida>> field,
+  ) {
     viewModel.clearBatidas(partIndex);
     _notifyChangeToForm(viewModel, field);
   }
 
-  void _reorganizarBatida(CadastroMusicaViewModel viewModel, int oldIndex,
-      int newIndex, FormFieldState<List<Batida>> field) {
+  void _reorganizarBatida(
+    CadastroMusicaViewModel viewModel,
+    int oldIndex,
+    int newIndex,
+    FormFieldState<List<Batida>> field,
+  ) {
     viewModel.reorganizarBatidas(partIndex, oldIndex, newIndex);
     _notifyChangeToForm(viewModel, field);
   }
 
-  void _notifyChangeToForm(CadastroMusicaViewModel viewModel,
-          FormFieldState<List<Batida>> field) =>
+  void _notifyChangeToForm(
+    CadastroMusicaViewModel viewModel,
+    FormFieldState<List<Batida>> field,
+  ) =>
       field.didChange(viewModel.musicaRascunho.partes[partIndex].ritmo.batidas);
 
-  Widget _buildDraggableIcon(CadastroMusicaViewModel viewModel, int index,
-          Batida batida, FormFieldState<List<Batida>> field) =>
-      DefaultDraggableWidget(
-          index: index,
-          itemBuilder: () => GestureDetector(
-                onLongPress: () => _clearBatidas(viewModel, field),
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(
-                      minWidth: kMinInteractiveDimension / 2,
-                      maxHeight: kMinInteractiveDimension / 2),
-                  icon: Icon(
-                    batida == Batida.baixo
-                        ? Icons.arrow_downward
-                        : Icons.arrow_upward,
-                  ),
-                  onPressed: () => _removerBatida(viewModel, index, field),
-                ),
-              ),
-          onAcceptWithDetails: (DragTargetDetails<int> oldIndex) =>
-              _reorganizarBatida(viewModel, oldIndex.data, index, field));
+  Widget _buildDraggableIcon(
+    CadastroMusicaViewModel viewModel,
+    int index,
+    Batida batida,
+    FormFieldState<List<Batida>> field,
+  ) {
+    final iconWidget = Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _removerBatida(viewModel, index, field),
+        onLongPress: () => _clearBatidas(viewModel, field),
+        customBorder: const CircleBorder(),
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Icon(
+            batida == Batida.baixo ? Icons.arrow_downward : Icons.arrow_upward,
+          ),
+        ),
+      ),
+    );
+
+    return DefaultDraggableWidget(
+      index: index,
+      itemBuilder: () => iconWidget,
+      onAcceptWithDetails: (DragTargetDetails<int> oldIndex) =>
+          _reorganizarBatida(viewModel, oldIndex.data, index, field),
+    );
+  }
 }

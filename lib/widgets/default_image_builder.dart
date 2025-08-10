@@ -16,7 +16,7 @@ class DefaultImageBuilder extends StatelessWidget {
     return Center(
       child: Image(
         height: height,
-        fit: BoxFit.cover,
+        fit: BoxFit.scaleDown,
         loadingBuilder:
             (
               BuildContext context,

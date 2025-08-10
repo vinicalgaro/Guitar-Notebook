@@ -297,7 +297,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcomeMessage =>
-      'Organize your songs and learn to play your favorite songs.\nStart by adding a song!';
+      'Organize your songs and practice your favorite songs.\nStart by adding a song!';
 
   @override
   String get letsgo => 'Let\'s go!';
