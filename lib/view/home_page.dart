@@ -104,7 +104,6 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     Flexible(
-                      flex: 6,
                       child: Column(
                         children: [
                           DefaultHeaderPage(
@@ -129,16 +128,16 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    Flexible(
-                      flex: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Consumer<HomeViewModel>(
-                          builder: (context, viewModel, child) {
-                            return StreamBuilder<Musica?>(
-                              stream: viewModel.ultimaMusicaStream,
-                              builder: (context, snapshot) {
-                                return IconButton(
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Consumer<HomeViewModel>(
+                        builder: (context, viewModel, child) {
+                          return StreamBuilder<Musica?>(
+                            stream: viewModel.ultimaMusicaStream,
+                            builder: (context, snapshot) {
+                              return Transform.scale(
+                                scale: 0.8,
+                                child: IconButton(
                                   onPressed: snapshot.data == null
                                       ? null
                                       : () => viewModel.playSong(
@@ -148,11 +147,11 @@ class _HomePageState extends State<HomePage> {
                                   icon: const DefaultImageBuilder(
                                     assetImageFileName: 'img_play_home.png',
                                   ),
-                                );
-                              },
-                            );
-                          },
-                        ),
+                                ),
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
                   ],
