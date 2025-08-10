@@ -10,9 +10,7 @@ import 'connection/unsupported.dart'
     if (dart.library.io) 'connection/native.dart';
 
 part 'dao/acordes_dao.dart';
-
 part 'dao/musicas_dao.dart';
-
 part 'database.g.dart';
 
 class TipoAcordeConverter extends TypeConverter<model.TipoAcorde, String> {
