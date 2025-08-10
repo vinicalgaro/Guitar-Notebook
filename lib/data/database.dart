@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
 import 'package:flutter/services.dart';
 import 'package:guitar_notebook/helpers/get_from_assets.dart';
 import 'package:guitar_notebook/model/musica/models.dart' as model;
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
+
+import 'connection/unsupported.dart'
+if (dart.library.html) 'connection/web.dart'
+if (dart.library.io) 'connection/native.dart';
 
 part 'dao/acordes_dao.dart';
 part 'dao/musicas_dao.dart';
@@ -125,7 +125,7 @@ class SequenciaCompassos extends Table {
   daos: [MusicasDao, AcordesDao],
 )
 class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super(_openConnection());
+  AppDatabase() : super(openConnection());
 
   @override
   int get schemaVersion => 1;
@@ -136,8 +136,9 @@ class AppDatabase extends _$AppDatabase {
       onCreate: (Migrator m) async {
         await m.createAll();
 
-        final jsonString = await rootBundle
-            .loadString(getDataFromAssets('initial_chords.json'));
+        final jsonString = await rootBundle.loadString(
+          getDataFromAssets('initial_chords.json'),
+        );
         final Map<String, dynamic> data = jsonDecode(jsonString);
 
         // 1. Popula as Afinacoes
@@ -176,20 +177,12 @@ class AppDatabase extends _$AppDatabase {
         if (from < 2) {
           for (final table in allTables) {
             await m.deleteTable(table.actualTableName);
+            await m.createAll();
           }
-          await m.createAll();
         }
       },
     );
   }
-}
-
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'guitar_notebook.db'));
-    return NativeDatabase.createInBackground(file);
-  });
 }
 
 class MusicaCompletaData {
@@ -211,8 +204,8 @@ class CompassoComAcorde {
   final AcordeData acorde;
   final DigitacaoData? digitacao;
 
-  CompassoComAcorde(
-    {required this.digitacao,
+  CompassoComAcorde({
+    required this.digitacao,
     required this.compasso,
     required this.acorde,
   });

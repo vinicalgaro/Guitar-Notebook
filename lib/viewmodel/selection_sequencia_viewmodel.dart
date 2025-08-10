@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:guitar_notebook/model/repository/acorde_repository.dart';
 
 import '../model/musica/models.dart';
@@ -14,10 +14,8 @@ class SelectionSequenciaViewModel extends ChangeNotifier {
   List<Acorde> acordesDisponiveis = [];
   List<Compasso> sequenciaAtual = [];
 
-  SelectionSequenciaViewModel({
-    required this.afinacaoId,
-    required repository,
-  }) : _repository = repository {
+  SelectionSequenciaViewModel({required this.afinacaoId, required repository})
+    : _repository = repository {
     _buscarAcordesDisponiveis();
   }
 
@@ -31,7 +29,9 @@ class SelectionSequenciaViewModel extends ChangeNotifier {
 
   bool get podeAdicionarSequencia =>
       sequenciaAtual.fold<int>(
-          0, (somaAnterior, compasso) => somaAnterior + compasso.vezes) <
+        0,
+        (somaAnterior, compasso) => somaAnterior + compasso.vezes,
+      ) <
       _maxCompassos;
 
   List<Acorde> getAcordesByTipo(TipoAcorde tipo) =>
@@ -44,8 +44,10 @@ class SelectionSequenciaViewModel extends ChangeNotifier {
     if (sequenciaAtual.isNotEmpty &&
         sequenciaAtual.last.acorde.nome == acorde.nome) {
       final ultimoCompasso = sequenciaAtual.last;
-      sequenciaAtual.last =
-          Compasso(ultimoCompasso.acorde, ultimoCompasso.vezes + 1);
+      sequenciaAtual.last = Compasso(
+        ultimoCompasso.acorde,
+        ultimoCompasso.vezes + 1,
+      );
     } else {
       sequenciaAtual.add(Compasso(acorde, 1));
     }

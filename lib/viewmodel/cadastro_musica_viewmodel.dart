@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../model/musica/models.dart';
 import '../model/repository/acorde_repository.dart';
@@ -20,12 +20,12 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   Afinacao? _afinacaoSelecionada;
   bool _carregandoAfinacoes = true;
 
-  CadastroMusicaViewModel(
-      {Musica? musica,
-      required IMusicaRepository repository,
-      required IAcordeRepository acordeRepository})
-      : _musicaRepository = repository,
-        _acordeRepository = acordeRepository {
+  CadastroMusicaViewModel({
+    Musica? musica,
+    required IMusicaRepository repository,
+    required IAcordeRepository acordeRepository,
+  }) : _musicaRepository = repository,
+       _acordeRepository = acordeRepository {
     _isEditing = musica != null;
 
     if (musica != null) {
@@ -68,11 +68,12 @@ class CadastroMusicaViewModel extends ChangeNotifier {
 
     if (_isEditing) {
       _afinacaoSelecionada = _afinacoesDisponiveis.firstWhere(
-            (a) => a.id == originalAfinacaoId,
+        (a) => a.id == originalAfinacaoId,
         orElse: () => _afinacoesDisponiveis.first,
       );
-      _musicaRascunho =
-          _musicaRascunho.copyWith(afinacaoId: _afinacaoSelecionada!.id);
+      _musicaRascunho = _musicaRascunho.copyWith(
+        afinacaoId: _afinacaoSelecionada!.id,
+      );
     }
     notifyListeners();
   }
@@ -83,13 +84,15 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     _afinacaoSelecionada = null;
     notifyListeners();
 
-    _afinacoesDisponiveis =
-        await _acordeRepository.getAfinacoesPorInstrumento(instrumento);
+    _afinacoesDisponiveis = await _acordeRepository.getAfinacoesPorInstrumento(
+      instrumento,
+    );
 
     if (_afinacoesDisponiveis.isNotEmpty) {
       _afinacaoSelecionada = _afinacoesDisponiveis.first;
-      _musicaRascunho =
-          _musicaRascunho.copyWith(afinacaoId: _afinacaoSelecionada!.id);
+      _musicaRascunho = _musicaRascunho.copyWith(
+        afinacaoId: _afinacaoSelecionada!.id,
+      );
     }
     _carregandoAfinacoes = false;
     notifyListeners();
@@ -150,15 +153,15 @@ class CadastroMusicaViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> salvarMusica(
-      {required String nomeMusica, required String linkYoutube}) async {
+  Future<void> salvarMusica({
+    required String nomeMusica,
+    required String linkYoutube,
+  }) async {
     final novasPartes = _musicaRascunho.partes.asMap().entries.map((entry) {
       int index = entry.key;
       Parte parteAntiga = entry.value;
 
-      return parteAntiga.copyWith(
-        nome: partNameControllers[index].text.trim(),
-      );
+      return parteAntiga.copyWith(nome: partNameControllers[index].text.trim());
     }).toList();
 
     _musicaRascunho = _musicaRascunho.copyWith(
@@ -203,8 +206,9 @@ class CadastroMusicaViewModel extends ChangeNotifier {
   }
 
   void removerCompasso(int partIndex, int compassoIndex) {
-    _musicaRascunho.partes[partIndex].sequencia.compassos
-        .removeAt(compassoIndex);
+    _musicaRascunho.partes[partIndex].sequencia.compassos.removeAt(
+      compassoIndex,
+    );
     notifyListeners();
   }
 
