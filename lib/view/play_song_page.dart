@@ -105,6 +105,7 @@ class _PlaySongPageState extends State<PlaySongPage> {
               controller: _cardController,
               cardsCount: partes.length,
               numberOfCardsDisplayed: min(2, partes.length),
+              isDisabled: partes.length == 1,
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 25),
               cardBuilder:
                   (

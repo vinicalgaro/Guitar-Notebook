@@ -18,66 +18,53 @@ class CardMusicaWidget extends StatelessWidget {
     return DefaultCardContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Flexible(
-            flex: 3,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.music_note),
-                    const SizedBox(width: 8),
-                    Text(
-                      parte.nome,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ],
+          Row(
+            children: [
+              const Icon(Icons.music_note),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  parte.nome,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
-                const SizedBox(height: 16.0),
-                Row(
+              ),
+            ],
+          ),
+          const SizedBox(height: 16.0),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(localizations.ritmo),
-                          const SizedBox(height: 8.0),
-                          _buildRitmoList(),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(localizations.sequencia),
-                          const SizedBox(height: 8.0),
-                          _buildSequenciaList(context),
-                        ],
-                      ),
-                    ),
+                    Text(localizations.ritmo),
+                    const SizedBox(height: 8.0),
+                    _buildRitmoList(),
                   ],
                 ),
-              ],
-            ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(localizations.sequencia),
+                    const SizedBox(height: 8.0),
+                    _buildSequenciaList(context),
+                  ],
+                ),
+              ),
+            ],
           ),
           const DefaultDivider(),
-          const SizedBox(height: 12.0),
-          Flexible(
-            flex: 7,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(localizations.diagramas),
-                Expanded(child: Center(child: _buildDiagramas())),
-              ],
-            ),
-          ),
+          Text(localizations.diagramas),
+          Expanded(child: Center(child: _buildDiagramas())),
         ],
       ),
     );
@@ -109,7 +96,7 @@ class CardMusicaWidget extends StatelessWidget {
           Text(
             sequencias[i].toString(),
             style: TextStyle(
-              fontSize: 15,
+              fontSize: 12,
               backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
             ),
           ),

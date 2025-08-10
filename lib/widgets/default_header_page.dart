@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class DefaultHeaderPage extends StatelessWidget {
   final String title;
@@ -6,12 +7,13 @@ class DefaultHeaderPage extends StatelessWidget {
   final List<Widget>? content;
   final EdgeInsets? margin;
 
-  const DefaultHeaderPage(
-      {super.key,
-      required this.title,
-      required this.subtitle,
-      this.content,
-      this.margin});
+  const DefaultHeaderPage({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    this.content,
+    this.margin,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +21,39 @@ class DefaultHeaderPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: margin ??
+          margin:
+              margin ??
               const EdgeInsets.only(
-                  left: 16.0, right: 16.0, top: 20.0, bottom: 10.0),
+                left: 16.0,
+                right: 16.0,
+                top: 20.0,
+                bottom: 10.0,
+              ),
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                AutoSizeText(
                   title,
-                  overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 26),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  minFontSize: 14,
                 ),
-                Text(subtitle,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    subtitle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: const TextStyle(fontWeight: FontWeight.w500))
+                    style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ),
               ],
             ),
           ),

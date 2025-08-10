@@ -15,9 +15,7 @@ class HomeViewModel extends ChangeNotifier {
     required IMusicaRepository repository,
     required SettingsRepository settingsRepository,
   }) : _musicaRepository = repository,
-       _settingsRepository = settingsRepository {
-    checkWizardStatus();
-  }
+       _settingsRepository = settingsRepository;
 
   bool _isLoading = true;
 
@@ -27,9 +25,7 @@ class HomeViewModel extends ChangeNotifier {
 
   bool get shouldShowWizard => _shouldShowWizard;
 
-  Future<void> init() async {
-    await checkWizardStatus();
-  }
+  Future<void> init() async => await checkWizardStatus();
 
   Future<void> checkWizardStatus() async {
     _isLoading = true;
