@@ -31,11 +31,11 @@ class MusicaListItemWidget extends StatelessWidget {
       DefaultBottomSheetHeader(
         label: "'${musica.nome}'",
         children: [
-          Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.13,
-            ),
-            child: Column(
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.13,
+              ),
               children: [
                 _buildActionWidget(
                   context,
@@ -148,7 +148,7 @@ class MusicaListItemWidget extends StatelessWidget {
     );
   }
 
-  _buildActionWidget(
+  Widget _buildActionWidget(
     BuildContext context,
     String label,
     VoidCallback onPressed, {
