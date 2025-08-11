@@ -34,10 +34,12 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     super.initState();
     final viewModel = context.read<CadastroMusicaViewModel>();
 
-    _nomeMusicaController =
-        TextEditingController(text: viewModel.musicaRascunho.nome);
-    _linkYoutubeController =
-        TextEditingController(text: viewModel.musicaRascunho.linkYoutube ?? '');
+    _nomeMusicaController = TextEditingController(
+      text: viewModel.musicaRascunho.nome,
+    );
+    _linkYoutubeController = TextEditingController(
+      text: viewModel.musicaRascunho.linkYoutube ?? '',
+    );
   }
 
   @override
@@ -54,30 +56,27 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
 
     return DefaultPageScaffold(
       fixedWidget: DefaultAnimatedCardContainer(
-          widgetKey: ValueKey<int>(viewModel.currentStep),
-          widget: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                _getCurrentStepText(viewModel.currentStep, localizations),
-                style: const TextStyle(fontStyle: FontStyle.italic),
-              ),
-              Text(
-                _getCurrentStepTitle(viewModel.currentStep, localizations),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
-              ),
-              Text(
-                _getCurrentStepDesc(viewModel.currentStep, localizations),
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontWeight: FontWeight.w500),
-              ),
-            ],
-          )),
-      title:
-          viewModel.isEditing ? localizations.editSong : localizations.newSong,
+        widgetKey: ValueKey<int>(viewModel.currentStep),
+        widget: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(_getCurrentStepText(viewModel.currentStep, localizations)),
+            Text(
+              _getCurrentStepTitle(viewModel.currentStep, localizations),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+            ),
+            const SizedBox(height: 8.0),
+            Text(
+              _getCurrentStepDesc(viewModel.currentStep, localizations),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
+      ),
+      title: viewModel.isEditing
+          ? localizations.editSong
+          : localizations.newSong,
       body: DefaultStepper(
         steps: [
           _buildStepDadosMusica(context),
@@ -98,15 +97,20 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
     if (viewModel.isLastStep) {
       if (_formKeyStep2.currentState!.validate()) {
         await viewModel.salvarMusica(
-            nomeMusica: _nomeMusicaController.text,
-            linkYoutube: _linkYoutubeController.text);
+          nomeMusica: _nomeMusicaController.text,
+          linkYoutube: _linkYoutubeController.text,
+        );
 
         displaySuccessToast(
-            localizations.sucessoToast, localizations.sucessoCadastrarMsg);
+          localizations.sucessoToast,
+          localizations.sucessoCadastrarMsg,
+        );
         if (context.mounted) Navigator.of(context).pop();
       } else {
         displayErrorToast(
-            localizations.errorToast, localizations.erroCadastrarMsg);
+          localizations.errorToast,
+          localizations.erroCadastrarMsg,
+        );
       }
     } else {
       if (_formKeyStep1.currentState!.validate()) {
@@ -137,8 +141,9 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
   void _adicionarNovaParte() {
     final viewModel = context.read<CadastroMusicaViewModel>();
     viewModel.adicionarNovaParte();
-    _parteListKey.currentState
-        ?.insertItem(viewModel.partNameControllers.length - 1);
+    _parteListKey.currentState?.insertItem(
+      viewModel.partNameControllers.length - 1,
+    );
   }
 
   void _removerParte(int index) {
@@ -264,8 +269,9 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
             ),
             const SizedBox(height: 16),
             DefaultTextButton(
-              onPressed:
-                  viewModel.podeAdicionarParte ? _adicionarNovaParte : null,
+              onPressed: viewModel.podeAdicionarParte
+                  ? _adicionarNovaParte
+                  : null,
               expandText: true,
               showBorder: true,
               child: Text(

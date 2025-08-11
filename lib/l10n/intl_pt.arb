@@ -25,7 +25,7 @@
   "aboutAppText": "Este aplicativo foi desenvolvido para ajudar músicos a organizar seus estudos, registrar o progresso e dominar suas músicas favoritas.",
   "dev": "Desenvolvedor",
   "step1Title": "Dados da Música",
-  "step1Desc": "Preencha as informações básicas da música. O título é essencial para encontrá-la depois.",
+  "step1Desc": "Preencha as informações básicas da música.\nO título é essencial para encontrá-la depois.",
   "step2Title": "Partes da Música",
   "step2Desc": " Defina a estrutura da música com seções, ritmos e acordes. Adicione quantas partes quiser.",
   "step": "Passo",

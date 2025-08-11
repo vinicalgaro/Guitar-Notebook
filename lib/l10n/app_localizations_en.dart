@@ -61,7 +61,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get step1Desc =>
-      'Fill in the basic details of the song. The title is essential to find it later.';
+      'Fill in the basic details of the song.\nThe title is essential to find it later.';
 
   @override
   String get step2Title => 'Song Parts';

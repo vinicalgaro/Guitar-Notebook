@@ -197,7 +197,7 @@ abstract class AppLocalizations {
   /// No description provided for @step1Desc.
   ///
   /// In pt, this message translates to:
-  /// **'Preencha as informações básicas da música. O título é essencial para encontrá-la depois.'**
+  /// **'Preencha as informações básicas da música.\nO título é essencial para encontrá-la depois.'**
   String get step1Desc;
 
   /// No description provided for @step2Title.

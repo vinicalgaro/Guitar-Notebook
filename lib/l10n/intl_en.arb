@@ -19,7 +19,7 @@
   "aboutAppText": "This app was developed to help musicians organize their practice, track their progress, and master their favorite songs.",
   "dev": "Developer",
   "step1Title": "Song Data",
-  "step1Desc": "Fill in the basic details of the song. The title is essential to find it later.",
+  "step1Desc": "Fill in the basic details of the song.\nThe title is essential to find it later.",
   "step2Title": "Song Parts",
   "step2Desc": " Define the song structure with sections, rhythm, and chords. Add as many parts as you like.",
   "step": "Step",

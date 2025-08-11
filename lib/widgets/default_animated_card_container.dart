@@ -30,6 +30,7 @@ class DefaultAnimatedCardContainer extends StatelessWidget {
         },
         child: DefaultCardContainer(
           key: widgetKey,
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: SizedBox(
             height: height,
             child: LayoutBuilder(

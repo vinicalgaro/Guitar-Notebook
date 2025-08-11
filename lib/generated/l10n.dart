@@ -114,10 +114,10 @@ class S {
     return Intl.message('Song Data', name: 'step1Title', desc: '', args: []);
   }
 
-  /// `Fill in the basic details of the song. The title is essential to find it later.`
+  /// `Fill in the basic details of the song.\nThe title is essential to find it later.`
   String get step1Desc {
     return Intl.message(
-      'Fill in the basic details of the song. The title is essential to find it later.',
+      'Fill in the basic details of the song.\nThe title is essential to find it later.',
       name: 'step1Desc',
       desc: '',
       args: [],

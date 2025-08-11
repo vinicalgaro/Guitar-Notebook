@@ -137,7 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "songName": MessageLookupByLibrary.simpleMessage("Nome da Música"),
     "step": MessageLookupByLibrary.simpleMessage("Passo"),
     "step1Desc": MessageLookupByLibrary.simpleMessage(
-      "Preencha as informações básicas da música. O título é essencial para encontrá-la depois.",
+      "Preencha as informações básicas da música.\nO título é essencial para encontrá-la depois.",
     ),
     "step1Title": MessageLookupByLibrary.simpleMessage("Dados da Música"),
     "step2Desc": MessageLookupByLibrary.simpleMessage(

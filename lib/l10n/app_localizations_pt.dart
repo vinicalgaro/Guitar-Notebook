@@ -61,7 +61,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get step1Desc =>
-      'Preencha as informações básicas da música. O título é essencial para encontrá-la depois.';
+      'Preencha as informações básicas da música.\nO título é essencial para encontrá-la depois.';
 
   @override
   String get step2Title => 'Partes da Música';
