@@ -624,10 +624,10 @@ class S {
     );
   }
 
-  /// `Organize your songs and practice your favorite songs.\nStart by adding a song!`
+  /// `Organize and practice your favorite songs.\nStart by adding a song!`
   String get welcomeMessage {
     return Intl.message(
-      'Organize your songs and practice your favorite songs.\nStart by adding a song!',
+      'Organize and practice your favorite songs.\nStart by adding a song!',
       name: 'welcomeMessage',
       desc: '',
       args: [],

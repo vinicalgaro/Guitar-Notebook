@@ -659,7 +659,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeMessage.
   ///
   /// In pt, this message translates to:
-  /// **'Organize suas músicas e pratique suas músicas favoritas.\nComece adicionando uma música!'**
+  /// **'Organize e pratique suas músicas favoritas.\nComece adicionando uma música!'**
   String get welcomeMessage;
 
   /// No description provided for @letsgo.

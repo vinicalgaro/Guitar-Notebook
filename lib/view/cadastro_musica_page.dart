@@ -222,7 +222,7 @@ class _CadastroMusicaPageState extends State<CadastroMusicaPage> {
                 onChanged: (selected) {
                   viewModel.atualizarAfinacao(selected);
                 },
-                itemBuilder: (item) => Text(item.nome),
+                itemBuilder: (item) => Text(item.nameFormatted(context)),
               ),
           ],
         ),

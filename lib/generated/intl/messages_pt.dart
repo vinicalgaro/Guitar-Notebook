@@ -153,7 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "violao": MessageLookupByLibrary.simpleMessage("Violão"),
     "voltar": MessageLookupByLibrary.simpleMessage("Voltar"),
     "welcomeMessage": MessageLookupByLibrary.simpleMessage(
-      "Organize suas músicas e pratique suas músicas favoritas.\nComece adicionando uma música!",
+      "Organize e pratique suas músicas favoritas.\nComece adicionando uma música!",
     ),
   };
 }
